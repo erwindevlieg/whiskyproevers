@@ -1333,8 +1333,8 @@
   .chart-top { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.7rem; }
 
   @keyframes view-enter {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: none; }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   .view-enter { animation: view-enter 0.32s ease both; }
 

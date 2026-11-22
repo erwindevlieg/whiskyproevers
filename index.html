@@ -1201,6 +1201,12 @@ function revealView(el) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   void el.offsetWidth;
   el.classList.add("view-enter");
+  const done = (e) => {
+    if (e.target !== el) return;
+    el.classList.remove("view-enter");
+    el.removeEventListener("animationend", done);
+  };
+  el.addEventListener("animationend", done);
 }
 
 function isCompared(id) { return state.compare.includes(id); }
