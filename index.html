@@ -23,9 +23,31 @@
         <h1>Whisky <em>proefoverzicht</em></h1>
       </a>
     </div>
+    <nav class="site-nav" aria-label="Hoofd">
+      <a class="nav-link" id="navInzicht" href="#/inzicht">Inzicht</a>
+    </nav>
   </header>
 
-  <div class="status-msg" id="status">Gegevens worden geladen…</div>
+  <div class="status-msg" id="status" hidden>Gegevens worden geladen…</div>
+  <div class="list-skeleton-view" id="listSkeleton" aria-busy="true" aria-label="Gegevens worden geladen">
+    <div class="skeleton skel-search"></div>
+    <div class="skel-table">
+      <div class="skel-tr"><div class="skeleton skel-box"></div><div class="skeleton skel-photo"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div></div>
+      <div class="skel-tr"><div class="skeleton skel-box"></div><div class="skeleton skel-photo"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div></div>
+      <div class="skel-tr"><div class="skeleton skel-box"></div><div class="skeleton skel-photo"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div></div>
+      <div class="skel-tr"><div class="skeleton skel-box"></div><div class="skeleton skel-photo"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div></div>
+      <div class="skel-tr"><div class="skeleton skel-box"></div><div class="skeleton skel-photo"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div></div>
+      <div class="skel-tr"><div class="skeleton skel-box"></div><div class="skeleton skel-photo"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div><div class="skeleton skel-box"></div></div>
+    </div>
+    <div class="skel-cards">
+      <div class="skel-card"><div class="skeleton skel-photo"></div><div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-photo"></div><div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-photo"></div><div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-photo"></div><div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-photo"></div><div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div></div>
+      <div class="skel-card"><div class="skeleton skel-photo"></div><div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div></div>
+    </div>
+  </div>
 
   <div id="listView" hidden>
     <div class="list-bar">
@@ -119,6 +141,7 @@
         <thead>
           <tr>
             <th class="col-check" scope="col">Geproefd</th>
+            <th class="col-photo" scope="col"><span class="sr-only">Foto</span></th>
             <th class="sortable" data-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>
             <th class="sortable" data-sort="regio" scope="col" aria-sort="none">Regio <span class="arrow">↕</span></th>
             <th class="sortable" data-sort="vattype" scope="col" aria-sort="none">Vattype <span class="arrow">↕</span></th>
@@ -141,6 +164,27 @@
     <article class="detail" id="detail"></article>
   </div>
 
+  <div class="compare-view" id="compareView" hidden>
+    <a class="back" href="#/">← Overzicht</a>
+    <div id="compare"></div>
+  </div>
+
+  <div class="inzicht-view" id="inzichtView" hidden>
+    <a class="back" href="#/">← Overzicht</a>
+    <article class="detail inzicht-panel" id="inzicht"></article>
+  </div>
+
+  <div class="compare-bar" id="compareBar" hidden>
+    <div class="compare-bar-inner">
+      <div class="compare-picks" id="comparePicks"></div>
+      <div class="compare-bar-actions">
+        <button type="button" class="btn" id="compareGo" disabled>Vergelijk</button>
+        <button type="button" class="btn-ghost" id="compareClear">Wis</button>
+      </div>
+    </div>
+  </div>
+  <div class="hover-card" id="hoverCard" hidden></div>
+
   <noscript>Deze pagina heeft JavaScript nodig om het overzicht te tonen.</noscript>
 
 <script>
@@ -160,6 +204,9 @@ const FLAVOUR = [
 ];
 const PAGE_SIZE = 80;
 const STORAGE_KEY = "whisky-tool-geproefd";
+const COMPARE_KEY = "whisky-tool-vergelijk";
+const COMPARE_MAX = 3;
+const ROOK_SCALE = { geen: 0, licht: 1 / 3, medium: 2 / 3, zwaar: 1 };
 const rookOrder = { geen: 0, licht: 1, medium: 2, zwaar: 3, onbekend: 4 };
 
 function parseRegio(regio) {
@@ -256,6 +303,13 @@ function loadTasted() {
   catch { return {}; }
 }
 function saveTasted(map) { localStorage.setItem(STORAGE_KEY, JSON.stringify(map)); }
+function loadCompare() {
+  try {
+    const ids = JSON.parse(localStorage.getItem(COMPARE_KEY) || "[]");
+    return Array.isArray(ids) ? ids.filter(id => typeof id === "string") : [];
+  } catch { return []; }
+}
+function saveCompare(ids) { localStorage.setItem(COMPARE_KEY, JSON.stringify(ids)); }
 
 const state = {
   q: "",
@@ -272,6 +326,7 @@ const state = {
   dir: "desc",
   shown: PAGE_SIZE,
   tasted: loadTasted(),
+  compare: loadCompare(),
   defaults: { minScore: 60, maxPrijs: 100, scoreMin: 60, scoreMax: 92, prijsMin: 1, prijsMax: 100 }
 };
 
@@ -296,6 +351,303 @@ function descriptionFor(r) {
   const entry = DESCRIPTIONS && DESCRIPTIONS[r.id];
   if (entry && entry.text) return entry;
   return null;
+}
+
+function photoUrl(r) {
+  const url = r && r.afbeelding;
+  return url && String(url).startsWith("https://") ? String(url) : "";
+}
+
+function photoHtml(r, size, alt) {
+  const cls = "photo photo-" + size;
+  const url = photoUrl(r);
+  const placeholder = '<span class="photo-placeholder" aria-hidden="true"></span>';
+  if (!url) return '<div class="' + cls + ' is-empty" aria-hidden="true">' + placeholder + "</div>";
+  const label = alt == null ? displayName(r.naam) : alt;
+  return '<div class="' + cls + ' is-loading">'
+    + '<img src="' + escapeAttr(url) + '" alt="' + escapeAttr(label) + '" loading="lazy" decoding="async">'
+    + "</div>";
+}
+
+function bindPhotos(root) {
+  (root || document).querySelectorAll(".photo img").forEach(img => {
+    const box = img.parentNode;
+    const done = () => box.classList.remove("is-loading");
+    const fail = () => {
+      box.classList.remove("is-loading");
+      box.classList.add("is-empty");
+      box.innerHTML = '<span class="photo-placeholder" aria-hidden="true"></span>';
+    };
+    if (img.complete && img.naturalWidth) done();
+    else if (img.complete) fail();
+    else {
+      img.addEventListener("load", done, { once: true });
+      img.addEventListener("error", fail, { once: true });
+    }
+  });
+}
+
+function isCompared(id) { return state.compare.includes(id); }
+
+function toggleCompare(id) {
+  if (!id) return;
+  const i = state.compare.indexOf(id);
+  if (i >= 0) state.compare.splice(i, 1);
+  else if (state.compare.length < COMPARE_MAX) state.compare.push(id);
+  saveCompare(state.compare);
+  updateCompareBar();
+}
+
+function compareHref(ids) {
+  const list = ids || state.compare;
+  return "#/vergelijk/" + list.map(encodeURIComponent).join(",");
+}
+
+function compareToggleHtml(r) {
+  const on = isCompared(r.id);
+  const full = !on && state.compare.length >= COMPARE_MAX;
+  return '<button type="button" class="compare-toggle" data-compare-id="' + escapeAttr(r.id) + '"'
+    + ' aria-pressed="' + (on ? "true" : "false") + '"'
+    + (full ? " disabled" : "")
+    + (on ? ' aria-label="Verwijder uit vergelijking"' : ' aria-label="Zet op vergelijking"')
+    + ">" + (on ? "Geselecteerd" : "Vergelijk") + "</button>";
+}
+
+function rowById(id) { return ROWS.find(r => r.id === id); }
+
+function updateCompareBar() {
+  // drop ids that disappeared after a data refresh
+  state.compare = state.compare.filter(id => !ROWS.length || rowById(id));
+  const n = state.compare.length;
+  if (!els.compareBar) return;
+  els.compareBar.hidden = n === 0;
+  document.body.classList.toggle("has-compare-bar", n > 0);
+  els.compareGo.disabled = n < 2;
+  els.compareGo.textContent = n ? "Vergelijk (" + n + ")" : "Vergelijk";
+  els.comparePicks.innerHTML = state.compare.map(id => {
+    const r = rowById(id);
+    const name = r ? displayName(r.naam) : id;
+    return '<span class="compare-chip"><span>' + escapeHtml(name) + '</span>'
+      + '<button type="button" data-compare-remove="' + escapeAttr(id) + '" aria-label="Verwijder ' + escapeAttr(name) + '">×</button></span>';
+  }).join("");
+}
+
+function canHoverPreview() {
+  return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+}
+
+function hideHoverCard() {
+  if (els.hoverCard) els.hoverCard.hidden = true;
+}
+
+function showHoverCard(r, anchor) {
+  if (!canHoverPreview() || !els.hoverCard || !r) return;
+  const tags = r.flavour.slice(0, 4).map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
+  const vat = unknownToEmpty(r.vattype);
+  const regio = r.regioKort || unknownToEmpty(r.regio);
+  els.hoverCard.innerHTML =
+    '<div class="hover-top">' + photoHtml(r, "sm", "")
+    + '<div><a class="name" href="' + escapeAttr(detailHref(r)) + '">' + escapeHtml(displayName(r.naam)) + "</a>"
+    + (r.score != null ? '<div>' + scoreBadge(r.score) + "</div>" : "")
+    + "</div></div>"
+    + (regio ? '<p class="sub">' + escapeHtml(regio) + "</p>" : "")
+    + (vat ? '<p class="sub">' + escapeHtml(vat) + "</p>" : "")
+    + (tags ? '<div class="tags">' + tags + "</div>" : "");
+  els.hoverCard.hidden = false;
+  bindPhotos(els.hoverCard);
+  const rect = anchor.getBoundingClientRect();
+  const card = els.hoverCard.getBoundingClientRect();
+  let left = rect.left;
+  let top = rect.bottom + 8;
+  if (left + card.width > window.innerWidth - 8) left = window.innerWidth - card.width - 8;
+  if (left < 8) left = 8;
+  if (top + card.height > window.innerHeight - 8) top = Math.max(8, rect.top - card.height - 8);
+  els.hoverCard.style.left = left + "px";
+  els.hoverCard.style.top = top + "px";
+}
+
+function flavourAxes(r) {
+  const axes = FLAVOUR.map(f => ({ label: f.label, value: r.flavour.includes(f.label) ? 1 : 0 }));
+  if (r.rook && Object.prototype.hasOwnProperty.call(ROOK_SCALE, r.rook)) {
+    axes.push({ label: "Rook", value: ROOK_SCALE[r.rook] });
+  }
+  return axes;
+}
+
+function flavourChartHtml(r) {
+  const axes = flavourAxes(r);
+  const any = axes.some(a => a.value > 0);
+  if (!any) return "";
+  const n = axes.length;
+  const cx = 150, cy = 150, radius = 86;
+  const levels = [0.25, 0.5, 0.75, 1];
+  const toPt = (i, value) => {
+    const angle = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+    return [cx + Math.cos(angle) * radius * value, cy + Math.sin(angle) * radius * value];
+  };
+  const grid = levels.map(lv => {
+    const pts = Array.from({ length: n }, (_, i) => toPt(i, lv).join(",")).join(" ");
+    return '<polygon class="chart-grid" points="' + pts + '"></polygon>';
+  }).join("");
+  const spokes = axes.map((_, i) => {
+    const [x, y] = toPt(i, 1);
+    return '<line class="chart-axis" x1="' + cx + '" y1="' + cy + '" x2="' + x + '" y2="' + y + '"></line>';
+  }).join("");
+  const poly = axes.map((a, i) => toPt(i, a.value).join(",")).join(" ");
+  const labels = axes.map((a, i) => {
+    const [x, y] = toPt(i, 1.2);
+    const anchor = x < cx - 8 ? "end" : x > cx + 8 ? "start" : "middle";
+    const parts = a.label.split(" / ");
+    if (parts.length > 1) {
+      const y0 = y < cy ? -0.7 : (y > cy ? 0.2 : -0.35);
+      return '<text class="chart-label" x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '" dy="' + y0 + 'em">'
+        + '<tspan x="' + x.toFixed(1) + '">' + escapeHtml(parts[0]) + '</tspan>'
+        + '<tspan x="' + x.toFixed(1) + '" dy="1.15em">' + escapeHtml(parts.slice(1).join(" / ")) + '</tspan>'
+        + "</text>";
+    }
+    const dy = y < cy - 8 ? "-0.2em" : y > cy + 8 ? "0.8em" : "0.35em";
+    return '<text class="chart-label" x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '" dy="' + dy + '">'
+      + escapeHtml(a.label) + "</text>";
+  }).join("");
+  return '<div class="chart-block"><h3>Smaakprofiel</h3>'
+    + '<p class="chart-caption">Op basis van tags</p>'
+    + '<div class="radar-wrap"><svg viewBox="0 0 300 300" role="img" aria-label="Smaakprofiel op basis van tags">'
+    + grid + spokes
+    + '<polygon class="chart-fill" points="' + poly + '"></polygon>'
+    + labels + "</svg></div></div>";
+}
+
+function renderInzicht() {
+  document.title = "Inzicht · Whisky proefoverzicht";
+  const points = ROWS.filter(r => r.score != null && r.prijsSample != null);
+  if (!points.length) {
+    els.inzicht.innerHTML = "<h2>Score vs sampleprijs</h2><p class=\"sub\">Geen rijen met zowel een score als een sampleprijs.</p>";
+    return;
+  }
+  const padL = 48, padR = 16, padT = 16, padB = 40;
+  const W = 720, H = 420;
+  const xs = points.map(r => r.prijsSample), ys = points.map(r => r.score);
+  const minX = Math.min(...xs), maxX = Math.max(...xs);
+  const minY = Math.min(...ys), maxY = Math.max(...ys);
+  const spanX = Math.max(0.01, maxX - minX);
+  const spanY = Math.max(0.01, maxY - minY);
+  const xOf = v => padL + ((v - minX) / spanX) * (W - padL - padR);
+  const yOf = v => padT + (1 - (v - minY) / spanY) * (H - padT - padB);
+  const ticksX = 5, ticksY = 5;
+  let axis = '<line class="chart-axis" x1="' + padL + '" y1="' + (H - padB) + '" x2="' + (W - padR) + '" y2="' + (H - padB) + '"></line>'
+    + '<line class="chart-axis" x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (H - padB) + '"></line>';
+  for (let i = 0; i <= ticksX; i++) {
+    const v = minX + (spanX * i) / ticksX;
+    const x = xOf(v);
+    axis += '<line class="chart-grid" x1="' + x + '" y1="' + padT + '" x2="' + x + '" y2="' + (H - padB) + '"></line>';
+    axis += '<text class="scatter-tick" x="' + x + '" y="' + (H - padB + 16) + '" text-anchor="middle">' + escapeHtml(euro.format(v).replace(",00", "")) + "</text>";
+  }
+  for (let i = 0; i <= ticksY; i++) {
+    const v = minY + (spanY * i) / ticksY;
+    const y = yOf(v);
+    axis += '<line class="chart-grid" x1="' + padL + '" y1="' + y + '" x2="' + (W - padR) + '" y2="' + y + '"></line>';
+    axis += '<text class="scatter-tick" x="' + (padL - 8) + '" y="' + (y + 3) + '" text-anchor="end">' + escapeHtml(scoreFmt.format(v)) + "</text>";
+  }
+  const dots = points.map(r =>
+    '<circle class="scatter-point" data-slug="' + escapeAttr(r.id) + '" cx="' + xOf(r.prijsSample).toFixed(1) + '" cy="' + yOf(r.score).toFixed(1) + '" r="4">'
+    + '<title>' + escapeHtml(displayName(r.naam)) + " · " + scoreFmt.format(r.score) + " · " + euro.format(r.prijsSample) + "</title></circle>"
+  ).join("");
+  els.inzicht.innerHTML = "<h2>Score vs sampleprijs</h2>"
+    + '<p class="chart-caption">Alleen bottelingen waarvan zowel de Whiskybase-score als de sampleprijs bekend is. Klik op een punt voor de detailpagina.</p>'
+    + '<div class="scatter-wrap"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Spreidingsdiagram score versus sampleprijs">'
+    + axis + dots
+    + '<text class="chart-label" x="' + (W / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Sampleprijs</text>'
+    + '<text class="chart-label" x="14" y="' + (H / 2) + '" text-anchor="middle" transform="rotate(-90 14 ' + (H / 2) + ')">Score</text>'
+    + "</svg></div>";
+}
+
+function knownOrEmpty(valueHtml) { return valueHtml || ""; }
+
+function compareValue(kind, r) {
+  if (kind === "photo") return photoHtml(r, "md");
+  if (kind === "score") return r.score != null ? scoreBadge(r.score) : "";
+  if (kind === "abv") return abvCell(r);
+  if (kind === "regio") return knownText(r.regioKort || r.regio);
+  if (kind === "vattype") return knownText(r.vattype);
+  if (kind === "rook") return knownText(r.rook);
+  if (kind === "leeftijd") return r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : "";
+  if (kind === "ncf") return knownText(ncfLabel(r.ncf) || r.ncf);
+  if (kind === "kleurstof") return knownText(kleurLabel(r.kleurstof) || r.kleurstof);
+  if (kind === "flavour") {
+    return r.flavour.length ? r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join(" ") : "";
+  }
+  if (kind === "prijsSample") return r.prijsSample != null ? escapeHtml(euro.format(r.prijsSample)) : "";
+  if (kind === "flesPrijs") return r.flesPrijs != null ? escapeHtml(euro.format(r.flesPrijs)) : "";
+  if (kind === "critics") {
+    const parts = [];
+    if (r.whiskyfunScore) parts.push("WF " + r.whiskyfunScore);
+    if (r.distillerScore) parts.push("Distiller " + String(r.distillerScore).split("—")[0].trim());
+    return parts.length ? escapeHtml(parts.join(" · ")) : "";
+  }
+  return "";
+}
+
+function isPresent(kind, r) { return !!compareValue(kind, r); }
+
+function bestClass(kind, rows, index) {
+  if (kind === "score") {
+    const vals = rows.map(r => r.score).filter(v => v != null);
+    if (!vals.length || rows[index].score == null) return "";
+    return rows[index].score === Math.max(...vals) ? " is-best" : "";
+  }
+  if (kind === "prijsSample" || kind === "flesPrijs") {
+    const key = kind;
+    const vals = rows.map(r => r[key]).filter(v => v != null);
+    if (!vals.length || rows[index][key] == null) return "";
+    return rows[index][key] === Math.min(...vals) ? " is-best" : "";
+  }
+  return "";
+}
+
+function renderCompare(ids) {
+  const rows = ids.map(rowById).filter(Boolean);
+  document.title = "Vergelijk · Whisky proefoverzicht";
+  if (rows.length < 2) {
+    els.compare.innerHTML = '<div class="compare-missing"><h2>Vergelijking</h2><p>Selecteer twee of drie whisky’s om ze naast elkaar te zetten.</p></div>';
+    return;
+  }
+  const fields = [
+    ["photo", "Foto"],
+    ["score", "WB-score"],
+    ["abv", "ABV"],
+    ["regio", "Regio"],
+    ["vattype", "Vattype"],
+    ["rook", "Rook"],
+    ["leeftijd", "Leeftijd"],
+    ["ncf", "NCF"],
+    ["kleurstof", "Kleurstof"],
+    ["flavour", "Smaak"],
+    ["prijsSample", "Sampleprijs"],
+    ["flesPrijs", "Flesprijs"],
+    ["critics", "Andere scores"]
+  ].filter(([kind]) => kind === "photo" || rows.some(r => isPresent(kind, r)));
+  const head = '<tr><th class="cmp-label" scope="col"></th>'
+    + rows.map(r => '<th scope="col"><div class="compare-head">' + photoHtml(r, "md")
+      + '<a class="name" href="' + escapeAttr(detailHref(r)) + '">' + escapeHtml(displayName(r.naam)) + "</a>"
+      + compareToggleHtml(r) + "</div></th>").join("")
+    + "</tr>";
+  const body = fields.filter(([kind]) => kind !== "photo").map(([kind, label]) => {
+    return '<tr><th class="cmp-label" scope="row">' + escapeHtml(label) + "</th>"
+      + rows.map((r, i) => '<td class="' + bestClass(kind, rows, i).trim() + '">' + (compareValue(kind, r) || "—") + "</td>").join("")
+      + "</tr>";
+  }).join("");
+  els.compare.innerHTML = "<h2>Vergelijking</h2><div class=\"compare-scroll\"><table class=\"compare-table\"><thead>"
+    + head + "</thead><tbody>" + body + "</tbody></table></div>";
+  bindPhotos(els.compare);
+}
+
+function hideMainViews() {
+  els.listView.hidden = true;
+  els.detailView.hidden = true;
+  if (els.compareView) els.compareView.hidden = true;
+  if (els.inzichtView) els.inzichtView.hidden = true;
+  document.body.classList.remove("detail-mode");
+  if (els.navInzicht) els.navInzicht.classList.remove("is-active");
 }
 
 const jsErrors = [];
@@ -327,7 +679,18 @@ const els = {
   moreWrap: document.getElementById("moreWrap"),
   listView: document.getElementById("listView"),
   detailView: document.getElementById("detailView"),
-  detail: document.getElementById("detail")
+  detail: document.getElementById("detail"),
+  compareView: document.getElementById("compareView"),
+  compare: document.getElementById("compare"),
+  inzichtView: document.getElementById("inzichtView"),
+  inzicht: document.getElementById("inzicht"),
+  compareBar: document.getElementById("compareBar"),
+  comparePicks: document.getElementById("comparePicks"),
+  compareGo: document.getElementById("compareGo"),
+  compareClear: document.getElementById("compareClear"),
+  hoverCard: document.getElementById("hoverCard"),
+  listSkeleton: document.getElementById("listSkeleton"),
+  navInzicht: document.getElementById("navInzicht")
 };
 
 function uniqueInOrder(items, order) {
@@ -520,7 +883,9 @@ function render(resetPage) {
     return '<tr class="' + (tasted ? "tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
       + '<td class="col-check"><label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
       + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label></td>'
-      + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ">" + escapeHtml(name) + "</a></td>"
+      + '<td class="col-photo">' + photoHtml(r, "sm", "") + "</td>"
+      + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ' data-hover-id="' + escapeAttr(r.id) + '">' + escapeHtml(name) + "</a>"
+      + compareToggleHtml(r) + "</td>"
       + "<td>" + (regio ? escapeHtml(regio) : "") + "</td>"
       + '<td><span class="vat"' + (vat ? ' title="' + escapeAttr(vat) + '"' : "") + ">" + escapeHtml(vat) + "</span></td>"
       + '<td class="col-abv">' + abvCell(r) + "</td>"
@@ -529,6 +894,7 @@ function render(resetPage) {
   }).join("");
 
   els.cards.innerHTML = visible.map(r => cardHtml(r)).join("");
+  bindPhotos(els.tableWrap);
 
   els.empty.hidden = list.length > 0;
   const table = document.querySelector("#listView table");
@@ -562,6 +928,7 @@ function cardHtml(r) {
   return '<article class="whisky-card' + (tasted ? " tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
     + '<label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
     + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label>'
+    + photoHtml(r, "sm", "")
     + '<div class="card-main">'
     + '<div class="card-top">'
     + '<a class="name" href="' + escapeAttr(detailHref(r)) + '">' + escapeHtml(name) + "</a>"
@@ -569,6 +936,7 @@ function cardHtml(r) {
     + "</div>"
     + (meta ? '<p class="sub">' + escapeHtml(meta) + "</p>" : "")
     + (tags ? '<div class="tags">' + tags + "</div>" : "")
+    + '<div class="card-actions">' + compareToggleHtml(r) + "</div>"
     + "</div></article>";
 }
 
@@ -732,7 +1100,7 @@ function renderDetail(r) {
       + "</div>"
     : "";
   const smaakTags = tags ? '<div class="block"><h3>Smaak</h3><div class="tags">' + tags + "</div></div>" : "";
-  const smaak = notesBlock + smaakTags + (criticFacts ? '<div class="block"><h3>Scores</h3>' + criticFacts + "</div>" : "");
+  const smaak = flavourChartHtml(r) + notesBlock + smaakTags + (criticFacts ? '<div class="block"><h3>Scores</h3>' + criticFacts + "</div>" : "");
 
   const tweede = (unknownToEmpty(r.tweedeWinkel) || r.tweedePrijs != null)
     ? escapeHtml((r.tweedeWinkel || "Tweede winkel") + (r.tweedePrijs != null ? " · " + euro.format(r.tweedePrijs) : ""))
@@ -761,13 +1129,16 @@ function renderDetail(r) {
   ]);
 
   els.detail.innerHTML =
-    '<div class="detail-head"><div>'
+    '<div class="detail-head">' + photoHtml(r, "lg")
+    + "<div>"
     + "<h2>" + escapeHtml(name) + "</h2>"
     + (subtitle ? '<span class="sub">' + escapeHtml(subtitle) + "</span>" : "")
     + (tags ? '<div class="tags">' + tags + "</div>" : "")
     + '</div><div class="detail-aside">'
     + '<label class="taste-check"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
-    + (tasted ? " checked" : "") + "> Geproefd</label></div></div>"
+    + (tasted ? " checked" : "") + "> Geproefd</label>"
+    + compareToggleHtml(r)
+    + "</div></div>"
     + (stats.length ? '<div class="stat-row">' + stats.join("") + "</div>" : "")
     + renderTabs([
       { id: "overzicht", label: "Overzicht", html: overzicht },
@@ -776,6 +1147,7 @@ function renderDetail(r) {
       { id: "links", label: "Links", html: linksHtml }
     ])
     + accordion("Meer details", meer);
+  bindPhotos(els.detail);
 }
 
 function renderDetailMissing() {
@@ -785,15 +1157,24 @@ function renderDetailMissing() {
 }
 
 function parseHash() {
-  const raw = (location.hash || "").replace(/^#/, "");
-  const path = decodeURIComponent(raw).replace(/^\/+/, "");
-  if (!path || path === "/") return null;
-  const match = path.match(/^whisky\/([^/]+)$/);
-  return match ? match[1] : null;
+  const raw = (location.hash || "#").replace(/^#/, "");
+  let path = raw;
+  try { path = decodeURIComponent(raw); } catch {}
+  path = path.replace(/^\/+/, "");
+  if (!path || path === "/") return { view: "list" };
+  let match = path.match(/^whisky\/([^/]+)$/);
+  if (match) return { view: "detail", id: match[1] };
+  match = path.match(/^vergelijk\/([^/]+)$/);
+  if (match) {
+    const ids = match[1].split(",").map(s => s.trim()).filter(Boolean).slice(0, COMPARE_MAX);
+    return { view: "compare", ids };
+  }
+  if (path === "inzicht" || path.startsWith("inzicht/")) return { view: "inzicht" };
+  return { view: "list" };
 }
 
 function rememberListScroll() {
-  if (parseHash()) return;
+  if (parseHash().view !== "list") return;
   listScroll = { table: els.tableWrap.scrollTop, window: window.scrollY };
 }
 
@@ -807,18 +1188,20 @@ function restoreListScroll() {
 }
 
 function route() {
-  const id = parseHash();
-  if (id) {
-    const row = ROWS.find(r => r.id === id);
+  hideHoverCard();
+  const loc = parseHash();
+  hideMainViews();
+  if (loc.view === "detail") {
+    const row = rowById(loc.id);
     document.body.classList.add("detail-mode");
-    els.listView.hidden = true;
     els.detailView.hidden = false;
     if (row) {
       renderDetail(row);
-      const current = id;
+      const current = loc.id;
       if (!descriptionFor(row)) {
         loadDescriptions().then(() => {
-          if (parseHash() === current) renderDetail(row);
+          const now = parseHash();
+          if (now.view === "detail" && now.id === current) renderDetail(row);
         });
       }
     } else {
@@ -827,11 +1210,23 @@ function route() {
     window.scrollTo(0, 0);
     return;
   }
-  document.body.classList.remove("detail-mode");
-  els.detailView.hidden = true;
+  if (loc.view === "compare") {
+    els.compareView.hidden = false;
+    renderCompare(loc.ids);
+    window.scrollTo(0, 0);
+    return;
+  }
+  if (loc.view === "inzicht") {
+    els.inzichtView.hidden = false;
+    if (els.navInzicht) els.navInzicht.classList.add("is-active");
+    renderInzicht();
+    window.scrollTo(0, 0);
+    return;
+  }
   els.listView.hidden = false;
   document.title = "Whisky · Sample-overzicht";
   render(false);
+  updateCompareBar();
   restoreListScroll();
 }
 
@@ -913,7 +1308,7 @@ function bindRowNavigate(container) {
     render(false);
   });
   container.addEventListener("click", (e) => {
-    if (e.target.closest("input, label.geproefd")) return;
+    if (e.target.closest("input, label.geproefd, .compare-toggle")) return;
     const nameLink = e.target.closest("a.name");
     if (nameLink) { rememberListScroll(); return; }
     const row = e.target.closest("[data-slug]");
@@ -1022,10 +1417,74 @@ function bindEvents() {
 
   document.querySelectorAll('a[href="#/"]').forEach(a => {
     a.addEventListener("click", () => {
-      if (parseHash()) return;
+      if (parseHash().view !== "list") return;
       rememberListScroll();
     });
   });
+
+  document.addEventListener("click", (e) => {
+    const toggle = e.target.closest(".compare-toggle");
+    if (toggle) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleCompare(toggle.dataset.compareId);
+      const loc = parseHash();
+      if (loc.view === "list") render(false);
+      else if (loc.view === "detail") {
+        const row = rowById(loc.id);
+        if (row) renderDetail(row);
+      } else if (loc.view === "compare") renderCompare(loc.ids);
+      return;
+    }
+    const remove = e.target.closest("[data-compare-remove]");
+    if (remove) {
+      toggleCompare(remove.dataset.compareRemove);
+      const loc = parseHash();
+      if (loc.view === "list") render(false);
+      else if (loc.view === "compare") renderCompare(loc.ids);
+      else if (loc.view === "detail") {
+        const row = rowById(loc.id);
+        if (row) renderDetail(row);
+      }
+    }
+  });
+  els.compareGo.addEventListener("click", () => {
+    if (state.compare.length >= 2) location.hash = compareHref();
+  });
+  els.compareClear.addEventListener("click", () => {
+    state.compare = [];
+    saveCompare(state.compare);
+    updateCompareBar();
+    const loc = parseHash();
+    if (loc.view === "list") render(false);
+    else if (loc.view === "detail") {
+      const row = rowById(loc.id);
+      if (row) renderDetail(row);
+    }
+  });
+
+  els.inzicht.addEventListener("click", (e) => {
+    const point = e.target.closest("[data-slug]");
+    if (!point) return;
+    location.hash = "#/whisky/" + point.dataset.slug;
+  });
+
+  let hoverTimer = 0;
+  els.rows.addEventListener("pointerenter", (e) => {
+    if (!canHoverPreview()) return;
+    const link = e.target.closest("a.name[data-hover-id]");
+    if (!link) return;
+    const r = rowById(link.dataset.hoverId);
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => showHoverCard(r, link), 120);
+  }, true);
+  els.rows.addEventListener("pointerleave", (e) => {
+    const link = e.target.closest("a.name[data-hover-id]");
+    if (!link) return;
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(hideHoverCard, 120);
+  }, true);
+  window.addEventListener("scroll", hideHoverCard, { passive: true });
 
   document.querySelectorAll(".js-reset").forEach(btn => btn.addEventListener("click", resetFilters));
 
@@ -1035,6 +1494,7 @@ function bindEvents() {
   els.sheetBackdrop.addEventListener("click", closeFilters);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && filtersOpen()) closeFilters();
+    if (e.key === "Escape") hideHoverCard();
   });
   window.matchMedia("(min-width: 1024px)").addEventListener("change", (mq) => {
     if (mq.matches) closeFilters();
@@ -1136,12 +1596,18 @@ fetch("data.json")
     ROWS = items.map(enrich);
     applyBounds(ROWS);
     initPills();
+    if (els.listSkeleton) els.listSkeleton.hidden = true;
     els.status.hidden = true;
+    state.compare = loadCompare().filter(id => items.some(r => r.id === id));
+    saveCompare(state.compare);
+    updateCompareBar();
     loadDescriptions();
     route();
     if (new URLSearchParams(location.search).has("smoke")) return runSmoke();
   })
   .catch(err => {
+    if (els.listSkeleton) els.listSkeleton.hidden = true;
+    els.status.hidden = false;
     els.status.classList.add("error");
     els.status.textContent = "De gegevens konden niet worden geladen. Controleer of data.json naast deze pagina staat.";
     jsErrors.push(String(err));

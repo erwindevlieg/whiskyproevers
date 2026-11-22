@@ -7,7 +7,7 @@ Lege cellen worden null; de tekst 'onbekend' blijft staan zoals in de bron.
 Er wordt niets verzonnen of aangevuld.
 
 Optioneel worden productomschrijvingen uit descriptions.json (van
-scripts/fetch_descriptions.py) als 'omschrijving' en 'omschrijvingBron'
+scripts/fetch_descriptions.py) als 'omschrijving', 'omschrijvingBron' en 'afbeelding'
 meegenomen.
 """
 
@@ -224,24 +224,28 @@ def build(xlsx_path: Path) -> dict:
     }
 
 
-def merge_descriptions(items, descriptions_path: Path) -> int:
-    """Voeg letterlijke Whiskysite-omschrijvingen toe; ontbrekende blijven weg."""
+def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
+    """Voeg letterlijke Whiskysite-omschrijvingen en afbeeldings-URL's toe."""
     if not descriptions_path or not descriptions_path.is_file():
-        return 0
+        return 0, 0
     data = json.loads(descriptions_path.read_text(encoding="utf-8"))
     added = 0
+    images = 0
     for item in items:
         entry = data.get(item.get("id"))
         if not entry:
             continue
         text = (entry.get("text") or "").strip()
-        if not text:
-            continue
-        item["omschrijving"] = text
-        if entry.get("sourceUrl"):
-            item["omschrijvingBron"] = entry["sourceUrl"]
-        added += 1
-    return added
+        if text:
+            item["omschrijving"] = text
+            if entry.get("sourceUrl"):
+                item["omschrijvingBron"] = entry["sourceUrl"]
+            added += 1
+        image = (entry.get("image") or "").strip()
+        if image.startswith("https://"):
+            item["afbeelding"] = image
+            images += 1
+    return added, images
 
 
 def main(argv=None):
@@ -284,14 +288,15 @@ def main(argv=None):
         desc_path = output.parent / "descriptions.json"
     else:
         desc_path = desc_path.expanduser().resolve()
-    added = merge_descriptions(payload["items"], desc_path)
+    added, images = merge_descriptions(payload["items"], desc_path)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
     print(
-        "Geschreven: %s (%s rijen, %s met omschrijving)" % (output, payload["count"], added),
+        "Geschreven: %s (%s rijen, %s met omschrijving, %s met afbeelding)"
+        % (output, payload["count"], added, images),
         file=sys.stderr,
     )
     return 0

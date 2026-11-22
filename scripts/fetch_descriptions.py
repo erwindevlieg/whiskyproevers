@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Haal productomschrijvingen op van Whiskysite.nl.
+"""Haal productomschrijvingen en afbeeldings-URL's op van Whiskysite.nl.
 
 Ruwe HTML wordt gecached (standaard in /workspace/whisky_build/wscache/),
 zodat een hernieuwde run alleen ontbrekende pagina's ophaalt. De tekst
 wordt letterlijk overgenomen, alleen getrimd en zonder navigatie of
 bestel-/cookie-teksten. Alleen volume+ABV telt als te generiek; dan
 wordt (indien aanwezig) de flespagina op Whiskysite geprobeerd.
+Productfoto's worden niet hier bepaald; gebruik scripts/fetch_images.py
+(flespagina, Whiskysite-zoeken, Whiskybase, daarna non-generieke samplefoto).
+Bestaande image-velden in descriptions.json blijven behouden.
 
 Voorbeeld:
     python scripts/fetch_descriptions.py
@@ -197,6 +200,48 @@ def collect_targets(items):
     return rows, unique_urls
 
 
+IMAGE_URL_RE = re.compile(r"^https://[^\s]+\.(?:jpe?g|png|webp)(?:\?.*)?$", re.I)
+
+
+def extract_image(html: str) -> str | None:
+    """Productfoto-URL uit og:image, anders de zichtbare productafbeelding."""
+    if not html:
+        return None
+    soup = BeautifulSoup(html, "lxml")
+
+    def usable(url: str | None) -> str | None:
+        if not url:
+            return None
+        url = url.strip()
+        if not IMAGE_URL_RE.match(url):
+            return None
+        lower = url.lower()
+        if "logo" in lower or "favicon" in lower or "placeholder" in lower:
+            return None
+        return url
+
+    og = soup.find("meta", attrs={"property": re.compile(r"^og:image$", re.I)})
+    if og:
+        found = usable(og.get("content"))
+        if found:
+            return found
+    item = soup.find(attrs={"itemprop": re.compile(r"^image$", re.I)})
+    if item:
+        found = usable(item.get("content") or item.get("src"))
+        if found:
+            return found
+    img = soup.select_one("img.product-image, .product-image img, #image img, .image img")
+    if img:
+        found = usable(img.get("src") or img.get("data-src"))
+        if found:
+            return found
+    return None
+
+
+def pick_image(sample_image, fles_image):
+    return sample_image or fles_image or None
+
+
 def pick_text(sample_text, sample_url, fles_text, fles_url):
     if sample_text and not is_generic(sample_text):
         return sample_text, sample_url
@@ -220,7 +265,7 @@ def default_data_path() -> Path:
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        description="Haal Whiskysite-productomschrijvingen op en schrijf descriptions.json."
+        description="Haal Whiskysite-productomschrijvingen en afbeeldings-URL's op en schrijf descriptions.json."
     )
     parser.add_argument(
         "--data",
@@ -287,29 +332,69 @@ def main(argv=None):
 
     texts = {url: extract_description(html) for url, html in html_by_url.items()}
 
+    existing = {}
+    if output.is_file():
+        try:
+            existing = json.loads(output.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing = {}
+        if not isinstance(existing, dict):
+            existing = {}
+
     descriptions = {}
     used_sample = used_fles = 0
+    with_image = 0
     for row in rows:
         sample_text = texts.get(row["sample"]) if row["sample"] else None
         fles_text = texts.get(row["fles"]) if row["fles"] else None
         text, source = pick_text(sample_text, row["sample"], fles_text, row["fles"])
-        if not text or not source:
+        prev = existing.get(row["id"]) or {}
+        image = prev.get("image")
+        image_source = prev.get("imageSource")
+        if not text and not image:
+            if prev:
+                descriptions[row["id"]] = prev
             continue
-        descriptions[row["id"]] = {"text": text, "sourceUrl": source}
-        if source == row["sample"]:
-            used_sample += 1
-        else:
-            used_fles += 1
+        entry = dict(prev)
+        if text and source:
+            entry["text"] = text
+            entry["sourceUrl"] = source
+            if source == row["sample"]:
+                used_sample += 1
+            else:
+                used_fles += 1
+        if image:
+            entry["image"] = image
+            if image_source:
+                entry["imageSource"] = image_source
+            with_image += 1
+        descriptions[row["id"]] = entry
+    # behoud rijen die alleen een foto hebben en geen Whiskysite-tekstdoel
+    for item_id, prev in existing.items():
+        if item_id not in descriptions and (prev.get("image") or prev.get("text")):
+            descriptions[item_id] = prev
+            if prev.get("image"):
+                with_image += 1
 
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
         json.dumps(descriptions, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    missing = len(rows) - len(descriptions)
+    missing = len(rows) - used_sample - used_fles
     print(
-        "Geschreven: %s  gevonden=%s (sample=%s, fles=%s)  zonder omschrijving=%s  rijen-met-link=%s  urls=%s"
-        % (output, len(descriptions), used_sample, used_fles, missing, len(rows), len(urls)),
+        "Geschreven: %s  gevonden=%s (sample=%s, fles=%s)  zonder omschrijving=%s  "
+        "afbeeldingen=%s (bestaande, zie fetch_images.py)  rijen-met-link=%s  urls=%s"
+        % (
+            output,
+            used_sample + used_fles,
+            used_sample,
+            used_fles,
+            missing,
+            with_image,
+            len(rows),
+            len(urls),
+        ),
         file=sys.stderr,
     )
     return 0
