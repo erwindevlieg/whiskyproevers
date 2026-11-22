@@ -1360,66 +1360,22 @@ function flavourAxes(r) {
   return axes;
 }
 
-function flavourChartHtml(r) {
-  const axes = flavourAxes(r);
-  const any = axes.some(a => a.value > 0);
-  if (!any) return "";
-  const n = axes.length;
-  const cx = 150, cy = 150, radius = 86;
-  const levels = [0.25, 0.5, 0.75, 1];
-  const toPt = (i, value) => {
-    const angle = -Math.PI / 2 + (i * 2 * Math.PI) / n;
-    return [cx + Math.cos(angle) * radius * value, cy + Math.sin(angle) * radius * value];
-  };
-  const grid = levels.map(lv => {
-    const pts = Array.from({ length: n }, (_, i) => toPt(i, lv).join(",")).join(" ");
-    return '<polygon class="chart-grid" points="' + pts + '"></polygon>';
-  }).join("");
-  const spokes = axes.map((_, i) => {
-    const [x, y] = toPt(i, 1);
-    return '<line class="chart-axis" x1="' + cx + '" y1="' + cy + '" x2="' + x + '" y2="' + y + '"></line>';
-  }).join("");
-  const poly = axes.map((a, i) => toPt(i, a.value).join(",")).join(" ");
-  const labels = axes.map((a, i) => {
-    const [x, y] = toPt(i, 1.24);
-    const anchor = x < cx - 8 ? "end" : x > cx + 8 ? "start" : "middle";
-    const parts = a.label.split(" / ");
-    if (parts.length > 1) {
-      const y0 = y < cy ? -0.7 : (y > cy ? 0.2 : -0.35);
-      return '<text class="chart-label" x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '" dy="' + y0 + 'em">'
-        + '<tspan x="' + x.toFixed(1) + '">' + escapeHtml(parts[0]) + '</tspan>'
-        + '<tspan x="' + x.toFixed(1) + '" dy="1.15em">' + escapeHtml(parts.slice(1).join(" / ")) + '</tspan>'
-        + "</text>";
-    }
-    const dy = y < cy - 8 ? "-0.2em" : y > cy + 8 ? "0.8em" : "0.35em";
-    return '<text class="chart-label" x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '" dy="' + dy + '">'
-      + escapeHtml(a.label) + "</text>";
-  }).join("");
-  const dots = axes.map((a, i) => {
-    const [x, y] = toPt(i, a.value);
-    return '<circle class="chart-point" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4"></circle>';
-  }).join("");
-  const scale = levels.map(lv => {
-    const y = cy - radius * lv;
-    return '<text class="chart-scale" x="' + (cx + 5) + '" y="' + y.toFixed(1) + '" dy="0.35em">' + String(lv) + "</text>";
-  }).join("");
-  const top = axes.map((a, i) => ({ label: a.label, value: a.value, i }))
+function flavourHighlights(r) {
+  return flavourAxes(r)
+    .map((a, i) => ({ label: a.label, value: a.value, i }))
     .filter(a => a.value > 0)
     .sort((a, b) => b.value - a.value || (b.label === "Rook" ? 1 : 0) - (a.label === "Rook" ? 1 : 0) || a.i - b.i)
     .slice(0, 3);
-  const topHtml = top.length
-    ? '<div class="chart-top">' + top.map(a => {
-        const label = a.label === "Rook" && r.rook ? ("Rook · " + r.rook) : a.label;
-        return '<span class="chip chip-flavour">' + escapeHtml(label) + "</span>";
-      }).join("") + "</div>"
-    : "";
-  return '<div class="chart-block"><h3>Smaakprofiel</h3>'
-    + '<p class="chart-caption">Op basis van tags</p>'
-    + '<div class="radar-wrap"><svg viewBox="-16 -14 332 332" role="img" aria-label="Smaakprofiel op basis van tags">'
-    + grid + spokes + scale
-    + '<polygon class="chart-fill" points="' + poly + '"></polygon>'
-    + dots + labels + "</svg></div>"
-    + topHtml + "</div>";
+}
+
+function flavourHighlightsHtml(r) {
+  const top = flavourHighlights(r);
+  if (!top.length) return "";
+  const chips = top.map(a => {
+    const label = a.label === "Rook" && r.rook ? ("Rook · " + r.rook) : a.label;
+    return '<span class="chip chip-flavour">' + escapeHtml(label) + "</span>";
+  }).join("");
+  return sectionBlock("Smaakprofiel", '<div class="chips">' + chips + "</div>");
 }
 
 function renderInzicht() {
@@ -1946,12 +1902,20 @@ function descriptionBlock(r) {
   const bron = desc.sourceUrl
     ? '<a class="bron" href="' + escapeAttr(desc.sourceUrl) + '" target="_blank" rel="noopener noreferrer">bron: Whiskysite.nl</a>'
     : '<span class="bron">bron: Whiskysite.nl</span>';
-  return '<div class="block" id="omschrijving"><h3>Omschrijving</h3>'
-    + '<div class="omschrijving' + (long ? " is-collapsed" : "") + '" id="omschrijving-text">' + escapeHtml(desc.text) + "</div>"
+  return sectionBlock(
+    "Omschrijving",
+    '<div class="omschrijving' + (long ? " is-collapsed" : "") + '" id="omschrijving-text">' + escapeHtml(desc.text) + "</div>"
     + '<div class="omschrijving-meta">'
     + (long ? '<button type="button" class="lees-meer" id="leesMeer" aria-expanded="false">Lees meer</button>' : "")
     + bron
-    + "</div></div>";
+    + "</div>",
+    ' id="omschrijving"'
+  );
+}
+
+function sectionBlock(title, inner, attrs) {
+  if (!inner) return "";
+  return '<div class="block"' + (attrs || "") + "><h3>" + escapeHtml(title) + "</h3>" + inner + "</div>";
 }
 
 function factsHtml(pairs) {
@@ -2046,12 +2010,15 @@ function renderDetail(r) {
     ["Distiller", knownText(r.distillerScore)]
   ]);
   const notesBlock = notes
-    ? '<div class="block"><h3>Proefnotities</h3><div class="notes">' + escapeHtml(notes) + "</div>"
-      + (source && !isUrl(source) ? '<span class="notes-source">Bron: ' + escapeHtml(source) + "</span>" : "")
-      + "</div>"
+    ? sectionBlock(
+        "Proefnotities",
+        '<div class="notes">' + escapeHtml(notes) + "</div>"
+        + (source && !isUrl(source) ? '<p class="notes-source">Bron: ' + escapeHtml(source) + "</p>" : "")
+      )
     : "";
-  const smaakTags = tags ? '<div class="block"><h3>Smaak</h3><div class="tags">' + tags + "</div></div>" : "";
-  const smaak = flavourChartHtml(r) + notesBlock + smaakTags + (criticFacts ? '<div class="block"><h3>Scores</h3>' + criticFacts + "</div>" : "");
+  const smaakTags = tags ? sectionBlock("Smaak", '<div class="tags">' + tags + "</div>") : "";
+  const smaak = flavourHighlightsHtml(r) + notesBlock + smaakTags
+    + (criticFacts ? sectionBlock("Scores", criticFacts) : "");
 
   const tweede = (unknownToEmpty(r.tweedeWinkel) || r.tweedePrijs != null)
     ? escapeHtml((r.tweedeWinkel || "Tweede winkel") + (r.tweedePrijs != null ? " · " + euro.format(r.tweedePrijs) : ""))
