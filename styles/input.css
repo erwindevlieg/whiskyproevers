@@ -28,6 +28,11 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --header-h: 56px;
   }
@@ -53,11 +58,17 @@
       --border: 240 3.7% 15.9%;
       --input: 240 3.7% 15.9%;
       --ring: 240 4.9% 83.9%;
+      --chart-1: 220 70% 50%;
+      --chart-2: 160 60% 45%;
+      --chart-3: 30 80% 55%;
+      --chart-4: 280 65% 60%;
+      --chart-5: 340 75% 55%;
     }
   }
 
   * { border-color: hsl(var(--border)); }
   [hidden] { display: none !important; }
+  html { color-scheme: light dark; }
   html, body {
     background: hsl(var(--background));
     color: hsl(var(--foreground));
@@ -926,15 +937,73 @@
   .chart-caption { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-bottom: 0.75rem; }
   .radar-wrap, .scatter-wrap { width: 100%; max-width: 28rem; overflow: visible; }
   .radar-wrap { padding: 0.15rem 0.35rem; }
-  .scatter-wrap { max-width: 52rem; }
-  .radar-wrap svg, .scatter-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
-  .chart-axis { stroke: hsl(var(--border)); stroke-width: 1; fill: none; }
-  .chart-grid { stroke: hsl(var(--border)); stroke-width: 1; fill: none; opacity: 0.8; }
-  .chart-label { fill: hsl(var(--muted-foreground)); font-size: 10px; font-family: inherit; }
-  .chart-fill { fill: hsl(var(--foreground) / 0.12); stroke: hsl(var(--foreground)); stroke-width: 1.5; }
-  .scatter-point { fill: hsl(var(--foreground)); cursor: pointer; }
-  .scatter-point:hover { fill: hsl(var(--primary)); }
-  .scatter-tick { fill: hsl(var(--muted-foreground)); font-size: 10px; font-family: inherit; }
+  .scatter-wrap { position: relative; max-width: 52rem; }
+  .radar-wrap svg, .scatter-wrap svg {
+    width: 100%; height: auto; display: block; overflow: visible;
+    color: hsl(var(--foreground));
+  }
+  .chart-axis {
+    stroke: hsl(var(--muted-foreground) / 0.55);
+    stroke-width: 1.25;
+    fill: none;
+  }
+  .chart-grid {
+    stroke: hsl(var(--border));
+    stroke-width: 1;
+    fill: none;
+  }
+  .chart-label, .scatter-tick {
+    fill: hsl(var(--muted-foreground));
+    font-size: 10px;
+    font-family: inherit;
+  }
+  .chart-fill {
+    fill: hsl(var(--chart-1) / 0.28);
+    stroke: hsl(var(--chart-1));
+    stroke-width: 1.75;
+  }
+  .scatter-point {
+    fill: hsl(var(--chart-1));
+    stroke: hsl(var(--background));
+    stroke-width: 1;
+    cursor: pointer;
+  }
+  .scatter-point:hover, .scatter-point:focus {
+    fill: hsl(var(--chart-2));
+    outline: none;
+  }
+  .chart-tooltip {
+    position: absolute;
+    z-index: 5;
+    min-width: 9rem;
+    max-width: 18rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: calc(var(--radius) - 2px);
+    background: hsl(var(--popover));
+    color: hsl(var(--popover-foreground));
+    box-shadow: 0 8px 28px hsl(240 10% 3.9% / 0.2);
+    font-size: 0.75rem;
+    line-height: 1.35;
+    pointer-events: none;
+    transform: translate(-50%, calc(-100% - 10px));
+  }
+  .chart-tooltip .tt-name { font-weight: 600; color: hsl(var(--foreground)); }
+  .chart-tooltip .tt-meta { color: hsl(var(--muted-foreground)); margin-top: 0.15rem; }
+  @media (prefers-color-scheme: dark) {
+    .chart-grid {
+      stroke: hsl(var(--muted-foreground) / 0.32);
+    }
+    .chart-axis {
+      stroke: hsl(var(--muted-foreground) / 0.6);
+    }
+    .chart-fill {
+      fill: hsl(var(--chart-1) / 0.32);
+      stroke: hsl(var(--chart-1));
+    }
+    .scatter-point { fill: hsl(var(--chart-1)); stroke: hsl(var(--background)); }
+    .scatter-point:hover, .scatter-point:focus { fill: hsl(var(--chart-2)); }
+  }
 
   .hover-card {
     position: fixed;
