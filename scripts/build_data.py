@@ -5,6 +5,10 @@ Het Excel-bestand blijft de bron. Persoonlijke kolommen zoals
 'Past bij smaak' en 'Toelichting smaak' worden bewust weggelaten.
 Lege cellen worden null; de tekst 'onbekend' blijft staan zoals in de bron.
 Er wordt niets verzonnen of aangevuld.
+
+Optioneel worden productomschrijvingen uit descriptions.json (van
+scripts/fetch_descriptions.py) als 'omschrijving' en 'omschrijvingBron'
+meegenomen.
 """
 
 from __future__ import annotations
@@ -220,6 +224,26 @@ def build(xlsx_path: Path) -> dict:
     }
 
 
+def merge_descriptions(items, descriptions_path: Path) -> int:
+    """Voeg letterlijke Whiskysite-omschrijvingen toe; ontbrekende blijven weg."""
+    if not descriptions_path or not descriptions_path.is_file():
+        return 0
+    data = json.loads(descriptions_path.read_text(encoding="utf-8"))
+    added = 0
+    for item in items:
+        entry = data.get(item.get("id"))
+        if not entry:
+            continue
+        text = (entry.get("text") or "").strip()
+        if not text:
+            continue
+        item["omschrijving"] = text
+        if entry.get("sourceUrl"):
+            item["omschrijvingBron"] = entry["sourceUrl"]
+        added += 1
+    return added
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(
         description="Genereer data.json uit het tabblad Overzicht van whisky_overzicht.xlsx."
@@ -236,6 +260,12 @@ def main(argv=None):
         default=None,
         help="Uitvoerbestand (standaard: data.json naast deze repo-root).",
     )
+    parser.add_argument(
+        "--descriptions",
+        type=Path,
+        default=None,
+        help="Pad naar descriptions.json (standaard: naast het uitvoerbestand, indien aanwezig).",
+    )
     args = parser.parse_args(argv)
 
     xlsx_path = args.xlsx.expanduser().resolve()
@@ -249,12 +279,21 @@ def main(argv=None):
         output = output.expanduser().resolve()
 
     payload = build(xlsx_path)
+    desc_path = args.descriptions
+    if desc_path is None:
+        desc_path = output.parent / "descriptions.json"
+    else:
+        desc_path = desc_path.expanduser().resolve()
+    added = merge_descriptions(payload["items"], desc_path)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
-    print("Geschreven: %s (%s rijen)" % (output, payload["count"]), file=sys.stderr)
+    print(
+        "Geschreven: %s (%s rijen, %s met omschrijving)" % (output, payload["count"], added),
+        file=sys.stderr,
+    )
     return 0
 
 
