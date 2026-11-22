@@ -10,8 +10,11 @@ Er wordt niets verzonnen of aangevuld.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 import sys
+import unicodedata
 from datetime import date
 from pathlib import Path
 
@@ -67,7 +70,66 @@ NUMBER_FIELDS = {
     "flesPrijs",
     "tweedePrijs",
 }
+
 INTEGER_FIELDS = {"stemmen"}
+
+AGE_RE = re.compile(
+    r"(?i)\b(\d{1,2})\s*(?:years?\s*old|jaar(?:\s*oud)?|yo)\b"
+)
+
+
+def slugify(text):
+    """Stabiele, leesbare URL-slug: letters/cijfers en koppeltekens."""
+    normalized = unicodedata.normalize("NFKD", text or "")
+    stripped = "".join(ch for ch in normalized if not unicodedata.combining(ch))
+    slug = re.sub(r"[^a-z0-9]+", "-", stripped.lower()).strip("-")
+    return slug or "whisky"
+
+
+def extract_age(name):
+    """Leeftijd alleen als die letterlijk in de naam staat, anders weglaten."""
+    if not name:
+        return None
+    match = AGE_RE.search(name)
+    if not match:
+        return None
+    age = int(match.group(1))
+    if age < 1 or age > 80:
+        return None
+    return age
+
+
+def unique_key(item):
+    return "|".join([
+        item.get("sampleLink") or "",
+        item.get("flesLink") or "",
+        item.get("wbId") or "",
+        item.get("naam") or "",
+        item.get("inhoud") or "",
+    ])
+
+
+def assign_ids(items):
+    used = set()
+    for item in items:
+        base = slugify(item["naam"])
+        slug = base
+        if slug in used:
+            suffix = hashlib.sha1(unique_key(item).encode("utf-8")).hexdigest()[:6]
+            slug = "%s-%s" % (base, suffix)
+            n = 2
+            while slug in used:
+                slug = "%s-%s-%s" % (base, suffix, n)
+                n += 1
+        used.add(slug)
+        # id vooraan zetten voor leesbaarheid in ruwe JSON-tools
+        ordered = {"id": slug}
+        age = extract_age(item.get("naam"))
+        if age is not None:
+            ordered["leeftijd"] = age
+        ordered.update(item)
+        item.clear()
+        item.update(ordered)
 
 
 def clean_text(value):
@@ -145,6 +207,11 @@ def build(xlsx_path: Path) -> dict:
     for item in items:
         if "Past bij smaak" in item or "pastBijSmaak" in item:
             raise SystemExit("Persoonlijke kolom is per ongeluk meegenomen.")
+
+    assign_ids(items)
+    ids = [item["id"] for item in items]
+    if len(ids) != len(set(ids)):
+        raise SystemExit("Dubbele id's bij het genereren van slugs.")
 
     return {
         "generatedAt": date.today().isoformat(),
