@@ -174,7 +174,7 @@
     border-radius: 12px;
     box-shadow: var(--shadow);
     overflow: auto;
-    max-height: calc(100vh - 390px);
+    max-height: calc(100vh - 430px);
   }
   table { width: 100%; border-collapse: collapse; min-width: 1080px; }
   thead th {
@@ -265,6 +265,44 @@
     .note, .filters, .table-wrap, footer { margin-left: 16px; margin-right: 16px; }
     .pills-label.side { flex: 0 0 56px; }
   }
+
+  .check-opt {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 6px; font-size: 12.5px; color: var(--muted);
+    cursor: pointer; user-select: none; width: fit-content;
+  }
+  .check-opt input { accent-color: var(--amber-deep); }
+  .wb-status {
+    display: block; font-size: 11px; color: var(--muted); margin-top: 1px; line-height: 1.3;
+  }
+  .wb-status.open { color: #9a5a16; font-weight: 600; }
+  .stock-no { color: #8a4a16; }
+  .more-wrap { text-align: center; padding: 12px 0 16px; }
+  .more {
+    appearance: none;
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    color: var(--ink);
+    font: inherit; font-weight: 600; font-size: 13.5px;
+    padding: 7px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .more:hover { border-color: var(--amber); }
+  .status-msg {
+    margin: 16px 28px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .status-msg.error { color: #8a2a12; }
+  .score-num a { color: inherit; text-decoration: none; }
+  .score-num a:hover { color: var(--amber-deep); text-decoration: underline; }
+  .crit { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .crit a { color: inherit; }
+  .crit a:hover { color: var(--amber-deep); }
+  @media (max-width: 960px) {
+    .status-msg { margin-left: 16px; margin-right: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -280,13 +318,11 @@
       <h1>Whisky <em>proefoverzicht</em></h1>
       <p>Samples van Whiskysite · scores van Whiskybase · flessen in Nederland</p>
     </div>
-    <div class="header-meta">
-      Geschikt voor GitHub Pages<br>
+    <div class="header-meta" id="headerMeta">
+      Complete overzicht<br>
       statische pagina, geen server nodig
     </div>
   </header>
-
-  <div class="note">Voorbeeld met een selectie van de data</div>
 
   <section class="filters" aria-label="Filters">
     <div class="filter-top">
@@ -297,16 +333,20 @@
       <div class="field">
         <div class="slider-top">
           <label for="minScore">Min. score</label>
-          <span class="slider-val" id="minScoreVal">86,0</span>
+          <span class="slider-val" id="minScoreVal">—</span>
         </div>
-        <input id="minScore" type="range" min="86" max="91" step="0.1" value="86">
+        <input id="minScore" type="range" min="60" max="92" step="0.1" value="60" disabled>
+        <label class="check-opt">
+          <input id="inclOnbekend" type="checkbox" checked>
+          Ook zonder score
+        </label>
       </div>
       <div class="field">
         <div class="slider-top">
           <label for="maxPrijs">Max. sampleprijs</label>
-          <span class="slider-val" id="maxPrijsVal">€ 90</span>
+          <span class="slider-val" id="maxPrijsVal">—</span>
         </div>
-        <input id="maxPrijs" type="range" min="6" max="90" step="1" value="90">
+        <input id="maxPrijs" type="range" min="1" max="100" step="1" value="100" disabled>
       </div>
     </div>
 
@@ -333,7 +373,9 @@
     </div>
   </section>
 
-  <div class="table-wrap">
+  <div class="status-msg" id="status">Gegevens worden geladen…</div>
+
+  <div class="table-wrap" id="tableWrap" hidden>
     <table>
       <thead>
         <tr>
@@ -349,19 +391,21 @@
       <tbody id="rows"></tbody>
     </table>
     <div class="empty-state" id="empty" hidden>Geen flessen die aan de filters voldoen.</div>
+    <div class="more-wrap" id="moreWrap" hidden>
+      <button type="button" class="more" id="more">Toon meer</button>
+    </div>
   </div>
 
   <footer>
-    Voorbeeld van een statische website, gratis te hosten op GitHub Pages.
-    Scores komen van Whiskybase, samples van Whiskysite.nl. Smaaktags zijn afgeleid uit proefnotities, vattype en rookniveau. Niets is verzonnen.
+    Scores komen van Whiskybase, samples van Whiskysite.nl. Smaaktags zijn afgeleid uit proefnotities, vattype en rookniveau.
+    Ontbrekende gegevens blijven onbekend; er is niets verzonnen. Het Excel-bestand is de bron; deze pagina leest <code>data.json</code>.
   </footer>
+  <noscript>Deze pagina heeft JavaScript nodig om het overzicht te tonen.</noscript>
 
 <script>
-const DATA = [{"naam":"Glenfarclas 40 Years Old 43% 6 CL Sample","inhoud":"6 cl","prijsSample":89.99,"sampleLink":"https://www.whiskysite.nl/nl/glenfarclas-40-years-old-43-6-cl-sample.html","score":90.19,"stemmen":245,"abv":43,"regio":"Speyside, single malt (Glenfarclas) — diepe sherrystijl","vattype":"Oloroso-sherryvaten","rook":"geen","proefnotities":"Sinaasappelschil, rozijnen, pure chocolade, leer en noten (community-profiel).","winkel":"Whiskysite.nl","flesPrijs":949.99,"flesLink":"https://www.whiskysite.nl/nl/glenfarclas-40-years-old-070-ltr-43.html"},{"naam":"Glenfarclas 30 Years Old 43% 6 CL Sample","inhoud":"6 cl","prijsSample":54.99,"sampleLink":"https://www.whiskysite.nl/nl/glenfarclas-30-years-old-43-6-cl-sample.html","score":88.9,"stemmen":539,"abv":43,"regio":"Speyside, single malt (Glenfarclas) — klassieke sherrystijl","vattype":"Oloroso-sherryvaten","rook":"geen","proefnotities":"Rijke kerstcake, rozijnen, karamel en warme sherrykruiden (community-profiel).","winkel":"Gevo Slijterij","flesPrijs":495,"flesLink":"https://gevoslijterij.nl/glenfarclas-30.html"},{"naam":"Glendronach 15 Years Old 46% 6 CL Sample","inhoud":"6 cl","prijsSample":9.49,"sampleLink":"https://www.whiskysite.nl/nl/glendronach-15-years-old-46-6-cl-sample.html","score":86.25,"stemmen":1723,"abv":46,"regio":"Highland, single malt (GlenDronach) — PX & Oloroso sherrybom","vattype":"Pedro Ximénez- en Oloroso-sherryvaten","rook":"geen","proefnotities":"Neus: maraschinokers, rijpe braam en pure chocolademunt. Smaak: honing-abrikoos en vijg, dan zwarte kers en muscovado.","winkel":"DrankDozijn","flesPrijs":89.49,"flesLink":"https://drankdozijn.nl/artikel/fles-glendronach-15-years-sherry-cask-70cl"},{"naam":"Glendronach 18 Years Old 46% 6 CL Sample","inhoud":"6 cl","prijsSample":15.99,"sampleLink":"https://www.whiskysite.nl/nl/glendronach-18-years-old-46-6-cl-sample.html","score":86.26,"stemmen":183,"abv":46,"regio":"Highland, single malt (GlenDronach Allardice) — klassieke Oloroso-sherrybom","vattype":"Oloroso-sherryvaten","rook":"geen","proefnotities":"Neus: fudge, donkere basterdsuiker, fruitcompote en morellen. Smaak: gestoofd fruit, piment, Oloroso, walnootbrood en chocoladesinaasappel.","winkel":"'t Bockje Bathmen","flesPrijs":165.99,"flesLink":"https://www.bockje.nl/whisky/fles/glendronach-18-years-old-sherry-cask-matured/"},{"naam":"Macallan Speymalt 16 Years Old 2007 58,9% 6 CL Sample","inhoud":"6 cl","prijsSample":29.99,"sampleLink":"https://www.whiskysite.nl/nl/macallan-speymalt-16-years-old-2007-589-6-cl-sampl.html","score":88.22,"stemmen":27,"abv":58.9,"regio":"Speyside, single malt (Macallan Speymalt) — Oloroso, vatsterkte","vattype":"Oloroso-sherryvaten (Gordon & MacPhail Speymalt)","rook":"geen","proefnotities":"Neus: gestoofde rozijn, citrusschil en rijp eiken. Smaak: donkere kers, sinaasappel, zwarte peper en rijke sherry. Afdronk: geroosterde noten en…","winkel":"Silersshop.nl","flesPrijs":269.5,"flesLink":"https://www.silersshop.nl/gordon-and-macphail-speymalt-2007-2023-macallan.html"},{"naam":"Glenfarclas 25 Years Old 43% 6 CL Sample","inhoud":"6 cl","prijsSample":19.99,"sampleLink":"https://www.whiskysite.nl/nl/glenfarclas-25-years-old-43-6-cl-sample.html","score":87.17,"stemmen":2280,"abv":43,"regio":"Speyside, single malt (Glenfarclas) — klassieke sherrystijl","vattype":"Oloroso-sherryvaten","rook":"geen","proefnotities":"Fruitcake, koffie, noten, pure chocolade en marmelade (community-profiel).","winkel":"Whisky.nl","flesPrijs":184.5,"flesLink":"https://whisky.nl/glenfarclas-25-years-70cl.html"},{"naam":"Glengoyne 21 Years Old 43% 6 CL Sample","inhoud":"6 cl","prijsSample":21.99,"sampleLink":"https://www.whiskysite.nl/nl/glengoyne-21-years-old-43-6-cl-sample.html","score":86.23,"stemmen":333,"abv":43,"regio":"Highland, single malt (Glengoyne) — ongeturfde sherrystijl","vattype":"100% first-fill sherryvaten","rook":"geen","proefnotities":"Neus: rode appels, kruidige strudel, toffee, sherry en gedroogd fruit (kerstcake). Smaak: veel sherry en honing-eik. Afdronk: lang, sherry, kruidig…","winkel":"Dramtime.nl","flesPrijs":219.95,"flesLink":"https://www.dramtime.nl/product/glengoyne-21yo-2"},{"naam":"Scallywag Noir PX Sherry Finish 2025 Edition 52,8% 6 CL Sample","inhoud":"6 cl","prijsSample":6.99,"sampleLink":"https://www.whiskysite.nl/nl/scallywag-noir-px-sherry-finish-2025-edition-528-6.html","score":86.84,"stemmen":94,"abv":52.8,"regio":"Speyside, blended malt (Scallywag Noir) — donkere PX-sherry","vattype":"Overwegend Pedro Ximénez-sherryfinish","rook":"geen","proefnotities":"Neus: fluweelzoet, donker fruit en warme kruiden. Smaak: pure chocolade, gekruide eik en in sherry geweekte rozijnen. Afdronk: melasse, rijpe…","winkel":"Woudenberg Dranken","flesPrijs":67.95,"flesLink":"https://www.woudenbergdranken.nl/product/1219536700/scallywag-noir-sherry-cask-limited-edition-528-2025"},{"naam":"Glenallachie 19 Years Old PX Solera 50% 6 CL Sample","inhoud":"6 cl","prijsSample":24.99,"sampleLink":"https://www.whiskysite.nl/nl/glenallachie-19-years-old-px-solera-50-6-cl-sample.html","score":88.43,"stemmen":117,"abv":50,"regio":"Speyside, single malt (GlenAllachie) — PX/Oloroso-solera","vattype":"Eerst Amerikaans eiken bourbon, daarna PX- en Oloroso-sherry uit een solerasysteem","rook":"geen","proefnotities":"Rijke tonen van pruim, mokka, honingraat en pure chocolade, met warme kruiden in de afdronk.","winkel":"Whisky Estate","flesPrijs":213.75,"flesLink":"https://whiskyestate.nl/products/glenallachie-19-year-old-ex-solera"},{"naam":"GF (Glenfarclas) 20 Years Old Living Souls 48% 6 CL Sample","inhoud":"6 cl","prijsSample":12.99,"sampleLink":"https://www.whiskysite.nl/nl/gf-glenfarclas-20-years-old-living-souls-48-6-cl-s.html","score":87.27,"stemmen":44,"abv":48,"regio":"Speyside, single malt (Glenfarclas, Living Souls) — bourbon, tropisch fruit","vattype":"First-fill bourbonvaten (niet sherry)","rook":"geen","proefnotities":"Neus: ananas, kokos en perzikringen. Smaak: romige vanille, rijp tropisch fruit en snoepzoetheid — een zelden geziene, niet-sherrykant van Glenfarclas.","winkel":"Woudenberg Dranken","flesPrijs":131.95,"flesLink":"https://www.woudenbergdranken.nl/product/1213866700/living-souls-gfglenfarclas-20-years-bourbon-cask-48-2026"},{"naam":"Bruichladdich 21 Years Old 50% 6 CL Sample","inhoud":"6 cl","prijsSample":16.99,"sampleLink":"https://www.whiskysite.nl/nl/bruichladdich-21-years-old-50-6-cl-sample.html","score":88.17,"stemmen":262,"abv":50,"regio":"Islay, single malt (Bruichladdich RE/DEFINE) — ongeturfd, zoet-fruitig","vattype":"Onbekend vattype (RE/DEFINE 21, ongeturfde Islay)","rook":"geen","proefnotities":"Neus: marshmallow, warehouse-funk, verbrande toffee en gedroogde vijgen, met citrus en zeezout. Smaak: sinaasappel, ananas, lemon sherbet, vanille en toffee-appel.","winkel":"Melgers Wijn en Dranken","flesPrijs":289.95,"flesLink":"https://melgers.nl/product/bruichladdich-21-y-70cl/"},{"naam":"Bunnahabhain 12 Years Old Cask Strength 2026 Edition 55,8% 6 CL Sample","inhoud":"6 cl","prijsSample":8.99,"sampleLink":"https://www.whiskysite.nl/nl/bunnahabhain-12-years-old-cask-strength--164942043.html","score":88.61,"stemmen":35,"abv":55.8,"regio":"Islay, single malt (Bunnahabhain) — ongeturfde sherry/bourbon, vatsterkte","vattype":"50% first-fill Oloroso-sherry en 50% bourbonvaten","rook":"geen","proefnotities":"Neus: rozijnen, vijgen, dadels, honingvanille, kaneel en kruidnagel, met een zilte frisheid. Smaak: gestoofd fruit, vanille en geroosterde kokos. Afdronk:…","winkel":"Dramshop.nl","flesPrijs":83.95,"flesLink":"https://www.dramshop.nl/nl/bunnahabhain-12y-cask-strength-2026.html"},{"naam":"Bunnahabhain 18 Years Old 46,3% 6 CL Sample","inhoud":"6 cl","prijsSample":9.99,"sampleLink":"https://www.whiskysite.nl/nl/bunnahabhain-18-years-old-463-6-cl-sample.html","score":87.92,"stemmen":1049,"abv":46.3,"regio":"Islay, single malt (Bunnahabhain) — ongeturfd, sherry & bourbon","vattype":"Bourbon- en sherryvaten","rook":"geen","proefnotities":"Sherryfruit, honing, notig, ziltige toets en rijke eik (community-profiel).","winkel":"Whiskysite.nl","flesPrijs":119.99,"flesLink":"https://www.whiskysite.nl/nl/bunnahabhain-18-years-old.html"},{"naam":"Redbreast 12 Years Old Cask Strength 57,2% 6 CL Sample","inhoud":"6 cl","prijsSample":9.99,"sampleLink":"https://www.whiskysite.nl/nl/redbreast-12-years-old-cask-strength-572-6-cl-samp.html","score":86.83,"stemmen":191,"abv":57.2,"regio":"Ierland, single pot still (Redbreast) — vatsterkte","vattype":"Bourbon- en Oloroso-vaten (cask strength)","rook":"geen","proefnotities":"Tropisch fruit, karamel, vanille en pot still-kruiden (community-profiel, serie).","winkel":"Drankgigant.nl","flesPrijs":89.95,"flesLink":"https://www.drankgigant.nl/redbreast-12-year-old-cask-strength-57-2.html"},{"naam":"Arran 18 Years Old 46% 6 CL Sample","inhoud":"6 cl","prijsSample":12.99,"sampleLink":"https://www.whiskysite.nl/nl/arran-18-years-old-46-6-cl-sample.html","score":87.68,"stemmen":1337,"abv":46,"regio":"Isle of Arran, single malt — zoet-fruitig, ongeturfd","vattype":"Bourbon- en sherryvaten","rook":"geen","proefnotities":"Gekarameliseerde citrus, perzik, pure chocolade en vanille (community-profiel).","winkel":"'t Bockje Bathmen","flesPrijs":134.99,"flesLink":"https://www.bockje.nl/whisky/fles/arran-18-years-old/"},{"naam":"Redbreast 18 Years Old Irish Whiskey 46% 6 CL Sample","inhoud":"6 cl","prijsSample":19.99,"sampleLink":"https://www.whiskysite.nl/nl/redbreast-18-years-old-irish-whiskey-46-6-cl-sampl.html","score":87.35,"stemmen":194,"abv":46,"regio":"Ierland, single pot still (Redbreast) — rijk, rookvrij","vattype":"Bourbon-, Oloroso- en portvaten","rook":"geen","proefnotities":"Gedroogd fruit, kruidige pot still, donkere bessen en chocolade (community-profiel).","winkel":"DrankDozijn","flesPrijs":149.95,"flesLink":"https://drankdozijn.nl/artikel/fles-redbreast-18-years-pot-still-70cl"},{"naam":"Craigellachie 17 Years Old 46% 6 CL Sample","inhoud":"6 cl","prijsSample":11.99,"sampleLink":"https://www.whiskysite.nl/nl/craigellachie-17-years-old-46-6-cl-sample.html","score":86.96,"stemmen":51,"abv":46,"regio":"Speyside, single malt (Craigellachie) — fruitig met lichte peper","vattype":"Bourbon- en sherryvaten","rook":"geen","proefnotities":"Vanille, ananas, peer, toffee en milde peperigheid (community-profiel).","winkel":"DrankDozijn","flesPrijs":87.95,"flesLink":"https://drankdozijn.nl/artikel/fles-craigellachie-17-years-single-malt-70cl"},{"naam":"Dalmore Luminary 2024 Edition 48,6% 6 CL Sample","inhoud":"6 cl","prijsSample":32.99,"sampleLink":"https://www.whiskysite.nl/nl/dalmore-luminary-2024-edition-486-6-cl-sample.html","score":88.04,"stemmen":28,"abv":48.6,"regio":"Highland, single malt (Dalmore) — sherry & port","vattype":"Apostoles-sherry- en Tawny portvaten (Luminary 2024)","rook":"onbekend","proefnotities":"Gedroogd fruit, romige chocolade, citruszeste; Distiller (5 reviews) noemt ook lichte rokerigheid.","winkel":"Dramtime.nl","flesPrijs":319.95,"flesLink":"https://www.dramtime.nl/product/dalmore-luminary-edition-no-2/"},{"naam":"Bushmills 21 Years Old Single Malt 40% 6 CL Sample","inhoud":"6 cl","prijsSample":18.99,"sampleLink":"https://www.whiskysite.nl/nl/bushmills-21-years-old-single-malt-40-6-cl-sample.html","score":86.63,"stemmen":203,"abv":40,"regio":"Ierland, single malt (Bushmills) — zoet, rookvrij","vattype":"Bourbon-, Oloroso- en Madeira-vaten","rook":"geen","proefnotities":"Karamel, toffee, tropisch fruit, melkchocolade en rozijn (community-profiel).","winkel":"Whisky Estate","flesPrijs":162.25,"flesLink":"https://whiskyestate.nl/products/bushmills-21-year-old"},{"naam":"Balvenie 16 Years Old Pineau Cask Finished 47,6% 6 CL Sample","inhoud":"6 cl","prijsSample":14.99,"sampleLink":"https://www.whiskysite.nl/nl/balvenie-16-years-old-pineau-cask-finished-476-6-c.html","score":86.09,"stemmen":359,"abv":47.6,"regio":"Speyside, single malt (Balvenie) — fruitig-zoete wijnfinish","vattype":"French oak, Pineau des Charentes-finish","rook":"geen","proefnotities":"Grapefruit, honing, perzik, vanille en gember (community-profiel).","winkel":"Whisky Estate","flesPrijs":195,"flesLink":"https://whiskyestate.nl/products/balvenie-16-year-old-french-oak-pineau-cask"},{"naam":"Bunnahabhain 20 Years Old Armagnac Cask Finish 49,9% 6 CL Sample","inhoud":"6 cl","prijsSample":28.99,"sampleLink":"https://www.whiskysite.nl/nl/bunnahabhain-20-years-old-armagnac-cask-finish-499.html","score":86.47,"stemmen":17,"abv":49.9,"regio":"Islay, single malt (Bunnahabhain) — ongeturfd, Armagnac-finish","vattype":"Armagnac-cask finish (20 jaar, 570 flessen)","rook":"geen","proefnotities":"Neus: rijpe pruimen, abrikozen, rozijnen en een zilte zeebries. Smaak: gedroogd fruit, karamel, sinaasappelmarmelade, kaneel en nootmuskaat.","winkel":"Woudenberg Dranken","flesPrijs":289.95,"flesLink":"https://www.woudenbergdranken.nl/product/1233096700/bunnahabhain-20-years-armagnac-finish-499-1-of-570-bottles-2026"},{"naam":"Glenfiddich Grande Couronne 26 Years Old 43,8% 6 CL Sample","inhoud":"6 cl","prijsSample":59.99,"sampleLink":"https://www.whiskysite.nl/nl/glenfiddich-grande-couronne-26-years-old-438-6-cl.html","score":87.92,"stemmen":210,"abv":43.8,"regio":"Speyside, single malt (Glenfiddich) — fruitig-zoet met cognac-finish","vattype":"Cognac-finish (Grande Couronne)","rook":"geen","proefnotities":"Geroosterde eik, zoete appels, bruine suiker; zijdezacht en bloemig (community-profiel).","winkel":"'t Bockje Bathmen","flesPrijs":599,"flesLink":"https://www.bockje.nl/whisky/fles/glenfiddich-26-years-old-grande-couronne/"},{"naam":"Dailuaine 21 Years Old Special Release 2025 54,3% 6 CL Sample","inhoud":"6 cl","prijsSample":44.99,"sampleLink":"https://www.whiskysite.nl/nl/dailuaine-21-years-old-special-release-2025-543-6.html","score":88.32,"stemmen":194,"abv":54.3,"regio":"Speyside, single malt (Dailuaine Special Release 2025) — sherry, ongeturfd","vattype":"Volledig gerijpt op Spaanse ex-sherryvaten","rook":"geen","proefnotities":"Neus: rozijnenmand en een vleug Spaanse ham. Smaak: rum-rozijn en sinaaslikeur. Afdronk: kruiden als van glühwein, en chocolade.","winkel":"Whiskysite.nl","flesPrijs":449.99,"flesLink":"https://www.whiskysite.nl/nl/dailuaine-21-years-old-special-release-2025-070-lt.html"},{"naam":"Highland Park 21 Years Old 46% 6 CL Sample","inhoud":"6 cl","prijsSample":32.99,"sampleLink":"https://www.whiskysite.nl/nl/highland-park-21-years-old-46-6-cl-sample.html","score":88.46,"stemmen":95,"abv":46,"regio":"Orkney, single malt (Highland Park) — sherryrijping met lichte heideturf","vattype":"First-fill sherry American oak quarter casks, refill butts en first-fill sherry European hogsheads","rook":"licht","proefnotities":"Neus: crème brûlée, honing en kaneel. Smaak: abrikozencompote, amandel en limoenzeste. Afdronk: gerookte citroen en delicate heideturf.","winkel":"DrankDozijn","flesPrijs":249.95,"flesLink":"https://drankdozijn.nl/artikel/fles-highland-park-21-years-single-malt-70cl"},{"naam":"Benriach 25 Years Old 1996 Liquid Treasures 45,6% 6 CL Sample","inhoud":"6 cl","prijsSample":19.99,"sampleLink":"https://www.whiskysite.nl/nl/benriach-25-years-old-1996-liquid-treasures-456-6.html","score":86.05,"stemmen":45,"abv":45.6,"regio":"Speyside, single malt (BenRiach, IB) — licht en fruitig","vattype":"Onbekend vattype (Liquid Treasures 1996; retailers: unpeated)","rook":"licht","proefnotities":"Zoet en zomers: citroen, abrikoos, vanille, honing en verse mout; in reviews ook een vage turftoets in de afdronk.","winkel":"Whiskysite.nl","flesPrijs":249.99,"flesLink":"https://www.whiskysite.nl/nl/benriach-25-years-old-1996-liquid-treasures.html"},{"naam":"Laphroaig 10 Years Old Sherry Oak Finish 48% 6 CL Sample","inhoud":"6 cl","prijsSample":9.99,"sampleLink":"https://www.whiskysite.nl/nl/laphroaig-10-years-old-sherry-oak-finish-48-6-cl-s.html","score":86.46,"stemmen":1451,"abv":48,"regio":"Islay, single malt (Laphroaig) — geturfd met sherryfinish","vattype":"Oloroso-sherryfinish (na 10 jaar)","rook":"zwaar","proefnotities":"Neus: gerookt vlees, verkoold eiken en ahornsiroop. Smaak: manuka-honing, gerookte bacon, zeewier en zout. Afdronk: sherryzoet met smeulende turf.","winkel":"Drankgigant.nl","flesPrijs":67.95,"flesLink":"https://www.drankgigant.nl/laphroaig-10-years-sherry-oak-finish.html"},{"naam":"Lochlea Single Sherry Cask 571 For WIN 60,3% 6 CL Sample","inhoud":"6 cl","prijsSample":12.99,"sampleLink":"https://www.whiskysite.nl/nl/lochlea-single-sherry-cask-571-for-win-603-6-cl-sa.html","score":87.2,"stemmen":7,"abv":60.3,"regio":"Lowland, single malt (Lochlea) — single sherry cask, vatsterkte","vattype":"Single sherry cask #571","rook":"geen","proefnotities":"Neus: pure chocolade, rozijnen, kersenvlaai, sinaasappel en marmelade. Smaak: donkerrood fruit, gember en nootmuskaat. Afdronk: warme appeltaart met chocoladesaus.","winkel":"Whiskysite.nl","flesPrijs":119.99,"flesLink":"https://www.whiskysite.nl/nl/lochlea-single-sherry-cask-571-for-win-070-ltr-603.html"},{"naam":"Port Askaig Oloroso Sherry Cask 50,5% 6 CL Sample","inhoud":"6 cl","prijsSample":6.49,"sampleLink":"https://www.whiskysite.nl/nl/port-askaig-oloroso-sherry-cask-505-6-cl-sample.html","score":87.73,"stemmen":39,"abv":50.5,"regio":"Islay, single malt (Port Askaig) — geturfde sherry","vattype":"Oloroso-sherryvat","rook":"medium","proefnotities":null,"winkel":"DrankDozijn","flesPrijs":55.95,"flesLink":"https://drankdozijn.nl/artikel/fles-port-askaig-oloroso-sherry-cask-70cl"},{"naam":"Morrison Mac Talla Pedro Ximenez 52,8% 6 CL Sample","inhoud":"6 cl","prijsSample":9.49,"sampleLink":"https://www.whiskysite.nl/nl/morrison-mac-talla-pedro-ximenez-528-6-cl-sample.html","score":87.12,"stemmen":46,"abv":52.8,"regio":"Islay, single malt (Mac-Talla PX 2.0) — geturfd met PX","vattype":"First-fill PX-butt en refill PX-hogshead","rook":"medium","proefnotities":null,"winkel":"Whiskysite.nl","flesPrijs":89.99,"flesLink":"https://www.whiskysite.nl/nl/morrison-mac-talla-pedro-ximenez-070-ltr-528.html"},{"naam":"Kilchoman 100% Islay Sherry Cask 11 Years Old 50% 6 CL Sample","inhoud":"6 cl","prijsSample":10.49,"sampleLink":"https://www.whiskysite.nl/nl/kilchoman-100-islay-sherry-cask-11-years-old-50-6.html","score":87.23,"stemmen":218,"abv":50,"regio":"Islay, single malt (Kilchoman) — geturfd, sherry","vattype":"Sherryvat (Kilchoman 100% Islay, 11 jaar)","rook":"medium","proefnotities":null,"winkel":"Dramtime.nl","flesPrijs":99.95,"flesLink":"https://www.dramtime.nl/product/kilchoman-100-islay-sherry-cask-11yo/"},{"naam":"Knockdhu 16 Years Old 2006 Chapter 7 51,5% 6 CL Sample","inhoud":"6 cl","prijsSample":16.99,"sampleLink":"https://www.whiskysite.nl/nl/knockdhu-16-years-old-2006-chapter-7-515-6-cl-samp.html","score":86.38,"stemmen":31,"abv":51.5,"regio":"Speyside, single malt (Knockdhu, Chapter 7) — geturfde IB","vattype":"Bourbon hogshead (geturfde Knockdhu/anCnoc)","rook":"medium","proefnotities":null,"winkel":"Whiskybase Shop NL","flesPrijs":169.5,"flesLink":"https://shop.whiskybase.com/nl/knockdhu-2006-ch7-chapter-7.html"},{"naam":"Lagavulin 16 Years Old 43% 6 CL Sample","inhoud":"6 cl","prijsSample":8.99,"sampleLink":"https://www.whiskysite.nl/nl/lagavulin-16-years-old-43-6-cl-sample.html","score":86.92,"stemmen":5846,"abv":43,"regio":"Islay, single malt (Lagavulin) — geturfd","vattype":"Onbekend vattype (Lagavulin 16)","rook":"zwaar","proefnotities":null,"winkel":"DrankDozijn","flesPrijs":59.95,"flesLink":"https://drankdozijn.nl/artikel/fles-lagavulin-16-years-single-malt-70cl"},{"naam":"Laphroaig 10 Years Old Cask Strength Batch 17 58,3% 6 CL Sample","inhoud":"6 cl","prijsSample":6.99,"sampleLink":"https://www.whiskysite.nl/nl/laphroaig-10-years-old-cask-strength-batch-17-583.html","score":87.93,"stemmen":605,"abv":58.3,"regio":"Islay, single malt (Laphroaig) — zwaar geturfd, vatsterkte","vattype":"Onbekend vattype (Laphroaig 10 CS batch 17)","rook":"zwaar","proefnotities":null,"winkel":"Dramshop.nl","flesPrijs":86.95,"flesLink":"https://www.dramshop.nl/nl/laphroaig-10-years-cask-strenght-batch-017.html"},{"naam":"Ardnamurchan AD/ Sherry Cask 2025 Release 50% 6 CL Sample","inhoud":"6 cl","prijsSample":6.49,"sampleLink":"https://www.whiskysite.nl/nl/ardnamurchan-ad-sherry-cask-2025-release-50-6-cl-s.html","score":86.44,"stemmen":51,"abv":50,"regio":"Highland, single malt (Ardnamurchan) — sherry, vaak lichte tot medium turf","vattype":"Sherryvat (Ardnamurchan AD/ 2025; distilleerderij vaak geturfd)","rook":"licht","proefnotities":null,"winkel":"Whiskysite.nl","flesPrijs":59.99,"flesLink":"https://www.whiskysite.nl/nl/ardnamurchan-ad-sherry-cask-2025-release-070-ltr-5.html"},{"naam":"Daftmill 15 Years Old 2026 Release 56,3% 6 CL Sample","inhoud":"6 cl","prijsSample":19.99,"sampleLink":"https://www.whiskysite.nl/nl/daftmill-15-years-old-2026-release-563-6-cl-sample.html","score":89,"stemmen":11,"abv":56.3,"regio":"Lowland, single malt (Daftmill) — typisch ongeturfd","vattype":"First-fill bourbon cask (Daftmill 15, 2026 Release)","rook":"geen","proefnotities":null,"winkel":"Woudenberg Dranken","flesPrijs":199.95,"flesLink":"https://www.woudenbergdranken.nl/product/1243206700/daftmill-15yo-single-malt-2026-release-first-fill-bourbon-cask-563-2026"},{"naam":"Kavalan 15 Years Old Four Cask Matured 43% 6 CL Sample","inhoud":"6 cl","prijsSample":14.99,"sampleLink":"https://www.whiskysite.nl/nl/kavalan-15-years-old-four-cask-matured-43-6-cl-sam.html","score":86.53,"stemmen":103,"abv":43,"regio":"Taiwan, single malt (Kavalan) — vier vaten, typisch ongeturfd","vattype":"Ex-bourbon, Oloroso-sherry, ruby port en puncheon (four cask matured)","rook":"geen","proefnotities":null,"winkel":"'t Bockje Bathmen","flesPrijs":244.99,"flesLink":"https://www.bockje.nl/whisky/fles/kavalan-15y-four-cask-matured/"},{"naam":"Glenfarclas 35 Years Old 43% 6 CL Sample","inhoud":"6 cl","prijsSample":74.99,"sampleLink":"https://www.whiskysite.nl/nl/glenfarclas-35-years-old-43-6-cl-sample.html","score":89.16,"stemmen":53,"abv":43,"regio":"Speyside, single malt (Glenfarclas) — klassieke sherrystijl","vattype":"Sherryvaten (Glenfarclas-huisstijl)","rook":"geen","proefnotities":"Sherry komt naar achteren in de mond vrij als donkere chocolade en rozijnen (winkelnotitie).","winkel":"Whiskysite.nl","flesPrijs":749.99,"flesLink":"https://www.whiskysite.nl/nl/glenfarclas-35-years-old-070-ltr-43.html"},{"naam":"Balblair 21 Year Old 46% 6 CL Sample","inhoud":"6 cl","prijsSample":27.99,"sampleLink":"https://www.whiskysite.nl/nl/balblair-21-year-old-46-6-cl-sample.html","score":87.15,"stemmen":54,"abv":46,"regio":"Highland, single malt (Balblair) — bourbon + Oloroso-finish","vattype":"15 jaar bourbon, daarna 6 jaar Spaans eiken met Oloroso","rook":"geen","proefnotities":"Neus: honing, rijp steenfruit en vanille. Smaak: zijdezacht en gelaagd. Afdronk: lang, warm, honingzoet met zachte kruiden en eik.","winkel":"Whiskysite.nl","flesPrijs":279.99,"flesLink":"https://www.whiskysite.nl/nl/balblair-21-year-old-070-ltr-46.html"},{"naam":"Glenrothes 18 Years Old 43% 6 CL Sample","inhoud":"6 cl","prijsSample":12.99,"sampleLink":"https://www.whiskysite.nl/nl/glenrothes-18-years-old-43-6-cl-sample.html","score":86.33,"stemmen":47,"abv":43,"regio":"Speyside, single malt (Glenrothes) — fruitig en zacht","vattype":"Bourbon- en sherryvaten","rook":"geen","proefnotities":"Rijpe peer, vanille, gember, gedroogd fruit en warme eik (community-profiel).","winkel":"Whiskysite.nl","flesPrijs":159.99,"flesLink":"https://www.whiskysite.nl/nl/glenrothes-18-years-old.html"},{"naam":"Macallan Classic Cut Limited 2024 Edition 52,4% 6 CL Sample","inhoud":"6 cl","prijsSample":17.99,"sampleLink":"https://www.whiskysite.nl/nl/macallan-classic-cut-limited-2024-edition-524-6-cl.html","score":86.98,"stemmen":104,"abv":52.4,"regio":"Speyside, single malt (Macallan Classic Cut 2024)","vattype":"Bourbon- en sherryvaten","rook":"geen","proefnotities":"Vanille, gebakken appel, groene peer, zoete kruiden en eik (community-profiel).","winkel":"Whiskysite.nl","flesPrijs":99.99,"flesLink":"https://www.whiskysite.nl/nl/macallan-classic-cut-limited-2024-edition-070-ltr.html"},{"naam":"Bunnahabhain 12 Years Old Cask Strength 2023 Edition 60,1% 6 CL Sample","inhoud":"6 cl","prijsSample":9.49,"sampleLink":"https://www.whiskysite.nl/nl/bunnahabhain-12-years-old-cask-strength-150241786.html","score":87.29,"stemmen":527,"abv":60.1,"regio":"Islay, single malt (Bunnahabhain) — ongeturfde vatsterkte sherry","vattype":"Oloroso-sherry (cask strength, 2023-editie)","rook":"geen","proefnotities":"Krachtig sherryfruit, cacao, kruiden en ziltige diepgang (community-profiel 2023 CS).","winkel":"Slijterij Berendsen","flesPrijs":92.99,"flesLink":"https://www.slijterijberendsen.nl/artikel/16486/bunnahabhain-12yo-cask-strength-2023-edition-70cl-60-1.html"}];
-
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
 const ROOK_ORDER = ["geen","licht","medium","zwaar"];
-const REGIO_ORDER = ["Speyside","Highland","Islay","Lowland","Campbeltown","Orkney","Arran","Ierland","Taiwan","Japan"];
+const REGIO_ORDER = ["Speyside","Highland","Islay","Lowland","Campbeltown","Orkney","Arran","Mull","Islands","Ierland","Taiwan","Japan","Kentucky","Canada","Nederland","Denemarken","België"];
 const FLAVOUR = [
   { id: "fruitig", label: "Fruitig", re: /fruit|appel|\bpeer\b|perzik|pruim|kers|\bbes\b|bessen|braam|sinaasappel|citrus|citroen|sinaas|abrikoos|herfstfruit|\borange\b|berry|cherry|\bplum\b|\bapple\b|peach|lemon sherbet|citruszeste|citrusschil|gestoofd fruit/i },
   { id: "zoet", label: "Zoet", re: /zoet|toffee|karamel|caramel|fudge|marshmallow|siroop|syrup|sherbet|honingraat|kerstcake|toffee-app|snoepzoet/i },
@@ -373,14 +417,22 @@ const FLAVOUR = [
   { id: "turfrook", label: "Turf / rook", re: /geturfd|turf|rokerig|gerookt|\bpeat\b|\bsmoky\b|\bsmoke\b|fenol/i },
   { id: "maritiem", label: "Maritiem", re: /zilt|zeezout|\bzout\b|\bzee\b|maritime|\bsea\b|iodine|jodium|zeewier|kelp|brine|zilte/i }
 ];
+const PAGE_SIZE = 80;
+const STORAGE_KEY = "whisky-tool-geproefd";
+const rookOrder = { geen: 0, licht: 1, medium: 2, zwaar: 3, onbekend: 4 };
 
 function parseRegio(regio) {
   if (!regio) return null;
   const head = regio.split(/[,—]/)[0].trim().toLowerCase();
+  if (/^onbekend\b/.test(head)) return null;
   const map = [
-    ["speyside","Speyside"],["islay","Islay"],["orkney","Orkney"],["highland","Highland"],
-    ["ierland","Ierland"],["lowland","Lowland"],["campbeltown","Campbeltown"],
-    ["taiwan","Taiwan"],["japan","Japan"],["arran","Arran"]
+    ["isle of mull","Mull"],["campbeltown","Campbeltown"],["speyside","Speyside"],
+    ["islay","Islay"],["orkney","Orkney"],["highland","Highland"],
+    ["ierland","Ierland"],["lowland","Lowland"],["taiwan","Taiwan"],["japan","Japan"],
+    ["isle of arran","Arran"],["arran","Arran"],["islands","Islands"],
+    ["kentucky","Kentucky"],["canada","Canada"],["nederland","Nederland"],
+    ["denemarken","Denemarken"],["belgië","België"],["belgie","België"],
+    ["bourbon","Kentucky"],["mull","Mull"]
   ];
   for (const [k,v] of map) if (head.includes(k)) return v;
   return null;
@@ -406,7 +458,7 @@ function deriveVat(vattype) {
 }
 
 function flavourTags(r) {
-  const notes = r.proefnotities || "";
+  const notes = unknownToEmpty(r.proefnotities);
   const vat = (r.vattype || "").replace(/niet[\s-]*sherry\w*/gi, " ");
   const regio = (r.regio || "").replace(/ongeturfd\w*/gi, " ");
   const text = [notes, vat, regio].join(" ");
@@ -429,6 +481,13 @@ function flavourTags(r) {
   return tags;
 }
 
+function unknownToEmpty(value) {
+  if (value == null) return "";
+  const text = String(value).trim();
+  if (!text || /^onbekend\b/i.test(text)) return "";
+  return text;
+}
+
 function enrich(r) {
   return {
     ...r,
@@ -438,14 +497,10 @@ function enrich(r) {
   };
 }
 
-const ROWS = DATA.map(enrich);
-
 const euro = new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" });
 const num = new Intl.NumberFormat("nl-NL", { minimumFractionDigits: 1, maximumFractionDigits: 2 });
 const scoreFmt = new Intl.NumberFormat("nl-NL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const intFmt = new Intl.NumberFormat("nl-NL");
-const STORAGE_KEY = "whisky-tool-geproefd";
-const rookOrder = { geen: 0, licht: 1, medium: 2, zwaar: 3, onbekend: 4 };
 
 function displayName(naam) {
   return naam
@@ -466,12 +521,20 @@ const state = {
   rook: new Set(),
   regio: new Set(),
   smaak: new Set(),
-  minScore: 86,
-  maxPrijs: 90,
+  minScore: 60,
+  maxPrijs: 100,
+  inclOnbekend: true,
   sort: "score",
   dir: "desc",
-  tasted: loadTasted()
+  shown: PAGE_SIZE,
+  tasted: loadTasted(),
+  defaults: { minScore: 60, maxPrijs: 100, scoreMin: 60, scoreMax: 92, prijsMin: 1, prijsMax: 100 }
 };
+
+let ROWS = [];
+const jsErrors = [];
+window.addEventListener("error", (e) => { jsErrors.push(String(e.message || e)); });
+window.addEventListener("unhandledrejection", (e) => { jsErrors.push(String(e.reason || e)); });
 
 const els = {
   q: document.getElementById("q"),
@@ -479,10 +542,16 @@ const els = {
   maxPrijs: document.getElementById("maxPrijs"),
   minScoreVal: document.getElementById("minScoreVal"),
   maxPrijsVal: document.getElementById("maxPrijsVal"),
+  inclOnbekend: document.getElementById("inclOnbekend"),
   rows: document.getElementById("rows"),
   empty: document.getElementById("empty"),
   count: document.getElementById("count"),
-  reset: document.getElementById("reset")
+  reset: document.getElementById("reset"),
+  status: document.getElementById("status"),
+  tableWrap: document.getElementById("tableWrap"),
+  more: document.getElementById("more"),
+  moreWrap: document.getElementById("moreWrap"),
+  headerMeta: document.getElementById("headerMeta")
 };
 
 function uniqueInOrder(items, order) {
@@ -500,11 +569,6 @@ function labelFor(group, v) {
   return v;
 }
 
-makePills(document.getElementById("vat-pills"), uniqueInOrder(ROWS.flatMap(r => r.vatTags), VAT_ORDER), "vat");
-makePills(document.getElementById("rook-pills"), uniqueInOrder(ROWS.map(r => r.rook).filter(r => ROOK_ORDER.includes(r)), ROOK_ORDER), "rook");
-makePills(document.getElementById("regio-pills"), uniqueInOrder(ROWS.map(r => r.regioKort), REGIO_ORDER), "regio");
-makePills(document.getElementById("smaak-pills"), uniqueInOrder(ROWS.flatMap(r => r.flavour), FLAVOUR.map(f => f.label)), "smaak");
-
 function vatMatch(rowTags, selected) {
   if (selected.size === 0) return true;
   return rowTags.some(t => {
@@ -515,17 +579,33 @@ function vatMatch(rowTags, selected) {
 }
 
 function matches(r) {
-  if (r.score < state.minScore) return false;
+  if (r.score == null) {
+    if (!state.inclOnbekend) return false;
+  } else if (r.score < state.minScore) {
+    return false;
+  }
   if (r.prijsSample != null && r.prijsSample > state.maxPrijs) return false;
   if (!vatMatch(r.vatTags, state.vat)) return false;
   if (state.rook.size && !state.rook.has(r.rook)) return false;
   if (state.regio.size && !state.regio.has(r.regioKort)) return false;
   if (state.smaak.size && !r.flavour.some(t => state.smaak.has(t))) return false;
   if (state.q) {
-    const hay = [r.naam, r.vattype, r.regio, r.winkel, r.proefnotities, r.flavour.join(" "), r.vatTags.join(" ")].join(" ").toLowerCase();
+    const hay = [
+      r.naam, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
+      r.wbStatus, r.wbReden, r.whiskyfunScore, r.distillerScore, r.opmerkingFles,
+      r.flavour.join(" "), r.vatTags.join(" ")
+    ].join(" ").toLowerCase();
     if (!hay.includes(state.q)) return false;
   }
   return true;
+}
+
+function emptyLast(av, bv, a, b) {
+  const aEmpty = av == null || av === "", bEmpty = bv == null || bv === "";
+  if (aEmpty && bEmpty) return displayName(a.naam).localeCompare(displayName(b.naam), "nl");
+  if (aEmpty) return 1;
+  if (bEmpty) return -1;
+  return null;
 }
 
 function cmp(a, b) {
@@ -533,11 +613,9 @@ function cmp(a, b) {
   let av = a[key], bv = b[key];
   if (key === "naam") { av = displayName(a.naam).toLowerCase(); bv = displayName(b.naam).toLowerCase(); }
   if (key === "rook") { av = rookOrder[a.rook] ?? 9; bv = rookOrder[b.rook] ?? 9; }
-  if (key === "flesPrijs") {
-    const aEmpty = av == null, bEmpty = bv == null;
-    if (aEmpty && bEmpty) return displayName(a.naam).localeCompare(displayName(b.naam), "nl");
-    if (aEmpty) return 1;
-    if (bEmpty) return -1;
+  if (key === "score" || key === "flesPrijs" || key === "prijsSample" || key === "inhoud") {
+    const early = emptyLast(av, bv, a, b);
+    if (early != null) return early;
   }
   let res;
   if (typeof av === "string" && typeof bv === "string") res = av.localeCompare(bv, "nl", { numeric: true });
@@ -546,55 +624,126 @@ function cmp(a, b) {
   return state.dir === "asc" ? res : -res;
 }
 
-function render() {
+function scoreCell(r) {
+  const status = r.wbStatus || "onbekend";
+  const statusClass = (status === "nog niet opgezocht" || status === "score niet zeker") ? " open" : "";
+  const statusLabel = status === "exact" && r.score != null ? "" :
+    '<span class="wb-status' + statusClass + '">' + escapeHtml(status) +
+    (r.wbReden && status !== "exact" ? " · " + escapeHtml(r.wbReden) : "") +
+    "</span>";
+  if (r.score == null) {
+    return '<span class="empty">onbekend</span>' + (statusLabel || '<span class="wb-status">onbekend</span>');
+  }
+  const numHtml = scoreFmt.format(r.score);
+  const label = r.wbLink
+    ? '<a href="' + escapeAttr(r.wbLink) + '" target="_blank" rel="noopener">' + numHtml + "</a>"
+    : numHtml;
+  return '<span class="score-num">' + label + "</span>"
+    + (r.stemmen != null ? '<span class="votes">' + intFmt.format(r.stemmen) + " stemmen</span>" : "")
+    + statusLabel;
+}
+
+function criticLine(r) {
+  const parts = [];
+  if (r.whiskyfunScore) {
+    const text = "WF " + r.whiskyfunScore;
+    parts.push(r.whiskyfunLink
+      ? '<a href="' + escapeAttr(r.whiskyfunLink) + '" target="_blank" rel="noopener">' + escapeHtml(text) + "</a>"
+      : escapeHtml(text));
+  }
+  if (r.distillerScore) {
+    const short = String(r.distillerScore).split("—")[0].trim();
+    const text = "Distiller " + short;
+    parts.push(r.distillerLink
+      ? '<a href="' + escapeAttr(r.distillerLink) + '" target="_blank" rel="noopener">' + escapeHtml(text) + "</a>"
+      : escapeHtml(text));
+  }
+  return parts.length ? '<span class="crit">' + parts.join(" · ") + "</span>" : "";
+}
+
+function metaLine(r) {
+  const abv = r.abv != null ? num.format(r.abv).replace(",0", "") + "%" : "";
+  const extras = [];
+  if (r.ncf === "ja") extras.push("NCF");
+  else if (r.ncf === "nee") extras.push("koel gefilterd");
+  if (r.kleurstof === "nee") extras.push("geen kleurstof");
+  else if (r.kleurstof === "ja") extras.push("met kleurstof");
+  return [abv, r.regioKort].concat(extras).filter(Boolean).join(" · ");
+}
+
+function flesCell(r) {
+  if (r.flesPrijs == null) return '<span class="empty">geen prijs bekend</span>';
+  const title = r.opmerkingFles ? ' title="' + escapeAttr(r.opmerkingFles) + '"' : "";
+  let html = '<span class="price"' + title + ">" + euro.format(r.flesPrijs) + "</span>";
+  if (r.flesLink) {
+    html += '<a class="shop" href="' + escapeAttr(r.flesLink) + '" target="_blank" rel="noopener">' + escapeHtml(r.winkel || "Bekijk fles") + "</a>";
+  } else if (r.winkel) {
+    html += '<span class="shop">' + escapeHtml(r.winkel) + "</span>";
+  }
+  if (r.opVoorraad === "nee") html += '<span class="shop stock-no">niet op voorraad</span>';
+  if (r.tweedePrijs != null) {
+    const second = "ook " + (r.tweedeWinkel || "elders") + " " + euro.format(r.tweedePrijs);
+    html += r.tweedeLink
+      ? '<a class="shop" href="' + escapeAttr(r.tweedeLink) + '" target="_blank" rel="noopener">' + escapeHtml(second) + "</a>"
+      : '<span class="shop">' + escapeHtml(second) + "</span>";
+  }
+  return html;
+}
+
+function render(resetPage) {
+  if (resetPage) state.shown = PAGE_SIZE;
   els.minScoreVal.textContent = num.format(state.minScore);
   els.maxPrijsVal.textContent = euro.format(state.maxPrijs).replace(",00", "");
 
   const list = ROWS.filter(matches).sort(cmp);
+  const visible = list.slice(0, state.shown);
   const tastedN = list.filter(r => state.tasted[rowId(r)]).length;
-  els.count.innerHTML = "<strong>" + list.length + "</strong> van <strong>" + ROWS.length + "</strong> samples"
-    + (tastedN ? " · " + tastedN + " geproefd" : "");
+  let count = "<strong>" + intFmt.format(list.length) + "</strong> van <strong>" + intFmt.format(ROWS.length) + "</strong> bottelingen";
+  if (visible.length < list.length) count += " · " + intFmt.format(visible.length) + " getoond";
+  if (tastedN) count += " · " + intFmt.format(tastedN) + " geproefd";
+  els.count.innerHTML = count;
 
-  els.rows.innerHTML = list.map(r => {
+  els.rows.innerHTML = visible.map(r => {
     const id = rowId(r);
     const tasted = !!state.tasted[id];
     const name = displayName(r.naam);
-    const title = r.proefnotities ? ' title="' + escapeAttr(r.proefnotities) + '"' : "";
-    const abv = r.abv != null ? num.format(r.abv).replace(",0", "") + "%" : "";
-    const meta = [abv, r.regioKort].filter(Boolean).join(" · ");
+    const notes = unknownToEmpty(r.proefnotities);
+    const title = notes ? ' title="' + escapeAttr(notes) + '"' : "";
+    const meta = metaLine(r);
     const tags = r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
-    const vat = r.vattype && !/^onbekend/i.test(r.vattype) ? r.vattype : "—";
+    const vat = unknownToEmpty(r.vattype) || "—";
     const rook = r.rook || "onbekend";
-    const fles = r.flesPrijs != null
-      ? '<span class="price">' + euro.format(r.flesPrijs) + "</span>"
-        + (r.flesLink
-            ? '<a class="shop" href="' + escapeAttr(r.flesLink) + '" target="_blank" rel="noopener">' + escapeHtml(r.winkel) + "</a>"
-            : (r.winkel ? '<span class="shop">' + escapeHtml(r.winkel) + "</span>" : ""))
-      : '<span class="empty">geen prijs bekend</span>';
     const sample = r.prijsSample != null
       ? '<span class="price">' + euro.format(r.prijsSample) + "</span>"
       : '<span class="empty">—</span>';
-    const nameHref = r.sampleLink ? ' href="' + escapeAttr(r.sampleLink) + '" target="_blank" rel="noopener"' : "";
-    const nameTag = r.sampleLink ? "a" : "span";
+    const href = r.sampleLink || r.flesLink || r.wbLink || "";
+    const nameHref = href ? ' href="' + escapeAttr(href) + '" target="_blank" rel="noopener"' : "";
+    const nameTag = href ? "a" : "span";
+    const inhoud = r.inhoud || (r.sampleBeschikbaar === "nee" ? "geen sample" : "—");
     return '<tr class="' + (tasted ? "tasted" : "") + '">'
       + '<td class="col-check"><label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
       + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label></td>'
       + "<td><" + nameTag + ' class="name"' + nameHref + title + ">" + escapeHtml(name) + "</" + nameTag + ">"
       + (meta ? '<span class="sub">' + escapeHtml(meta) + "</span>" : "")
+      + criticLine(r)
       + (tags ? '<div class="tags">' + tags + "</div>" : "")
       + "</td>"
-      + '<td class="col-inhoud">' + escapeHtml(r.inhoud || "—") + "</td>"
+      + '<td class="col-inhoud">' + escapeHtml(inhoud) + "</td>"
       + '<td class="col-prijs">' + sample + "</td>"
-      + '<td class="col-score"><span class="score-num">' + scoreFmt.format(r.score) + "</span>"
-      + (r.stemmen != null ? '<span class="votes">' + intFmt.format(r.stemmen) + " stemmen</span>" : "") + "</td>"
+      + '<td class="col-score">' + scoreCell(r) + "</td>"
       + '<td><span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>"
       + '<span class="rook ' + escapeAttr(rook) + '">rook: ' + escapeHtml(rook) + "</span></td>"
-      + '<td class="col-fles">' + fles + "</td>"
+      + '<td class="col-fles">' + flesCell(r) + "</td>"
       + "</tr>";
   }).join("");
 
   els.empty.hidden = list.length > 0;
   document.querySelector("table").style.display = list.length ? "" : "none";
+  const remaining = list.length - visible.length;
+  els.moreWrap.hidden = remaining <= 0;
+  els.more.textContent = remaining > 0
+    ? "Toon meer (" + intFmt.format(Math.min(PAGE_SIZE, remaining)) + " van " + intFmt.format(remaining) + " resterend)"
+    : "Toon meer";
 
   document.querySelectorAll("thead th.sortable").forEach(th => {
     const key = th.dataset.sort;
@@ -609,57 +758,156 @@ function escapeHtml(s) {
 }
 function escapeAttr(s) { return escapeHtml(s); }
 
-els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(); });
-els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(); });
-els.maxPrijs.addEventListener("input", () => { state.maxPrijs = Number(els.maxPrijs.value); render(); });
+function applyBounds(items) {
+  const scores = items.map(r => r.score).filter(v => v != null);
+  const prices = items.map(r => r.prijsSample).filter(v => v != null);
+  const scoreMin = scores.length ? Math.floor(Math.min(...scores) * 10) / 10 : 60;
+  const scoreMax = scores.length ? Math.ceil(Math.max(...scores) * 10) / 10 : 92;
+  const prijsMin = prices.length ? Math.floor(Math.min(...prices)) : 1;
+  const prijsMax = prices.length ? Math.ceil(Math.max(...prices)) : 100;
+  state.defaults = { minScore: scoreMin, maxPrijs: prijsMax, scoreMin, scoreMax, prijsMin, prijsMax };
+  state.minScore = scoreMin;
+  state.maxPrijs = prijsMax;
+  els.minScore.min = scoreMin;
+  els.minScore.max = scoreMax;
+  els.minScore.step = "0.1";
+  els.minScore.value = scoreMin;
+  els.maxPrijs.min = prijsMin;
+  els.maxPrijs.max = prijsMax;
+  els.maxPrijs.value = prijsMax;
+  els.minScore.disabled = false;
+  els.maxPrijs.disabled = false;
+  els.inclOnbekend.checked = true;
+  state.inclOnbekend = true;
+}
 
-document.querySelectorAll(".pills").forEach(group => {
-  group.addEventListener("click", (e) => {
-    const btn = e.target.closest(".pill");
-    if (!btn) return;
-    const key = btn.dataset.group;
-    const value = btn.dataset.value;
-    if (state[key].has(value)) state[key].delete(value);
-    else state[key].add(value);
-    group.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", state[key].has(p.dataset.value) ? "true" : "false"));
-    render();
+function initPills() {
+  makePills(document.getElementById("vat-pills"), uniqueInOrder(ROWS.flatMap(r => r.vatTags), VAT_ORDER), "vat");
+  makePills(document.getElementById("rook-pills"), uniqueInOrder(ROWS.map(r => r.rook).filter(r => ROOK_ORDER.includes(r)), ROOK_ORDER), "rook");
+  makePills(document.getElementById("regio-pills"), uniqueInOrder(ROWS.map(r => r.regioKort), REGIO_ORDER), "regio");
+  makePills(document.getElementById("smaak-pills"), uniqueInOrder(ROWS.flatMap(r => r.flavour), FLAVOUR.map(f => f.label)), "smaak");
+}
+
+function bindEvents() {
+  els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
+  els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
+  els.maxPrijs.addEventListener("input", () => { state.maxPrijs = Number(els.maxPrijs.value); render(true); });
+  els.inclOnbekend.addEventListener("change", () => { state.inclOnbekend = els.inclOnbekend.checked; render(true); });
+  els.more.addEventListener("click", () => { state.shown += PAGE_SIZE; render(false); });
+
+  document.querySelectorAll(".pills").forEach(group => {
+    group.addEventListener("click", (e) => {
+      const btn = e.target.closest(".pill");
+      if (!btn) return;
+      const key = btn.dataset.group;
+      const value = btn.dataset.value;
+      if (state[key].has(value)) state[key].delete(value);
+      else state[key].add(value);
+      group.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", state[key].has(p.dataset.value) ? "true" : "false"));
+      render(true);
+    });
   });
-});
 
-document.querySelectorAll("thead th.sortable").forEach(th => {
-  th.addEventListener("click", () => {
-    const key = th.dataset.sort;
-    if (state.sort === key) state.dir = state.dir === "asc" ? "desc" : "asc";
-    else { state.sort = key; state.dir = key === "naam" ? "asc" : "desc"; }
-    render();
+  document.querySelectorAll("thead th.sortable").forEach(th => {
+    th.addEventListener("click", () => {
+      const key = th.dataset.sort;
+      if (state.sort === key) state.dir = state.dir === "asc" ? "desc" : "asc";
+      else { state.sort = key; state.dir = key === "naam" ? "asc" : "desc"; }
+      render(true);
+    });
   });
-});
 
-els.rows.addEventListener("change", (e) => {
-  const input = e.target.closest("input[data-id]");
-  if (!input) return;
-  if (input.checked) state.tasted[input.dataset.id] = true;
-  else delete state.tasted[input.dataset.id];
-  saveTasted(state.tasted);
-  render();
-});
+  els.rows.addEventListener("change", (e) => {
+    const input = e.target.closest("input[data-id]");
+    if (!input) return;
+    if (input.checked) state.tasted[input.dataset.id] = true;
+    else delete state.tasted[input.dataset.id];
+    saveTasted(state.tasted);
+    render(false);
+  });
 
-els.reset.addEventListener("click", () => {
-  state.q = "";
-  state.vat = new Set();
-  state.rook = new Set();
-  state.regio = new Set();
-  state.smaak = new Set();
-  state.minScore = 86;
-  state.maxPrijs = 90;
-  els.q.value = "";
-  els.minScore.value = 86;
-  els.maxPrijs.value = 90;
-  document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
-  render();
-});
+  els.reset.addEventListener("click", () => {
+    state.q = "";
+    state.vat = new Set();
+    state.rook = new Set();
+    state.regio = new Set();
+    state.smaak = new Set();
+    state.minScore = state.defaults.minScore;
+    state.maxPrijs = state.defaults.maxPrijs;
+    state.inclOnbekend = true;
+    els.q.value = "";
+    els.minScore.value = state.defaults.minScore;
+    els.maxPrijs.value = state.defaults.maxPrijs;
+    els.inclOnbekend.checked = true;
+    document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
+    render(true);
+  });
+}
 
-render();
+function setHeaderMeta(payload) {
+  const scored = ROWS.filter(r => r.score != null).length;
+  const samples = ROWS.filter(r => r.sampleBeschikbaar === "ja").length;
+  const date = payload.generatedAt ? payload.generatedAt.split("-").reverse().join("-") : "";
+  els.headerMeta.innerHTML = intFmt.format(ROWS.length) + " bottelingen<br>"
+    + intFmt.format(samples) + " samples · " + intFmt.format(scored) + " met WB-score"
+    + (date ? "<br>bijgewerkt " + date : "");
+}
+
+async function runSmoke() {
+  const report = { errors: jsErrors.slice(), total: ROWS.length };
+  report.initialCountText = els.count.textContent;
+  report.initialRows = els.rows.querySelectorAll("tr").length;
+  report.moreVisible = !els.moreWrap.hidden;
+  const scored = ROWS.filter(r => r.score != null).length;
+  els.inclOnbekend.checked = false;
+  state.inclOnbekend = false;
+  render(true);
+  report.withoutUnknown = ROWS.filter(matches).length;
+  report.scoredTotal = scored;
+  els.inclOnbekend.checked = true;
+  state.inclOnbekend = true;
+  render(true);
+  const rookBtn = document.querySelector('.pill[data-group="rook"][data-value="geen"]');
+  if (rookBtn) rookBtn.click();
+  report.afterRookGeen = ROWS.filter(matches).length;
+  document.getElementById("reset").click();
+  els.q.value = "glenfarclas";
+  state.q = "glenfarclas";
+  render(true);
+  report.afterSearchGlenfarclas = ROWS.filter(matches).length;
+  document.getElementById("reset").click();
+  report.previewNotePresent = /Voorbeeld met een selectie/i.test(document.body.innerText);
+  report.hasPersonalCol = /Past bij smaak/i.test(document.body.innerText);
+  const flag = document.createElement("pre");
+  flag.id = "smoke-report";
+  flag.textContent = JSON.stringify(report);
+  document.body.appendChild(flag);
+  window.__SMOKE__ = report;
+}
+
+bindEvents();
+
+fetch("data.json")
+  .then(res => {
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  })
+  .then(payload => {
+    const items = Array.isArray(payload) ? payload : (payload.items || []);
+    ROWS = items.map(enrich);
+    applyBounds(ROWS);
+    initPills();
+    setHeaderMeta(payload);
+    els.status.hidden = true;
+    els.tableWrap.hidden = false;
+    render(true);
+    if (new URLSearchParams(location.search).has("smoke")) return runSmoke();
+  })
+  .catch(err => {
+    els.status.classList.add("error");
+    els.status.textContent = "De gegevens konden niet worden geladen. Controleer of data.json naast deze pagina staat.";
+    jsErrors.push(String(err));
+  });
 </script>
 </body>
 </html>
