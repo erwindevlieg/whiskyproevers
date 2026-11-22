@@ -67,6 +67,25 @@
         </div>
       </div>
 
+      <div class="filter-toggles">
+        <div class="toggle-field">
+          <span class="pills-label" id="sampleAvail-label">Sample beschikbaar</span>
+          <div class="toggle-group" id="sampleAvailGroup" role="radiogroup" aria-labelledby="sampleAvail-label" data-filter="sampleAvail">
+            <button type="button" class="toggle-item" role="radio" data-value="alle" aria-checked="true">Alle</button>
+            <button type="button" class="toggle-item" role="radio" data-value="ja" aria-checked="false">Ja</button>
+            <button type="button" class="toggle-item" role="radio" data-value="nee" aria-checked="false">Nee</button>
+          </div>
+        </div>
+        <div class="toggle-field">
+          <span class="pills-label" id="flesPrijsBekend-label">Flesprijs bekend</span>
+          <div class="toggle-group" id="flesPrijsBekendGroup" role="radiogroup" aria-labelledby="flesPrijsBekend-label" data-filter="flesPrijsBekend">
+            <button type="button" class="toggle-item" role="radio" data-value="alle" aria-checked="true">Alle</button>
+            <button type="button" class="toggle-item" role="radio" data-value="ja" aria-checked="false">Ja</button>
+            <button type="button" class="toggle-item" role="radio" data-value="nee" aria-checked="false">Nee</button>
+          </div>
+        </div>
+      </div>
+
       <div class="filter-row">
         <span class="pills-label side" id="vat-label">Vattype</span>
         <div class="pills" id="vat-pills" role="group" aria-labelledby="vat-label"></div>
@@ -249,6 +268,8 @@ const state = {
   minScore: 60,
   maxPrijs: 100,
   inclOnbekend: true,
+  sampleAvail: "alle",
+  flesPrijsBekend: "alle",
   sort: "score",
   dir: "desc",
   shown: PAGE_SIZE,
@@ -354,6 +375,10 @@ function matches(r) {
   if (state.rook.size && !state.rook.has(r.rook)) return false;
   if (state.regio.size && !state.regio.has(r.regioKort)) return false;
   if (state.smaak.size && !r.flavour.some(t => state.smaak.has(t))) return false;
+  if (state.sampleAvail === "ja" && r.sampleBeschikbaar !== "ja") return false;
+  if (state.sampleAvail === "nee" && r.sampleBeschikbaar !== "nee") return false;
+  if (state.flesPrijsBekend === "ja" && r.flesPrijs == null) return false;
+  if (state.flesPrijsBekend === "nee" && r.flesPrijs != null) return false;
   if (state.q) {
     const hay = [
       r.naam, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
@@ -447,6 +472,8 @@ function activeFilterCount() {
   if (state.minScore > state.defaults.minScore) n += 1;
   if (priceFilterActive()) n += 1;
   if (!state.inclOnbekend) n += 1;
+  if (state.sampleAvail !== "alle") n += 1;
+  if (state.flesPrijsBekend !== "alle") n += 1;
   return n;
 }
 
@@ -876,11 +903,14 @@ function resetFilters() {
   state.minScore = state.defaults.minScore;
   state.maxPrijs = state.defaults.maxPrijs;
   state.inclOnbekend = true;
+  state.sampleAvail = "alle";
+  state.flesPrijsBekend = "alle";
   els.q.value = "";
   els.minScore.value = state.defaults.minScore;
   els.maxPrijs.value = state.defaults.maxPrijs;
   els.inclOnbekend.checked = true;
   document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
+  syncToggleGroups();
   render(true);
 }
 
@@ -916,11 +946,30 @@ function bindRowNavigate(container) {
   });
 }
 
+function syncToggleGroups() {
+  document.querySelectorAll(".toggle-group").forEach(group => {
+    const current = state[group.dataset.filter];
+    group.querySelectorAll(".toggle-item").forEach(btn => {
+      btn.setAttribute("aria-checked", btn.dataset.value === current ? "true" : "false");
+    });
+  });
+}
+
 function bindEvents() {
   els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
   els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
   els.maxPrijs.addEventListener("input", () => { state.maxPrijs = Number(els.maxPrijs.value); render(true); });
   els.inclOnbekend.addEventListener("change", () => { state.inclOnbekend = els.inclOnbekend.checked; render(true); });
+  document.querySelectorAll(".toggle-group").forEach(group => {
+    group.addEventListener("click", (e) => {
+      const btn = e.target.closest(".toggle-item");
+      if (!btn) return;
+      const key = group.dataset.filter;
+      state[key] = btn.dataset.value;
+      syncToggleGroups();
+      render(true);
+    });
+  });
   els.more.addEventListener("click", () => { state.shown += PAGE_SIZE; render(false); });
   els.tableWrap.addEventListener("scroll", rememberListScroll, { passive: true });
   window.addEventListener("scroll", rememberListScroll, { passive: true });
