@@ -11,7 +11,15 @@
     var dark = t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
     if (dark) document.documentElement.classList.add("dark");
     document.documentElement.style.colorScheme = dark ? "dark" : "light";
-    if (localStorage.getItem("whisky-tool-weergave") === "grid") document.documentElement.classList.add("view-grid");
+    var view = null;
+    var hash = location.hash || "";
+    var qi = hash.indexOf("?");
+    if (qi >= 0) {
+      var params = new URLSearchParams(hash.slice(qi + 1));
+      view = params.get("view");
+    }
+    if (!view) view = localStorage.getItem("whisky-tool-weergave");
+    if (view === "grid") document.documentElement.classList.add("view-grid");
   } catch (e) {}
 })();
 </script>
@@ -149,13 +157,25 @@
     <div class="list-meta">
       <div class="count" id="count"></div>
       <button type="button" class="reset js-reset" id="resetInline" hidden>Wis filters</button>
-      <div class="view-toggle" role="group" aria-label="Weergave">
-        <button type="button" class="icon-btn" id="viewList" data-view="lijst" aria-pressed="true" aria-label="Lijstweergave">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-        </button>
-        <button type="button" class="icon-btn" id="viewGrid" data-view="grid" aria-pressed="false" aria-label="Kaartweergave">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        </button>
+      <div class="list-tools">
+        <div class="sort-control" id="sortControl">
+          <button type="button" class="sort-trigger" id="sortBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="sortMenu">
+            <span id="sortBtnLabel">WB-score</span>
+            <svg class="sort-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <button type="button" class="icon-btn sort-dir" id="sortDirBtn" aria-label="Sorteer aflopend">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </button>
+          <div class="sort-menu" id="sortMenu" role="listbox" hidden></div>
+        </div>
+        <div class="view-toggle" role="group" aria-label="Weergave">
+          <button type="button" class="icon-btn" id="viewList" data-view="lijst" aria-pressed="true" aria-label="Lijstweergave">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          </button>
+          <button type="button" class="icon-btn" id="viewGrid" data-view="grid" aria-pressed="false" aria-label="Kaartweergave">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -254,6 +274,12 @@
   <noscript>Deze pagina heeft JavaScript nodig om het overzicht te tonen.</noscript>
 
 <script>
+/* data-build */
+const DATA_BUILD = "29ab5416c3";
+const DATA_INDEX = "data/index-29ab5416c3.json";
+const DATA_CHUNK_PREFIX = "data/d/29ab5416c3-";
+const DATA_CHUNKS = 8;
+/* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
 const ROOK_ORDER = ["geen","licht","medium","zwaar"];
 const REGIO_ORDER = ["Speyside","Highland","Islay","Lowland","Campbeltown","Orkney","Arran","Mull","Islands","Ierland","Taiwan","Japan","Kentucky","Canada","Nederland","Denemarken","België"];
@@ -273,7 +299,21 @@ const STORAGE_KEY = "whisky-tool-geproefd";
 const COMPARE_KEY = "whisky-tool-vergelijk";
 const THEME_KEY = "whisky-tool-theme";
 const VIEW_KEY = "whisky-tool-weergave";
+const FILTER_KEY = "whisky-tool-filters";
 const COMPARE_MAX = 3;
+const SORT_OPTIONS = [
+  { key: "score", label: "WB-score", defaultDir: "desc" },
+  { key: "naam", label: "Naam", defaultDir: "asc" },
+  { key: "leeftijd", label: "Leeftijd", defaultDir: "desc" },
+  { key: "prijsSample", label: "Sampleprijs", defaultDir: "asc" },
+  { key: "flesPrijs", label: "Flesprijs", defaultDir: "asc" },
+  { key: "abv", label: "ABV", defaultDir: "desc" }
+];
+const SORT_LABELS = {
+  score: "WB-score", naam: "Naam", leeftijd: "Leeftijd",
+  prijsSample: "Sampleprijs", flesPrijs: "Flesprijs", abv: "ABV",
+  regio: "Regio", vattype: "Vattype", rook: "Rook", inhoud: "Inhoud"
+};
 const ROOK_SCALE = { geen: 0, licht: 1 / 3, medium: 2 / 3, zwaar: 1 };
 const rookOrder = { geen: 0, licht: 1, medium: 2, zwaar: 3, onbekend: 4 };
 
@@ -344,12 +384,54 @@ function unknownToEmpty(value) {
   return text;
 }
 
+function chunkOf(id) {
+  let h = 0;
+  const text = String(id || "");
+  for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+  return h % DATA_CHUNKS;
+}
+
+function expandIndexItem(it) {
+  if (!it || it.naam) return it;
+  const row = {
+    id: it.id,
+    naam: it.n,
+    leeftijd: it.l,
+    abv: it.a,
+    regio: it.r,
+    vattype: it.v,
+    rook: it.k,
+    score: it.s,
+    stemmen: it.m,
+    prijsSample: it.p,
+    flesPrijs: it.f,
+    inhoud: it.h,
+    sampleBeschikbaar: it.b === 1 ? "ja" : it.b === 0 ? "nee" : it.b,
+    ncf: it.c,
+    kleurstof: it.z,
+    proefnotities: it.o,
+    searchExtra: it.q || "",
+    thumb: it.t ? ("assets/thumbs/" + it.id + ".webp") : "",
+    thumbBg: it.g === "c" ? "clear" : it.g === "p" ? "photo" : "",
+    thumbW: it.w,
+    thumbH: it.e
+  };
+  if (it.ss && it.ss.length) {
+    row.samples = it.ss.map(s => ({
+      inhoud: s.h || s.inhoud || "",
+      prijsSample: s.p != null ? s.p : s.prijsSample
+    }));
+  }
+  return row;
+}
+
 function enrich(r) {
+  const row = expandIndexItem(r) || r;
   return {
-    ...r,
-    vatTags: deriveVat(r.vattype),
-    flavour: flavourTags(r),
-    regioKort: parseRegio(r.regio)
+    ...row,
+    vatTags: deriveVat(row.vattype),
+    flavour: flavourTags(row),
+    regioKort: parseRegio(row.regio)
   };
 }
 
@@ -1093,6 +1175,81 @@ function loadDescriptions() {
   return descriptionsPromise;
 }
 
+const INDEX_CACHE_KEY = "whisky-tool-index:" + DATA_BUILD;
+const detailChunks = {};
+const detailChunkPromises = {};
+
+function readCachedIndex() {
+  try {
+    const raw = localStorage.getItem(INDEX_CACHE_KEY);
+    if (!raw) return null;
+    const payload = JSON.parse(raw);
+    return payload && Array.isArray(payload.items) ? payload : null;
+  } catch { return null; }
+}
+
+function writeCachedIndex(payload) {
+  try {
+    const stale = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith("whisky-tool-index:") && key !== INDEX_CACHE_KEY) stale.push(key);
+    }
+    stale.forEach(key => localStorage.removeItem(key));
+    localStorage.setItem(INDEX_CACHE_KEY, JSON.stringify(payload));
+  } catch {
+    try { localStorage.removeItem(INDEX_CACHE_KEY); } catch {}
+  }
+}
+
+function fetchIndex() {
+  const cached = readCachedIndex();
+  if (cached) return Promise.resolve(cached);
+  return fetch(DATA_INDEX).then(res => {
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }).then(payload => {
+    writeCachedIndex(payload);
+    return payload;
+  });
+}
+
+function mergeDetail(row, extra) {
+  if (!row || !extra || row._detail) return row;
+  const samples = extra.samples;
+  Object.assign(row, extra);
+  if (samples) row.samples = samples;
+  row._detail = true;
+  return row;
+}
+
+function loadDetailChunk(index) {
+  if (detailChunks[index]) return Promise.resolve(detailChunks[index]);
+  if (!detailChunkPromises[index]) {
+    detailChunkPromises[index] = fetch(DATA_CHUNK_PREFIX + index + ".json")
+      .then(res => res.ok ? res.json() : {})
+      .then(data => { detailChunks[index] = data || {}; return detailChunks[index]; })
+      .catch(() => { detailChunks[index] = {}; return detailChunks[index]; });
+  }
+  return detailChunkPromises[index];
+}
+
+function ensureDetails(ids) {
+  const wanted = [...new Set((ids || []).filter(Boolean).map(id => {
+    const row = rowById(id);
+    return row ? row.id : id;
+  }))];
+  const chunks = [...new Set(wanted.map(id => chunkOf(id)))];
+  return Promise.all(chunks.map(loadDetailChunk)).then(() => {
+    wanted.forEach(id => {
+      const row = rowById(id);
+      const extra = (detailChunks[chunkOf(id)] || {})[id] || (row && (detailChunks[chunkOf(row.id)] || {})[row.id]);
+      if (row && extra) mergeDetail(row, extra);
+    });
+    return wanted.map(id => rowById(id)).filter(Boolean);
+  });
+}
+
 function descriptionFor(r) {
   if (r.omschrijving) return { text: r.omschrijving, sourceUrl: r.omschrijvingBron || "" };
   if (!DESCRIPTIONS) return null;
@@ -1109,14 +1266,26 @@ function photoUrl(r) {
   return url && String(url).startsWith("https://") ? String(url) : "";
 }
 
+function thumbUrl(r) {
+  const url = r && r.thumb;
+  return url ? String(url) : "";
+}
+
 function photoHtml(r, size, alt) {
-  const cls = "photo photo-" + size;
-  const url = photoUrl(r);
+  const isHero = size === "xl" || size === "lg";
+  const thumb = !isHero ? thumbUrl(r) : "";
+  const url = isHero ? (photoUrl(r) || thumbUrl(r)) : (thumb || photoUrl(r));
+  const cls = ["photo", "photo-" + size];
+  if (!isHero && url) cls.push(r.thumbBg === "clear" ? "is-clear" : "has-photo-bg");
+  const className = cls.join(" ");
   const placeholder = '<span class="photo-placeholder" aria-hidden="true"></span>';
-  if (!url) return '<div class="' + cls + ' is-empty" aria-hidden="true">' + placeholder + "</div>";
+  if (!url) return '<div class="' + className + ' is-empty" aria-hidden="true">' + placeholder + "</div>";
   const label = alt == null ? displayName(r.naam) : alt;
-  return '<div class="' + cls + ' is-loading">'
-    + '<img src="' + escapeAttr(url) + '" alt="' + escapeAttr(label) + '" loading="lazy" decoding="async">'
+  const dims = !isHero && r.thumbW && r.thumbH
+    ? ' width="' + r.thumbW + '" height="' + r.thumbH + '"'
+    : "";
+  return '<div class="' + className + ' is-loading">'
+    + '<img src="' + escapeAttr(url) + '" alt="' + escapeAttr(label) + '" loading="lazy" decoding="async"' + dims + '>'
     + "</div>";
 }
 
@@ -1228,13 +1397,14 @@ function currentView() {
   catch { return "lijst"; }
 }
 
-function applyView(mode) {
+function applyView(mode, opts) {
   const view = mode === "grid" ? "grid" : "lijst";
   try { localStorage.setItem(VIEW_KEY, view); } catch {}
   document.documentElement.classList.toggle("view-grid", view === "grid");
   document.querySelectorAll('[data-view]').forEach(btn => {
     btn.setAttribute("aria-pressed", btn.dataset.view === view ? "true" : "false");
   });
+  if (!opts || opts.sync !== false) syncFilterUrl();
 }
 function viewToggleHtml() {
   const view = currentView();
@@ -1571,7 +1741,12 @@ const els = {
   distQ: document.getElementById("distQ"),
   distView: document.getElementById("distView"),
   distDetail: document.getElementById("distDetail"),
-  distBottlings: document.getElementById("distBottlings")
+  distBottlings: document.getElementById("distBottlings"),
+  sortControl: document.getElementById("sortControl"),
+  sortBtn: document.getElementById("sortBtn"),
+  sortBtnLabel: document.getElementById("sortBtnLabel"),
+  sortDirBtn: document.getElementById("sortDirBtn"),
+  sortMenu: document.getElementById("sortMenu")
 };
 
 function uniqueInOrder(items, order) {
@@ -1625,7 +1800,7 @@ function matches(r) {
     const hay = [
       r.naam, r.distillery, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
       r.wbStatus, r.wbReden, r.whiskyfunScore, r.distillerScore, r.opmerkingFles,
-      r.flavour.join(" "), r.vatTags.join(" ")
+      r.searchExtra, r.flavour.join(" "), r.vatTags.join(" ")
     ].join(" ").toLowerCase();
     if (!hay.includes(state.q)) return false;
   }
@@ -1647,7 +1822,7 @@ function cmp(a, b) {
   if (key === "regio") { av = (a.regioKort || a.regio || "").toLowerCase(); bv = (b.regioKort || b.regio || "").toLowerCase(); }
   if (key === "vattype") { av = (a.vattype || "").toLowerCase(); bv = (b.vattype || "").toLowerCase(); }
   if (key === "rook") { av = rookOrder[a.rook] ?? 9; bv = rookOrder[b.rook] ?? 9; }
-  if (key === "score" || key === "flesPrijs" || key === "prijsSample" || key === "inhoud" || key === "abv" || key === "vattype" || key === "regio") {
+  if (key === "score" || key === "flesPrijs" || key === "prijsSample" || key === "inhoud" || key === "abv" || key === "vattype" || key === "regio" || key === "leeftijd") {
     const early = emptyLast(av, bv, a, b);
     if (early != null) return early;
   }
@@ -1795,6 +1970,12 @@ function render(resetPage) {
     th.setAttribute("aria-sort", sort);
     th.querySelector(".arrow").textContent = sort === "ascending" ? "↑" : sort === "descending" ? "↓" : "↕";
   });
+  syncSortUi();
+  syncFilterUrl();
+  if (!window.__LIST_READY__) {
+    window.__LIST_READY__ = performance.now();
+    try { performance.mark("list-ready"); } catch {}
+  }
 }
 
 function cardMeta(r) {
@@ -2094,22 +2275,24 @@ function renderDetailMissing() {
 
 function parseHash() {
   const raw = (location.hash || "#").replace(/^#/, "");
-  let path = raw;
-  try { path = decodeURIComponent(raw); } catch {}
-  path = path.replace(/^\/+/, "");
-  if (!path || path === "/") return { view: "list" };
+  const qIndex = raw.indexOf("?");
+  let path = qIndex >= 0 ? raw.slice(0, qIndex) : raw;
+  const query = qIndex >= 0 ? raw.slice(qIndex + 1) : "";
+  try { path = decodeURIComponent(path); } catch {}
+  path = path.replace(/^\/+/, "").replace(/\/+$/, "");
+  if (!path || path === "/") return { view: "list", query };
   let match = path.match(/^whisky\/([^/]+)$/);
-  if (match) return { view: "detail", id: match[1] };
+  if (match) return { view: "detail", id: match[1], query };
   match = path.match(/^vergelijk\/([^/]+)$/);
   if (match) {
     const ids = match[1].split(",").map(s => s.trim()).filter(Boolean).slice(0, COMPARE_MAX);
-    return { view: "compare", ids };
+    return { view: "compare", ids, query };
   }
-  if (path === "inzicht" || path.startsWith("inzicht/")) return { view: "inzicht" };
-  if (path === "distilleerderijen" || path === "distilleerderij") return { view: "dist-list" };
+  if (path === "inzicht" || path.startsWith("inzicht/")) return { view: "inzicht", query };
+  if (path === "distilleerderijen" || path === "distilleerderij") return { view: "dist-list", query };
   match = path.match(/^distilleerderij\/([^/]+)$/);
-  if (match) return { view: "distillery", slug: match[1] };
-  return { view: "list" };
+  if (match) return { view: "distillery", slug: match[1], query };
+  return { view: "list", query };
 }
 
 function rememberListScroll() {
@@ -2140,12 +2323,14 @@ function route() {
       }
       renderDetail(row);
       const current = row.id;
-      if (!descriptionFor(row)) {
-        loadDescriptions().then(() => {
-          const now = parseHash();
-          if (now.view === "detail" && (now.id === current || rowById(now.id) === row)) renderDetail(row);
-        });
-      }
+      const refreshDetail = () => {
+        const now = parseHash();
+        if (now.view === "detail" && (now.id === current || rowById(now.id) === row)) renderDetail(row);
+      };
+      ensureDetails([row.id]).then(() => {
+        refreshDetail();
+        if (!descriptionFor(row)) loadDescriptions().then(refreshDetail);
+      });
     } else {
       renderDetailMissing();
     }
@@ -2164,6 +2349,10 @@ function route() {
     }
     revealView(els.compareView);
     renderCompare(ids);
+    ensureDetails(ids).then(() => {
+      const now = parseHash();
+      if (now.view === "compare") renderCompare(ids);
+    });
     window.scrollTo(0, 0);
     return;
   }
@@ -2190,6 +2379,7 @@ function route() {
   }
   revealView(els.listView);
   document.title = "Whisky · Sample-overzicht";
+  if (loc.query) applyFilterQuery(loc.query);
   render(false);
   updateCompareBar();
   restoreListScroll();
@@ -2231,6 +2421,178 @@ function setTasted(id, checked) {
   saveTasted(state.tasted);
 }
 
+function defaultDirFor(sortKey) {
+  const opt = SORT_OPTIONS.find(o => o.key === sortKey);
+  if (opt) return opt.defaultDir;
+  return sortKey === "naam" ? "asc" : "desc";
+}
+
+function serializeFilters() {
+  const p = new URLSearchParams();
+  if (state.q) p.set("q", state.q);
+  if (state.vat.size) p.set("vat", [...state.vat].join(","));
+  if (state.rook.size) p.set("rook", [...state.rook].join(","));
+  if (state.regio.size) p.set("regio", [...state.regio].join(","));
+  if (state.smaak.size) p.set("smaak", [...state.smaak].join(","));
+  if (state.minScore > state.defaults.minScore) p.set("score", String(state.minScore));
+  if (priceFilterActive()) p.set("prijs", String(state.maxPrijs));
+  if (!state.inclOnbekend) p.set("onbekend", "0");
+  if (state.sampleAvail !== "alle") p.set("sample", state.sampleAvail);
+  if (state.flesPrijsBekend !== "alle") p.set("fles", state.flesPrijsBekend);
+  if (state.sort !== "score" || state.dir !== "desc") {
+    p.set("sort", state.sort);
+    p.set("dir", state.dir);
+  }
+  if (currentView() === "grid") p.set("view", "grid");
+  return p;
+}
+
+function listHash() {
+  const q = serializeFilters().toString();
+  return q ? "#/?" + q : "#/";
+}
+
+function saveFilterState() {
+  try {
+    const p = serializeFilters();
+    localStorage.setItem(FILTER_KEY, p.toString());
+  } catch {}
+}
+
+function loadFilterQuery() {
+  try { return localStorage.getItem(FILTER_KEY) || ""; }
+  catch { return ""; }
+}
+
+function parseFilterList(value) {
+  return String(value || "").split(",").map(s => s.trim()).filter(Boolean);
+}
+
+function applyFilterQuery(query) {
+  const p = query instanceof URLSearchParams ? query : new URLSearchParams(query || "");
+  state.q = (p.get("q") || "").trim().toLowerCase();
+  state.vat = new Set(parseFilterList(p.get("vat")));
+  state.rook = new Set(parseFilterList(p.get("rook")));
+  state.regio = new Set(parseFilterList(p.get("regio")));
+  state.smaak = new Set(parseFilterList(p.get("smaak")));
+  const scoreRaw = p.get("score");
+  const score = scoreRaw == null || scoreRaw === "" ? NaN : Number(scoreRaw);
+  state.minScore = Number.isFinite(score) ? score : state.defaults.minScore;
+  const prijsRaw = p.get("prijs");
+  const prijs = prijsRaw == null || prijsRaw === "" ? NaN : Number(prijsRaw);
+  state.maxPrijs = Number.isFinite(prijs) ? prijs : state.defaults.maxPrijs;
+  state.inclOnbekend = p.get("onbekend") !== "0";
+  const sample = p.get("sample");
+  state.sampleAvail = sample === "ja" || sample === "nee" ? sample : "alle";
+  const fles = p.get("fles");
+  state.flesPrijsBekend = fles === "ja" || fles === "nee" ? fles : "alle";
+  const sort = p.get("sort") || "score";
+  state.sort = SORT_LABELS[sort] ? sort : "score";
+  const dir = p.get("dir");
+  state.dir = dir === "asc" || dir === "desc" ? dir : defaultDirFor(state.sort);
+  if (p.get("view") === "grid" || p.get("view") === "lijst") {
+    applyView(p.get("view"), { sync: false });
+  }
+  syncFormFromState();
+}
+
+function syncFormFromState() {
+  if (els.q) els.q.value = state.q;
+  if (els.minScore) els.minScore.value = state.minScore;
+  if (els.maxPrijs) els.maxPrijs.value = state.maxPrijs;
+  if (els.inclOnbekend) els.inclOnbekend.checked = state.inclOnbekend;
+  document.querySelectorAll(".pill").forEach(btn => {
+    const set = state[btn.dataset.group];
+    btn.setAttribute("aria-pressed", set && set.has(btn.dataset.value) ? "true" : "false");
+  });
+  syncToggleGroups();
+  syncSortUi();
+}
+
+let filtersReady = false;
+
+function syncFilterUrl() {
+  if (!filtersReady) return;
+  if (parseHash().view !== "list") {
+    saveFilterState();
+    return;
+  }
+  const next = listHash();
+  const cur = location.hash || "#";
+  if (cur !== next && cur !== next.replace(/^#\/?/, "#")) {
+    history.replaceState(null, "", next);
+  }
+  saveFilterState();
+}
+
+function restoreFiltersOnLoad() {
+  const loc = parseHash();
+  if (loc.view === "list" && loc.query) applyFilterQuery(loc.query);
+  else {
+    const saved = loadFilterQuery();
+    if (saved) applyFilterQuery(saved);
+    else syncFormFromState();
+  }
+  filtersReady = true;
+  if (loc.view === "list") syncFilterUrl();
+}
+
+function sortDirIcon(dir) {
+  if (dir === "asc") {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  }
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>';
+}
+
+function syncSortUi() {
+  if (els.sortBtnLabel) els.sortBtnLabel.textContent = SORT_LABELS[state.sort] || state.sort;
+  if (els.sortDirBtn) {
+    els.sortDirBtn.setAttribute("aria-label", state.dir === "asc" ? "Sorteer oplopend" : "Sorteer aflopend");
+    els.sortDirBtn.innerHTML = sortDirIcon(state.dir);
+  }
+  if (els.sortMenu) {
+    els.sortMenu.querySelectorAll("[data-sort]").forEach(btn => {
+      const on = btn.dataset.sort === state.sort;
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+  }
+}
+
+function closeSortMenu() {
+  if (!els.sortMenu || els.sortMenu.hidden) return;
+  els.sortMenu.hidden = true;
+  if (els.sortBtn) els.sortBtn.setAttribute("aria-expanded", "false");
+}
+
+function openSortMenu() {
+  if (!els.sortMenu) return;
+  const check = '<svg class="sort-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>';
+  els.sortMenu.innerHTML = SORT_OPTIONS.map(opt => {
+    const on = opt.key === state.sort;
+    return '<button type="button" class="sort-option" role="option" data-sort="' + opt.key + '" aria-selected="' + (on ? "true" : "false") + '"><span>' + opt.label + "</span>" + (on ? check : "") + "</button>";
+  }).join("");
+  els.sortMenu.hidden = false;
+  if (els.sortBtn) els.sortBtn.setAttribute("aria-expanded", "true");
+}
+
+function toggleSortMenu() {
+  if (!els.sortMenu || els.sortMenu.hidden) openSortMenu();
+  else closeSortMenu();
+}
+
+function setSort(key, dir) {
+  if (key && key !== state.sort) {
+    state.sort = key;
+    state.dir = dir || defaultDirFor(key);
+  } else if (dir) {
+    state.dir = dir;
+  } else {
+    state.dir = state.dir === "asc" ? "desc" : "asc";
+  }
+  closeSortMenu();
+  render(true);
+}
+
 function resetFilters() {
   state.q = "";
   state.vat = new Set();
@@ -2242,12 +2604,7 @@ function resetFilters() {
   state.inclOnbekend = true;
   state.sampleAvail = "alle";
   state.flesPrijsBekend = "alle";
-  els.q.value = "";
-  els.minScore.value = state.defaults.minScore;
-  els.maxPrijs.value = state.defaults.maxPrijs;
-  els.inclOnbekend.checked = true;
-  document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
-  syncToggleGroups();
+  syncFormFromState();
   render(true);
 }
 
@@ -2313,12 +2670,31 @@ function syncToggleGroups() {
 
 function bindEvents() {
   applyTheme(currentTheme());
-  applyView(currentView());
+  applyView(currentView(), { sync: false });
   if (els.themeBtn) els.themeBtn.addEventListener("click", cycleTheme);
   document.addEventListener("click", ev => {
+    if (els.sortControl && !els.sortControl.contains(ev.target)) closeSortMenu();
     const btn = ev.target.closest("[data-view]");
     if (!btn) return;
     applyView(btn.dataset.view);
+  });
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape") closeSortMenu();
+  });
+  if (els.sortBtn) els.sortBtn.addEventListener("click", ev => {
+    ev.stopPropagation();
+    toggleSortMenu();
+  });
+  if (els.sortDirBtn) els.sortDirBtn.addEventListener("click", ev => {
+    ev.stopPropagation();
+    setSort(state.sort);
+  });
+  if (els.sortMenu) els.sortMenu.addEventListener("click", ev => {
+    const btn = ev.target.closest("[data-sort]");
+    if (!btn) return;
+    ev.stopPropagation();
+    if (btn.dataset.sort === state.sort) closeSortMenu();
+    else setSort(btn.dataset.sort);
   });
   els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
   els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
@@ -2727,11 +3103,7 @@ async function runSmoke() {
 
 bindEvents();
 
-fetch("data.json")
-  .then(res => {
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return res.json();
-  })
+fetchIndex()
   .then(payload => {
     const items = Array.isArray(payload) ? payload : (payload.items || []);
     REDIRECTS = payload.redirects || {};
@@ -2740,19 +3112,25 @@ fetch("data.json")
     DISTILLERIES = buildDistilleryIndex(ROWS);
     applyBounds(ROWS);
     initPills();
+    restoreFiltersOnLoad();
     if (els.listSkeleton) els.listSkeleton.hidden = true;
     els.status.hidden = true;
     migratePersistedState(ROWS);
     updateCompareBar();
-    loadDescriptions();
-    route();
-    if (new URLSearchParams(location.search).has("smoke")) return runSmoke();
+    const start = () => {
+      route();
+      if (new URLSearchParams(location.search).has("smoke")) return runSmoke();
+    };
+    if (new URLSearchParams(location.search).has("smoke")) {
+      return ensureDetails(ROWS.map(r => r.id)).then(start);
+    }
+    start();
   })
   .catch(err => {
     if (els.listSkeleton) els.listSkeleton.hidden = true;
     els.status.hidden = false;
     els.status.classList.add("error");
-    els.status.textContent = "De gegevens konden niet worden geladen. Controleer of data.json naast deze pagina staat.";
+    els.status.textContent = "De gegevens konden niet worden geladen. Controleer of de databestanden naast deze pagina staan.";
     jsErrors.push(String(err));
   });
 </script>
