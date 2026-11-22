@@ -37,44 +37,45 @@
     --header-h: 56px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: 240 10% 3.9%;
-      --foreground: 0 0% 98%;
-      --card: 240 10% 3.9%;
-      --card-foreground: 0 0% 98%;
-      --popover: 240 10% 3.9%;
-      --popover-foreground: 0 0% 98%;
-      --primary: 0 0% 98%;
-      --primary-foreground: 240 5.9% 10%;
-      --secondary: 240 3.7% 15.9%;
-      --secondary-foreground: 0 0% 98%;
-      --muted: 240 3.7% 15.9%;
-      --muted-foreground: 240 5% 64.9%;
-      --accent: 240 3.7% 15.9%;
-      --accent-foreground: 0 0% 98%;
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-      --border: 240 3.7% 15.9%;
-      --input: 240 3.7% 15.9%;
-      --ring: 240 4.9% 83.9%;
-      --chart-1: 220 70% 50%;
-      --chart-2: 160 60% 45%;
-      --chart-3: 30 80% 55%;
-      --chart-4: 280 65% 60%;
-      --chart-5: 340 75% 55%;
-    }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 
   * { border-color: hsl(var(--border)); }
   [hidden] { display: none !important; }
-  html { color-scheme: light dark; }
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
   html, body {
     background: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-feature-settings: "cv11", "ss01", "kern";
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.6;
+    letter-spacing: -0.011em;
     min-height: 100%;
     -webkit-font-smoothing: antialiased;
   }
@@ -145,7 +146,7 @@
     height: var(--header-h);
     display: flex; align-items: center; gap: 0.75rem;
     padding: 0 1.5rem;
-    background: hsl(var(--background) / 0.8);
+    background: hsl(var(--background) / 0.94);
     backdrop-filter: saturate(180%) blur(16px);
     -webkit-backdrop-filter: saturate(180%) blur(16px);
     border-bottom: 1px solid hsl(var(--border));
@@ -154,8 +155,8 @@
   .logo svg { width: 28px; height: 28px; display: block; }
   .brand { flex: 1; min-width: 0; }
   .brand h1 {
-    font-size: 0.9375rem; font-weight: 600;
-    letter-spacing: -0.02em; line-height: 1.2;
+    font-size: 1rem; font-weight: 600;
+    letter-spacing: -0.03em; line-height: 1.2;
   }
   .brand h1 em { font-style: normal; font-weight: 500; color: hsl(var(--muted-foreground)); }
   .brand-link { color: inherit; text-decoration: none; display: block; }
@@ -164,7 +165,7 @@
   #listView {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 1.25rem 1.5rem 4rem;
+    padding: 1.6rem 1.75rem 4.5rem;
   }
 
   .sr-only {
@@ -431,7 +432,7 @@
   .card-list { display: none; }
 
   /* —— detail —— */
-  .detail-view { max-width: 52rem; margin: 0 auto; padding: 1rem 1.5rem 4.5rem; }
+  .detail-view { max-width: 54rem; margin: 0 auto; padding: 1.15rem 1.75rem 4.75rem; }
   .back {
     display: inline-flex; align-items: center; gap: 0.35rem;
     min-height: 2.75rem; padding: 0.25rem 0;
@@ -440,21 +441,23 @@
   }
   .back:hover { color: hsl(var(--foreground)); }
   .detail {
+    --detail-pad-x: 2rem;
+    --detail-pad-y: 2rem;
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius);
-    padding: 1.75rem 1.75rem 2rem;
+    padding: var(--detail-pad-y) var(--detail-pad-x) 2.35rem;
   }
   .detail-head {
     display: flex; align-items: flex-start; gap: 1.5rem;
     justify-content: space-between;
   }
   .detail-head > div { min-width: 0; flex: 1; }
-  .detail-head h2 {
+  .detail-head h2, .detail-hero h2 {
     font-weight: 700;
-    font-size: 1.875rem;
-    line-height: 1.15;
-    letter-spacing: -0.035em;
+    font-size: 2.125rem;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
     overflow-wrap: anywhere;
     word-break: break-word;
   }
@@ -745,9 +748,9 @@
     .brand h1 { font-size: 0.875rem; }
     .site-header { padding: 0 0.85rem; }
     .detail-view { padding: 0.5rem 0.85rem 4rem; }
-    .detail { padding: 1.1rem 1rem 1.35rem; overflow: hidden; }
+    .detail { --detail-pad-x: 1rem; --detail-pad-y: 1.2rem; padding-bottom: 1.5rem; overflow: hidden; }
     .detail-head { flex-direction: column; gap: 0.6rem; }
-    .detail-head h2 { font-size: 1.5rem; }
+    .detail-head h2, .detail-hero h2 { font-size: 1.625rem; }
     .detail-aside { align-items: flex-start; }
     .fact { grid-template-columns: 1fr; gap: 0.15rem; }
     .fact dd { min-width: 0; }
@@ -936,7 +939,7 @@
   .chart-block h3 { margin-bottom: 0.35rem; }
   .chart-caption { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-bottom: 0.75rem; }
   .radar-wrap, .scatter-wrap { width: 100%; max-width: 28rem; overflow: visible; }
-  .radar-wrap { padding: 0.15rem 0.35rem; }
+  .radar-wrap { padding: 0.35rem 0.15rem 0.15rem; }
   .scatter-wrap { position: relative; max-width: 52rem; }
   .radar-wrap svg, .scatter-wrap svg {
     width: 100%; height: auto; display: block; overflow: visible;
@@ -953,14 +956,37 @@
     fill: none;
   }
   .chart-label, .scatter-tick {
+    fill: hsl(var(--foreground));
+    font-size: 11px;
+    font-weight: 500;
+    font-family: inherit;
+    paint-order: stroke fill;
+    stroke: hsl(var(--card));
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
+  .scatter-tick {
     fill: hsl(var(--muted-foreground));
     font-size: 10px;
-    font-family: inherit;
+    font-weight: 400;
+    stroke-width: 3px;
   }
   .chart-fill {
-    fill: hsl(var(--chart-1) / 0.28);
+    fill: hsl(var(--chart-1) / 0.38);
     stroke: hsl(var(--chart-1));
+    stroke-width: 2.25;
+    stroke-linejoin: round;
+  }
+  .chart-point {
+    fill: hsl(var(--chart-1));
+    stroke: hsl(var(--card));
     stroke-width: 1.75;
+  }
+  .chart-scale {
+    fill: hsl(var(--muted-foreground));
+    font-size: 9px;
+    font-variant-numeric: tabular-nums;
+    font-family: inherit;
   }
   .scatter-point {
     fill: hsl(var(--chart-1));
@@ -990,20 +1016,18 @@
   }
   .chart-tooltip .tt-name { font-weight: 600; color: hsl(var(--foreground)); }
   .chart-tooltip .tt-meta { color: hsl(var(--muted-foreground)); margin-top: 0.15rem; }
-  @media (prefers-color-scheme: dark) {
-    .chart-grid {
-      stroke: hsl(var(--muted-foreground) / 0.32);
-    }
-    .chart-axis {
-      stroke: hsl(var(--muted-foreground) / 0.6);
-    }
-    .chart-fill {
-      fill: hsl(var(--chart-1) / 0.32);
-      stroke: hsl(var(--chart-1));
-    }
-    .scatter-point { fill: hsl(var(--chart-1)); stroke: hsl(var(--background)); }
-    .scatter-point:hover, .scatter-point:focus { fill: hsl(var(--chart-2)); }
+  .dark .chart-grid {
+    stroke: hsl(var(--muted-foreground) / 0.38);
   }
+  .dark .chart-axis {
+    stroke: hsl(var(--muted-foreground) / 0.7);
+  }
+  .dark .chart-fill {
+    fill: hsl(var(--chart-1) / 0.42);
+    stroke: hsl(var(--chart-1));
+  }
+  .dark .scatter-point { fill: hsl(var(--chart-1)); stroke: hsl(var(--background)); }
+  .dark .scatter-point:hover, .dark .scatter-point:focus { fill: hsl(var(--chart-2)); }
 
   .hover-card {
     position: fixed;
@@ -1070,4 +1094,289 @@
     .detail-head { flex-wrap: wrap; }
     .detail-head .photo-lg { width: 8rem; }
     .compare-bar-inner { flex-wrap: wrap; }
+  }
+
+
+  /* —— look: chips, grid, hero, theme, motion, radar extras —— */
+  .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.4rem; }
+  td .chips { margin-top: 0; }
+  .chip {
+    --chip-h: 240;
+    --chip-s: 6%;
+    --chip-l: 40%;
+    display: inline-flex; align-items: center;
+    max-width: 100%;
+    border-radius: 999px;
+    border: 1px solid hsl(var(--chip-h) var(--chip-s) var(--chip-l) / 0.28);
+    background: hsl(var(--chip-h) var(--chip-s) var(--chip-l) / 0.12);
+    color: hsl(var(--chip-h) var(--chip-s) 26%);
+    font-size: 0.6875rem; font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    padding: 0.16rem 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dark .chip {
+    background: hsl(var(--chip-h) calc(var(--chip-s) + 6%) 64% / 0.18);
+    color: hsl(var(--chip-h) calc(var(--chip-s) + 10%) 84%);
+    border-color: hsl(var(--chip-h) var(--chip-s) 72% / 0.32);
+  }
+  .chip[data-chip="sherry"] { --chip-h: 0; --chip-s: 58%; --chip-l: 38%; }
+  .chip[data-chip="oloroso"] { --chip-h: 8; --chip-s: 52%; --chip-l: 36%; }
+  .chip[data-chip="px"] { --chip-h: 345; --chip-s: 48%; --chip-l: 34%; }
+  .chip[data-chip="bourbon"] { --chip-h: 36; --chip-s: 72%; --chip-l: 40%; }
+  .chip[data-chip="port"] { --chip-h: 328; --chip-s: 48%; --chip-l: 38%; }
+  .chip[data-chip="rum"] { --chip-h: 24; --chip-s: 52%; --chip-l: 36%; }
+  .chip[data-chip="wijn"] { --chip-h: 346; --chip-s: 42%; --chip-l: 38%; }
+  .chip[data-chip="cognac"] { --chip-h: 28; --chip-s: 58%; --chip-l: 38%; }
+  .chip[data-chip="oak"] { --chip-h: 34; --chip-s: 32%; --chip-l: 40%; }
+  .chip[data-chip="gemengd"] { --chip-h: 240; --chip-s: 8%; --chip-l: 42%; }
+  .chip[data-chip="speyside"] { --chip-h: 152; --chip-s: 42%; --chip-l: 30%; }
+  .chip[data-chip="highland"] { --chip-h: 210; --chip-s: 48%; --chip-l: 36%; }
+  .chip[data-chip="islay"] { --chip-h: 175; --chip-s: 42%; --chip-l: 28%; }
+  .chip[data-chip="lowland"] { --chip-h: 92; --chip-s: 32%; --chip-l: 30%; }
+  .chip[data-chip="campbeltown"] { --chip-h: 255; --chip-s: 32%; --chip-l: 40%; }
+  .chip[data-chip="orkney"] { --chip-h: 200; --chip-s: 36%; --chip-l: 34%; }
+  .chip[data-chip="arran"] { --chip-h: 185; --chip-s: 32%; --chip-l: 32%; }
+  .chip[data-chip="mull"] { --chip-h: 168; --chip-s: 26%; --chip-l: 30%; }
+  .chip[data-chip="islands"] { --chip-h: 195; --chip-s: 40%; --chip-l: 34%; }
+  .chip[data-chip="ierland"] { --chip-h: 140; --chip-s: 48%; --chip-l: 28%; }
+  .chip[data-chip="taiwan"] { --chip-h: 18; --chip-s: 72%; --chip-l: 40%; }
+  .chip[data-chip="japan"] { --chip-h: 356; --chip-s: 58%; --chip-l: 40%; }
+  .chip[data-chip="kentucky"] { --chip-h: 32; --chip-s: 62%; --chip-l: 36%; }
+  .chip[data-chip="canada"] { --chip-h: 8; --chip-s: 56%; --chip-l: 38%; }
+  .chip[data-chip="nederland"] { --chip-h: 220; --chip-s: 52%; --chip-l: 38%; }
+  .chip[data-chip="denemarken"] { --chip-h: 205; --chip-s: 55%; --chip-l: 36%; }
+  .chip[data-chip="belgie"] { --chip-h: 350; --chip-s: 44%; --chip-l: 38%; }
+  .chip[data-chip="regio"] { --chip-h: 240; --chip-s: 8%; --chip-l: 40%; }
+  .chip-flavour {
+    --chip-h: 220;
+    --chip-s: 28%;
+    --chip-l: 40%;
+  }
+
+  .list-meta { flex-wrap: wrap; }
+  .view-toggle {
+    display: inline-flex;
+    padding: 0.15rem;
+    gap: 0.1rem;
+    margin-left: auto;
+    border-radius: calc(var(--radius) - 2px);
+    background: hsl(var(--muted));
+    flex: 0 0 auto;
+  }
+  .view-toggle .icon-btn { width: 2rem; height: 2rem; }
+  .view-toggle .icon-btn svg { width: 15px; height: 15px; display: block; }
+  .view-toggle .icon-btn[aria-pressed="true"] {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    box-shadow: 0 1px 2px hsl(var(--foreground) / 0.08);
+  }
+  .theme-toggle svg { width: 16px; height: 16px; display: block; }
+
+  .photo-card { width: 2.5rem; }
+  .photo-xl { width: 13.5rem; }
+
+  html.view-grid .card-list:not([hidden]) {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(9.75rem, 1fr));
+    gap: 0.9rem;
+  }
+  html.view-grid #listView table { display: none !important; }
+  html.view-grid .table-wrap {
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+  html.view-grid .whisky-card + .whisky-card { margin-top: 0; }
+  html.view-grid .whisky-card {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    gap: 0;
+    padding: 0 0 0.85rem;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.15s, border-color 0.15s;
+  }
+  html.view-grid .whisky-card .geproefd {
+    position: absolute;
+    top: 0.5rem; left: 0.5rem;
+    z-index: 2;
+    padding: 0.2rem;
+    background: hsl(var(--background) / 0.88);
+    border-radius: calc(var(--radius) - 4px);
+    box-shadow: 0 1px 2px hsl(var(--foreground) / 0.06);
+  }
+  html.view-grid .whisky-card .photo,
+  html.view-grid .whisky-card .photo-card {
+    width: 100%;
+    grid-row: auto;
+    aspect-ratio: 4 / 5;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.7);
+  }
+  html.view-grid .whisky-card .card-main { padding: 0.7rem 0.8rem 0; }
+  html.view-grid .whisky-card .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  html.view-grid .whisky-card .card-top .score-badge { font-size: 1.125rem; }
+  html.view-grid .whisky-card .name {
+    font-size: 0.875rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  html.view-grid .whisky-card .chips { margin-top: 0.4rem; }
+  html.view-grid .skel-table { display: none; }
+  html.view-grid .skel-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9.75rem, 1fr));
+    gap: 0.9rem;
+  }
+  html.view-grid .skel-card {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    margin-top: 0;
+    padding: 0 0 0.85rem;
+    overflow: hidden;
+  }
+  html.view-grid .skel-card .skel-photo {
+    width: 100%; height: auto; aspect-ratio: 4 / 5; border-radius: 0;
+  }
+  html.view-grid .photo-placeholder,
+  .photo-xl .photo-placeholder,
+  .photo-lg .photo-placeholder {
+    width: 28%; height: 48%; opacity: 0.55;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    html.view-grid .whisky-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px hsl(240 10% 3.9% / 0.1);
+    }
+    html.dark.view-grid .whisky-card:hover {
+      box-shadow: 0 12px 28px hsl(0 0% 0% / 0.45);
+    }
+  }
+
+  .detail-hero {
+    --hero-tint: 240 5% 50%;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.75rem;
+    margin: calc(var(--detail-pad-y, 2rem) * -1) calc(var(--detail-pad-x, 2rem) * -1) 1.5rem;
+    padding: 1.7rem var(--detail-pad-x, 2rem) 1.45rem;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background:
+      radial-gradient(120% 90% at 0% 0%, hsl(var(--hero-tint) / 0.22), transparent 58%),
+      linear-gradient(180deg, hsl(var(--hero-tint) / 0.16), hsl(var(--card)) 78%);
+  }
+  .dark .detail-hero {
+    background:
+      radial-gradient(120% 90% at 0% 0%, hsl(var(--hero-tint) / 0.4), transparent 60%),
+      linear-gradient(180deg, hsl(var(--hero-tint) / 0.3), hsl(var(--card)) 82%);
+  }
+  .detail-hero[data-hero="sherry"] { --hero-tint: 0 55% 36%; }
+  .detail-hero[data-hero="px"] { --hero-tint: 345 50% 32%; }
+  .detail-hero[data-hero="bourbon"] { --hero-tint: 38 72% 42%; }
+  .detail-hero[data-hero="port"] { --hero-tint: 328 48% 36%; }
+  .detail-hero[data-hero="rum"] { --hero-tint: 24 52% 36%; }
+  .detail-hero[data-hero="wijn"] { --hero-tint: 346 42% 38%; }
+  .detail-hero[data-hero="cognac"] { --hero-tint: 28 58% 38%; }
+  .detail-hero[data-hero="oak"] { --hero-tint: 34 32% 42%; }
+  .detail-hero[data-hero="neutral"] { --hero-tint: 240 5% 50%; }
+  .hero-photo { flex: 0 0 auto; }
+  .hero-photo .photo-xl {
+    background: hsl(var(--background) / 0.45);
+    box-shadow: 0 10px 28px hsl(240 10% 3.9% / 0.08);
+  }
+  .hero-copy { flex: 1; min-width: 0; }
+  .hero-copy .sub { margin-top: 0.35rem; }
+  .hero-copy .chips { margin-top: 0.65rem; }
+  .hero-copy .hero-actions {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem 0.85rem;
+    margin-top: 0.9rem;
+  }
+  .hero-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+    flex: 0 0 auto;
+    min-width: 6.5rem;
+    text-align: right;
+  }
+  .hero-score-label {
+    font-size: 0.6875rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+  }
+  .hero-score {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero-score .votes { margin-top: 0.3rem; }
+
+  .chart-top { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.7rem; }
+
+  @keyframes view-enter {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .view-enter { animation: view-enter 0.32s ease both; }
+
+  @media (max-width: 720px) {
+    .detail-hero {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.85rem;
+      padding-top: 1.25rem;
+      padding-bottom: 1.15rem;
+    }
+    .detail-hero .photo-xl { width: 8.75rem; }
+    .hero-copy { width: 100%; }
+    .hero-side {
+      align-items: center;
+      text-align: center;
+      min-width: 0;
+      width: 100%;
+    }
+    .hero-copy .hero-actions { justify-content: center; }
+    .hero-score { font-size: 2rem; }
+    .site-nav { gap: 0.15rem; }
+    .brand h1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  }
+
+  @media (max-width: 400px) {
+    html.view-grid .card-list,
+    html.view-grid .skel-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+    html.view-grid .whisky-card .card-main { padding: 0.6rem 0.6rem 0; }
+    .hero-score { font-size: 1.85rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    html.view-grid .whisky-card:hover { transform: none; }
   }
