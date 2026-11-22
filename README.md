@@ -2,7 +2,7 @@
 
 Statische pagina met samples van Whiskysite, scores van Whiskybase en flesprijzen in Nederland. Geschikt voor GitHub Pages: `index.html`, `data.json`, `descriptions.json` en `assets/app.css`.
 
-Elke botteling heeft een eigen detailpagina op `#/whisky/<id>`, met alle gegevens en pas daar de links naar externe sites. De naam in het overzicht opent die pagina. Via **Vergelijk** (twee of drie flessen, ook te delen als `#/vergelijk/<id>,<id>`) zet je ze naast elkaar. `#/inzicht` toont een spreidingsdiagram van score versus sampleprijs, alleen voor rijen waarvan beide bekend zijn.
+Elke botteling heeft een eigen detailpagina op `#/whisky/<id>`, met alle gegevens en pas daar de links naar externe sites. De naam in het overzicht opent die pagina. Via **Vergelijk** (twee of drie flessen, ook te delen als `#/vergelijk/<id>,<id>`) zet je ze naast elkaar. `#/distilleerderijen` is het overzicht van distilleerderijen; elke stokerij heeft een pagina op `#/distilleerderij/<slug>` met cijfers, een grafiek en de bottelingen. `#/inzicht` toont een spreidingsdiagram van score versus sampleprijs, alleen voor rijen waarvan beide bekend zijn.
 
 Het uiterlijk volgt de tokens en componentstijl van [shadcn/ui](https://ui.shadcn.com/) (zinc, radius 0,5rem). Licht, donker of systeem kies je zelf; de standaard volgt de instelling van het apparaat. Het overzicht heeft een compacte lijst en een kaartweergave. De CSS wordt lokaal gebouwd en meegecommitteerd; er is geen runtime-CDN voor styles.
 
