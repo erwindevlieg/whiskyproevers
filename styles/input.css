@@ -353,9 +353,8 @@
 
   .col-check { width: 3.25rem; text-align: center; }
   thead th.col-check { text-align: center; }
-  .col-abv, .col-prijs, .col-score, .col-fles { font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .col-prijs, .col-fles, .col-abv, .col-score { text-align: right; }
-  thead th.col-prijs, thead th.col-fles, thead th.col-abv, thead th.col-score { text-align: right; }
+  .col-abv, .col-score { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+  thead th.col-abv, thead th.col-score { text-align: right; }
 
   .name {
     font-weight: 600; color: hsl(var(--foreground)); text-decoration: none;
@@ -643,12 +642,6 @@
   }
   .card-top .name { flex: 1; min-width: 0; }
   .card-top .score-badge { flex: 0 0 auto; margin-top: 0.1rem; }
-  .price-line {
-    margin-top: 0.4rem;
-    font-size: 0.8125rem;
-    color: hsl(var(--foreground));
-    font-variant-numeric: tabular-nums;
-  }
   .whisky-card .sub { margin-top: 0.15rem; }
 
   @media (max-width: 1023px) {
