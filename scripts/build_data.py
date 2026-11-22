@@ -9,6 +9,10 @@ Er wordt niets verzonnen of aangevuld.
 Optioneel worden productomschrijvingen uit descriptions.json (van
 scripts/fetch_descriptions.py) als 'omschrijving', 'omschrijvingBron' en 'afbeelding'
 meegenomen.
+
+Samples van dezelfde whisky in 3 cl en 6 cl worden tot één rij samengevoegd.
+Alleen zekere matches (zelfde naam na het weghalen van de samplemaat, plus
+dezelfde ABV en leeftijd). Oude id's blijven bereikbaar via 'redirects'.
 """
 
 from __future__ import annotations
@@ -126,12 +130,16 @@ def assign_ids(items):
                 slug = "%s-%s-%s" % (base, suffix, n)
                 n += 1
         used.add(slug)
-        # id vooraan zetten voor leesbaarheid in ruwe JSON-tools
+        # id vooraan zetten voor leesbaarheid in ruwe JSON-tools.
+        # De berekende slug wint altijd, ook als het item al een oude id had.
         ordered = {"id": slug}
         age = extract_age(item.get("naam"))
         if age is not None:
             ordered["leeftijd"] = age
         ordered.update(item)
+        ordered["id"] = slug
+        if age is not None:
+            ordered["leeftijd"] = age
         item.clear()
         item.update(ordered)
 
@@ -224,6 +232,304 @@ def build(xlsx_path: Path) -> dict:
     }
 
 
+SIZE_TRAIL_RE = re.compile(
+    r"(?:[\s\-–—]*(?:\d+(?:[.,]\d+)?\s*cl(?:\s*sample)?|sample|monster|proefmonster))+\s*$",
+    re.I,
+)
+SIZE_VALUE_RE = re.compile(r"(\d+(?:[.,]\d+)?)\s*cl", re.I)
+UNKNOWN_RE = re.compile(r"^onbekend\b", re.I)
+VOLUME_PREAMBLE_RE = re.compile(
+    r"^0[.,]0\d\s*ltrs?\.?\s*(?:\d+[.,]?\d*\s*%\s*)?(?:\n+)?",
+    re.I,
+)
+EMPTY_CONTAINER_RE = re.compile(
+    r"lege/.empty sample fles|lege sample fles|empty sample bottle",
+    re.I,
+)
+WB_STATUS_RANK = {
+    "exact": 4,
+    "labelversie": 3,
+    "andere versie": 2,
+    "nog niet opgezocht": 1,
+    "niet van toepassing": 0,
+}
+
+
+def strip_sample_markers(naam):
+    """Haal alleen een trailing samplemaat (3 cl, 6 cl, sample) van de naam."""
+    text = (naam or "").strip()
+    cleaned = SIZE_TRAIL_RE.sub("", text).strip(" -–—")
+    return re.sub(r"\s+", " ", cleaned)
+
+
+def normalize_name_key(naam):
+    text = strip_sample_markers(naam).lower()
+    text = text.replace("&", "and")
+    text = re.sub(r"[“”\"'`]", "", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def parse_sample_size(item):
+    """Normalizeer '3 cl' / '3,0 cl' naar een canonieke grootte-string, of None."""
+    text = " ".join(part for part in (item.get("inhoud"), item.get("naam")) if part)
+    match = SIZE_VALUE_RE.search(text)
+    if not match:
+        return None
+    raw = match.group(1).replace(",", ".")
+    value = float(raw)
+    if value.is_integer():
+        number = str(int(value))
+    else:
+        number = raw.rstrip("0").rstrip(".") if "." in raw else raw
+    return "%s cl" % number
+
+
+def size_sort_key(inhoud):
+    match = SIZE_VALUE_RE.search(inhoud or "")
+    if not match:
+        return (1, inhoud or "")
+    return (0, float(match.group(1).replace(",", ".")))
+
+
+def is_missing(value):
+    if value is None or value == "":
+        return True
+    if isinstance(value, str) and UNKNOWN_RE.match(value.strip()):
+        return True
+    return False
+
+
+def is_empty_container(item):
+    reden = (item.get("wbReden") or "").lower()
+    if "lege fles" in reden or "geen whisky-sample" in reden:
+        return True
+    return bool(EMPTY_CONTAINER_RE.search(item.get("naam") or ""))
+
+
+def group_key(item):
+    return (normalize_name_key(item.get("naam")), item.get("abv"), item.get("leeftijd"))
+
+
+def richness(item):
+    score = 0
+    for key, value in item.items():
+        if key in {"id", "aliases", "samples"}:
+            continue
+        if not is_missing(value):
+            score += 1
+    if item.get("afbeelding"):
+        score += 3
+    if item.get("omschrijving"):
+        score += 2
+    if item.get("score") is not None:
+        score += 2
+    if item.get("flesPrijs") is not None:
+        score += 2
+    if item.get("stemmen"):
+        score += item["stemmen"] / 1000.0
+    status = (item.get("wbStatus") or "").strip().lower()
+    score += WB_STATUS_RANK.get(status, 0) * 0.1
+    return score
+
+
+def pick_value(left, right, field):
+    a, b = left.get(field), right.get(field)
+    if is_missing(a) and not is_missing(b):
+        return b
+    if is_missing(b) and not is_missing(a):
+        return a
+    if field == "omschrijving" and isinstance(a, str) and isinstance(b, str):
+        return a if len(a) >= len(b) else b
+    if field == "stemmen" and a is not None and b is not None:
+        return a if a >= b else b
+    if field == "score":
+        sa, sb = left.get("stemmen") or 0, right.get("stemmen") or 0
+        if sa != sb:
+            return a if sa > sb else b
+    if field == "wbStatus":
+        ra = WB_STATUS_RANK.get(str(a or "").strip().lower(), 0)
+        rb = WB_STATUS_RANK.get(str(b or "").strip().lower(), 0)
+        return a if ra >= rb else b
+    return a if not is_missing(a) else b
+
+
+def sample_entry(item):
+    entry = {}
+    inhoud = parse_sample_size(item) or item.get("inhoud")
+    if inhoud:
+        entry["inhoud"] = inhoud
+    if item.get("prijsSample") is not None:
+        entry["prijsSample"] = item["prijsSample"]
+    if item.get("sampleLink"):
+        entry["sampleLink"] = item["sampleLink"]
+    if item.get("id"):
+        entry["id"] = item["id"]
+    if item.get("naam"):
+        entry["naam"] = item["naam"]
+    return entry
+
+
+def attach_samples_array(item):
+    if item.get("samples"):
+        return
+    if item.get("sampleBeschikbaar") == "nee" and item.get("prijsSample") is None and not item.get("sampleLink"):
+        return
+    entry = {}
+    if item.get("inhoud"):
+        entry["inhoud"] = item["inhoud"]
+    if item.get("prijsSample") is not None:
+        entry["prijsSample"] = item["prijsSample"]
+    if item.get("sampleLink"):
+        entry["sampleLink"] = item["sampleLink"]
+    if entry:
+        item["samples"] = [entry]
+
+
+def merge_group(rows):
+    """Voeg zekere 3 cl/6 cl-rijen samen; behoud de rijkste overige velden."""
+    ordered = sorted(rows, key=lambda item: size_sort_key(parse_sample_size(item) or item.get("inhoud") or ""))
+    base = max(ordered, key=richness)
+    merged = dict(base)
+    for other in ordered:
+        if other is base:
+            continue
+        for field in other.keys():
+            if field in {"id", "naam", "inhoud", "prijsSample", "sampleLink", "samples", "aliases"}:
+                continue
+            merged[field] = pick_value(merged, other, field)
+            # pick_value uses merged as left, so also fill from other when left is missing
+            if is_missing(merged.get(field)) and not is_missing(other.get(field)):
+                merged[field] = other[field]
+        # paired score/stemmen: if we took the other score, take its stemmen/wb too
+    # If scores came from different rows, keep the score of the row with more votes.
+    best_scored = max(
+        (row for row in ordered if row.get("score") is not None),
+        key=lambda row: (row.get("stemmen") or 0, richness(row)),
+        default=None,
+    )
+    if best_scored is not None:
+        for field in ("score", "stemmen", "wbStatus", "wbId", "wbLink", "wbReden"):
+            if field in best_scored:
+                merged[field] = best_scored[field]
+
+    samples = [sample_entry(row) for row in ordered if sample_entry(row)]
+    merged["samples"] = samples
+    cleaned = strip_sample_markers(base.get("naam") or "")
+    if cleaned:
+        merged["naam"] = cleaned
+    sizes = [s.get("inhoud") for s in samples if s.get("inhoud")]
+    if sizes:
+        merged["inhoud"] = " / ".join(sizes)
+    priced = [s for s in samples if s.get("prijsSample") is not None]
+    if priced:
+        cheapest = min(priced, key=lambda s: s["prijsSample"])
+        merged["prijsSample"] = cheapest["prijsSample"]
+        if cheapest.get("sampleLink"):
+            merged["sampleLink"] = cheapest["sampleLink"]
+    elif "prijsSample" in merged:
+        del merged["prijsSample"]
+    if any(row.get("sampleBeschikbaar") == "ja" for row in ordered):
+        merged["sampleBeschikbaar"] = "ja"
+    if merged.get("omschrijving") and len(rows) > 1:
+        stripped = VOLUME_PREAMBLE_RE.sub("", merged["omschrijving"], count=1).strip()
+        if stripped:
+            merged["omschrijving"] = stripped
+    merged["aliases"] = [row["id"] for row in ordered if row.get("id")]
+    return merged
+
+
+def classify_group(rows):
+    """Alleen zekere 3 cl + 6 cl (of andere verschillende samplematen) samenvoegen."""
+    if any(is_empty_container(row) for row in rows):
+        return "ambiguous", "lege flesjes of andere verpakking, geen samples van dezelfde whisky"
+    sizes = [parse_sample_size(row) for row in rows]
+    if any(size is None for size in sizes):
+        return "ambiguous", "niet van alle rijen is een samplemaat af te leiden"
+    unique = set(sizes)
+    if len(unique) == 1:
+        return "ambiguous", "zelfde samplemaat, mogelijk dubbele winkel-URL"
+    # only merge typical sample sizes, never a 70 cl fles with a sample
+    def cl_value(label):
+        match = SIZE_VALUE_RE.search(label or "")
+        return float(match.group(1).replace(",", ".")) if match else None
+    values = [cl_value(size) for size in sizes]
+    if any(v is None or v > 20 for v in values):
+        return "ambiguous", "minstens één maat lijkt geen sample"
+    if len(rows) == 2 and unique <= {"3 cl", "6 cl"}:
+        return "merge", "3 cl en 6 cl van dezelfde whisky"
+    if len(unique) == len(rows):
+        return "merge", "verschillende samplematen van dezelfde whisky"
+    return "ambiguous", "meer rijen dan unieke maten"
+
+
+def merge_sample_sizes(payload):
+    """Voeg zekere sample-paren samen en lever een redirects-mapping plus rapport."""
+    items = payload["items"]
+    groups = {}
+    for item in items:
+        groups.setdefault(group_key(item), []).append(item)
+
+    merged_for = {}
+    ambiguous = []
+    merged_pairs = []
+    for key, rows in groups.items():
+        if len(rows) < 2:
+            continue
+        decision, reason = classify_group(rows)
+        label = strip_sample_markers(rows[0].get("naam") or key[0])
+        sizes = [parse_sample_size(row) or row.get("inhoud") or "?" for row in rows]
+        info = {
+            "naam": label,
+            "reden": reason,
+            "rijen": [
+                {
+                    "id": row.get("id"),
+                    "naam": row.get("naam"),
+                    "inhoud": parse_sample_size(row) or row.get("inhoud"),
+                    "prijsSample": row.get("prijsSample"),
+                    "sampleLink": row.get("sampleLink"),
+                }
+                for row in rows
+            ],
+        }
+        if decision == "merge":
+            merged_for[id(rows[0])] = (rows, merge_group(rows))
+            for extra in rows[1:]:
+                merged_for[id(extra)] = None
+            merged_pairs.append(info)
+        else:
+            ambiguous.append(info)
+
+    new_items = []
+    for item in items:
+        marker = merged_for.get(id(item), "keep")
+        if marker == "keep":
+            attach_samples_array(item)
+            new_items.append(item)
+        elif marker is None:
+            continue
+        else:
+            _rows, merged = marker
+            new_items.append(merged)
+
+    assign_ids(new_items)
+    redirects = {}
+    for item in new_items:
+        for old_id in item.get("aliases") or []:
+            if old_id and old_id != item["id"]:
+                redirects[old_id] = item["id"]
+
+    payload["items"] = new_items
+    payload["count"] = len(new_items)
+    payload["redirects"] = redirects
+    return {
+        "merged": merged_pairs,
+        "ambiguous": ambiguous,
+        "before": len(items),
+        "after": len(new_items),
+    }
+
+
 def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
     """Voeg letterlijke Whiskysite-omschrijvingen en afbeeldings-URL's toe."""
     if not descriptions_path or not descriptions_path.is_file():
@@ -233,6 +539,11 @@ def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
     images = 0
     for item in items:
         entry = data.get(item.get("id"))
+        if not entry:
+            for alias in item.get("aliases") or []:
+                entry = data.get(alias)
+                if entry:
+                    break
         if not entry:
             continue
         text = (entry.get("text") or "").strip()
@@ -289,6 +600,7 @@ def main(argv=None):
     else:
         desc_path = desc_path.expanduser().resolve()
     added, images = merge_descriptions(payload["items"], desc_path)
+    report = merge_sample_sizes(payload)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
@@ -299,6 +611,28 @@ def main(argv=None):
         % (output, payload["count"], added, images),
         file=sys.stderr,
     )
+    print(
+        "Samples samengevoegd: %s paren (%s → %s rijen)"
+        % (len(report["merged"]), report["before"], report["after"]),
+        file=sys.stderr,
+    )
+    if report["merged"]:
+        for info in report["merged"]:
+            sizes = ", ".join(
+                "%s%s" % (row.get("inhoud") or "?", (" " + str(row["prijsSample"])) if row.get("prijsSample") is not None else "")
+                for row in info["rijen"]
+            )
+            print("  - %s (%s)" % (info["naam"], sizes), file=sys.stderr)
+    if report["ambiguous"]:
+        print("Niet samengevoegd (%s groepen):" % len(report["ambiguous"]), file=sys.stderr)
+        for info in report["ambiguous"]:
+            print("  - %s: %s" % (info["naam"], info["reden"]), file=sys.stderr)
+            for row in info["rijen"]:
+                print(
+                    "      %s | %s | %s | %s"
+                    % (row.get("id"), row.get("naam"), row.get("inhoud"), row.get("sampleLink") or ""),
+                    file=sys.stderr,
+                )
     return 0
 
 

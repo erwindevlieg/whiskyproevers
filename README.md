@@ -14,6 +14,8 @@ npx tailwindcss@3 -c styles/tailwind.config.js -i styles/input.css -o assets/app
 
 Het Excel-bestand blijft de bron. Persoonlijke kolommen (`Past bij smaak`, `Toelichting smaak`) worden niet geëxporteerd. Bij het genereren krijgt elke rij een stabiele `id` (URL-slug).
 
+Als Whiskysite dezelfde whisky als 3 cl- en 6 cl-sample verkoopt, worden die rijen tot één botteling samengevoegd. Alleen zekere matches (zelfde naam zonder samplemaat, plus dezelfde ABV en leeftijd) gaan samen; twijfelgevallen blijven aparte rijen. De samengevoegde rij heeft een `samples`-lijst (maat, prijs, link). Oude id's blijven werken: `data.json` bevat `redirects`, en de pagina stuurt `#/whisky/<oude-id>` door naar de nieuwe id. Geproefd- en vergelijkmarkeringen in localStorage worden meegenomen.
+
 Productomschrijvingen van Whiskysite.nl en productfoto-URL’s haal je apart op (ruwe HTML wordt gecached, opnieuw draaien haalt alleen ontbrekende pagina’s op). Foto’s worden alleen als URL opgeslagen, niet als bestand.
 
 ```bash
