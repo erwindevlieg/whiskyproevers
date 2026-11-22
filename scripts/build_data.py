@@ -561,12 +561,31 @@ def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        description="Genereer data.json uit het tabblad Overzicht van whisky_overzicht.xlsx."
+        description="Genereer de site-data uit het tabblad Overzicht van whisky_overzicht.xlsx."
     )
     parser.add_argument(
         "xlsx",
         type=Path,
+        nargs="?",
+        default=None,
         help="Pad naar whisky_overzicht.xlsx (niet in de repo; bevat persoonlijke kolommen).",
+    )
+    parser.add_argument(
+        "--from-json",
+        type=Path,
+        default=None,
+        help="Bestaande data.json opnieuw publiceren (compacte index, details, thumbs) zonder Excel.",
+    )
+    parser.add_argument(
+        "--skip-thumbs",
+        action="store_true",
+        help="Bestaande thumbs in assets/thumbs niet opnieuw bouwen.",
+    )
+    parser.add_argument(
+        "--thumb-cache",
+        type=Path,
+        default=None,
+        help="Cache-map voor originele productfoto's (standaard /workspace/whisky_build/imgcache).",
     )
     parser.add_argument(
         "-o",
@@ -583,39 +602,73 @@ def main(argv=None):
     )
     args = parser.parse_args(argv)
 
-    xlsx_path = args.xlsx.expanduser().resolve()
-    if not xlsx_path.is_file():
-        raise SystemExit("Bestand niet gevonden: %s" % xlsx_path)
-
     output = args.output
     if output is None:
         output = Path(__file__).resolve().parent.parent / "data.json"
     else:
         output = output.expanduser().resolve()
 
-    payload = build(xlsx_path)
-    desc_path = args.descriptions
-    if desc_path is None:
-        desc_path = output.parent / "descriptions.json"
+    added = images = 0
+    report = {"merged": [], "ambiguous": [], "before": 0, "after": 0}
+
+    if args.from_json:
+        src = args.from_json.expanduser().resolve()
+        if not src.is_file():
+            raise SystemExit("Bestand niet gevonden: %s" % src)
+        payload = json.loads(src.read_text(encoding="utf-8"))
+        if "items" not in payload:
+            raise SystemExit("Geen items in %s" % src)
+        report["before"] = report["after"] = payload.get("count", len(payload["items"]))
+        added = sum(1 for it in payload["items"] if it.get("omschrijving"))
+        images = sum(1 for it in payload["items"] if it.get("afbeelding"))
     else:
-        desc_path = desc_path.expanduser().resolve()
-    added, images = merge_descriptions(payload["items"], desc_path)
-    report = merge_sample_sizes(payload)
+        if args.xlsx is None:
+            raise SystemExit("Geef een Excel-bestand of --from-json.")
+        xlsx_path = args.xlsx.expanduser().resolve()
+        if not xlsx_path.is_file():
+            raise SystemExit("Bestand niet gevonden: %s" % xlsx_path)
+        payload = build(xlsx_path)
+        desc_path = args.descriptions
+        if desc_path is None:
+            desc_path = output.parent / "descriptions.json"
+        else:
+            desc_path = desc_path.expanduser().resolve()
+        added, images = merge_descriptions(payload["items"], desc_path)
+        report = merge_sample_sizes(payload)
+
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(
+
+    # Volledige payload blijft de bron voor de publicatie; data.json wordt
+    # daarna de kleine manifest. Een kopie staat naast de uitvoer als
+    # .full-data.json en wordt niet gecommit.
+    full_copy = output.parent / ".full-data.json"
+    full_copy.write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
+
+    from export_site import export_site
+    from thumbs import DEFAULT_CACHE
+
+    cache = args.thumb_cache or DEFAULT_CACHE
+    export_site(
+        payload,
+        output.parent,
+        cache_dir=cache,
+        skip_thumbs=args.skip_thumbs,
+    )
+
     print(
-        "Geschreven: %s (%s rijen, %s met omschrijving, %s met afbeelding)"
-        % (output, payload["count"], added, images),
+        "Bron: %s rijen, %s met omschrijving, %s met afbeelding (kopie: %s)"
+        % (payload["count"], added, images, full_copy),
         file=sys.stderr,
     )
-    print(
-        "Samples samengevoegd: %s paren (%s → %s rijen)"
-        % (len(report["merged"]), report["before"], report["after"]),
-        file=sys.stderr,
-    )
+    if not args.from_json:
+        print(
+            "Samples samengevoegd: %s paren (%s → %s rijen)"
+            % (len(report["merged"]), report["before"], report["after"]),
+            file=sys.stderr,
+        )
     if report["merged"]:
         for info in report["merged"]:
             sizes = ", ".join(
