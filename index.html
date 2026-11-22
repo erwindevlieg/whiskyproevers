@@ -67,6 +67,25 @@
         </div>
       </div>
 
+      <div class="filter-toggles">
+        <div class="toggle-field">
+          <span class="pills-label" id="sampleAvail-label">Sample beschikbaar</span>
+          <div class="toggle-group" id="sampleAvailGroup" role="radiogroup" aria-labelledby="sampleAvail-label" data-filter="sampleAvail">
+            <button type="button" class="toggle-item" role="radio" data-value="alle" aria-checked="true">Alle</button>
+            <button type="button" class="toggle-item" role="radio" data-value="ja" aria-checked="false">Ja</button>
+            <button type="button" class="toggle-item" role="radio" data-value="nee" aria-checked="false">Nee</button>
+          </div>
+        </div>
+        <div class="toggle-field">
+          <span class="pills-label" id="flesPrijsBekend-label">Flesprijs bekend</span>
+          <div class="toggle-group" id="flesPrijsBekendGroup" role="radiogroup" aria-labelledby="flesPrijsBekend-label" data-filter="flesPrijsBekend">
+            <button type="button" class="toggle-item" role="radio" data-value="alle" aria-checked="true">Alle</button>
+            <button type="button" class="toggle-item" role="radio" data-value="ja" aria-checked="false">Ja</button>
+            <button type="button" class="toggle-item" role="radio" data-value="nee" aria-checked="false">Nee</button>
+          </div>
+        </div>
+      </div>
+
       <div class="filter-row">
         <span class="pills-label side" id="vat-label">Vattype</span>
         <div class="pills" id="vat-pills" role="group" aria-labelledby="vat-label"></div>
@@ -105,8 +124,6 @@
             <th class="sortable" data-sort="vattype" scope="col" aria-sort="none">Vattype <span class="arrow">↕</span></th>
             <th class="sortable col-abv" data-sort="abv" scope="col" aria-sort="none">ABV <span class="arrow">↕</span></th>
             <th class="sortable col-score" data-sort="score" scope="col" aria-sort="descending">Score <span class="arrow">↓</span></th>
-            <th class="sortable col-prijs" data-sort="prijsSample" scope="col" aria-sort="none">Sampleprijs <span class="arrow">↕</span></th>
-            <th class="sortable col-fles" data-sort="flesPrijs" scope="col" aria-sort="none">Flesprijs <span class="arrow">↕</span></th>
           </tr>
         </thead>
         <tbody id="rows"></tbody>
@@ -249,6 +266,8 @@ const state = {
   minScore: 60,
   maxPrijs: 100,
   inclOnbekend: true,
+  sampleAvail: "alle",
+  flesPrijsBekend: "alle",
   sort: "score",
   dir: "desc",
   shown: PAGE_SIZE,
@@ -354,6 +373,10 @@ function matches(r) {
   if (state.rook.size && !state.rook.has(r.rook)) return false;
   if (state.regio.size && !state.regio.has(r.regioKort)) return false;
   if (state.smaak.size && !r.flavour.some(t => state.smaak.has(t))) return false;
+  if (state.sampleAvail === "ja" && r.sampleBeschikbaar !== "ja") return false;
+  if (state.sampleAvail === "nee" && r.sampleBeschikbaar !== "nee") return false;
+  if (state.flesPrijsBekend === "ja" && r.flesPrijs == null) return false;
+  if (state.flesPrijsBekend === "nee" && r.flesPrijs != null) return false;
   if (state.q) {
     const hay = [
       r.naam, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
@@ -428,16 +451,6 @@ function metaLine(r) {
   return [abv, r.regioKort].concat(extras).filter(Boolean).join(" · ");
 }
 
-function flesCell(r) {
-  if (r.flesPrijs == null) return "";
-  const title = r.opmerkingFles ? ' title="' + escapeAttr(r.opmerkingFles) + '"' : "";
-  return '<span class="price"' + title + ">" + euro.format(r.flesPrijs) + "</span>";
-}
-
-function moneyCell(value) {
-  return value != null ? '<span class="price">' + euro.format(value) + "</span>" : "";
-}
-
 function abvCell(r) {
   return r.abv != null ? escapeHtml(num.format(r.abv).replace(",0", "") + "%") : "";
 }
@@ -447,6 +460,8 @@ function activeFilterCount() {
   if (state.minScore > state.defaults.minScore) n += 1;
   if (priceFilterActive()) n += 1;
   if (!state.inclOnbekend) n += 1;
+  if (state.sampleAvail !== "alle") n += 1;
+  if (state.flesPrijsBekend !== "alle") n += 1;
   return n;
 }
 
@@ -510,8 +525,6 @@ function render(resetPage) {
       + '<td><span class="vat"' + (vat ? ' title="' + escapeAttr(vat) + '"' : "") + ">" + escapeHtml(vat) + "</span></td>"
       + '<td class="col-abv">' + abvCell(r) + "</td>"
       + '<td class="col-score">' + scoreCell(r) + "</td>"
-      + '<td class="col-prijs">' + moneyCell(r.prijsSample) + "</td>"
-      + '<td class="col-fles">' + flesCell(r) + "</td>"
       + "</tr>";
   }).join("");
 
@@ -540,20 +553,12 @@ function cardMeta(r) {
   return [abvCell(r), r.regioKort || "", inhoud].filter(Boolean).join(" · ");
 }
 
-function priceLine(r) {
-  const parts = [];
-  if (r.prijsSample != null) parts.push("Sample " + euro.format(r.prijsSample));
-  if (r.flesPrijs != null) parts.push("Fles " + euro.format(r.flesPrijs));
-  return parts.join("  ·  ");
-}
-
 function cardHtml(r) {
   const id = rowId(r);
   const tasted = !!state.tasted[id];
   const name = displayName(r.naam);
   const meta = cardMeta(r);
   const tags = r.flavour.slice(0, 3).map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
-  const prices = priceLine(r);
   return '<article class="whisky-card' + (tasted ? " tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
     + '<label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
     + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label>'
@@ -564,7 +569,6 @@ function cardHtml(r) {
     + "</div>"
     + (meta ? '<p class="sub">' + escapeHtml(meta) + "</p>" : "")
     + (tags ? '<div class="tags">' + tags + "</div>" : "")
-    + (prices ? '<p class="price-line">' + escapeHtml(prices) + "</p>" : "")
     + "</div></article>";
 }
 
@@ -876,11 +880,14 @@ function resetFilters() {
   state.minScore = state.defaults.minScore;
   state.maxPrijs = state.defaults.maxPrijs;
   state.inclOnbekend = true;
+  state.sampleAvail = "alle";
+  state.flesPrijsBekend = "alle";
   els.q.value = "";
   els.minScore.value = state.defaults.minScore;
   els.maxPrijs.value = state.defaults.maxPrijs;
   els.inclOnbekend.checked = true;
   document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
+  syncToggleGroups();
   render(true);
 }
 
@@ -916,11 +923,30 @@ function bindRowNavigate(container) {
   });
 }
 
+function syncToggleGroups() {
+  document.querySelectorAll(".toggle-group").forEach(group => {
+    const current = state[group.dataset.filter];
+    group.querySelectorAll(".toggle-item").forEach(btn => {
+      btn.setAttribute("aria-checked", btn.dataset.value === current ? "true" : "false");
+    });
+  });
+}
+
 function bindEvents() {
   els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
   els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
   els.maxPrijs.addEventListener("input", () => { state.maxPrijs = Number(els.maxPrijs.value); render(true); });
   els.inclOnbekend.addEventListener("change", () => { state.inclOnbekend = els.inclOnbekend.checked; render(true); });
+  document.querySelectorAll(".toggle-group").forEach(group => {
+    group.addEventListener("click", (e) => {
+      const btn = e.target.closest(".toggle-item");
+      if (!btn) return;
+      const key = group.dataset.filter;
+      state[key] = btn.dataset.value;
+      syncToggleGroups();
+      render(true);
+    });
+  });
   els.more.addEventListener("click", () => { state.shown += PAGE_SIZE; render(false); });
   els.tableWrap.addEventListener("scroll", rememberListScroll, { passive: true });
   window.addEventListener("scroll", rememberListScroll, { passive: true });
