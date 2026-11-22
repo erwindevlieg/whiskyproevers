@@ -303,20 +303,180 @@
   @media (max-width: 960px) {
     .status-msg { margin-left: 16px; margin-right: 16px; }
   }
+
+  .brand-link { color: inherit; text-decoration: none; display: block; }
+  .brand-link:hover { color: inherit; }
+  .brand-link:hover h1 em { color: #fff; }
+
+  tbody tr { cursor: pointer; }
+  tbody tr .col-check, tbody tr .geproefd { cursor: default; }
+
+  .detail-view { margin: 12px 28px 20px; }
+  .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    min-height: 44px; padding: 4px 2px;
+    font-weight: 600; font-size: 14px;
+    color: var(--amber-deep); text-decoration: none;
+  }
+  .back:hover { color: var(--ink); text-decoration: underline; }
+  .detail {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 20px 22px 28px;
+  }
+  .detail-head {
+    display: flex; align-items: flex-start; gap: 16px;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .detail-head h2 {
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 650;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+  .taste-check {
+    flex: 0 0 auto;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 600;
+    min-height: 44px;
+    cursor: pointer; user-select: none;
+  }
+  .detail .tags { margin-top: 10px; }
+  .detail .tag { font-size: 12px; padding: 2px 9px; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin-top: 8px;
+  }
+  .fact {
+    display: grid;
+    grid-template-columns: minmax(110px, 36%) 1fr;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .fact dt {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted); padding-top: 2px;
+  }
+  .fact dd { font-size: 15px; overflow-wrap: anywhere; }
+  .fact .empty, .unknown { color: #9a8878; }
+
+  .block { margin-top: 22px; }
+  .block h3 {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .notes {
+    font-size: 15.5px; line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .notes-source { display: block; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+
+  .link-list { display: flex; flex-direction: column; gap: 8px; }
+  .ext-link {
+    display: flex; align-items: center;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: #fff;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .ext-link:hover { border-color: var(--amber); color: var(--amber-deep); }
+  .ext-link span { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
+
+  .missing { padding: 28px 8px 12px; }
+  .missing h2 { font-family: Fraunces, Georgia, serif; margin-bottom: 8px; }
+
+  body.detail-mode .header-meta { display: none; }
+
+  @media (max-width: 960px) {
+    .detail-view { margin-left: 16px; margin-right: 16px; }
+    .facts { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 720px) {
+    .brand h1 { font-size: 20px; }
+    .brand p, .header-meta { display: none; }
+    .site-header { padding: 10px 16px; }
+    .detail { padding: 16px; }
+    .detail-head { flex-direction: column; gap: 8px; }
+    .detail-head h2 { font-size: 22px; }
+    .fact { grid-template-columns: 1fr; gap: 2px; }
+    .table-wrap {
+      overflow: visible;
+      max-height: none;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+    table { min-width: 0; width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+    thead { display: none; }
+    tbody tr {
+      display: grid;
+      grid-template-columns: 36px 1fr auto;
+      grid-template-areas:
+        "check name score"
+        "check vat score"
+        "check prices prices";
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 8px 10px 10px;
+      align-items: start;
+    }
+    tbody td { border-bottom: 0; padding: 2px 6px; background: transparent !important; }
+    tbody tr:hover td { background: transparent; }
+    tbody tr.tasted { box-shadow: inset 3px 0 0 var(--amber), var(--shadow); }
+    tbody tr.tasted td:first-child { box-shadow: none; }
+    .col-check { grid-area: check; padding-top: 8px; width: auto; }
+    td:nth-child(2) { grid-area: name; }
+    .col-score { grid-area: score; text-align: right; }
+    td:nth-child(6) { grid-area: vat; }
+    .col-inhoud, .col-prijs, .col-fles {
+      grid-area: prices;
+      display: inline;
+      text-align: left;
+      padding: 0;
+      font-size: 13px;
+    }
+    .col-inhoud::after, .col-prijs::after { content: " · "; color: var(--muted); }
+    tr:has(.col-fles .empty) .col-prijs::after { content: ""; }
+    .col-inhoud, .col-prijs, .col-fles { margin-top: 4px; }
+    .col-inhoud { margin-left: 6px; }
+    .vat { max-width: none; white-space: normal; overflow: visible; }
+    .shop { display: inline; margin-left: 4px; }
+  }
 </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="logo" aria-hidden="true">
-      <svg viewBox="0 0 36 36" fill="none">
+    <a class="logo" href="#/" aria-label="Terug naar het overzicht">
+      <svg viewBox="0 0 36 36" fill="none" aria-hidden="true">
         <path d="M12 6h12l-1.2 8.2c-.3 2.2.6 4.3 2.4 5.6 1.7 1.2 2.6 3.1 2.6 5.2v1.5c0 2.3-3.5 4.5-9.8 4.5S8 28.8 8 26.5V25c0-2.1.9-4 2.6-5.2 1.8-1.3 2.7-3.4 2.4-5.6L12 6z" stroke="#e8c57a" stroke-width="1.6" fill="rgba(232,197,122,0.08)"/>
         <path d="M13.2 11h9.6" stroke="#e8c57a" stroke-width="1.4" stroke-linecap="round"/>
         <path d="M14.6 17.5c1.6.8 4.9.9 6.8 0" stroke="#e8c57a" stroke-width="1.2" stroke-linecap="round" opacity=".85"/>
       </svg>
-    </div>
+    </a>
     <div class="brand">
-      <h1>Whisky <em>proefoverzicht</em></h1>
-      <p>Samples van Whiskysite · scores van Whiskybase · flessen in Nederland</p>
+      <a class="brand-link" href="#/">
+        <h1>Whisky <em>proefoverzicht</em></h1>
+        <p>Samples van Whiskysite · scores van Whiskybase · flessen in Nederland</p>
+      </a>
     </div>
     <div class="header-meta" id="headerMeta">
       Complete overzicht<br>
@@ -324,76 +484,83 @@
     </div>
   </header>
 
-  <section class="filters" aria-label="Filters">
-    <div class="filter-top">
-      <div class="field">
-        <label for="q">Zoeken</label>
-        <input id="q" class="search" type="search" placeholder="Naam, vat, regio, winkel…" autocomplete="off">
-      </div>
-      <div class="field">
-        <div class="slider-top">
-          <label for="minScore">Min. score</label>
-          <span class="slider-val" id="minScoreVal">—</span>
-        </div>
-        <input id="minScore" type="range" min="60" max="92" step="0.1" value="60" disabled>
-        <label class="check-opt">
-          <input id="inclOnbekend" type="checkbox" checked>
-          Ook zonder score
-        </label>
-      </div>
-      <div class="field">
-        <div class="slider-top">
-          <label for="maxPrijs">Max. sampleprijs</label>
-          <span class="slider-val" id="maxPrijsVal">—</span>
-        </div>
-        <input id="maxPrijs" type="range" min="1" max="100" step="1" value="100" disabled>
-      </div>
-    </div>
-
-    <div class="filter-row">
-      <span class="pills-label side" id="vat-label">Vattype</span>
-      <div class="pills" id="vat-pills" role="group" aria-labelledby="vat-label"></div>
-    </div>
-    <div class="filter-row">
-      <span class="pills-label side" id="rook-label">Rook</span>
-      <div class="pills" id="rook-pills" role="group" aria-labelledby="rook-label"></div>
-    </div>
-    <div class="filter-row">
-      <span class="pills-label side" id="regio-label">Regio</span>
-      <div class="pills" id="regio-pills" role="group" aria-labelledby="regio-label"></div>
-    </div>
-    <div class="filter-row">
-      <span class="pills-label side" id="smaak-label">Smaak</span>
-      <div class="pills" id="smaak-pills" role="group" aria-labelledby="smaak-label"></div>
-    </div>
-
-    <div class="toolbar">
-      <div class="count" id="count"></div>
-      <button type="button" class="reset" id="reset">Wis filters</button>
-    </div>
-  </section>
-
   <div class="status-msg" id="status">Gegevens worden geladen…</div>
 
-  <div class="table-wrap" id="tableWrap" hidden>
-    <table>
-      <thead>
-        <tr>
-          <th class="col-check" scope="col">Geproefd</th>
-          <th class="sortable" data-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>
-          <th class="sortable col-inhoud" data-sort="inhoud" scope="col" aria-sort="none">Inhoud <span class="arrow">↕</span></th>
-          <th class="sortable col-prijs" data-sort="prijsSample" scope="col" aria-sort="none">Sample <span class="arrow">↕</span></th>
-          <th class="sortable col-score" data-sort="score" scope="col" aria-sort="descending">Score <span class="arrow">↓</span></th>
-          <th class="sortable" data-sort="rook" scope="col" aria-sort="none">Vat / rook <span class="arrow">↕</span></th>
-          <th class="sortable col-fles" data-sort="flesPrijs" scope="col" aria-sort="none">Fles in NL <span class="arrow">↕</span></th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
-    <div class="empty-state" id="empty" hidden>Geen flessen die aan de filters voldoen.</div>
-    <div class="more-wrap" id="moreWrap" hidden>
-      <button type="button" class="more" id="more">Toon meer</button>
+  <div id="listView" hidden>
+    <section class="filters" aria-label="Filters">
+      <div class="filter-top">
+        <div class="field">
+          <label for="q">Zoeken</label>
+          <input id="q" class="search" type="search" placeholder="Naam, vat, regio, winkel…" autocomplete="off">
+        </div>
+        <div class="field">
+          <div class="slider-top">
+            <label for="minScore">Min. score</label>
+            <span class="slider-val" id="minScoreVal">—</span>
+          </div>
+          <input id="minScore" type="range" min="60" max="92" step="0.1" value="60" disabled>
+          <label class="check-opt">
+            <input id="inclOnbekend" type="checkbox" checked>
+            Ook zonder score
+          </label>
+        </div>
+        <div class="field">
+          <div class="slider-top">
+            <label for="maxPrijs">Max. sampleprijs</label>
+            <span class="slider-val" id="maxPrijsVal">—</span>
+          </div>
+          <input id="maxPrijs" type="range" min="1" max="100" step="1" value="100" disabled>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <span class="pills-label side" id="vat-label">Vattype</span>
+        <div class="pills" id="vat-pills" role="group" aria-labelledby="vat-label"></div>
+      </div>
+      <div class="filter-row">
+        <span class="pills-label side" id="rook-label">Rook</span>
+        <div class="pills" id="rook-pills" role="group" aria-labelledby="rook-label"></div>
+      </div>
+      <div class="filter-row">
+        <span class="pills-label side" id="regio-label">Regio</span>
+        <div class="pills" id="regio-pills" role="group" aria-labelledby="regio-label"></div>
+      </div>
+      <div class="filter-row">
+        <span class="pills-label side" id="smaak-label">Smaak</span>
+        <div class="pills" id="smaak-pills" role="group" aria-labelledby="smaak-label"></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="count" id="count"></div>
+        <button type="button" class="reset" id="reset">Wis filters</button>
+      </div>
+    </section>
+
+    <div class="table-wrap" id="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-check" scope="col">Geproefd</th>
+            <th class="sortable" data-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>
+            <th class="sortable col-inhoud" data-sort="inhoud" scope="col" aria-sort="none">Inhoud <span class="arrow">↕</span></th>
+            <th class="sortable col-prijs" data-sort="prijsSample" scope="col" aria-sort="none">Sample <span class="arrow">↕</span></th>
+            <th class="sortable col-score" data-sort="score" scope="col" aria-sort="descending">Score <span class="arrow">↓</span></th>
+            <th class="sortable" data-sort="rook" scope="col" aria-sort="none">Vat / rook <span class="arrow">↕</span></th>
+            <th class="sortable col-fles" data-sort="flesPrijs" scope="col" aria-sort="none">Fles in NL <span class="arrow">↕</span></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty-state" id="empty" hidden>Geen flessen die aan de filters voldoen.</div>
+      <div class="more-wrap" id="moreWrap" hidden>
+        <button type="button" class="more" id="more">Toon meer</button>
+      </div>
     </div>
+  </div>
+
+  <div class="detail-view" id="detailView" hidden>
+    <a class="back" id="backLink" href="#/">← Overzicht</a>
+    <article class="detail" id="detail"></article>
   </div>
 
   <footer>
@@ -509,6 +676,7 @@ function displayName(naam) {
     .trim();
 }
 function rowId(r) { return r.naam + "|" + (r.inhoud || "fles"); }
+function detailHref(r) { return "#/whisky/" + encodeURIComponent(r.id); }
 function loadTasted() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
   catch { return {}; }
@@ -532,6 +700,7 @@ const state = {
 };
 
 let ROWS = [];
+let listScroll = null;
 const jsErrors = [];
 window.addEventListener("error", (e) => { jsErrors.push(String(e.message || e)); });
 window.addEventListener("unhandledrejection", (e) => { jsErrors.push(String(e.reason || e)); });
@@ -551,7 +720,10 @@ const els = {
   tableWrap: document.getElementById("tableWrap"),
   more: document.getElementById("more"),
   moreWrap: document.getElementById("moreWrap"),
-  headerMeta: document.getElementById("headerMeta")
+  headerMeta: document.getElementById("headerMeta"),
+  listView: document.getElementById("listView"),
+  detailView: document.getElementById("detailView"),
+  detail: document.getElementById("detail")
 };
 
 function uniqueInOrder(items, order) {
@@ -578,13 +750,21 @@ function vatMatch(rowTags, selected) {
   });
 }
 
+function priceFilterActive() {
+  return state.maxPrijs < state.defaults.maxPrijs;
+}
+
 function matches(r) {
   if (r.score == null) {
     if (!state.inclOnbekend) return false;
   } else if (r.score < state.minScore) {
     return false;
   }
-  if (r.prijsSample != null && r.prijsSample > state.maxPrijs) return false;
+  if (priceFilterActive()) {
+    if (r.prijsSample == null || r.prijsSample > state.maxPrijs) return false;
+  } else if (r.prijsSample != null && r.prijsSample > state.maxPrijs) {
+    return false;
+  }
   if (!vatMatch(r.vatTags, state.vat)) return false;
   if (state.rook.size && !state.rook.has(r.rook)) return false;
   if (state.regio.size && !state.regio.has(r.regioKort)) return false;
@@ -634,31 +814,16 @@ function scoreCell(r) {
   if (r.score == null) {
     return '<span class="empty">onbekend</span>' + (statusLabel || '<span class="wb-status">onbekend</span>');
   }
-  const numHtml = scoreFmt.format(r.score);
-  const label = r.wbLink
-    ? '<a href="' + escapeAttr(r.wbLink) + '" target="_blank" rel="noopener">' + numHtml + "</a>"
-    : numHtml;
-  return '<span class="score-num">' + label + "</span>"
+  return '<span class="score-num">' + scoreFmt.format(r.score) + "</span>"
     + (r.stemmen != null ? '<span class="votes">' + intFmt.format(r.stemmen) + " stemmen</span>" : "")
     + statusLabel;
 }
 
 function criticLine(r) {
   const parts = [];
-  if (r.whiskyfunScore) {
-    const text = "WF " + r.whiskyfunScore;
-    parts.push(r.whiskyfunLink
-      ? '<a href="' + escapeAttr(r.whiskyfunLink) + '" target="_blank" rel="noopener">' + escapeHtml(text) + "</a>"
-      : escapeHtml(text));
-  }
-  if (r.distillerScore) {
-    const short = String(r.distillerScore).split("—")[0].trim();
-    const text = "Distiller " + short;
-    parts.push(r.distillerLink
-      ? '<a href="' + escapeAttr(r.distillerLink) + '" target="_blank" rel="noopener">' + escapeHtml(text) + "</a>"
-      : escapeHtml(text));
-  }
-  return parts.length ? '<span class="crit">' + parts.join(" · ") + "</span>" : "";
+  if (r.whiskyfunScore) parts.push("WF " + r.whiskyfunScore);
+  if (r.distillerScore) parts.push("Distiller " + String(r.distillerScore).split("—")[0].trim());
+  return parts.length ? '<span class="crit">' + escapeHtml(parts.join(" · ")) + "</span>" : "";
 }
 
 function metaLine(r) {
@@ -675,17 +840,10 @@ function flesCell(r) {
   if (r.flesPrijs == null) return '<span class="empty">geen prijs bekend</span>';
   const title = r.opmerkingFles ? ' title="' + escapeAttr(r.opmerkingFles) + '"' : "";
   let html = '<span class="price"' + title + ">" + euro.format(r.flesPrijs) + "</span>";
-  if (r.flesLink) {
-    html += '<a class="shop" href="' + escapeAttr(r.flesLink) + '" target="_blank" rel="noopener">' + escapeHtml(r.winkel || "Bekijk fles") + "</a>";
-  } else if (r.winkel) {
-    html += '<span class="shop">' + escapeHtml(r.winkel) + "</span>";
-  }
+  if (r.winkel) html += '<span class="shop">' + escapeHtml(r.winkel) + "</span>";
   if (r.opVoorraad === "nee") html += '<span class="shop stock-no">niet op voorraad</span>';
   if (r.tweedePrijs != null) {
-    const second = "ook " + (r.tweedeWinkel || "elders") + " " + euro.format(r.tweedePrijs);
-    html += r.tweedeLink
-      ? '<a class="shop" href="' + escapeAttr(r.tweedeLink) + '" target="_blank" rel="noopener">' + escapeHtml(second) + "</a>"
-      : '<span class="shop">' + escapeHtml(second) + "</span>";
+    html += '<span class="shop">ook ' + escapeHtml(r.tweedeWinkel || "elders") + " " + euro.format(r.tweedePrijs) + "</span>";
   }
   return html;
 }
@@ -716,14 +874,11 @@ function render(resetPage) {
     const sample = r.prijsSample != null
       ? '<span class="price">' + euro.format(r.prijsSample) + "</span>"
       : '<span class="empty">—</span>';
-    const href = r.sampleLink || r.flesLink || r.wbLink || "";
-    const nameHref = href ? ' href="' + escapeAttr(href) + '" target="_blank" rel="noopener"' : "";
-    const nameTag = href ? "a" : "span";
     const inhoud = r.inhoud || (r.sampleBeschikbaar === "nee" ? "geen sample" : "—");
-    return '<tr class="' + (tasted ? "tasted" : "") + '">'
+    return '<tr class="' + (tasted ? "tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
       + '<td class="col-check"><label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
       + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label></td>'
-      + "<td><" + nameTag + ' class="name"' + nameHref + title + ">" + escapeHtml(name) + "</" + nameTag + ">"
+      + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ">" + escapeHtml(name) + "</a>"
       + (meta ? '<span class="sub">' + escapeHtml(meta) + "</span>" : "")
       + criticLine(r)
       + (tags ? '<div class="tags">' + tags + "</div>" : "")
@@ -738,7 +893,7 @@ function render(resetPage) {
   }).join("");
 
   els.empty.hidden = list.length > 0;
-  document.querySelector("table").style.display = list.length ? "" : "none";
+  document.querySelector("#listView table").style.display = list.length ? "" : "none";
   const remaining = list.length - visible.length;
   els.moreWrap.hidden = remaining <= 0;
   els.more.textContent = remaining > 0
@@ -757,6 +912,173 @@ function escapeHtml(s) {
   return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
 }
 function escapeAttr(s) { return escapeHtml(s); }
+
+function isUrl(value) {
+  return /^https?:\/\//i.test(String(value || "").trim());
+}
+
+function textOrUnknown(value) {
+  const text = unknownToEmpty(value);
+  return text ? escapeHtml(text) : '<span class="unknown">onbekend</span>';
+}
+
+function moneyOrUnknown(value) {
+  return value != null ? escapeHtml(euro.format(value)) : '<span class="unknown">onbekend</span>';
+}
+
+function fact(label, valueHtml) {
+  return '<div class="fact"><dt>' + escapeHtml(label) + "</dt><dd>" + valueHtml + "</dd></div>";
+}
+
+function ncfLabel(value) {
+  if (value === "ja") return "ja (ongekoeld gefilterd)";
+  if (value === "nee") return "nee (koel gefilterd)";
+  return null;
+}
+
+function kleurLabel(value) {
+  if (value === "ja") return "ja (met kleurstof)";
+  if (value === "nee") return "nee (geen kleurstof)";
+  return null;
+}
+
+function voorraadLabel(value) {
+  if (value === "ja") return "ja";
+  if (value === "nee") return "nee";
+  return null;
+}
+
+function extLink(href, title, subtitle) {
+  return '<a class="ext-link" href="' + escapeAttr(href) + '" target="_blank" rel="noopener noreferrer">'
+    + escapeHtml(title)
+    + (subtitle ? "<span>" + escapeHtml(subtitle) + "</span>" : "")
+    + "</a>";
+}
+
+function detailLinks(r) {
+  const links = [];
+  const used = new Set();
+  function add(href, title, subtitle) {
+    if (!href || !isUrl(href) || used.has(href)) return;
+    used.add(href);
+    links.push(extLink(href, title, subtitle));
+  }
+  add(r.sampleLink, "Sample kopen", r.prijsSample != null ? ("Whiskysite · " + euro.format(r.prijsSample)) : "Whiskysite");
+  add(r.flesLink, "Fles kopen" + (r.winkel ? " bij " + r.winkel : ""), r.flesPrijs != null ? euro.format(r.flesPrijs) : null);
+  add(r.tweedeLink, "Fles bij " + (r.tweedeWinkel || "tweede winkel"), r.tweedePrijs != null ? euro.format(r.tweedePrijs) : null);
+  add(r.wbLink, "Whiskybase", r.score != null ? ("Score " + scoreFmt.format(r.score)) : null);
+  add(r.whiskyfunLink, "Whiskyfun", r.whiskyfunScore || null);
+  add(r.distillerLink, "Distiller", r.distillerScore ? String(r.distillerScore).split("—")[0].trim() : null);
+  add(r.bronNotities, "Bron proefnotities", null);
+  if (!links.length) return '<p class="unknown">Geen externe links bekend.</p>';
+  return '<div class="link-list">' + links.join("") + "</div>";
+}
+
+function renderDetail(r) {
+  const name = displayName(r.naam);
+  const id = rowId(r);
+  const tasted = !!state.tasted[id];
+  document.title = name + " · Whisky proefoverzicht";
+  const tags = r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
+  const notes = unknownToEmpty(r.proefnotities);
+  const source = unknownToEmpty(r.bronNotities);
+  const leeftijd = r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : '<span class="unknown">onbekend</span>';
+  const abv = r.abv != null ? escapeHtml(num.format(r.abv).replace(",0", "") + "%") : '<span class="unknown">onbekend</span>';
+  const samplePrijs = r.prijsSample != null ? escapeHtml(euro.format(r.prijsSample)) : '<span class="unknown">onbekend</span>';
+  const inhoud = r.inhoud || (r.sampleBeschikbaar === "nee" ? "geen sample" : null);
+  const score = r.score != null
+    ? escapeHtml(scoreFmt.format(r.score)) + (r.stemmen != null ? " (" + escapeHtml(intFmt.format(r.stemmen)) + " stemmen)" : "")
+    : '<span class="unknown">onbekend</span>';
+  const wbStatus = escapeHtml(r.wbStatus || "onbekend")
+    + (unknownToEmpty(r.wbReden) ? " · " + escapeHtml(r.wbReden) : "");
+  const distiller = unknownToEmpty(r.distillerScore);
+
+  els.detail.innerHTML =
+    '<div class="detail-head"><div>'
+    + "<h2>" + escapeHtml(name) + "</h2>"
+    + (r.naam !== name ? '<span class="sub">' + escapeHtml(r.naam) + "</span>" : "")
+    + (tags ? '<div class="tags">' + tags + "</div>" : "")
+    + '</div><label class="taste-check"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
+    + (tasted ? " checked" : "") + '> Geproefd</label></div>'
+    + '<div class="facts">'
+    + fact("Leeftijd", leeftijd)
+    + fact("ABV", abv)
+    + fact("Regio / stijl", textOrUnknown(r.regio))
+    + fact("Vattype", textOrUnknown(r.vattype))
+    + fact("Rookniveau", textOrUnknown(r.rook))
+    + fact("Ongekoeld gefilterd", textOrUnknown(ncfLabel(r.ncf) || r.ncf))
+    + fact("Kleurstof", textOrUnknown(kleurLabel(r.kleurstof) || r.kleurstof))
+    + fact("Sample beschikbaar", textOrUnknown(r.sampleBeschikbaar))
+    + fact("Sample-grootte", textOrUnknown(inhoud))
+    + fact("Sampleprijs", samplePrijs)
+    + fact("Whiskybase-score", score)
+    + fact("WB-status", wbStatus)
+    + fact("Whiskyfun", textOrUnknown(r.whiskyfunScore))
+    + fact("Distiller", textOrUnknown(distiller))
+    + fact("Flesprijs", moneyOrUnknown(r.flesPrijs))
+    + fact("Flesgrootte", textOrUnknown(r.flesGrootte))
+    + fact("Winkel", textOrUnknown(r.winkel))
+    + fact("Op voorraad", textOrUnknown(voorraadLabel(r.opVoorraad) || r.opVoorraad))
+    + fact("Gecontroleerd op", textOrUnknown(r.gecontroleerdOp))
+    + fact("Tweede winkel", r.tweedeWinkel || r.tweedePrijs != null
+        ? escapeHtml((r.tweedeWinkel || "onbekend") + (r.tweedePrijs != null ? " · " + euro.format(r.tweedePrijs) : ""))
+        : '<span class="unknown">onbekend</span>')
+    + fact("Opmerking fles", textOrUnknown(r.opmerkingFles))
+    + "</div>"
+    + '<div class="block"><h3>Proefnotities</h3>'
+    + '<div class="notes">' + (notes ? escapeHtml(notes) : '<span class="unknown">onbekend</span>') + "</div>"
+    + (source && !isUrl(source) ? '<span class="notes-source">Bron: ' + escapeHtml(source) + "</span>" : "")
+    + "</div>"
+    + '<div class="block" id="links"><h3>Links</h3>' + detailLinks(r) + "</div>";
+}
+
+function renderDetailMissing() {
+  document.title = "Niet gevonden · Whisky proefoverzicht";
+  els.detail.innerHTML = '<div class="missing"><h2>Whisky niet gevonden</h2>'
+    + '<p>Deze link wijst niet naar een botteling in het overzicht.</p></div>';
+}
+
+function parseHash() {
+  const raw = (location.hash || "").replace(/^#/, "");
+  const path = decodeURIComponent(raw).replace(/^\/+/, "");
+  if (!path || path === "/") return null;
+  const match = path.match(/^whisky\/([^/]+)$/);
+  return match ? match[1] : null;
+}
+
+function rememberListScroll() {
+  if (parseHash()) return;
+  listScroll = { table: els.tableWrap.scrollTop, window: window.scrollY };
+}
+
+function restoreListScroll() {
+  if (!listScroll) return;
+  const saved = listScroll;
+  requestAnimationFrame(() => {
+    els.tableWrap.scrollTop = saved.table;
+    window.scrollTo(0, saved.window);
+  });
+}
+
+function route() {
+  const id = parseHash();
+  if (id) {
+    const row = ROWS.find(r => r.id === id);
+    document.body.classList.add("detail-mode");
+    els.listView.hidden = true;
+    els.detailView.hidden = false;
+    if (row) renderDetail(row);
+    else renderDetailMissing();
+    window.scrollTo(0, 0);
+    return;
+  }
+  document.body.classList.remove("detail-mode");
+  els.detailView.hidden = true;
+  els.listView.hidden = false;
+  document.title = "Whisky · Sample-overzicht";
+  render(false);
+  restoreListScroll();
+}
 
 function applyBounds(items) {
   const scores = items.map(r => r.score).filter(v => v != null);
@@ -788,12 +1110,20 @@ function initPills() {
   makePills(document.getElementById("smaak-pills"), uniqueInOrder(ROWS.flatMap(r => r.flavour), FLAVOUR.map(f => f.label)), "smaak");
 }
 
+function setTasted(id, checked) {
+  if (checked) state.tasted[id] = true;
+  else delete state.tasted[id];
+  saveTasted(state.tasted);
+}
+
 function bindEvents() {
   els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
   els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
   els.maxPrijs.addEventListener("input", () => { state.maxPrijs = Number(els.maxPrijs.value); render(true); });
   els.inclOnbekend.addEventListener("change", () => { state.inclOnbekend = els.inclOnbekend.checked; render(true); });
   els.more.addEventListener("click", () => { state.shown += PAGE_SIZE; render(false); });
+  els.tableWrap.addEventListener("scroll", rememberListScroll, { passive: true });
+  window.addEventListener("scroll", rememberListScroll, { passive: true });
 
   document.querySelectorAll(".pills").forEach(group => {
     group.addEventListener("click", (e) => {
@@ -820,10 +1150,31 @@ function bindEvents() {
   els.rows.addEventListener("change", (e) => {
     const input = e.target.closest("input[data-id]");
     if (!input) return;
-    if (input.checked) state.tasted[input.dataset.id] = true;
-    else delete state.tasted[input.dataset.id];
-    saveTasted(state.tasted);
+    setTasted(input.dataset.id, input.checked);
     render(false);
+  });
+
+  els.rows.addEventListener("click", (e) => {
+    if (e.target.closest("input, label.geproefd")) return;
+    const nameLink = e.target.closest("a.name");
+    if (nameLink) { rememberListScroll(); return; }
+    const tr = e.target.closest("tr[data-slug]");
+    if (!tr) return;
+    rememberListScroll();
+    location.hash = "#/whisky/" + tr.dataset.slug;
+  });
+
+  els.detailView.addEventListener("change", (e) => {
+    const input = e.target.closest("input[data-id]");
+    if (!input) return;
+    setTasted(input.dataset.id, input.checked);
+  });
+
+  document.querySelectorAll('a[href="#/"]').forEach(a => {
+    a.addEventListener("click", () => {
+      if (parseHash()) return;
+      rememberListScroll();
+    });
   });
 
   els.reset.addEventListener("click", () => {
@@ -842,6 +1193,8 @@ function bindEvents() {
     document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
     render(true);
   });
+
+  window.addEventListener("hashchange", route);
 }
 
 function setHeaderMeta(payload) {
@@ -855,6 +1208,19 @@ function setHeaderMeta(payload) {
 
 async function runSmoke() {
   const report = { errors: jsErrors.slice(), total: ROWS.length };
+  report.initialHash = location.hash;
+  report.startOnDetail = !els.detailView.hidden;
+  if (report.startOnDetail) {
+    report.deepLinkName = (els.detail.querySelector("h2") || {}).textContent || "";
+    report.deepLinkHasLinks = !!els.detail.querySelector("#links .ext-link, #links .unknown");
+    report.deepLinkExternal = [...els.detail.querySelectorAll("a[href^='http']")].map(a => ({
+      href: a.getAttribute("href"), target: a.getAttribute("target")
+    }));
+    report.deepLinkAllNewTab = report.deepLinkExternal.every(a => a.target === "_blank");
+    location.hash = "#/";
+    route();
+  }
+
   report.initialCountText = els.count.textContent;
   report.initialRows = els.rows.querySelectorAll("tr").length;
   report.moreVisible = !els.moreWrap.hidden;
@@ -867,6 +1233,19 @@ async function runSmoke() {
   els.inclOnbekend.checked = true;
   state.inclOnbekend = true;
   render(true);
+
+  report.noSampleCount = ROWS.filter(r => r.prijsSample == null).length;
+  report.atMaxPrice = ROWS.filter(matches).length;
+  state.maxPrijs = state.defaults.maxPrijs - 1;
+  els.maxPrijs.value = state.maxPrijs;
+  render(true);
+  const after = ROWS.filter(matches);
+  report.afterPriceFilter = after.length;
+  report.afterPriceFilterHasNoSample = after.some(r => r.prijsSample == null);
+  report.afterPriceFilterOverMax = after.some(r => r.prijsSample > state.maxPrijs);
+  report.afterPriceFilterExpected = ROWS.filter(r => r.prijsSample != null && r.prijsSample <= state.maxPrijs && (r.score == null ? state.inclOnbekend : r.score >= state.minScore)).length;
+  document.getElementById("reset").click();
+
   const rookBtn = document.querySelector('.pill[data-group="rook"][data-value="geen"]');
   if (rookBtn) rookBtn.click();
   report.afterRookGeen = ROWS.filter(matches).length;
@@ -875,9 +1254,32 @@ async function runSmoke() {
   state.q = "glenfarclas";
   render(true);
   report.afterSearchGlenfarclas = ROWS.filter(matches).length;
+  report.filtersBeforeDetail = state.q;
+  const firstLink = els.rows.querySelector("a.name");
+  report.listNameHref = firstLink ? firstLink.getAttribute("href") : null;
+  report.listExternalLinks = [...els.listView.querySelectorAll("a")].map(a => a.getAttribute("href")).filter(h => /^https?:/i.test(h || ""));
+  rememberListScroll();
+  const targetId = (ROWS.find(r => r.id === "glengoyne-30-years-old") || ROWS[0]).id;
+  location.hash = "#/whisky/" + targetId;
+  route();
+  report.detailVisible = !els.detailView.hidden && els.listView.hidden;
+  report.detailName = (els.detail.querySelector("h2") || {}).textContent || "";
+  report.detailHasLinksSection = !!els.detail.querySelector("#links");
+  report.detailExternal = [...els.detail.querySelectorAll("a[href^='http']")].map(a => a.getAttribute("target"));
+  report.detailExternalAllNewTab = report.detailExternal.length > 0 && report.detailExternal.every(t => t === "_blank");
+  location.hash = "#/";
+  route();
+  report.listVisibleAfterBack = !els.listView.hidden && els.detailView.hidden;
+  report.filtersAfterBack = state.q;
   document.getElementById("reset").click();
+  location.hash = "#/whisky/bestaat-niet";
+  route();
+  report.missingShown = /niet gevonden/i.test(els.detailView.innerText);
+  location.hash = "#/";
+  route();
   report.previewNotePresent = /Voorbeeld met een selectie/i.test(document.body.innerText);
   report.hasPersonalCol = /Past bij smaak/i.test(document.body.innerText);
+  report.errors = jsErrors.slice();
   const flag = document.createElement("pre");
   flag.id = "smoke-report";
   flag.textContent = JSON.stringify(report);
@@ -899,8 +1301,7 @@ fetch("data.json")
     initPills();
     setHeaderMeta(payload);
     els.status.hidden = true;
-    els.tableWrap.hidden = false;
-    render(true);
+    route();
     if (new URLSearchParams(location.search).has("smoke")) return runSmoke();
   })
   .catch(err => {
