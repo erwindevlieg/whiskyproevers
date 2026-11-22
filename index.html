@@ -35,6 +35,7 @@
       </a>
     </div>
     <nav class="site-nav" aria-label="Hoofd">
+      <a class="nav-link" id="navDist" href="#/distilleerderijen">Distilleerderijen</a>
       <a class="nav-link" id="navInzicht" href="#/inzicht">Inzicht</a>
       <button type="button" class="icon-btn theme-toggle" id="themeBtn" aria-label="Thema: systeem">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -149,10 +150,10 @@
       <div class="count" id="count"></div>
       <button type="button" class="reset js-reset" id="resetInline" hidden>Wis filters</button>
       <div class="view-toggle" role="group" aria-label="Weergave">
-        <button type="button" class="icon-btn" id="viewList" aria-pressed="true" aria-label="Lijstweergave">
+        <button type="button" class="icon-btn" id="viewList" data-view="lijst" aria-pressed="true" aria-label="Lijstweergave">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
         </button>
-        <button type="button" class="icon-btn" id="viewGrid" aria-pressed="false" aria-label="Kaartweergave">
+        <button type="button" class="icon-btn" id="viewGrid" data-view="grid" aria-pressed="false" aria-label="Kaartweergave">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         </button>
       </div>
@@ -194,6 +195,49 @@
   <div class="inzicht-view" id="inzichtView" hidden>
     <a class="back" href="#/">← Overzicht</a>
     <article class="detail inzicht-panel" id="inzicht"></article>
+  </div>
+
+  <div class="dist-list-view" id="distListView" hidden>
+    <a class="back" href="#/">← Overzicht</a>
+    <h2>Distilleerderijen</h2>
+    <div class="list-bar">
+      <div class="field search-field">
+        <label class="sr-only" for="distQ">Zoeken</label>
+        <input id="distQ" class="search" type="search" placeholder="Naam of regio…" autocomplete="off">
+      </div>
+    </div>
+    <div class="list-meta">
+      <div class="count" id="distCount"></div>
+      <div class="view-toggle" role="group" aria-label="Weergave">
+        <button type="button" class="icon-btn" data-view="lijst" aria-pressed="true" aria-label="Lijstweergave">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        </button>
+        <button type="button" class="icon-btn" data-view="grid" aria-pressed="false" aria-label="Kaartweergave">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="sortable" data-dist-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>
+            <th class="sortable" data-dist-sort="regio" scope="col" aria-sort="none">Regio <span class="arrow">↕</span></th>
+            <th class="sortable col-count" data-dist-sort="count" scope="col" aria-sort="none">Bottelingen <span class="arrow">↕</span></th>
+            <th class="sortable col-avg" data-dist-sort="score" scope="col" aria-sort="none">Gem. score <span class="arrow">↕</span></th>
+          </tr>
+        </thead>
+        <tbody id="distRows"></tbody>
+      </table>
+      <div class="card-list" id="distCards"></div>
+      <div class="empty-state" id="distEmpty" hidden>Geen distilleerderijen die aan de zoekopdracht voldoen.</div>
+    </div>
+  </div>
+
+  <div class="dist-view" id="distView" hidden>
+    <a class="back" href="#/distilleerderijen">← Distilleerderijen</a>
+    <article class="detail" id="distDetail"></article>
+    <div class="dist-bottlings" id="distBottlings"></div>
   </div>
 
   <div class="compare-bar" id="compareBar" hidden>
@@ -308,6 +352,637 @@ function enrich(r) {
     regioKort: parseRegio(r.regio)
   };
 }
+
+const IB_PREFIXES = [
+  "Blackadder Raw Cask","Blackadder Ingelred","Blackadder",
+  "Berry Bros & Rudd","Berry Bros",
+  "Signatory Vintage","Signatory",
+  "Old Particular","Douglas Laing","Adelphi",
+  "Gordon & MacPhail","Gordon and MacPhail",
+  "Carn Mor","Carn Mòr","Càrn Mòr",
+  "The Ultimate Selection","The Ultimate",
+  "Hart Brothers","North Star Spirits","North Star",
+  "Hidden Spirits","Murray McDavid","Whiskydudes","Brave New Spirits",
+  "The Maltman","Spirit Of Scotland","Spirit of Scotland",
+  "Silent Ambassador","Symington's Choice","Symingtons Choice",
+  "Whisky Is The Limit","Infrequent Flyers","Claxton's","Claxtons",
+  "Cooper's Choice","Coopers Choice","Lady of the Glen","Finn Thomson",
+  "James Eadie","Chapter 7","Dramfool","Dramfools","Living Souls",
+  "Cadenhead's","Cadenhead","Duncan Taylor",
+  "Goldfinch Bodega Series","Goldfinch",
+  "The Independent Selection","Uncharted Whisky Company","Fragrant Drops",
+  "Daily Dram","Little Brown Dog","Liquid Treasures",
+  "The Whisky Mercenary","The Whisky Trail","Elixir Distillers",
+  "Valinch & Mallet","Bottle Dreams","Cask Masters","Cane & Grain",
+  "Whiskynerds","The Duchess","Jack Wieber","First Cask"
+].sort((a, b) => b.length - a.length);
+
+const DIST_ALIAS_RAW = {
+  "glenallachie":"GlenAllachie","glen allachie":"GlenAllachie",
+  "glendronach":"GlenDronach","glen dronach":"GlenDronach",
+  "benriach":"BenRiach","ben riach":"BenRiach",
+  "an cnoc":"anCnoc","ancnoc":"anCnoc","knockdhu":"anCnoc","ancnoc knockdhu":"anCnoc",
+  "the macallan":"Macallan","macallan":"Macallan",
+  "the glenlivet":"Glenlivet","the glenturret":"Glenturret","the dalmore":"Dalmore",
+  "isle of jura":"Jura","jura distillery":"Jura",
+  "isle of arran":"Arran",
+  "zuidam distillery":"Zuidam","teeling whiskey distillery":"Teeling",
+  "bushmills malt":"Bushmills",
+  "mac talla":"Mac-Talla","morrison mac talla":"Mac-Talla",
+  "pulteney":"Old Pulteney","old pulteney":"Old Pulteney",
+  "buffalo trace distillery":"Buffalo Trace","buffalo trace":"Buffalo Trace",
+  "michter s distillery":"Michter's","glendalough distillery":"Glendalough",
+  "tsunuki distillery":"Tsunuki","mars tsunuki":"Tsunuki",
+  "piccadily distillery":"Piccadily","lochranza distillery":"Lochranza",
+  "kavalan solist":"Kavalan","old perth 21":"Old Perth",
+  "scallywag noir":"Scallywag",
+  "paul john":"Paul John","whisky paul john":"Paul John",
+  "peat s beast":"Peat's Beast","macaloney s":"Macaloney's",
+  "tomatin cu bocan":"Tomatin","whisky tomatin":"Tomatin",
+  "thomas h handy":"Thomas H. Handy","milk and honey":"Milk & Honey",
+  "compass box":"Compass Box","big peat":"Big Peat",
+  "angel s envy":"Angel's Envy","eagle rare":"Eagle Rare",
+  "green spot":"Green Spot","elements of islay":"Elements of Islay",
+  "heaven s door":"Heaven's Door","king s inch":"King's Inch",
+  "quiet man":"Quiet Man","three ships":"Three Ships",
+  "very old barton":"Very Old Barton",
+  "uncle nearest":"Uncle Nearest","unlce nearest":"Uncle Nearest",
+  "ferg and harris":"Ferg & Harris","caisteal chamuis":"Caisteal Chamuis",
+  "black forest":"Black Forest","meikle toir":"Meikle Toir",
+  "mc connel s":"Mc Connell's","mc connells":"Mc Connell's",
+  "tullamore dew":"Tullamore D.E.W.","tullamore d e w":"Tullamore D.E.W.",
+  "english whisky company":"The English","the english single malt whisky":"The English","the english":"The English",
+  "the whistler":"The Whistler","the daisen":"The Daisen","the irishman":"The Irishman",
+  "the cally":"The Cally","the gauldrons":"The Gauldrons","the singleton":"The Singleton",
+  "the grain barn":"The Grain Barn","highland queen":"Highland Queen",
+  "isle of raasay":"Isle of Raasay","isle of skye":"Isle of Skye",
+  "old ballantruan":"Old Ballantruan","old forester":"Old Forester",
+  "de lepelaar":"De Lepelaar","de verloren whisky":"De Verloren Whisky",
+  "woodford reserve":"Woodford Reserve",
+  "nikka yoichi":"Yoichi","nikka miyagikyo":"Miyagikyo",
+  "bunnahabhain staoisha":"Bunnahabhain",
+  "glenfarclas family casks":"Glenfarclas",
+  "the new zealand whisky collection":"The New Zealand Whisky Collection","the new":"The New Zealand Whisky Collection",
+  "the royal cane":"The Royal Cane","the royal":"The Royal Cane",
+  "blackadder raw cask":"Blackadder","blackadder ingelred":"Blackadder",
+  "cu dhub":"Cu Dhub","daddy rack":"Daddy Rack","don martin":"Don Martin","don papa":"Don Papa",
+  "el salvador":"El Salvador","four roses":"Four Roses","sea shepherd":"Sea Shepherd",
+  "six isles":"Six Isles","st kilian":"St. Kilian","st. kilian":"St. Kilian",
+  "villa de varda":"Villa De Varda","white heather":"White Heather","wild turkey":"Wild Turkey",
+  "cody road":"Cody Road","jack daniels":"Jack Daniel's","jack daniel s":"Jack Daniel's",
+  "red spot":"Red Spot","horse with no name":"Horse With No Name",
+  "saint michael":"Saint Michael"
+};
+
+const DIST_ALIASES = {};
+Object.keys(DIST_ALIAS_RAW).forEach(k => {
+  DIST_ALIASES[normKey(k)] = DIST_ALIAS_RAW[k];
+  DIST_ALIASES[normKey(DIST_ALIAS_RAW[k])] = DIST_ALIAS_RAW[k];
+});
+
+const NOT_DISTILLERY = new Set([
+  "geturfd","ongeturfd","single malt","blend","blended malt","blended scotch","bourbon","rye",
+  "single grain","blended grain","speyside","highland","islay","lowland","orkney","islands",
+  "secret speyside","secret highland","secret fife","secret wigtonshire","super secret speyside",
+  "blended","undisclosed","undisclosed speyside","unnamed","unnamed orkney","mystery","mystery malt",
+  "old","the","a","and","of","irish","first cask","high","sea","red","white","wild","four","six",
+  "don","el","la","st","cu","jack"
+]);
+
+const SECRET_NAME_RE = /(?:^|\s)(?:secret\s+(?:speyside|highland|fife|wigtonshire)|undisclosed|unnamed\s+orkney|mystery\s+malt|distilled at an (?:orkney|islay|speyside) distillery)(?:\s|$)/i;
+const SERIES_TAIL_RE = /\s+(Family Casks|A['’]?bunadh|Cigar Malt|Classic Cut(?: Limited)?(?: \d{4})?(?: Edition)?|Harmony(?: Collection)?(?: .*)?|Rare Cask(?: Black)?(?: Edition)?(?: \d{4})?|Speymalt|Sinteis|Solist|Parliament|Allardice|Sample Room|Special Release(?: \d{4})?|RE\/?DEFINE|Staoisha|PX 2\.0|Noir|\d{1,2})$/i;
+const TYPE_HEAD_RE = /^(?:single malt|single grain|single pot still|blended malt|blended grain|blended scotch|blend|bourbon|rye|american whiskey)\s*,\s*(.+)$/i;
+const CUT_HEAD_RE = /(?:\s+\d{4}\b|\s+\d{1,2}\s*(?:Years?|Jaar(?:\s*oud)?|YO|Year(?:\s*Old)?)\b|\s+\d+(?:[.,]\d+)?\s*%|\s+\d+\s*CL\b|\s+Cask\s+\d|\s+Cask\s+No)/i;
+const TWO_WORD_FIRST = new Set([
+  "glen","ben","loch","port","old","isle","caol","blair","royal","north","milk","compass","big",
+  "thomas","woodford","buffalo","highland","angel's","heaven's","king's","peat's","mc","don",
+  "red","white","wild","four","six","high","sea","saint","villa","jack","cody","daddy","horse",
+  "minor","nomad","rebel","cu","el","la","st","st.","w.d","w.d.","new"
+]);
+const EXPRESSION_SECOND = new Set([
+  "gold","original","straight","reserve","signature","limited","classic","standard",
+  "legacy","select","special","family","rare","fine","private"
+]);
+const SECOND_IS_STYLE = new Set([
+  "years","year","old","jaar","cask","casks","finish","single","malt","whisky","whiskey",
+  "edition","batch","release","peated","unpeated","bourbon","sherry","rye","rum","proof",
+  "dutch","irish","indian","japanese","scottish","kentucky","tennessee","texas","african"
+]);
+
+function slugify(text) {
+  const stripped = String(text || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+  return stripped.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "distilleerderij";
+}
+function normKey(name) {
+  return String(name || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase().replace(/&/g, "and").replace(/[’']/g, "")
+    .replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+}
+function stripDistSuffix(name) {
+  return String(name || "").replace(/\s+((whiskey|whisky)\s+)?distillery$/i, "").trim();
+}
+function stripSeries(name) {
+  let cur = String(name || "").trim(), prev = null;
+  while (cur !== prev) {
+    prev = cur;
+    cur = cur.replace(SERIES_TAIL_RE, "").trim();
+    cur = cur.replace(/\s+\d{1,2}$/, "").trim();
+  }
+  return cur;
+}
+function canonicalDist(name) {
+  if (!name) return null;
+  name = stripSeries(stripDistSuffix(String(name).trim().replace(/[.\s]+$/, "")));
+  name = name.replace(/\s+/g, " ").replace(/^[,.\-\s]+|[,.\-\s]+$/g, "");
+  if (!name) return null;
+  const key = normKey(name);
+  if (!key || key.length < 2 || NOT_DISTILLERY.has(key)) return null;
+  if (DIST_ALIASES[key]) return DIST_ALIASES[key];
+  return name;
+}
+function fromParens(text) {
+  if (!text) return null;
+  const re = /\(([^)]+)\)/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const inner = m[1].trim();
+    const first = inner.includes(",") ? inner.split(",")[0].trim() : inner;
+    const cand = canonicalDist(first);
+    if (cand) return cand;
+  }
+  return null;
+}
+function distilleryFromRegio(regio) {
+  const text = unknownToEmpty(regio);
+  if (!text) return null;
+  const found = fromParens(text);
+  if (found) return found;
+  const head = text.split(/\s+[—–]\s+/)[0].trim();
+  const m = head.match(TYPE_HEAD_RE);
+  if (m) {
+    const parts = m[1].split(",").map(s => s.trim()).filter(Boolean);
+    if (parts.length >= 2) return null;
+    return canonicalDist(m[1].trim());
+  }
+  const arran = text.match(/^(Isle of Arran)\s*,/i);
+  if (arran) return canonicalDist(arran[1]);
+  return null;
+}
+function matchIb(name) {
+  const lower = name.toLowerCase();
+  for (let i = 0; i < IB_PREFIXES.length; i++) {
+    const ib = IB_PREFIXES[i];
+    if (lower.startsWith(ib.toLowerCase())) {
+      return { ib, rest: name.slice(ib.length).replace(/^[\s\-–,]+/, "") };
+    }
+  }
+  return null;
+}
+function longestKnownPrefix(text, known) {
+  const low = normKey(text);
+  if (!low) return null;
+  let best = null, bestLen = 0;
+  for (const k in known) {
+    if (!k) continue;
+    if ((low === k || low.startsWith(k + " ")) && k.length > bestLen) {
+      best = known[k];
+      bestLen = k.length;
+    }
+  }
+  return best;
+}
+function findKnownIn(text, known) {
+  const low = " " + normKey(text) + " ";
+  let best = null, bestLen = 0;
+  for (const k in known) {
+    if (!k || k.length < 4) continue;
+    if (low.indexOf(" " + k + " ") >= 0 && k.length > bestLen) {
+      best = known[k];
+      bestLen = k.length;
+    }
+  }
+  return best;
+}
+function cutHead(name) {
+  const padded = " " + name;
+  const m = CUT_HEAD_RE.exec(padded);
+  if (!m) return name.trim();
+  return name.slice(0, Math.max(0, m.index - 1)).trim();
+}
+function leadingHeuristic(name) {
+  const head = cutHead(name).replace(/^[,.\-\s]+|[,.\-\s]+$/g, "");
+  if (!head) return null;
+  const words = head.split(/\s+/);
+  const w0 = words[0];
+  const l0 = w0.toLowerCase();
+  const secondOk = words.length >= 2 && !SECOND_IS_STYLE.has(words[1].toLowerCase().replace(/[^a-z0-9]/g, ""));
+  if (l0 === "the" && words.length >= 3 && ["new","royal"].includes(words[1].toLowerCase())) {
+    return words.slice(0, 3).join(" ");
+  }
+  if (l0 === "the" && words.length >= 2) return words.slice(0, 2).join(" ");
+  if (l0 === "isle" && words.length >= 3 && words[1].toLowerCase() === "of") return words.slice(0, 3).join(" ");
+  if (words.length >= 3 && (words[1] === "&" || ["of","de","du"].includes(words[1].toLowerCase()))) {
+    return words.slice(0, 3).join(" ");
+  }
+  if (words.length >= 3 && l0 === "milk" && words[1] === "&") return words.slice(0, 3).join(" ");
+  if (secondOk) {
+    const takeTwo = TWO_WORD_FIRST.has(l0) || TWO_WORD_FIRST.has(l0.replace(/\.$/, "")) || /['’]s$/.test(w0) || w0.length <= 4
+      || (words[1][0] === words[1][0].toUpperCase());
+    if (takeTwo) {
+      if (/['’]s$/.test(w0) && EXPRESSION_SECOND.has(words[1].toLowerCase())) return w0;
+      return words.slice(0, 2).join(" ");
+    }
+  }
+  if (l0 === "whisky" && words.length >= 3) return words.slice(1, 3).join(" ");
+  if (l0 === "whisky" && words.length >= 2) return words[1];
+  return w0;
+}
+function isSecretName(name) { return SECRET_NAME_RE.test(name); }
+function looksLikeNewDistillery(unit) {
+  const k = normKey(unit);
+  if (!k || NOT_DISTILLERY.has(k)) return false;
+  if (/^(a|an|the|red|black|blue|sherry|smoking|peat)\b/.test(k) && !DIST_ALIASES[k]) return false;
+  return unit.split(/\s+/).length <= 3;
+}
+function preferDistDisplay(prev, next) {
+  if (!prev) return next;
+  if (/[a-z][A-Z]/.test(next) && !/[a-z][A-Z]/.test(prev)) return next;
+  return prev;
+}
+function addKnown(known, name) {
+  const c = canonicalDist(name);
+  if (!c) return;
+  const k = normKey(c);
+  known[k] = DIST_ALIASES[k] || preferDistDisplay(known[k], c);
+}
+function buildDistilleryCatalog(rows) {
+  const known = Object.assign({}, DIST_ALIASES);
+  rows.forEach(r => { const d = distilleryFromRegio(r.regio); if (d) addKnown(known, d); });
+  rows.forEach(r => {
+    if (matchIb(r.naam) || isSecretName(r.naam)) return;
+    const fromRegio = distilleryFromRegio(r.regio);
+    if (fromRegio) { addKnown(known, fromRegio); return; }
+    const unit = leadingHeuristic(r.naam);
+    const firstWord = cutHead(r.naam || "").split(/\s+/)[0];
+    const firstCanon = canonicalDist(firstWord);
+    if (firstCanon && known[normKey(firstCanon)]) addKnown(known, firstCanon);
+    else if (unit) addKnown(known, unit);
+  });
+  return known;
+}
+function distilleryFromName(naam, known) {
+  const name = String(naam || "").replace(/\s+/g, " ").trim();
+  if (!name) return null;
+  if (isSecretName(name)) return fromParens(name);
+  const paren = fromParens(name);
+  if (paren) return paren;
+  const ib = matchIb(name);
+  if (ib) {
+    if (ib.rest) {
+      const found = longestKnownPrefix(ib.rest, known) || findKnownIn(ib.rest, known);
+      if (found) return found;
+      const unit = canonicalDist(leadingHeuristic(ib.rest));
+      if (unit && known[normKey(unit)]) return unit;
+      if (unit && looksLikeNewDistillery(unit)) return unit;
+    }
+    return canonicalDist(ib.ib);
+  }
+  const prefixed = longestKnownPrefix(name, known);
+  if (prefixed) return prefixed;
+  const stripped = name.replace(/^(Nikka|Mars|Morrison|Whisky)\s+/i, "");
+  if (stripped !== name) {
+    const again = longestKnownPrefix(stripped, known);
+    if (again) return again;
+  }
+  const unit = canonicalDist(leadingHeuristic(name));
+  if (unit) return unit;
+  return findKnownIn(name, known);
+}
+function resolveDistilleryName(r, known) {
+  return distilleryFromRegio(r.regio) || distilleryFromName(r.naam, known);
+}
+function attachDistilleries(rows) {
+  const known = buildDistilleryCatalog(rows);
+  rows.forEach(r => {
+    const name = resolveDistilleryName(r, known);
+    const key = name ? normKey(name) : "";
+    const display = (key && (known[key] || DIST_ALIASES[key])) || name;
+    r.distillery = display || null;
+    r.distillerySlug = display ? slugify(display) : null;
+  });
+  collapseExpressionGroups(rows);
+}
+function collapseExpressionGroups(rows) {
+  const names = [];
+  const seen = new Set();
+  rows.forEach(r => {
+    if (!r.distillery || seen.has(r.distillery)) return;
+    seen.add(r.distillery);
+    names.push(r.distillery);
+  });
+  const standalone = new Set(names.filter(n => n.split(/\s+/).length === 1));
+  const firstCounts = {};
+  names.forEach(n => {
+    const f = n.split(/\s+/)[0];
+    firstCounts[f] = (firstCounts[f] || 0) + 1;
+  });
+  const mapTo = {};
+  names.forEach(n => {
+    const parts = n.split(/\s+/);
+    if (parts.length < 2) return;
+    const f = parts[0];
+    if (TWO_WORD_FIRST.has(f.toLowerCase()) || /^(the|isle)$/i.test(f)) return;
+    if (standalone.has(f) || firstCounts[f] >= 2) mapTo[n] = f;
+  });
+  rows.forEach(r => {
+    if (!r.distillery || !mapTo[r.distillery]) return;
+    r.distillery = mapTo[r.distillery];
+    r.distillerySlug = slugify(r.distillery);
+  });
+}
+function rangeLabel(values) {
+  if (!values.length) return "";
+  const min = Math.min.apply(null, values);
+  const max = Math.max.apply(null, values);
+  if (min === max) return euro.format(min);
+  return euro.format(min) + " – " + euro.format(max);
+}
+function buildDistilleryIndex(rows) {
+  const map = new Map();
+  rows.forEach(r => {
+    if (!r.distillerySlug) return;
+    let d = map.get(r.distillerySlug);
+    if (!d) {
+      d = { slug: r.distillerySlug, naam: r.distillery, items: [] };
+      map.set(r.distillerySlug, d);
+    }
+    d.items.push(r);
+  });
+  const list = [...map.values()].map(d => {
+    const scores = d.items.map(r => r.score).filter(v => v != null);
+    const samples = d.items.map(r => r.prijsSample).filter(v => v != null);
+    const bottles = d.items.map(r => r.flesPrijs).filter(v => v != null);
+    const regioCounts = {};
+    d.items.forEach(r => {
+      if (r.regioKort) regioCounts[r.regioKort] = (regioCounts[r.regioKort] || 0) + 1;
+    });
+    const regioKeys = Object.keys(regioCounts).sort((a, b) => {
+      const diff = regioCounts[b] - regioCounts[a];
+      if (diff) return diff;
+      const ia = REGIO_ORDER.indexOf(a), ib = REGIO_ORDER.indexOf(b);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      return a.localeCompare(b, "nl");
+    });
+    d.count = d.items.length;
+    d.avgScore = scores.length ? scores.reduce((s, v) => s + v, 0) / scores.length : null;
+    d.maxScore = scores.length ? Math.max.apply(null, scores) : null;
+    d.scoreN = scores.length;
+    d.sampleRange = rangeLabel(samples);
+    d.bottleRange = rangeLabel(bottles);
+    d.regio = regioKeys[0] || "";
+    return d;
+  });
+  list.sort((a, b) => a.naam.localeCompare(b.naam, "nl"));
+  return list;
+}
+function distilleryBySlug(slug) {
+  return DISTILLERIES.find(d => d.slug === slug) || null;
+}
+function distilleryHref(slug) {
+  return "#/distilleerderij/" + encodeURIComponent(slug);
+}
+
+let DISTILLERIES = [];
+const distState = { q: "", sort: "naam", dir: "asc", bottleSort: "score", bottleDir: "desc" };
+
+function filterDistilleries() {
+  const q = distState.q;
+  let list = DISTILLERIES;
+  if (q) {
+    list = list.filter(d => {
+      const hay = [d.naam, d.regio].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
+  }
+  const key = distState.sort;
+  const dir = distState.dir === "asc" ? 1 : -1;
+  return list.slice().sort((a, b) => {
+    let av, bv;
+    if (key === "naam") { av = a.naam; bv = b.naam; }
+    else if (key === "regio") { av = a.regio || ""; bv = b.regio || ""; }
+    else if (key === "count") { av = a.count; bv = b.count; }
+    else { av = a.avgScore; bv = b.avgScore; }
+    const aEmpty = av == null || av === "";
+    const bEmpty = bv == null || bv === "";
+    if (aEmpty && bEmpty) return a.naam.localeCompare(b.naam, "nl") * dir;
+    if (aEmpty) return 1;
+    if (bEmpty) return -1;
+    let res;
+    if (typeof av === "string") res = av.localeCompare(bv, "nl", { numeric: true });
+    else res = av - bv;
+    if (res === 0) res = a.naam.localeCompare(b.naam, "nl");
+    return res * dir;
+  });
+}
+
+function distilleryScatterHtml(points, xKey, xLabel, aria) {
+  const padL = 100, padR = 16, padT = 16, padB = 28;
+  const W = 720, H = 360;
+  const xs = points.map(r => r[xKey]), ys = points.map(r => r.score);
+  const minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+  const minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+  const spanX = Math.max(xKey === "leeftijd" ? 1 : 0.01, maxX - minX);
+  const spanY = Math.max(2, maxY - minY);
+  const midY = (minY + maxY) / 2;
+  const yMin = midY - spanY / 2, yMax = midY + spanY / 2;
+  const xOf = v => padL + ((v - minX) / spanX) * (W - padL - padR);
+  const yOf = v => padT + (1 - (v - yMin) / spanY) * (H - padT - padB);
+  const ticksX = Math.min(4, Math.max(2, Math.round(spanX)));
+  const ticksY = 4;
+  let axis = '<line class="chart-axis" x1="' + padL + '" y1="' + (H - padB) + '" x2="' + (W - padR) + '" y2="' + (H - padB) + '"></line>'
+    + '<line class="chart-axis" x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (H - padB) + '"></line>';
+  for (let i = 0; i <= ticksX; i++) {
+    const v = minX + (spanX * i) / ticksX;
+    const x = xOf(v);
+    const label = xKey === "leeftijd" ? String(Math.round(v)) : scoreFmt.format(v);
+    axis += '<line class="chart-grid" x1="' + x + '" y1="' + padT + '" x2="' + x + '" y2="' + (H - padB) + '"></line>';
+    axis += '<text class="scatter-tick" x="' + x + '" y="' + (H - padB + 16) + '" text-anchor="middle">' + escapeHtml(label) + "</text>";
+  }
+  for (let i = 0; i <= ticksY; i++) {
+    const v = yMin + (spanY * i) / ticksY;
+    const y = yOf(v);
+    axis += '<line class="chart-grid" x1="' + padL + '" y1="' + y + '" x2="' + (W - padR) + '" y2="' + y + '"></line>';
+    axis += '<text class="scatter-tick" x="' + (padL - 8) + '" y="' + (y + 3) + '" text-anchor="end">' + escapeHtml(scoreFmt.format(v)) + "</text>";
+  }
+  const dots = points.map(r => {
+    const label = displayName(r.naam) + " · " + scoreFmt.format(r.score) + (xKey === "leeftijd" ? " · " + r.leeftijd + " jaar" : "");
+    return '<circle class="scatter-point" data-slug="' + escapeAttr(r.id) + '" cx="' + xOf(r[xKey]).toFixed(1) + '" cy="' + yOf(r.score).toFixed(1) + '" r="4" tabindex="0" role="link" aria-label="' + escapeAttr(label) + '"></circle>';
+  }).join("");
+  return '<div class="chart-block"><h3>' + escapeHtml(xLabel) + "</h3>"
+    + '<div class="scatter-wrap"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + escapeAttr(aria) + '">'
+    + axis + dots
+    + '</svg><div class="chart-tooltip" id="distChartTooltip" hidden role="tooltip"></div></div></div>';
+}
+
+function distilleryBarHtml(points) {
+  const padL = 140, padR = 48, padT = 8, rowH = 22;
+  const W = 720;
+  const H = padT + points.length * rowH + 8;
+  const maxScore = Math.max.apply(null, points.map(r => r.score));
+  const minBase = Math.min.apply(null, points.map(r => r.score));
+  const base = Math.max(60, Math.floor(minBase) - 2);
+  const span = Math.max(0.5, maxScore - base);
+  const xOf = v => padL + ((v - base) / span) * (W - padL - padR);
+  const bars = points.map((r, i) => {
+    const y = padT + i * rowH;
+    const w = Math.max(2, xOf(r.score) - padL);
+    const short = displayName(r.naam);
+    const label = short.length > 22 ? short.slice(0, 21) + "…" : short;
+    const aria = displayName(r.naam) + " · " + scoreFmt.format(r.score);
+    return '<g class="bar-row" data-slug="' + escapeAttr(r.id) + '" tabindex="0" role="link" aria-label="' + escapeAttr(aria) + '">'
+      + '<text class="chart-label" x="' + (padL - 8) + '" y="' + (y + 13) + '" text-anchor="end">' + escapeHtml(label) + "</text>"
+      + '<rect class="bar-fill" x="' + padL + '" y="' + (y + 5) + '" width="' + w.toFixed(1) + '" height="12" rx="2"></rect>'
+      + '<text class="scatter-tick" x="' + (padL + w + 6).toFixed(1) + '" y="' + (y + 14) + '">' + escapeHtml(scoreFmt.format(r.score)) + "</text>"
+      + "</g>";
+  }).join("");
+  return '<div class="chart-block"><h3>Score per botteling</h3>'
+    + '<div class="bar-wrap"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Whiskybase-score per botteling">'
+    + bars + '</svg><div class="chart-tooltip" id="distChartTooltip" hidden role="tooltip"></div></div></div>';
+}
+
+function distilleryChartHtml(items) {
+  const aged = items.filter(r => r.score != null && r.leeftijd != null);
+  if (aged.length >= 2) {
+    return distilleryScatterHtml(aged, "leeftijd", "Leeftijd vs score", "Spreidingsdiagram leeftijd versus Whiskybase-score");
+  }
+  const scored = items.filter(r => r.score != null).slice().sort((a, b) => b.score - a.score);
+  if (scored.length >= 2) return distilleryBarHtml(scored);
+  return "";
+}
+
+function sortBottlings(items) {
+  const key = distState.bottleSort;
+  const dir = distState.bottleDir;
+  return items.slice().sort((a, b) => {
+    let av = a[key], bv = b[key];
+    if (key === "naam") { av = displayName(a.naam).toLowerCase(); bv = displayName(b.naam).toLowerCase(); }
+    if (key === "regio") { av = (a.regioKort || a.regio || "").toLowerCase(); bv = (b.regioKort || b.regio || "").toLowerCase(); }
+    if (key === "vattype") { av = (a.vattype || "").toLowerCase(); bv = (b.vattype || "").toLowerCase(); }
+    const early = emptyLast(av, bv, a, b);
+    if (early != null) return dir === "asc" ? early : -early;
+    let res;
+    if (typeof av === "string" && typeof bv === "string") res = av.localeCompare(bv, "nl", { numeric: true });
+    else res = (av ?? 0) - (bv ?? 0);
+    if (res === 0) res = displayName(a.naam).localeCompare(displayName(b.naam), "nl");
+    return dir === "asc" ? res : -res;
+  });
+}
+
+function whiskyTableHtml(list) {
+  return '<div class="table-wrap"><table>'
+    + "<thead><tr>"
+    + '<th class="col-check" scope="col">Geproefd</th>'
+    + '<th class="col-photo" scope="col"><span class="sr-only">Foto</span></th>'
+    + '<th class="sortable" data-bottle-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>'
+    + '<th class="sortable" data-bottle-sort="regio" scope="col" aria-sort="none">Regio <span class="arrow">↕</span></th>'
+    + '<th class="sortable" data-bottle-sort="vattype" scope="col" aria-sort="none">Vattype <span class="arrow">↕</span></th>'
+    + '<th class="sortable col-abv" data-bottle-sort="abv" scope="col" aria-sort="none">ABV <span class="arrow">↕</span></th>'
+    + '<th class="sortable col-score" data-bottle-sort="score" scope="col" aria-sort="none">Score <span class="arrow">↕</span></th>'
+    + "</tr></thead>"
+    + '<tbody class="js-dist-rows">' + list.map(tableRowHtml).join("") + "</tbody>"
+    + "</table>"
+    + '<div class="card-list js-dist-cards">' + list.map(cardHtml).join("") + "</div>"
+    + "</div>";
+}
+
+function markBottleSort(root) {
+  root.querySelectorAll("th.sortable[data-bottle-sort]").forEach(th => {
+    const key = th.dataset.bottleSort;
+    const sort = key === distState.bottleSort ? (distState.bottleDir === "asc" ? "ascending" : "descending") : "none";
+    th.setAttribute("aria-sort", sort);
+    const arrow = th.querySelector(".arrow");
+    if (arrow) arrow.textContent = sort === "ascending" ? "↑" : sort === "descending" ? "↓" : "↕";
+  });
+}
+
+function renderDistList() {
+  document.title = "Distilleerderijen · Whisky proefoverzicht";
+  const list = filterDistilleries();
+  els.distCount.innerHTML = "<strong>" + intFmt.format(list.length) + "</strong> van <strong>" + intFmt.format(DISTILLERIES.length) + "</strong> distilleerderijen";
+  els.distRows.innerHTML = list.map(d => {
+    const score = d.avgScore != null ? scoreBadge(d.avgScore) : "";
+    return '<tr data-dist-slug="' + escapeAttr(d.slug) + '">'
+      + "<td><a class=\"name\" href=\"" + escapeAttr(distilleryHref(d.slug)) + '">' + escapeHtml(d.naam) + "</a></td>"
+      + "<td>" + (d.regio ? regioChipHtml({ regioKort: d.regio }) : "") + "</td>"
+      + '<td class="col-count">' + escapeHtml(intFmt.format(d.count)) + "</td>"
+      + '<td class="col-avg">' + score + "</td>"
+      + "</tr>";
+  }).join("");
+  els.distCards.innerHTML = list.map(d => {
+    const chip = d.regio ? regioChipHtml({ regioKort: d.regio }) : "";
+    const meta = intFmt.format(d.count) + (d.count === 1 ? " botteling" : " bottelingen");
+    return '<article class="dist-card" data-dist-slug="' + escapeAttr(d.slug) + '">'
+      + '<div class="card-main"><a class="name" href="' + escapeAttr(distilleryHref(d.slug)) + '">' + escapeHtml(d.naam) + "</a>"
+      + (chip ? '<div class="chips">' + chip + "</div>" : "")
+      + '<p class="sub">' + escapeHtml(meta) + "</p>"
+      + "</div>" + (d.avgScore != null ? scoreBadge(d.avgScore) : "")
+      + "</article>";
+  }).join("");
+  els.distEmpty.hidden = list.length > 0;
+  const table = els.distListView.querySelector("table");
+  if (table) table.hidden = list.length === 0;
+  els.distCards.hidden = list.length === 0;
+  els.distListView.querySelectorAll("th.sortable[data-dist-sort]").forEach(th => {
+    const key = th.dataset.distSort;
+    const sort = key === distState.sort ? (distState.dir === "asc" ? "ascending" : "descending") : "none";
+    th.setAttribute("aria-sort", sort);
+    th.querySelector(".arrow").textContent = sort === "ascending" ? "↑" : sort === "descending" ? "↓" : "↕";
+  });
+}
+
+function renderDistillery(slug) {
+  const d = distilleryBySlug(slug);
+  if (!d) {
+    document.title = "Niet gevonden · Whisky proefoverzicht";
+    els.distDetail.innerHTML = '<div class="missing"><h2>Distilleerderij niet gevonden</h2></div>';
+    els.distBottlings.innerHTML = "";
+    return;
+  }
+  document.title = d.naam + " · Whisky proefoverzicht";
+  const stats = [];
+  stats.push(statCard("Bottelingen", escapeHtml(intFmt.format(d.count)), ""));
+  if (d.avgScore != null) stats.push(statCard("Gem. score", escapeHtml(scoreFmt.format(d.avgScore)), escapeHtml(intFmt.format(d.scoreN) + (d.scoreN === 1 ? " score" : " scores"))));
+  if (d.maxScore != null) stats.push(statCard("Hoogste score", escapeHtml(scoreFmt.format(d.maxScore)), ""));
+  if (d.sampleRange) stats.push(statCard("Sampleprijs", escapeHtml(d.sampleRange), ""));
+  if (d.bottleRange) stats.push(statCard("Flesprijs", escapeHtml(d.bottleRange), ""));
+  const chart = distilleryChartHtml(d.items);
+  els.distDetail.innerHTML = '<div class="dist-head"><h2>' + escapeHtml(d.naam) + "</h2>"
+    + (d.regio ? regioChipHtml({ regioKort: d.regio }) : "")
+    + "</div>"
+    + (stats.length ? '<div class="stat-row">' + stats.join("") + "</div>" : "")
+    + chart;
+  const bottles = sortBottlings(d.items);
+  els.distBottlings.innerHTML = '<div class="list-meta"><h3>Bottelingen</h3>' + viewToggleHtml() + "</div>" + whiskyTableHtml(bottles);
+  markBottleSort(els.distBottlings);
+  bindPhotos(els.distView);
+}
+
+function renderDistilleryMissing() { renderDistillery(""); }
+
+function refreshOpenView() {
+  const loc = parseHash();
+  if (loc.view === "list") render(false);
+  else if (loc.view === "detail") {
+    const row = rowById(loc.id);
+    if (row) renderDetail(row);
+  } else if (loc.view === "compare") renderCompare(loc.ids);
+  else if (loc.view === "dist-list") renderDistList();
+  else if (loc.view === "distillery") renderDistillery(loc.slug);
+  else if (loc.view === "inzicht") renderInzicht();
+}
+
 
 const euro = new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR" });
 const num = new Intl.NumberFormat("nl-NL", { minimumFractionDigits: 1, maximumFractionDigits: 2 });
@@ -505,8 +1180,18 @@ function applyView(mode) {
   const view = mode === "grid" ? "grid" : "lijst";
   try { localStorage.setItem(VIEW_KEY, view); } catch {}
   document.documentElement.classList.toggle("view-grid", view === "grid");
-  if (els.viewList) els.viewList.setAttribute("aria-pressed", view === "lijst" ? "true" : "false");
-  if (els.viewGrid) els.viewGrid.setAttribute("aria-pressed", view === "grid" ? "true" : "false");
+  document.querySelectorAll('[data-view]').forEach(btn => {
+    btn.setAttribute("aria-pressed", btn.dataset.view === view ? "true" : "false");
+  });
+}
+function viewToggleHtml() {
+  const view = currentView();
+  return '<div class="view-toggle" role="group" aria-label="Weergave">'
+    + '<button type="button" class="icon-btn" data-view="lijst" aria-pressed="' + (view === "lijst" ? "true" : "false") + '" aria-label="Lijstweergave">'
+    + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>'
+    + '<button type="button" class="icon-btn" data-view="grid" aria-pressed="' + (view === "grid" ? "true" : "false") + '" aria-label="Kaartweergave">'
+    + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>'
+    + "</div>";
 }
 
 function revealView(el) {
@@ -796,8 +1481,11 @@ function hideMainViews() {
   els.detailView.hidden = true;
   if (els.compareView) els.compareView.hidden = true;
   if (els.inzichtView) els.inzichtView.hidden = true;
+  if (els.distListView) els.distListView.hidden = true;
+  if (els.distView) els.distView.hidden = true;
   document.body.classList.remove("detail-mode");
   if (els.navInzicht) els.navInzicht.classList.remove("is-active");
+  if (els.navDist) els.navDist.classList.remove("is-active");
 }
 
 const jsErrors = [];
@@ -843,7 +1531,17 @@ const els = {
   navInzicht: document.getElementById("navInzicht"),
   themeBtn: document.getElementById("themeBtn"),
   viewList: document.getElementById("viewList"),
-  viewGrid: document.getElementById("viewGrid")
+  viewGrid: document.getElementById("viewGrid"),
+  navDist: document.getElementById("navDist"),
+  distListView: document.getElementById("distListView"),
+  distRows: document.getElementById("distRows"),
+  distCards: document.getElementById("distCards"),
+  distCount: document.getElementById("distCount"),
+  distEmpty: document.getElementById("distEmpty"),
+  distQ: document.getElementById("distQ"),
+  distView: document.getElementById("distView"),
+  distDetail: document.getElementById("distDetail"),
+  distBottlings: document.getElementById("distBottlings")
 };
 
 function uniqueInOrder(items, order) {
@@ -895,7 +1593,7 @@ function matches(r) {
   if (state.flesPrijsBekend === "nee" && r.flesPrijs != null) return false;
   if (state.q) {
     const hay = [
-      r.naam, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
+      r.naam, r.distillery, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
       r.wbStatus, r.wbReden, r.whiskyfunScore, r.distillerScore, r.opmerkingFles,
       r.flavour.join(" "), r.vatTags.join(" ")
     ].join(" ").toLowerCase();
@@ -1011,6 +1709,27 @@ function closeFilters() {
   document.body.classList.remove("filters-open");
 }
 
+function tableRowHtml(r) {
+  const id = rowId(r);
+  const tasted = !!state.tasted[id];
+  const name = displayName(r.naam);
+  const notes = unknownToEmpty(r.proefnotities);
+  const title = notes ? ' title="' + escapeAttr(notes) + '"' : "";
+  const vat = unknownToEmpty(r.vattype);
+  const regio = r.regioKort || unknownToEmpty(r.regio);
+  return '<tr class="' + (tasted ? "tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
+    + '<td class="col-check"><label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
+    + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label></td>'
+    + '<td class="col-photo">' + photoHtml(r, "sm", "") + "</td>"
+    + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ' data-hover-id="' + escapeAttr(r.id) + '">' + escapeHtml(name) + "</a>"
+    + compareToggleHtml(r) + "</td>"
+    + "<td>" + (regioChipHtml(r) || (regio ? escapeHtml(regio) : "")) + "</td>"
+    + "<td>" + (vatChipsHtml(r) || (vat ? '<span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>" : "")) + "</td>"
+    + '<td class="col-abv">' + abvCell(r) + "</td>"
+    + '<td class="col-score">' + scoreCell(r) + "</td>"
+    + "</tr>";
+}
+
 function render(resetPage) {
   if (resetPage) state.shown = PAGE_SIZE;
   els.minScoreVal.textContent = num.format(state.minScore);
@@ -1025,26 +1744,7 @@ function render(resetPage) {
   els.count.innerHTML = count;
   updateFilterBadge();
 
-  els.rows.innerHTML = visible.map(r => {
-    const id = rowId(r);
-    const tasted = !!state.tasted[id];
-    const name = displayName(r.naam);
-    const notes = unknownToEmpty(r.proefnotities);
-    const title = notes ? ' title="' + escapeAttr(notes) + '"' : "";
-    const vat = unknownToEmpty(r.vattype);
-    const regio = r.regioKort || unknownToEmpty(r.regio);
-    return '<tr class="' + (tasted ? "tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
-      + '<td class="col-check"><label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
-      + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label></td>'
-      + '<td class="col-photo">' + photoHtml(r, "sm", "") + "</td>"
-      + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ' data-hover-id="' + escapeAttr(r.id) + '">' + escapeHtml(name) + "</a>"
-      + compareToggleHtml(r) + "</td>"
-      + "<td>" + (regioChipHtml(r) || (regio ? escapeHtml(regio) : "")) + "</td>"
-      + "<td>" + (vatChipsHtml(r) || (vat ? '<span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>" : "")) + "</td>"
-      + '<td class="col-abv">' + abvCell(r) + "</td>"
-      + '<td class="col-score">' + scoreCell(r) + "</td>"
-      + "</tr>";
-  }).join("");
+  els.rows.innerHTML = visible.map(tableRowHtml).join("");
 
   els.cards.innerHTML = visible.map(r => cardHtml(r)).join("");
   bindPhotos(els.tableWrap);
@@ -1233,7 +1933,11 @@ function renderDetail(r) {
   if (r.prijsSample != null) stats.push(statCard("Sampleprijs", escapeHtml(euro.format(r.prijsSample)), inhoud && inhoud !== "geen sample" ? escapeHtml(inhoud) : ""));
   if (r.flesPrijs != null) stats.push(statCard("Flesprijs", escapeHtml(euro.format(r.flesPrijs)), knownText(r.winkel)));
 
+  const distLink = r.distillery && r.distillerySlug
+    ? '<a class="name" href="' + escapeAttr(distilleryHref(r.distillerySlug)) + '">' + escapeHtml(r.distillery) + "</a>"
+    : "";
   const overzichtSpecs = factsHtml([
+    ["Distilleerderij", distLink],
     ["Regio", knownText(r.regio)],
     ["Vattype", knownText(r.vattype)],
     ["Leeftijd", r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : ""],
@@ -1334,6 +2038,9 @@ function parseHash() {
     return { view: "compare", ids };
   }
   if (path === "inzicht" || path.startsWith("inzicht/")) return { view: "inzicht" };
+  if (path === "distilleerderijen" || path === "distilleerderij") return { view: "dist-list" };
+  match = path.match(/^distilleerderij\/([^/]+)$/);
+  if (match) return { view: "distillery", slug: match[1] };
   return { view: "list" };
 }
 
@@ -1384,6 +2091,20 @@ function route() {
     revealView(els.inzichtView);
     if (els.navInzicht) els.navInzicht.classList.add("is-active");
     renderInzicht();
+    window.scrollTo(0, 0);
+    return;
+  }
+  if (loc.view === "dist-list") {
+    if (els.navDist) els.navDist.classList.add("is-active");
+    revealView(els.distListView);
+    renderDistList();
+    window.scrollTo(0, 0);
+    return;
+  }
+  if (loc.view === "distillery") {
+    if (els.navDist) els.navDist.classList.add("is-active");
+    revealView(els.distView);
+    renderDistillery(loc.slug);
     window.scrollTo(0, 0);
     return;
   }
@@ -1456,6 +2177,10 @@ function rerenderOpenCharts() {
     renderInzicht();
     return;
   }
+  if (loc.view === "distillery" && loc.slug) {
+    renderDistillery(loc.slug);
+    return;
+  }
   if (loc.view === "detail" && loc.id) {
     const tab = (els.detail.querySelector('.tab[aria-selected="true"]') || {}).dataset?.tab;
     const row = rowById(loc.id);
@@ -1484,7 +2209,7 @@ function bindRowNavigate(container) {
     const input = e.target.closest("input[data-id]");
     if (!input) return;
     setTasted(input.dataset.id, input.checked);
-    render(false);
+    refreshOpenView();
   });
   container.addEventListener("click", (e) => {
     if (e.target.closest("input, label.geproefd, .compare-toggle")) return;
@@ -1510,8 +2235,11 @@ function bindEvents() {
   applyTheme(currentTheme());
   applyView(currentView());
   if (els.themeBtn) els.themeBtn.addEventListener("click", cycleTheme);
-  if (els.viewList) els.viewList.addEventListener("click", () => applyView("lijst"));
-  if (els.viewGrid) els.viewGrid.addEventListener("click", () => applyView("grid"));
+  document.addEventListener("click", ev => {
+    const btn = ev.target.closest("[data-view]");
+    if (!btn) return;
+    applyView(btn.dataset.view);
+  });
   els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
   els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
   els.maxPrijs.addEventListener("input", () => { state.maxPrijs = Number(els.maxPrijs.value); render(true); });
@@ -1554,6 +2282,7 @@ function bindEvents() {
 
   bindRowNavigate(els.rows);
   bindRowNavigate(els.cards);
+  if (els.distBottlings) bindRowNavigate(els.distBottlings);
 
   els.detailView.addEventListener("change", (e) => {
     const input = e.target.closest("input[data-id]");
@@ -1612,24 +2341,13 @@ function bindEvents() {
       e.preventDefault();
       e.stopPropagation();
       toggleCompare(toggle.dataset.compareId);
-      const loc = parseHash();
-      if (loc.view === "list") render(false);
-      else if (loc.view === "detail") {
-        const row = rowById(loc.id);
-        if (row) renderDetail(row);
-      } else if (loc.view === "compare") renderCompare(loc.ids);
+      refreshOpenView();
       return;
     }
     const remove = e.target.closest("[data-compare-remove]");
     if (remove) {
       toggleCompare(remove.dataset.compareRemove);
-      const loc = parseHash();
-      if (loc.view === "list") render(false);
-      else if (loc.view === "compare") renderCompare(loc.ids);
-      else if (loc.view === "detail") {
-        const row = rowById(loc.id);
-        if (row) renderDetail(row);
-      }
+      refreshOpenView();
     }
   });
   els.compareGo.addEventListener("click", () => {
@@ -1639,12 +2357,7 @@ function bindEvents() {
     state.compare = [];
     saveCompare(state.compare);
     updateCompareBar();
-    const loc = parseHash();
-    if (loc.view === "list") render(false);
-    else if (loc.view === "detail") {
-      const row = rowById(loc.id);
-      if (row) renderDetail(row);
-    }
+    refreshOpenView();
   });
 
   els.inzicht.addEventListener("click", (e) => {
@@ -1736,6 +2449,109 @@ function bindEvents() {
   window.matchMedia("(min-width: 1024px)").addEventListener("change", (mq) => {
     if (mq.matches) closeFilters();
   });
+
+  if (els.distQ) {
+    els.distQ.addEventListener("input", () => {
+      distState.q = els.distQ.value.trim().toLowerCase();
+      renderDistList();
+    });
+  }
+  if (els.distListView) {
+    els.distListView.addEventListener("click", (e) => {
+      const th = e.target.closest("th.sortable[data-dist-sort]");
+      if (th) {
+        const key = th.dataset.distSort;
+        if (distState.sort === key) distState.dir = distState.dir === "asc" ? "desc" : "asc";
+        else { distState.sort = key; distState.dir = key === "naam" || key === "regio" ? "asc" : "desc"; }
+        renderDistList();
+      }
+    });
+  }
+  if (els.distBottlings) {
+    els.distBottlings.addEventListener("click", (e) => {
+      const th = e.target.closest("th.sortable[data-bottle-sort]");
+      if (!th) return;
+      const key = th.dataset.bottleSort;
+      if (distState.bottleSort === key) distState.bottleDir = distState.bottleDir === "asc" ? "desc" : "asc";
+      else { distState.bottleSort = key; distState.bottleDir = key === "naam" || key === "regio" || key === "vattype" ? "asc" : "desc"; }
+      const loc = parseHash();
+      if (loc.view === "distillery") renderDistillery(loc.slug);
+    });
+  }
+  if (els.distView) {
+    els.distView.addEventListener("click", (e) => {
+      const point = e.target.closest("[data-slug]");
+      if (!point || point.closest("a, input, label, button, .compare-toggle")) return;
+      if (point.closest("tr, .whisky-card")) return;
+      location.hash = "#/whisky/" + point.dataset.slug;
+    });
+    els.distView.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const point = e.target.closest(".scatter-point[data-slug], .bar-row[data-slug]");
+      if (!point) return;
+      e.preventDefault();
+      location.hash = "#/whisky/" + point.dataset.slug;
+    });
+    function distTooltipHtml(r, point) {
+      const extra = point && point.classList.contains("scatter-point") && r.leeftijd != null
+        ? " · " + r.leeftijd + " jaar"
+        : "";
+      return '<div class="tt-name">' + escapeHtml(displayName(r.naam)) + "</div>"
+        + '<div class="tt-meta">' + escapeHtml(scoreFmt.format(r.score) + extra) + "</div>";
+    }
+    function placeDistTooltip(ev) {
+      const wrap = els.distView.querySelector(".scatter-wrap, .bar-wrap");
+      const tip = document.getElementById("distChartTooltip");
+      if (!wrap || !tip || tip.hidden) return;
+      const rect = wrap.getBoundingClientRect();
+      let x = ev.clientX - rect.left;
+      let y = ev.clientY - rect.top;
+      const pad = 8;
+      tip.style.left = x + "px";
+      tip.style.top = y + "px";
+      const trect = tip.getBoundingClientRect();
+      if (trect.left < rect.left + pad) x += (rect.left + pad) - trect.left;
+      if (trect.right > rect.right - pad) x -= trect.right - (rect.right - pad);
+      if (trect.top < rect.top + pad) y += trect.height + 20;
+      tip.style.left = x + "px";
+      tip.style.top = y + "px";
+    }
+    els.distView.addEventListener("pointerover", (e) => {
+      const point = e.target.closest(".scatter-point[data-slug], .bar-row[data-slug]");
+      const tip = document.getElementById("distChartTooltip");
+      if (!point || !tip) return;
+      const r = rowById(point.dataset.slug);
+      if (!r) return;
+      tip.innerHTML = distTooltipHtml(r, point);
+      tip.hidden = false;
+      placeDistTooltip(e);
+    });
+    els.distView.addEventListener("pointermove", placeDistTooltip);
+    els.distView.addEventListener("pointerout", (e) => {
+      const next = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest(".scatter-point, .bar-row");
+      if (next) return;
+      const tip = document.getElementById("distChartTooltip");
+      if (tip) tip.hidden = true;
+    });
+  }
+
+  let distHoverTimer = 0;
+  if (els.distBottlings) {
+    els.distBottlings.addEventListener("pointerenter", (e) => {
+      if (!canHoverPreview()) return;
+      const link = e.target.closest("a.name[data-hover-id]");
+      if (!link) return;
+      const r = rowById(link.dataset.hoverId);
+      clearTimeout(distHoverTimer);
+      distHoverTimer = setTimeout(() => showHoverCard(r, link), 120);
+    }, true);
+    els.distBottlings.addEventListener("pointerleave", (e) => {
+      const link = e.target.closest("a.name[data-hover-id]");
+      if (!link) return;
+      clearTimeout(distHoverTimer);
+      distHoverTimer = setTimeout(hideHoverCard, 120);
+    }, true);
+  }
 
   window.addEventListener("hashchange", route);
 }
@@ -1831,6 +2647,8 @@ fetch("data.json")
   .then(payload => {
     const items = Array.isArray(payload) ? payload : (payload.items || []);
     ROWS = items.map(enrich);
+    attachDistilleries(ROWS);
+    DISTILLERIES = buildDistilleryIndex(ROWS);
     applyBounds(ROWS);
     initPills();
     if (els.listSkeleton) els.listSkeleton.hidden = true;

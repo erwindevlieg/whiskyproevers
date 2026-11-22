@@ -1380,3 +1380,94 @@
     }
     html.view-grid .whisky-card:hover { transform: none; }
   }
+
+  /* —— distilleerderijen —— */
+  .dist-list-view, .dist-view {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 5rem;
+  }
+  .dist-list-view h2, .dist-view .dist-head h2 {
+    font-weight: 700; letter-spacing: -0.03em;
+    font-size: 1.5rem; margin: 0.25rem 0 0.35rem;
+  }
+  .dist-view .detail { max-width: 52rem; }
+  .dist-view .dist-head {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+  }
+  .dist-view .dist-head h2 { margin: 0; }
+  .dist-view .stat-row { margin: 1rem 0 0.5rem; }
+  .dist-bottlings { margin-top: 1.75rem; }
+  .dist-bottlings .list-meta { margin-top: 0; margin-bottom: 0.35rem; }
+  .dist-bottlings .list-meta h3 {
+    font-size: 0.9375rem; font-weight: 600;
+    letter-spacing: -0.02em; margin: 0;
+    flex: 1; min-width: 0;
+  }
+  .dist-list-view .list-bar { margin-top: 0.75rem; }
+  .dist-list-view .table-wrap,
+  .dist-bottlings .table-wrap {
+    margin-top: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dist-list-view table, .dist-bottlings table { width: 100%; }
+  .col-count, .col-avg { text-align: right; font-variant-numeric: tabular-nums; }
+  thead th.col-count, thead th.col-avg { text-align: right; }
+  .dist-card {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.85rem 0.9rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    margin-top: 0.5rem;
+    background: hsl(var(--card));
+  }
+  .dist-card .card-main { min-width: 0; flex: 1; }
+  .dist-card .chips { margin-top: 0.4rem; }
+  .dist-card .sub { margin-top: 0.3rem; }
+  .dist-card .score-badge { flex: 0 0 auto; }
+  .bar-wrap { position: relative; width: 100%; max-width: 52rem; overflow: visible; }
+  .bar-wrap svg {
+    width: 100%; height: auto; display: block; overflow: visible;
+    color: hsl(var(--foreground));
+  }
+  .bar-fill { fill: hsl(var(--chart-1)); }
+  .bar-row { cursor: pointer; }
+  .bar-row:hover .bar-fill, .bar-row:focus .bar-fill { fill: hsl(var(--chart-2)); }
+  .bar-row:focus { outline: none; }
+  .dark .bar-fill { fill: hsl(var(--chart-1)); }
+  .dark .bar-row:hover .bar-fill, .dark .bar-row:focus .bar-fill { fill: hsl(var(--chart-2)); }
+
+  html.view-grid .dist-list-view table,
+  html.view-grid .dist-bottlings table { display: none !important; }
+  html.view-grid .dist-card {
+    margin-top: 0;
+    height: 100%;
+    flex-direction: column;
+  }
+  html.view-grid .dist-card .score-badge { align-self: flex-start; }
+
+  @media (max-width: 1023px) {
+    .dist-list-view, .dist-view { padding-left: 0.85rem; padding-right: 0.85rem; }
+    .dist-list-view table, .dist-bottlings table { display: none; }
+    .dist-list-view .card-list, .dist-bottlings .card-list { display: block; }
+    .dist-list-view .list-meta,
+    .dist-bottlings .list-meta { margin-left: 0; margin-right: 0; }
+  }
+  @media (max-width: 720px) {
+    .dist-view .scatter-tick, .dist-view .chart-label { font-size: 8px; }
+    .dist-list-view, .dist-view { padding-left: 0.85rem; padding-right: 0.85rem; }
+    .dist-list-view h2, .dist-view .dist-head h2 { font-size: 1.5rem; }
+  }
+  @media (max-width: 420px) {
+    .brand h1 em { display: none; }
+    .site-header { gap: 0.45rem; padding-left: 0.7rem; padding-right: 0.7rem; }
+    .site-nav { gap: 0.15rem; }
+    .nav-link { font-size: 0.75rem; padding: 0.3rem 0.35rem; }
+    .theme-toggle { width: 2rem; height: 2rem; padding: 0; flex: 0 0 auto; }
+  }
