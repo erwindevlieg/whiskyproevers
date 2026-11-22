@@ -374,11 +374,11 @@
     overflow-wrap: anywhere; word-break: break-word;
   }
   .name:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .sub { display: block; font-weight: 400; font-size: 0.8125rem; color: hsl(var(--muted-foreground)); margin-top: 0.1rem; }
+  .sub { display: block; margin-top: 0.1rem; }
   .tags { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.4rem; }
 
   .price { font-weight: 600; font-variant-numeric: tabular-nums; }
-  .votes { display: block; font-size: 0.6875rem; color: hsl(var(--muted-foreground)); margin-top: 0.15rem; }
+  .votes { display: block; margin-top: 0.15rem; }
 
   .score-badge {
     display: inline-flex; align-items: baseline; justify-content: flex-end;
@@ -432,6 +432,67 @@
   .card-list { display: none; }
 
   /* —— detail —— */
+  /* —— typography roles (detail pages) ——
+     Same kind of information always uses the same style:
+     section heading, label, value, body, meta. */
+  .t-section,
+  .block h3,
+  .chart-block h3,
+  .dist-bottlings .list-meta h3,
+  .accordion-trigger {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: hsl(var(--foreground));
+    text-transform: none;
+  }
+  .t-label,
+  .fact dt,
+  .stat-label,
+  .hero-score-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.35;
+    color: hsl(var(--muted-foreground));
+    text-transform: none;
+  }
+  .t-value,
+  .fact dd,
+  .stat-value,
+  .ext-link {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.011em;
+    line-height: 1.45;
+    color: hsl(var(--foreground));
+    font-variant-numeric: tabular-nums;
+  }
+  .t-body,
+  .notes,
+  .omschrijving {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: -0.011em;
+    color: hsl(var(--foreground));
+  }
+  .t-meta,
+  .sub,
+  .votes,
+  .stat-meta,
+  .bron,
+  .notes-source,
+  .chart-caption,
+  .ext-link span {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    line-height: 1.4;
+    color: hsl(var(--muted-foreground));
+  }
+
   .detail-view { max-width: 54rem; margin: 0 auto; padding: 1.15rem 1.75rem 4.75rem; }
   .back {
     display: inline-flex; align-items: center; gap: 0.35rem;
@@ -453,7 +514,7 @@
     justify-content: space-between;
   }
   .detail-head > div { min-width: 0; flex: 1; }
-  .detail-head h2, .detail-hero h2 {
+  .detail-head h2, .detail-hero h2, .dist-view .dist-head h2 {
     font-weight: 700;
     font-size: 2.125rem;
     line-height: 1.12;
@@ -488,19 +549,11 @@
     padding: 0.85rem 1rem;
     min-width: 0;
   }
-  .stat-label {
-    font-size: 0.6875rem; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
-  }
   .stat-value {
-    margin-top: 0.25rem;
-    font-size: 1.25rem; font-weight: 600;
-    letter-spacing: -0.03em;
-    font-variant-numeric: tabular-nums;
+    margin-top: 0.2rem;
     overflow-wrap: anywhere;
   }
-  .stat-meta { margin-top: 0.15rem; font-size: 0.75rem; color: hsl(var(--muted-foreground)); overflow-wrap: anywhere; }
+  .stat-meta { margin-top: 0.15rem; overflow-wrap: anywhere; }
 
   .tabs {
     display: flex; gap: 0;
@@ -548,25 +601,16 @@
     border-bottom: 1px solid hsl(var(--border));
     align-items: start;
   }
-  .fact dt {
-    font-size: 0.6875rem; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground)); padding-top: 0.15rem;
-  }
-  .fact dd { font-size: 0.9375rem; overflow-wrap: anywhere; min-width: 0; }
+  .fact dt { padding-top: 0.1rem; }
+  .fact dd { overflow-wrap: anywhere; min-width: 0; }
 
   .block { margin-top: 1.5rem; }
-  .block h3 {
-    font-size: 0.6875rem; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground)); margin-bottom: 0.6rem;
-  }
-  .notes { font-size: 0.975rem; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
-  .notes-source { display: block; margin-top: 0.5rem; font-size: 0.8125rem; color: hsl(var(--muted-foreground)); }
+  .block h3 { margin-bottom: 0.55rem; }
+  .block .chips { margin-top: 0; }
+  .notes { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .notes-source { display: block; margin-top: 0.5rem; }
 
   .omschrijving {
-    font-size: 0.975rem;
-    line-height: 1.7;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
   }
@@ -588,8 +632,6 @@
     margin-top: 0.5rem;
   }
   .bron {
-    font-size: 0.75rem;
-    color: hsl(var(--muted-foreground));
     text-decoration: none;
   }
   .bron:hover { color: hsl(var(--foreground)); text-decoration: underline; text-underline-offset: 3px; }
@@ -605,13 +647,11 @@
     background: hsl(var(--background));
     text-decoration: none;
     color: hsl(var(--foreground));
-    font-weight: 500;
-    letter-spacing: -0.01em;
     overflow-wrap: anywhere;
     transition: background 0.15s, border-color 0.15s;
   }
   .ext-link:hover { background: hsl(var(--accent)); }
-  .ext-link span { display: block; font-weight: 400; font-size: 0.75rem; color: hsl(var(--muted-foreground)); text-align: right; }
+  .ext-link span { display: block; text-align: right; }
 
   .accordion { margin-top: 1.5rem; border-top: 1px solid hsl(var(--border)); }
   .accordion-trigger {
@@ -621,8 +661,6 @@
     padding: 0.4rem 0;
     border: 0;
     background: transparent;
-    color: hsl(var(--foreground));
-    font: inherit; font-size: 0.875rem; font-weight: 500;
     cursor: pointer;
     text-align: left;
   }
@@ -750,11 +788,10 @@
     .detail-view { padding: 0.5rem 0.85rem 4rem; }
     .detail { --detail-pad-x: 1rem; --detail-pad-y: 1.2rem; padding-bottom: 1.5rem; overflow: hidden; }
     .detail-head { flex-direction: column; gap: 0.6rem; }
-    .detail-head h2, .detail-hero h2 { font-size: 1.625rem; }
+    .detail-head h2, .detail-hero h2, .dist-view .dist-head h2 { font-size: 1.625rem; }
     .detail-aside { align-items: flex-start; }
     .fact { grid-template-columns: 1fr; gap: 0.15rem; }
     .fact dd { min-width: 0; }
-    .stat-value { font-size: 1.1rem; }
   }
 
   /* —— photos, compare, charts, hover, skeletons —— */
@@ -936,12 +973,10 @@
   .compare-missing { color: hsl(var(--muted-foreground)); padding: 2rem 0; }
 
   .chart-block { margin-top: 1.25rem; }
-  .chart-block h3 { margin-bottom: 0.35rem; }
-  .chart-caption { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-bottom: 0.75rem; }
-  .radar-wrap, .scatter-wrap { width: 100%; max-width: 28rem; overflow: visible; }
-  .radar-wrap { padding: 0.35rem 0.15rem 0.15rem; }
-  .scatter-wrap { position: relative; max-width: 52rem; }
-  .radar-wrap svg, .scatter-wrap svg {
+  .chart-block h3 { margin-bottom: 0.55rem; }
+  .chart-caption { margin-bottom: 0.75rem; }
+  .scatter-wrap { position: relative; width: 100%; max-width: 52rem; overflow: visible; }
+  .scatter-wrap svg {
     width: 100%; height: auto; display: block; overflow: visible;
     color: hsl(var(--foreground));
   }
@@ -970,23 +1005,6 @@
     font-size: 10px;
     font-weight: 400;
     stroke-width: 3px;
-  }
-  .chart-fill {
-    fill: hsl(var(--chart-1) / 0.38);
-    stroke: hsl(var(--chart-1));
-    stroke-width: 2.25;
-    stroke-linejoin: round;
-  }
-  .chart-point {
-    fill: hsl(var(--chart-1));
-    stroke: hsl(var(--card));
-    stroke-width: 1.75;
-  }
-  .chart-scale {
-    fill: hsl(var(--muted-foreground));
-    font-size: 9px;
-    font-variant-numeric: tabular-nums;
-    font-family: inherit;
   }
   .scatter-point {
     fill: hsl(var(--chart-1));
@@ -1021,10 +1039,6 @@
   }
   .dark .chart-axis {
     stroke: hsl(var(--muted-foreground) / 0.7);
-  }
-  .dark .chart-fill {
-    fill: hsl(var(--chart-1) / 0.42);
-    stroke: hsl(var(--chart-1));
   }
   .dark .scatter-point { fill: hsl(var(--chart-1)); stroke: hsl(var(--background)); }
   .dark .scatter-point:hover, .dark .scatter-point:focus { fill: hsl(var(--chart-2)); }
@@ -1097,7 +1111,7 @@
   }
 
 
-  /* —— look: chips, grid, hero, theme, motion, radar extras —— */
+  /* —— look: chips, grid, hero, theme, motion —— */
   .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.4rem; }
   td .chips { margin-top: 0; }
   .chip {
@@ -1316,11 +1330,6 @@
     min-width: 6.5rem;
     text-align: right;
   }
-  .hero-score-label {
-    font-size: 0.6875rem; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
-  }
   .hero-score {
     font-size: 2.5rem;
     font-weight: 700;
@@ -1328,10 +1337,6 @@
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  .hero-score .votes { margin-top: 0.3rem; }
-
-  .chart-top { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.7rem; }
-
   @keyframes view-enter {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -1387,7 +1392,7 @@
     margin: 0 auto;
     padding: 1rem 1.5rem 5rem;
   }
-  .dist-list-view h2, .dist-view .dist-head h2 {
+  .dist-list-view h2 {
     font-weight: 700; letter-spacing: -0.03em;
     font-size: 1.5rem; margin: 0.25rem 0 0.35rem;
   }
@@ -1404,8 +1409,7 @@
   .dist-bottlings { margin-top: 1.75rem; }
   .dist-bottlings .list-meta { margin-top: 0; margin-bottom: 0.35rem; }
   .dist-bottlings .list-meta h3 {
-    font-size: 0.9375rem; font-weight: 600;
-    letter-spacing: -0.02em; margin: 0;
+    margin: 0;
     flex: 1; min-width: 0;
   }
   .dist-list-view .list-bar { margin-top: 0.75rem; }
@@ -1462,7 +1466,7 @@
   @media (max-width: 720px) {
     .dist-view .scatter-tick, .dist-view .chart-label { font-size: 8px; }
     .dist-list-view, .dist-view { padding-left: 0.85rem; padding-right: 0.85rem; }
-    .dist-list-view h2, .dist-view .dist-head h2 { font-size: 1.5rem; }
+    .dist-list-view h2 { font-size: 1.5rem; }
   }
   @media (max-width: 420px) {
     .brand h1 em { display: none; }
