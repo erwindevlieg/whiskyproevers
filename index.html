@@ -996,6 +996,26 @@ function displayName(naam) {
     .trim();
 }
 function rowId(r) { return r.naam + "|" + (r.inhoud || "fles"); }
+function sampleList(r) {
+  if (Array.isArray(r.samples) && r.samples.length) return r.samples;
+  if (r.prijsSample != null || r.inhoud || r.sampleLink) {
+    return [{ inhoud: r.inhoud || "", prijsSample: r.prijsSample, sampleLink: r.sampleLink }];
+  }
+  return [];
+}
+function samplePriceInRange(r, maxPrijs) {
+  const prices = sampleList(r).map(s => s.prijsSample).filter(v => v != null);
+  return prices.some(p => p <= maxPrijs);
+}
+function sampleSizesLabel(r, empty) {
+  const sizes = sampleList(r).map(s => s.inhoud).filter(Boolean);
+  if (sizes.length) return sizes.join(" / ");
+  return empty == null ? (r.inhoud || "") : empty;
+}
+function formatSampleOffer(s) {
+  const size = s.inhoud || "Sample";
+  return s.prijsSample != null ? size + " · " + euro.format(s.prijsSample) : size;
+}
 function detailHref(r) { return "#/whisky/" + encodeURIComponent(r.id); }
 function loadTasted() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
@@ -1009,6 +1029,33 @@ function loadCompare() {
   } catch { return []; }
 }
 function saveCompare(ids) { localStorage.setItem(COMPARE_KEY, JSON.stringify(ids)); }
+function migratePersistedState(items) {
+  const tasted = Object.assign({}, state.tasted);
+  let tastedChanged = false;
+  items.forEach(r => {
+    const canon = rowId(r);
+    sampleList(r).forEach(s => {
+      const oldKey = (s.naam || r.naam) + "|" + (s.inhoud || "fles");
+      if (oldKey !== canon && tasted[oldKey]) {
+        tasted[canon] = true;
+        delete tasted[oldKey];
+        tastedChanged = true;
+      }
+    });
+  });
+  if (tastedChanged) {
+    state.tasted = tasted;
+    saveTasted(state.tasted);
+  }
+  const mapped = [];
+  loadCompare().forEach(id => {
+    const row = rowById(id);
+    const next = row ? row.id : id;
+    if (items.some(r => r.id === next) && !mapped.includes(next)) mapped.push(next);
+  });
+  state.compare = mapped.slice(0, COMPARE_MAX);
+  saveCompare(state.compare);
+}
 
 const state = {
   q: "",
@@ -1030,6 +1077,7 @@ const state = {
 };
 
 let ROWS = [];
+let REDIRECTS = {};
 let listScroll = null;
 let DESCRIPTIONS = null;
 let descriptionsPromise = null;
@@ -1047,8 +1095,12 @@ function loadDescriptions() {
 
 function descriptionFor(r) {
   if (r.omschrijving) return { text: r.omschrijving, sourceUrl: r.omschrijvingBron || "" };
-  const entry = DESCRIPTIONS && DESCRIPTIONS[r.id];
-  if (entry && entry.text) return entry;
+  if (!DESCRIPTIONS) return null;
+  const keys = [r.id].concat(r.aliases || []).concat(sampleList(r).map(s => s.id).filter(Boolean));
+  for (const key of keys) {
+    const entry = DESCRIPTIONS[key];
+    if (entry && entry.text) return entry;
+  }
   return null;
 }
 
@@ -1235,7 +1287,19 @@ function compareToggleHtml(r) {
     + ">" + (on ? "Geselecteerd" : "Vergelijk") + "</button>";
 }
 
-function rowById(id) { return ROWS.find(r => r.id === id); }
+function rowById(id) {
+  if (!id) return null;
+  const exact = ROWS.find(r => r.id === id);
+  if (exact) return exact;
+  const dest = REDIRECTS[id];
+  if (dest) {
+    const row = ROWS.find(r => r.id === dest);
+    if (row) return row;
+  }
+  return ROWS.find(r =>
+    (r.aliases || []).includes(id) || sampleList(r).some(s => s.id === id)
+  ) || null;
+}
 
 function updateCompareBar() {
   // drop ids that disappeared after a data refresh
@@ -1417,7 +1481,11 @@ function compareValue(kind, r) {
   if (kind === "flavour") {
     return r.flavour.length ? r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join(" ") : "";
   }
-  if (kind === "prijsSample") return r.prijsSample != null ? escapeHtml(euro.format(r.prijsSample)) : "";
+  if (kind === "prijsSample") {
+    const samples = sampleList(r);
+    if (samples.length) return escapeHtml(samples.map(formatSampleOffer).join(" / "));
+    return r.prijsSample != null ? escapeHtml(euro.format(r.prijsSample)) : "";
+  }
   if (kind === "flesPrijs") return r.flesPrijs != null ? escapeHtml(euro.format(r.flesPrijs)) : "";
   if (kind === "critics") {
     const parts = [];
@@ -1585,8 +1653,8 @@ function matches(r) {
     return false;
   }
   if (priceFilterActive()) {
-    if (r.prijsSample == null || r.prijsSample > state.maxPrijs) return false;
-  } else if (r.prijsSample != null && r.prijsSample > state.maxPrijs) {
+    if (!samplePriceInRange(r, state.maxPrijs)) return false;
+  } else if (sampleList(r).some(s => s.prijsSample != null) && !samplePriceInRange(r, state.maxPrijs)) {
     return false;
   }
   if (!vatMatch(r.vatTags, state.vat)) return false;
@@ -1851,7 +1919,17 @@ function collectLinks(r) {
     used.add(href);
     links.push(extLink(href, title, subtitle));
   }
-  add(r.sampleLink, "Sample kopen", r.prijsSample != null ? ("Whiskysite · " + euro.format(r.prijsSample)) : "Whiskysite");
+  const samples = sampleList(r);
+  if (samples.length) {
+    samples.forEach(s => {
+      const title = samples.length > 1
+        ? ("Sample " + (s.inhoud || "")).trim()
+        : "Sample kopen";
+      add(s.sampleLink, title, s.prijsSample != null ? ("Whiskysite · " + euro.format(s.prijsSample)) : "Whiskysite");
+    });
+  } else {
+    add(r.sampleLink, "Sample kopen", r.prijsSample != null ? ("Whiskysite · " + euro.format(r.prijsSample)) : "Whiskysite");
+  }
   add(r.flesLink, "Fles kopen" + (r.winkel ? " bij " + r.winkel : ""), r.flesPrijs != null ? euro.format(r.flesPrijs) : null);
   add(r.tweedeLink, "Fles bij " + (r.tweedeWinkel || "tweede winkel"), r.tweedePrijs != null ? euro.format(r.tweedePrijs) : null);
   add(r.wbLink, "Whiskybase", r.score != null ? ("Score " + scoreFmt.format(r.score)) : null);
@@ -1922,10 +2000,8 @@ function renderDetail(r) {
   const tags = r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
   const notes = unknownToEmpty(r.proefnotities);
   const source = unknownToEmpty(r.bronNotities);
-  const inhoud = r.inhoud || (r.sampleBeschikbaar === "nee" ? "geen sample" : "");
-  const subtitle = r.naam !== name
-    ? r.naam
-    : [inhoud, r.abv != null ? num.format(r.abv).replace(",0", "") + "%" : ""].filter(Boolean).join(" · ");
+  const inhoud = sampleSizesLabel(r, r.sampleBeschikbaar === "nee" ? "geen sample" : (r.inhoud || ""));
+  const subtitle = [inhoud, r.abv != null ? num.format(r.abv).replace(",0", "") + "%" : ""].filter(Boolean).join(" · ");
 
   const stats = [];
   if (r.score != null) {
@@ -1936,7 +2012,19 @@ function renderDetail(r) {
     ));
   }
   if (r.abv != null) stats.push(statCard("ABV", escapeHtml(num.format(r.abv).replace(",0", "") + "%"), ""));
-  if (r.prijsSample != null) stats.push(statCard("Sampleprijs", escapeHtml(euro.format(r.prijsSample)), inhoud && inhoud !== "geen sample" ? escapeHtml(inhoud) : ""));
+  const samples = sampleList(r);
+  if (samples.length > 1) {
+    samples.forEach(s => {
+      stats.push(statCard(
+        "Sample " + (s.inhoud || ""),
+        s.prijsSample != null ? escapeHtml(euro.format(s.prijsSample)) : "—",
+        s.sampleLink ? '<a class="bron" href="' + escapeAttr(s.sampleLink) + '" target="_blank" rel="noopener noreferrer">Whiskysite</a>' : ""
+      ));
+    });
+  } else if (r.prijsSample != null || (samples[0] && samples[0].prijsSample != null)) {
+    const only = samples[0] || { prijsSample: r.prijsSample, inhoud: r.inhoud };
+    stats.push(statCard("Sampleprijs", escapeHtml(euro.format(only.prijsSample)), only.inhoud && only.inhoud !== "geen sample" ? escapeHtml(only.inhoud) : ""));
+  }
   if (r.flesPrijs != null) stats.push(statCard("Flesprijs", escapeHtml(euro.format(r.flesPrijs)), knownText(r.winkel)));
 
   const distLink = r.distillery && r.distillerySlug
@@ -1969,7 +2057,14 @@ function renderDetail(r) {
     ? escapeHtml((r.tweedeWinkel || "Tweede winkel") + (r.tweedePrijs != null ? " · " + euro.format(r.tweedePrijs) : ""))
     : "";
   const prijzen = factsHtml([
-    ["Sampleprijs", r.prijsSample != null ? escapeHtml(euro.format(r.prijsSample)) : ""],
+    ...sampleList(r).map(s => [
+      samples.length > 1 ? ("Sample " + (s.inhoud || "")).trim() : "Sampleprijs",
+      s.prijsSample != null
+        ? (s.sampleLink
+          ? '<a class="bron" href="' + escapeAttr(s.sampleLink) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(euro.format(s.prijsSample)) + "</a>"
+          : escapeHtml(euro.format(s.prijsSample)))
+        : knownText(s.inhoud)
+    ]),
     ["Samplegrootte", knownText(inhoud)],
     ["Sample beschikbaar", knownText(r.sampleBeschikbaar)],
     ["Flesprijs", r.flesPrijs != null ? escapeHtml(euro.format(r.flesPrijs)) : ""],
@@ -2073,12 +2168,15 @@ function route() {
     document.body.classList.add("detail-mode");
     revealView(els.detailView);
     if (row) {
+      if (row.id !== loc.id) {
+        history.replaceState(null, "", "#/whisky/" + encodeURIComponent(row.id));
+      }
       renderDetail(row);
-      const current = loc.id;
+      const current = row.id;
       if (!descriptionFor(row)) {
         loadDescriptions().then(() => {
           const now = parseHash();
-          if (now.view === "detail" && now.id === current) renderDetail(row);
+          if (now.view === "detail" && (now.id === current || rowById(now.id) === row)) renderDetail(row);
         });
       }
     } else {
@@ -2088,8 +2186,17 @@ function route() {
     return;
   }
   if (loc.view === "compare") {
+    const ids = [];
+    loc.ids.forEach(id => {
+      const row = rowById(id);
+      const next = row ? row.id : id;
+      if (!ids.includes(next)) ids.push(next);
+    });
+    if (ids.join(",") !== loc.ids.join(",")) {
+      history.replaceState(null, "", "#/vergelijk/" + ids.map(encodeURIComponent).join(","));
+    }
     revealView(els.compareView);
-    renderCompare(loc.ids);
+    renderCompare(ids);
     window.scrollTo(0, 0);
     return;
   }
@@ -2631,6 +2738,14 @@ async function runSmoke() {
   location.hash = "#/whisky/bestaat-niet";
   route();
   report.missingShown = /niet gevonden/i.test(els.detailView.innerText);
+  const gf40 = ROWS.filter(r => /glenfarclas 40 years old 43/i.test(r.naam));
+  report.mergedGlenfarclas40 = gf40.length;
+  report.mergedGlenfarclas40Sizes = gf40[0] ? sampleList(gf40[0]).map(s => s.inhoud).join(",") : "";
+  location.hash = "#/whisky/glenfarclas-40-years-old-43-3-cl-sample";
+  route();
+  report.redirectOldSampleId = (ROWS.find(r => r.id === "glenfarclas-40-years-old-43") || {}).id === rowById("glenfarclas-40-years-old-43-3-cl-sample").id;
+  report.redirectHash = location.hash;
+  report.redirectDetailName = (els.detail.querySelector("h2") || {}).textContent || "";
   location.hash = "#/";
   route();
   report.previewNotePresent = /Voorbeeld met een selectie/i.test(document.body.innerText);
@@ -2652,6 +2767,7 @@ fetch("data.json")
   })
   .then(payload => {
     const items = Array.isArray(payload) ? payload : (payload.items || []);
+    REDIRECTS = payload.redirects || {};
     ROWS = items.map(enrich);
     attachDistilleries(ROWS);
     DISTILLERIES = buildDistilleryIndex(ROWS);
@@ -2659,8 +2775,7 @@ fetch("data.json")
     initPills();
     if (els.listSkeleton) els.listSkeleton.hidden = true;
     els.status.hidden = true;
-    state.compare = loadCompare().filter(id => items.some(r => r.id === id));
-    saveCompare(state.compare);
+    migratePersistedState(ROWS);
     updateCompareBar();
     loadDescriptions();
     route();

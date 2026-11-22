@@ -186,14 +186,28 @@ def collect_targets(items):
         item_id = item.get("id")
         if not item_id:
             continue
-        sample = item.get("sampleLink") if is_whiskysite(item.get("sampleLink")) else None
+        links = []
+        for sample in item.get("samples") or []:
+            url = sample.get("sampleLink")
+            if is_whiskysite(url) and url not in links:
+                links.append(url)
+        top = item.get("sampleLink")
+        if is_whiskysite(top) and top not in links:
+            links.insert(0, top)
+        sample = links[0] if links else None
         fles = item.get("flesLink") if is_whiskysite(item.get("flesLink")) else None
         if fles and fles == sample:
             fles = None
         if not sample and not fles:
             continue
-        rows.append({"id": item_id, "sample": sample, "fles": fles})
-        for url in (sample, fles):
+        rows.append({
+            "id": item_id,
+            "sample": sample,
+            "extra_samples": links[1:],
+            "fles": fles,
+            "aliases": item.get("aliases") or [],
+        })
+        for url in links + [fles]:
             if url and url not in seen:
                 seen.add(url)
                 unique_urls.append(url)
@@ -346,9 +360,20 @@ def main(argv=None):
     with_image = 0
     for row in rows:
         sample_text = texts.get(row["sample"]) if row["sample"] else None
+        sample_source = row["sample"]
+        for extra in row.get("extra_samples") or []:
+            extra_text = texts.get(extra)
+            if extra_text and (not sample_text or len(extra_text) > len(sample_text)):
+                sample_text = extra_text
+                sample_source = extra
         fles_text = texts.get(row["fles"]) if row["fles"] else None
-        text, source = pick_text(sample_text, row["sample"], fles_text, row["fles"])
+        text, source = pick_text(sample_text, sample_source, fles_text, row["fles"])
         prev = existing.get(row["id"]) or {}
+        if not prev:
+            for alias in row.get("aliases") or []:
+                if existing.get(alias):
+                    prev = existing[alias]
+                    break
         image = prev.get("image")
         image_source = prev.get("imageSource")
         if not text and not image:
