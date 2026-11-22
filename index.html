@@ -548,17 +548,17 @@ function renderInzicht() {
     axis += '<line class="chart-grid" x1="' + padL + '" y1="' + y + '" x2="' + (W - padR) + '" y2="' + y + '"></line>';
     axis += '<text class="scatter-tick" x="' + (padL - 8) + '" y="' + (y + 3) + '" text-anchor="end">' + escapeHtml(scoreFmt.format(v)) + "</text>";
   }
-  const dots = points.map(r =>
-    '<circle class="scatter-point" data-slug="' + escapeAttr(r.id) + '" cx="' + xOf(r.prijsSample).toFixed(1) + '" cy="' + yOf(r.score).toFixed(1) + '" r="4">'
-    + '<title>' + escapeHtml(displayName(r.naam)) + " · " + scoreFmt.format(r.score) + " · " + euro.format(r.prijsSample) + "</title></circle>"
-  ).join("");
+  const dots = points.map(r => {
+    const label = displayName(r.naam) + " · " + scoreFmt.format(r.score) + " · " + euro.format(r.prijsSample);
+    return '<circle class="scatter-point" data-slug="' + escapeAttr(r.id) + '" cx="' + xOf(r.prijsSample).toFixed(1) + '" cy="' + yOf(r.score).toFixed(1) + '" r="4" tabindex="0" role="link" aria-label="' + escapeAttr(label) + '"></circle>';
+  }).join("");
   els.inzicht.innerHTML = "<h2>Score vs sampleprijs</h2>"
     + '<p class="chart-caption">Alleen bottelingen waarvan zowel de Whiskybase-score als de sampleprijs bekend is. Klik op een punt voor de detailpagina.</p>'
     + '<div class="scatter-wrap"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Spreidingsdiagram score versus sampleprijs">'
     + axis + dots
     + '<text class="chart-label" x="' + (W / 2) + '" y="' + (H - 4) + '" text-anchor="middle">Sampleprijs</text>'
     + '<text class="chart-label" x="14" y="' + (H / 2) + '" text-anchor="middle" transform="rotate(-90 14 ' + (H / 2) + ')">Score</text>'
-    + "</svg></div>";
+    + '</svg><div class="chart-tooltip" id="chartTooltip" hidden role="tooltip"></div></div>';
 }
 
 function knownOrEmpty(valueHtml) { return valueHtml || ""; }
@@ -1286,7 +1286,22 @@ function resetFilters() {
   render(true);
 }
 
-function activateTab(tabId) {
+function rerenderOpenCharts() {
+  const loc = parseHash();
+  if (loc.view === "inzicht") {
+    renderInzicht();
+    return;
+  }
+  if (loc.view === "detail" && loc.id) {
+    const tab = (els.detail.querySelector('.tab[aria-selected="true"]') || {}).dataset?.tab;
+    const row = rowById(loc.id);
+    if (!row) return;
+    renderDetail(row);
+    if (tab) activateTab(tab, { focus: false });
+  }
+}
+
+function activateTab(tabId, opts) {
   const tabs = [...els.detail.querySelectorAll('.tab')];
   const panels = [...els.detail.querySelectorAll('.tab-panel')];
   if (!tabs.length) return;
@@ -1297,7 +1312,7 @@ function activateTab(tabId) {
     t.tabIndex = on ? 0 : -1;
   });
   panels.forEach(p => { p.hidden = p.dataset.tab !== target.dataset.tab; });
-  target.focus();
+  if (!opts || opts.focus !== false) target.focus();
 }
 
 function bindRowNavigate(container) {
@@ -1468,6 +1483,57 @@ function bindEvents() {
     if (!point) return;
     location.hash = "#/whisky/" + point.dataset.slug;
   });
+  els.inzicht.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const point = e.target.closest(".scatter-point[data-slug]");
+    if (!point) return;
+    e.preventDefault();
+    location.hash = "#/whisky/" + point.dataset.slug;
+  });
+
+  function scatterTooltipHtml(r) {
+    return '<div class="tt-name">' + escapeHtml(displayName(r.naam)) + "</div>"
+      + '<div class="tt-meta">' + escapeHtml(scoreFmt.format(r.score) + " · " + euro.format(r.prijsSample)) + "</div>";
+  }
+  function placeChartTooltip(ev) {
+    const wrap = els.inzicht.querySelector(".scatter-wrap");
+    const tip = document.getElementById("chartTooltip");
+    if (!wrap || !tip || tip.hidden) return;
+    const rect = wrap.getBoundingClientRect();
+    let x = ev.clientX - rect.left;
+    let y = ev.clientY - rect.top;
+    const pad = 8;
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+    const trect = tip.getBoundingClientRect();
+    if (trect.left < rect.left + pad) x += (rect.left + pad) - trect.left;
+    if (trect.right > rect.right - pad) x -= trect.right - (rect.right - pad);
+    if (trect.top < rect.top + pad) y += trect.height + 20;
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+  }
+  els.inzicht.addEventListener("pointerover", (e) => {
+    const point = e.target.closest(".scatter-point[data-slug]");
+    const tip = document.getElementById("chartTooltip");
+    if (!point || !tip) return;
+    const r = rowById(point.dataset.slug);
+    if (!r) return;
+    tip.innerHTML = scatterTooltipHtml(r);
+    tip.hidden = false;
+    placeChartTooltip(e);
+  });
+  els.inzicht.addEventListener("pointermove", placeChartTooltip);
+  els.inzicht.addEventListener("pointerout", (e) => {
+    const next = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest(".scatter-point");
+    if (next) return;
+    const tip = document.getElementById("chartTooltip");
+    if (tip) tip.hidden = true;
+  });
+
+  const schemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+  const onSchemeChange = () => rerenderOpenCharts();
+  if (schemeMq.addEventListener) schemeMq.addEventListener("change", onSchemeChange);
+  else if (schemeMq.addListener) schemeMq.addListener(onSchemeChange);
 
   let hoverTimer = 0;
   els.rows.addEventListener("pointerenter", (e) => {
