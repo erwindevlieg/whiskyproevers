@@ -28,12 +28,25 @@
   <div class="status-msg" id="status">Gegevens worden geladen…</div>
 
   <div id="listView" hidden>
-    <section class="filters" aria-label="Filters">
+    <div class="list-bar">
+      <div class="field search-field">
+        <label class="sr-only" for="q">Zoeken</label>
+        <input id="q" class="search" type="search" placeholder="Naam, vat, regio, winkel…" autocomplete="off">
+      </div>
+      <button type="button" class="btn btn-outline filter-btn" id="filterBtn" aria-expanded="false" aria-controls="filters">
+        Filters <span class="filter-badge" id="filterCount" hidden></span>
+      </button>
+    </div>
+
+    <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+    <section class="filters" id="filters" aria-label="Filters">
+      <div class="sheet-head">
+        <h2>Filters</h2>
+        <button type="button" class="icon-btn" id="sheetClose" aria-label="Filters sluiten">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
       <div class="filter-top">
-        <div class="field">
-          <label for="q">Zoeken</label>
-          <input id="q" class="search" type="search" placeholder="Naam, vat, regio, winkel…" autocomplete="off">
-        </div>
         <div class="field">
           <div class="slider-top">
             <label for="minScore">Min. score</label>
@@ -72,10 +85,15 @@
       </div>
 
       <div class="toolbar">
-        <div class="count" id="count"></div>
-        <button type="button" class="reset" id="reset">Wis filters</button>
+        <button type="button" class="reset js-reset" id="reset">Wis filters</button>
+        <button type="button" class="btn sheet-apply" id="sheetApply">Toon resultaten</button>
       </div>
     </section>
+
+    <div class="list-meta">
+      <div class="count" id="count"></div>
+      <button type="button" class="reset js-reset" id="resetInline" hidden>Wis filters</button>
+    </div>
 
     <div class="table-wrap" id="tableWrap">
       <table>
@@ -83,15 +101,17 @@
           <tr>
             <th class="col-check" scope="col">Geproefd</th>
             <th class="sortable" data-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>
-            <th class="sortable col-inhoud" data-sort="inhoud" scope="col" aria-sort="none">Inhoud <span class="arrow">↕</span></th>
-            <th class="sortable col-prijs" data-sort="prijsSample" scope="col" aria-sort="none">Sample <span class="arrow">↕</span></th>
+            <th class="sortable" data-sort="regio" scope="col" aria-sort="none">Regio <span class="arrow">↕</span></th>
+            <th class="sortable" data-sort="vattype" scope="col" aria-sort="none">Vattype <span class="arrow">↕</span></th>
+            <th class="sortable col-abv" data-sort="abv" scope="col" aria-sort="none">ABV <span class="arrow">↕</span></th>
             <th class="sortable col-score" data-sort="score" scope="col" aria-sort="descending">Score <span class="arrow">↓</span></th>
-            <th class="sortable" data-sort="rook" scope="col" aria-sort="none">Vat / rook <span class="arrow">↕</span></th>
-            <th class="sortable col-fles" data-sort="flesPrijs" scope="col" aria-sort="none">Fles in NL <span class="arrow">↕</span></th>
+            <th class="sortable col-prijs" data-sort="prijsSample" scope="col" aria-sort="none">Sampleprijs <span class="arrow">↕</span></th>
+            <th class="sortable col-fles" data-sort="flesPrijs" scope="col" aria-sort="none">Flesprijs <span class="arrow">↕</span></th>
           </tr>
         </thead>
         <tbody id="rows"></tbody>
       </table>
+      <div class="card-list" id="cards"></div>
       <div class="empty-state" id="empty" hidden>Geen flessen die aan de filters voldoen.</div>
       <div class="more-wrap" id="moreWrap" hidden>
         <button type="button" class="more" id="more">Toon meer</button>
@@ -271,9 +291,17 @@ const els = {
   maxPrijsVal: document.getElementById("maxPrijsVal"),
   inclOnbekend: document.getElementById("inclOnbekend"),
   rows: document.getElementById("rows"),
+  cards: document.getElementById("cards"),
   empty: document.getElementById("empty"),
   count: document.getElementById("count"),
   reset: document.getElementById("reset"),
+  resetInline: document.getElementById("resetInline"),
+  filterBtn: document.getElementById("filterBtn"),
+  filterCount: document.getElementById("filterCount"),
+  filters: document.getElementById("filters"),
+  sheetBackdrop: document.getElementById("sheetBackdrop"),
+  sheetClose: document.getElementById("sheetClose"),
+  sheetApply: document.getElementById("sheetApply"),
   status: document.getElementById("status"),
   tableWrap: document.getElementById("tableWrap"),
   more: document.getElementById("more"),
@@ -349,8 +377,10 @@ function cmp(a, b) {
   const key = state.sort;
   let av = a[key], bv = b[key];
   if (key === "naam") { av = displayName(a.naam).toLowerCase(); bv = displayName(b.naam).toLowerCase(); }
+  if (key === "regio") { av = (a.regioKort || a.regio || "").toLowerCase(); bv = (b.regioKort || b.regio || "").toLowerCase(); }
+  if (key === "vattype") { av = (a.vattype || "").toLowerCase(); bv = (b.vattype || "").toLowerCase(); }
   if (key === "rook") { av = rookOrder[a.rook] ?? 9; bv = rookOrder[b.rook] ?? 9; }
-  if (key === "score" || key === "flesPrijs" || key === "prijsSample" || key === "inhoud") {
+  if (key === "score" || key === "flesPrijs" || key === "prijsSample" || key === "inhoud" || key === "abv" || key === "vattype" || key === "regio") {
     const early = emptyLast(av, bv, a, b);
     if (early != null) return early;
   }
@@ -370,24 +400,15 @@ function scoreTier(score) {
 }
 
 function scoreBadge(score, extraClass) {
+  if (score == null) return "";
   const cls = "score-badge " + scoreTier(score) + (extraClass ? " " + extraClass : "");
-  if (score == null) return '<span class="' + cls + '">onbekend</span>';
   return '<span class="' + cls + '">' + scoreFmt.format(score) + "</span>";
 }
 
 function scoreCell(r) {
-  const status = r.wbStatus || "onbekend";
-  const statusClass = (status === "nog niet opgezocht" || status === "score niet zeker") ? " open" : "";
-  const statusLabel = status === "exact" && r.score != null ? "" :
-    '<span class="wb-status' + statusClass + '">' + escapeHtml(status) +
-    (r.wbReden && status !== "exact" ? " · " + escapeHtml(r.wbReden) : "") +
-    "</span>";
-  if (r.score == null) {
-    return scoreBadge(null) + (statusLabel || '<span class="wb-status">onbekend</span>');
-  }
+  if (r.score == null) return "";
   return scoreBadge(r.score)
-    + (r.stemmen != null ? '<span class="votes">' + intFmt.format(r.stemmen) + " stemmen</span>" : "")
-    + statusLabel;
+    + (r.stemmen != null ? '<span class="votes">' + intFmt.format(r.stemmen) + " stemmen</span>" : "");
 }
 
 function criticLine(r) {
@@ -408,15 +429,55 @@ function metaLine(r) {
 }
 
 function flesCell(r) {
-  if (r.flesPrijs == null) return '<span class="empty">geen prijs bekend</span>';
+  if (r.flesPrijs == null) return "";
   const title = r.opmerkingFles ? ' title="' + escapeAttr(r.opmerkingFles) + '"' : "";
-  let html = '<span class="price"' + title + ">" + euro.format(r.flesPrijs) + "</span>";
-  if (r.winkel) html += '<span class="shop">' + escapeHtml(r.winkel) + "</span>";
-  if (r.opVoorraad === "nee") html += '<span class="shop stock-no">niet op voorraad</span>';
-  if (r.tweedePrijs != null) {
-    html += '<span class="shop">ook ' + escapeHtml(r.tweedeWinkel || "elders") + " " + euro.format(r.tweedePrijs) + "</span>";
+  return '<span class="price"' + title + ">" + euro.format(r.flesPrijs) + "</span>";
+}
+
+function moneyCell(value) {
+  return value != null ? '<span class="price">' + euro.format(value) + "</span>" : "";
+}
+
+function abvCell(r) {
+  return r.abv != null ? escapeHtml(num.format(r.abv).replace(",0", "") + "%") : "";
+}
+
+function activeFilterCount() {
+  let n = state.vat.size + state.rook.size + state.regio.size + state.smaak.size;
+  if (state.minScore > state.defaults.minScore) n += 1;
+  if (priceFilterActive()) n += 1;
+  if (!state.inclOnbekend) n += 1;
+  return n;
+}
+
+function updateFilterBadge() {
+  const n = activeFilterCount();
+  els.filterCount.hidden = n === 0;
+  els.filterCount.textContent = n ? String(n) : "";
+  if (els.resetInline) els.resetInline.hidden = n === 0;
+  if (els.sheetApply) {
+    const list = ROWS.filter(matches);
+    els.sheetApply.textContent = "Toon " + intFmt.format(list.length) + " resultaten";
   }
-  return html;
+}
+
+function filtersOpen() {
+  return els.filters.classList.contains("is-open");
+}
+
+function openFilters() {
+  els.filters.classList.add("is-open");
+  els.sheetBackdrop.hidden = false;
+  els.filterBtn.setAttribute("aria-expanded", "true");
+  document.body.classList.add("filters-open");
+  els.sheetClose.focus();
+}
+
+function closeFilters() {
+  els.filters.classList.remove("is-open");
+  els.sheetBackdrop.hidden = true;
+  els.filterBtn.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("filters-open");
 }
 
 function render(resetPage) {
@@ -431,6 +492,7 @@ function render(resetPage) {
   if (visible.length < list.length) count += " · " + intFmt.format(visible.length) + " getoond";
   if (tastedN) count += " · " + intFmt.format(tastedN) + " geproefd";
   els.count.innerHTML = count;
+  updateFilterBadge();
 
   els.rows.innerHTML = visible.map(r => {
     const id = rowId(r);
@@ -438,33 +500,27 @@ function render(resetPage) {
     const name = displayName(r.naam);
     const notes = unknownToEmpty(r.proefnotities);
     const title = notes ? ' title="' + escapeAttr(notes) + '"' : "";
-    const meta = metaLine(r);
-    const tags = r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
-    const vat = unknownToEmpty(r.vattype) || "—";
-    const rook = r.rook || "onbekend";
-    const sample = r.prijsSample != null
-      ? '<span class="price">' + euro.format(r.prijsSample) + "</span>"
-      : '<span class="empty">—</span>';
-    const inhoud = r.inhoud || (r.sampleBeschikbaar === "nee" ? "geen sample" : "—");
+    const vat = unknownToEmpty(r.vattype);
+    const regio = r.regioKort || unknownToEmpty(r.regio);
     return '<tr class="' + (tasted ? "tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
       + '<td class="col-check"><label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
       + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label></td>'
-      + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ">" + escapeHtml(name) + "</a>"
-      + (meta ? '<span class="sub">' + escapeHtml(meta) + "</span>" : "")
-      + criticLine(r)
-      + (tags ? '<div class="tags">' + tags + "</div>" : "")
-      + "</td>"
-      + '<td class="col-inhoud">' + escapeHtml(inhoud) + "</td>"
-      + '<td class="col-prijs">' + sample + "</td>"
+      + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ">" + escapeHtml(name) + "</a></td>"
+      + "<td>" + (regio ? escapeHtml(regio) : "") + "</td>"
+      + '<td><span class="vat"' + (vat ? ' title="' + escapeAttr(vat) + '"' : "") + ">" + escapeHtml(vat) + "</span></td>"
+      + '<td class="col-abv">' + abvCell(r) + "</td>"
       + '<td class="col-score">' + scoreCell(r) + "</td>"
-      + '<td><span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>"
-      + '<span class="rook ' + escapeAttr(rook) + '">rook: ' + escapeHtml(rook) + "</span></td>"
+      + '<td class="col-prijs">' + moneyCell(r.prijsSample) + "</td>"
       + '<td class="col-fles">' + flesCell(r) + "</td>"
       + "</tr>";
   }).join("");
 
+  els.cards.innerHTML = visible.map(r => cardHtml(r)).join("");
+
   els.empty.hidden = list.length > 0;
-  document.querySelector("#listView table").style.display = list.length ? "" : "none";
+  const table = document.querySelector("#listView table");
+  if (table) table.hidden = list.length === 0;
+  els.cards.hidden = list.length === 0;
   const remaining = list.length - visible.length;
   els.moreWrap.hidden = remaining <= 0;
   els.more.textContent = remaining > 0
@@ -479,6 +535,39 @@ function render(resetPage) {
   });
 }
 
+function cardMeta(r) {
+  const inhoud = r.inhoud || "";
+  return [abvCell(r), r.regioKort || "", inhoud].filter(Boolean).join(" · ");
+}
+
+function priceLine(r) {
+  const parts = [];
+  if (r.prijsSample != null) parts.push("Sample " + euro.format(r.prijsSample));
+  if (r.flesPrijs != null) parts.push("Fles " + euro.format(r.flesPrijs));
+  return parts.join("  ·  ");
+}
+
+function cardHtml(r) {
+  const id = rowId(r);
+  const tasted = !!state.tasted[id];
+  const name = displayName(r.naam);
+  const meta = cardMeta(r);
+  const tags = r.flavour.slice(0, 3).map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
+  const prices = priceLine(r);
+  return '<article class="whisky-card' + (tasted ? " tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
+    + '<label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
+    + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label>'
+    + '<div class="card-main">'
+    + '<div class="card-top">'
+    + '<a class="name" href="' + escapeAttr(detailHref(r)) + '">' + escapeHtml(name) + "</a>"
+    + scoreBadge(r.score)
+    + "</div>"
+    + (meta ? '<p class="sub">' + escapeHtml(meta) + "</p>" : "")
+    + (tags ? '<div class="tags">' + tags + "</div>" : "")
+    + (prices ? '<p class="price-line">' + escapeHtml(prices) + "</p>" : "")
+    + "</div></article>";
+}
+
 function escapeHtml(s) {
   return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
 }
@@ -488,16 +577,13 @@ function isUrl(value) {
   return /^https?:\/\//i.test(String(value || "").trim());
 }
 
-function textOrUnknown(value) {
+function knownText(value) {
   const text = unknownToEmpty(value);
-  return text ? escapeHtml(text) : '<span class="unknown">onbekend</span>';
-}
-
-function moneyOrUnknown(value) {
-  return value != null ? escapeHtml(euro.format(value)) : '<span class="unknown">onbekend</span>';
+  return text ? escapeHtml(text) : "";
 }
 
 function fact(label, valueHtml) {
+  if (!valueHtml) return "";
   return '<div class="fact"><dt>' + escapeHtml(label) + "</dt><dd>" + valueHtml + "</dd></div>";
 }
 
@@ -514,8 +600,8 @@ function kleurLabel(value) {
 }
 
 function voorraadLabel(value) {
-  if (value === "ja") return "ja";
-  if (value === "nee") return "nee";
+  if (value === "ja") return "Op voorraad";
+  if (value === "nee") return "Niet op voorraad";
   return null;
 }
 
@@ -526,7 +612,7 @@ function extLink(href, title, subtitle) {
     + "</a>";
 }
 
-function detailLinks(r) {
+function collectLinks(r) {
   const links = [];
   const used = new Set();
   function add(href, title, subtitle) {
@@ -541,10 +627,8 @@ function detailLinks(r) {
   add(r.whiskyfunLink, "Whiskyfun", r.whiskyfunScore || null);
   add(r.distillerLink, "Distiller", r.distillerScore ? String(r.distillerScore).split("—")[0].trim() : null);
   add(r.bronNotities, "Bron proefnotities", null);
-  if (!links.length) return '<p class="unknown">Geen externe links bekend.</p>';
-  return '<div class="link-list">' + links.join("") + "</div>";
+  return links;
 }
-
 
 function descriptionBlock(r) {
   const desc = descriptionFor(r);
@@ -561,6 +645,44 @@ function descriptionBlock(r) {
     + "</div></div>";
 }
 
+function factsHtml(pairs) {
+  const html = pairs.map(([label, value]) => fact(label, value)).join("");
+  return html ? '<div class="facts">' + html + "</div>" : "";
+}
+
+function renderTabs(tabs) {
+  const visible = tabs.filter(t => t.html);
+  if (!visible.length) return "";
+  return '<div class="tabs" role="tablist">'
+    + visible.map((t, i) =>
+      '<button type="button" class="tab" role="tab" id="tabbtn-' + t.id + '" data-tab="' + t.id + '"'
+      + ' aria-controls="tab-' + t.id + '" aria-selected="' + (i === 0 ? "true" : "false") + '"'
+      + ' tabindex="' + (i === 0 ? "0" : "-1") + '">' + escapeHtml(t.label) + "</button>"
+    ).join("")
+    + "</div>"
+    + visible.map((t, i) =>
+      '<div class="tab-panel" role="tabpanel" id="tab-' + t.id + '" data-tab="' + t.id + '"'
+      + ' aria-labelledby="tabbtn-' + t.id + '"' + (i === 0 ? "" : " hidden") + ">" + t.html + "</div>"
+    ).join("");
+}
+
+function accordion(title, inner) {
+  if (!inner) return "";
+  return '<div class="accordion">'
+    + '<button type="button" class="accordion-trigger" id="meerDetailsBtn" aria-expanded="false" aria-controls="meerDetails">'
+    + escapeHtml(title)
+    + '<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+    + "</button>"
+    + '<div class="accordion-panel" id="meerDetails" hidden>' + inner + "</div></div>";
+}
+
+function statCard(label, value, meta) {
+  return '<div class="stat-card"><div class="stat-label">' + escapeHtml(label) + "</div>"
+    + '<div class="stat-value">' + value + "</div>"
+    + (meta ? '<div class="stat-meta">' + meta + "</div>" : "")
+    + "</div>";
+}
+
 function renderDetail(r) {
   const name = displayName(r.naam);
   const id = rowId(r);
@@ -569,57 +691,87 @@ function renderDetail(r) {
   const tags = r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
   const notes = unknownToEmpty(r.proefnotities);
   const source = unknownToEmpty(r.bronNotities);
-  const leeftijd = r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : '<span class="unknown">onbekend</span>';
-  const abv = r.abv != null ? escapeHtml(num.format(r.abv).replace(",0", "") + "%") : '<span class="unknown">onbekend</span>';
-  const samplePrijs = r.prijsSample != null ? escapeHtml(euro.format(r.prijsSample)) : '<span class="unknown">onbekend</span>';
-  const inhoud = r.inhoud || (r.sampleBeschikbaar === "nee" ? "geen sample" : null);
-  const score = r.score != null
-    ? escapeHtml(scoreFmt.format(r.score)) + (r.stemmen != null ? " (" + escapeHtml(intFmt.format(r.stemmen)) + " stemmen)" : "")
-    : '<span class="unknown">onbekend</span>';
-  const wbStatus = escapeHtml(r.wbStatus || "onbekend")
-    + (unknownToEmpty(r.wbReden) ? " · " + escapeHtml(r.wbReden) : "");
-  const distiller = unknownToEmpty(r.distillerScore);
+  const inhoud = r.inhoud || (r.sampleBeschikbaar === "nee" ? "geen sample" : "");
+  const subtitle = r.naam !== name
+    ? r.naam
+    : [inhoud, r.abv != null ? num.format(r.abv).replace(",0", "") + "%" : ""].filter(Boolean).join(" · ");
+
+  const stats = [];
+  if (r.score != null) {
+    stats.push(statCard(
+      "Whiskybase",
+      escapeHtml(scoreFmt.format(r.score)),
+      r.stemmen != null ? escapeHtml(intFmt.format(r.stemmen) + " stemmen") : ""
+    ));
+  }
+  if (r.abv != null) stats.push(statCard("ABV", escapeHtml(num.format(r.abv).replace(",0", "") + "%"), ""));
+  if (r.prijsSample != null) stats.push(statCard("Sampleprijs", escapeHtml(euro.format(r.prijsSample)), inhoud && inhoud !== "geen sample" ? escapeHtml(inhoud) : ""));
+  if (r.flesPrijs != null) stats.push(statCard("Flesprijs", escapeHtml(euro.format(r.flesPrijs)), knownText(r.winkel)));
+
+  const overzichtSpecs = factsHtml([
+    ["Regio", knownText(r.regio)],
+    ["Vattype", knownText(r.vattype)],
+    ["Leeftijd", r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : ""],
+    ["Rook", knownText(r.rook)],
+    ["NCF", knownText(ncfLabel(r.ncf) || r.ncf)],
+    ["Kleurstof", knownText(kleurLabel(r.kleurstof) || r.kleurstof)]
+  ]);
+  const overzicht = descriptionBlock(r) + overzichtSpecs;
+
+  const criticFacts = factsHtml([
+    ["Whiskyfun", knownText(r.whiskyfunScore)],
+    ["Distiller", knownText(r.distillerScore)]
+  ]);
+  const notesBlock = notes
+    ? '<div class="block"><h3>Proefnotities</h3><div class="notes">' + escapeHtml(notes) + "</div>"
+      + (source && !isUrl(source) ? '<span class="notes-source">Bron: ' + escapeHtml(source) + "</span>" : "")
+      + "</div>"
+    : "";
+  const smaakTags = tags ? '<div class="block"><h3>Smaak</h3><div class="tags">' + tags + "</div></div>" : "";
+  const smaak = notesBlock + smaakTags + (criticFacts ? '<div class="block"><h3>Scores</h3>' + criticFacts + "</div>" : "");
+
+  const tweede = (unknownToEmpty(r.tweedeWinkel) || r.tweedePrijs != null)
+    ? escapeHtml((r.tweedeWinkel || "Tweede winkel") + (r.tweedePrijs != null ? " · " + euro.format(r.tweedePrijs) : ""))
+    : "";
+  const prijzen = factsHtml([
+    ["Sampleprijs", r.prijsSample != null ? escapeHtml(euro.format(r.prijsSample)) : ""],
+    ["Samplegrootte", knownText(inhoud)],
+    ["Sample beschikbaar", knownText(r.sampleBeschikbaar)],
+    ["Flesprijs", r.flesPrijs != null ? escapeHtml(euro.format(r.flesPrijs)) : ""],
+    ["Flesgrootte", knownText(r.flesGrootte)],
+    ["Winkel", knownText(r.winkel)],
+    ["Voorraad", knownText(voorraadLabel(r.opVoorraad) || r.opVoorraad)],
+    ["Tweede winkel", tweede],
+    ["Gecontroleerd op", knownText(r.gecontroleerdOp)]
+  ]);
+
+  const links = collectLinks(r);
+  const linksHtml = links.length ? '<div class="link-list" id="links">' + links.join("") + "</div>" : "";
+
+  const wbStatus = unknownToEmpty(r.wbStatus)
+    ? escapeHtml(r.wbStatus) + (unknownToEmpty(r.wbReden) ? " · " + escapeHtml(r.wbReden) : "")
+    : "";
+  const meer = factsHtml([
+    ["WB-status", wbStatus],
+    ["Opmerking fles", knownText(r.opmerkingFles)]
+  ]);
 
   els.detail.innerHTML =
     '<div class="detail-head"><div>'
     + "<h2>" + escapeHtml(name) + "</h2>"
-    + (r.naam !== name ? '<span class="sub">' + escapeHtml(r.naam) + "</span>" : "")
+    + (subtitle ? '<span class="sub">' + escapeHtml(subtitle) + "</span>" : "")
     + (tags ? '<div class="tags">' + tags + "</div>" : "")
     + '</div><div class="detail-aside">'
-    + scoreBadge(r.score, "large")
     + '<label class="taste-check"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
-    + (tasted ? " checked" : "") + '> Geproefd</label></div></div>'
-    + descriptionBlock(r)
-    + '<div class="facts">'
-    + fact("Leeftijd", leeftijd)
-    + fact("ABV", abv)
-    + fact("Regio / stijl", textOrUnknown(r.regio))
-    + fact("Vattype", textOrUnknown(r.vattype))
-    + fact("Rookniveau", textOrUnknown(r.rook))
-    + fact("Ongekoeld gefilterd", textOrUnknown(ncfLabel(r.ncf) || r.ncf))
-    + fact("Kleurstof", textOrUnknown(kleurLabel(r.kleurstof) || r.kleurstof))
-    + fact("Sample beschikbaar", textOrUnknown(r.sampleBeschikbaar))
-    + fact("Sample-grootte", textOrUnknown(inhoud))
-    + fact("Sampleprijs", samplePrijs)
-    + fact("Whiskybase-score", score)
-    + fact("WB-status", wbStatus)
-    + fact("Whiskyfun", textOrUnknown(r.whiskyfunScore))
-    + fact("Distiller", textOrUnknown(distiller))
-    + fact("Flesprijs", moneyOrUnknown(r.flesPrijs))
-    + fact("Flesgrootte", textOrUnknown(r.flesGrootte))
-    + fact("Winkel", textOrUnknown(r.winkel))
-    + fact("Op voorraad", textOrUnknown(voorraadLabel(r.opVoorraad) || r.opVoorraad))
-    + fact("Gecontroleerd op", textOrUnknown(r.gecontroleerdOp))
-    + fact("Tweede winkel", r.tweedeWinkel || r.tweedePrijs != null
-        ? escapeHtml((r.tweedeWinkel || "onbekend") + (r.tweedePrijs != null ? " · " + euro.format(r.tweedePrijs) : ""))
-        : '<span class="unknown">onbekend</span>')
-    + fact("Opmerking fles", textOrUnknown(r.opmerkingFles))
-    + "</div>"
-    + '<div class="block"><h3>Proefnotities</h3>'
-    + '<div class="notes">' + (notes ? escapeHtml(notes) : '<span class="unknown">onbekend</span>') + "</div>"
-    + (source && !isUrl(source) ? '<span class="notes-source">Bron: ' + escapeHtml(source) + "</span>" : "")
-    + "</div>"
-    + '<div class="block" id="links"><h3>Links</h3>' + detailLinks(r) + "</div>";
+    + (tasted ? " checked" : "") + "> Geproefd</label></div></div>"
+    + (stats.length ? '<div class="stat-row">' + stats.join("") + "</div>" : "")
+    + renderTabs([
+      { id: "overzicht", label: "Overzicht", html: overzicht },
+      { id: "smaak", label: "Smaak", html: smaak },
+      { id: "prijzen", label: "Prijzen", html: prijzen },
+      { id: "links", label: "Links", html: linksHtml }
+    ])
+    + accordion("Meer details", meer);
 }
 
 function renderDetailMissing() {
@@ -715,6 +867,55 @@ function setTasted(id, checked) {
   saveTasted(state.tasted);
 }
 
+function resetFilters() {
+  state.q = "";
+  state.vat = new Set();
+  state.rook = new Set();
+  state.regio = new Set();
+  state.smaak = new Set();
+  state.minScore = state.defaults.minScore;
+  state.maxPrijs = state.defaults.maxPrijs;
+  state.inclOnbekend = true;
+  els.q.value = "";
+  els.minScore.value = state.defaults.minScore;
+  els.maxPrijs.value = state.defaults.maxPrijs;
+  els.inclOnbekend.checked = true;
+  document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
+  render(true);
+}
+
+function activateTab(tabId) {
+  const tabs = [...els.detail.querySelectorAll('.tab')];
+  const panels = [...els.detail.querySelectorAll('.tab-panel')];
+  if (!tabs.length) return;
+  let target = tabs.find(t => t.dataset.tab === tabId) || tabs[0];
+  tabs.forEach(t => {
+    const on = t === target;
+    t.setAttribute("aria-selected", on ? "true" : "false");
+    t.tabIndex = on ? 0 : -1;
+  });
+  panels.forEach(p => { p.hidden = p.dataset.tab !== target.dataset.tab; });
+  target.focus();
+}
+
+function bindRowNavigate(container) {
+  container.addEventListener("change", (e) => {
+    const input = e.target.closest("input[data-id]");
+    if (!input) return;
+    setTasted(input.dataset.id, input.checked);
+    render(false);
+  });
+  container.addEventListener("click", (e) => {
+    if (e.target.closest("input, label.geproefd")) return;
+    const nameLink = e.target.closest("a.name");
+    if (nameLink) { rememberListScroll(); return; }
+    const row = e.target.closest("[data-slug]");
+    if (!row) return;
+    rememberListScroll();
+    location.hash = "#/whisky/" + row.dataset.slug;
+  });
+}
+
 function bindEvents() {
   els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
   els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
@@ -746,22 +947,8 @@ function bindEvents() {
     });
   });
 
-  els.rows.addEventListener("change", (e) => {
-    const input = e.target.closest("input[data-id]");
-    if (!input) return;
-    setTasted(input.dataset.id, input.checked);
-    render(false);
-  });
-
-  els.rows.addEventListener("click", (e) => {
-    if (e.target.closest("input, label.geproefd")) return;
-    const nameLink = e.target.closest("a.name");
-    if (nameLink) { rememberListScroll(); return; }
-    const tr = e.target.closest("tr[data-slug]");
-    if (!tr) return;
-    rememberListScroll();
-    location.hash = "#/whisky/" + tr.dataset.slug;
-  });
+  bindRowNavigate(els.rows);
+  bindRowNavigate(els.cards);
 
   els.detailView.addEventListener("change", (e) => {
     const input = e.target.closest("input[data-id]");
@@ -770,13 +957,41 @@ function bindEvents() {
   });
 
   els.detailView.addEventListener("click", (e) => {
-    const btn = e.target.closest("#leesMeer, .lees-meer");
-    if (!btn) return;
-    const text = document.getElementById("omschrijving-text");
-    if (!text) return;
-    const open = text.classList.toggle("is-collapsed") === false;
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-    btn.textContent = open ? "Toon minder" : "Lees meer";
+    const lees = e.target.closest("#leesMeer, .lees-meer");
+    if (lees) {
+      const text = document.getElementById("omschrijving-text");
+      if (!text) return;
+      const open = text.classList.toggle("is-collapsed") === false;
+      lees.setAttribute("aria-expanded", open ? "true" : "false");
+      lees.textContent = open ? "Toon minder" : "Lees meer";
+      return;
+    }
+    const tab = e.target.closest(".tab");
+    if (tab) {
+      activateTab(tab.dataset.tab);
+      return;
+    }
+    const acc = e.target.closest(".accordion-trigger");
+    if (acc) {
+      const panel = document.getElementById(acc.getAttribute("aria-controls"));
+      if (!panel) return;
+      const open = panel.hidden;
+      panel.hidden = !open;
+      acc.setAttribute("aria-expanded", open ? "true" : "false");
+      acc.classList.toggle("is-open", open);
+    }
+  });
+
+  els.detailView.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const tab = e.target.closest(".tab");
+    if (!tab) return;
+    const tabs = [...els.detail.querySelectorAll(".tab")];
+    const i = tabs.indexOf(tab);
+    if (i < 0) return;
+    const next = e.key === "ArrowRight" ? (i + 1) % tabs.length : (i - 1 + tabs.length) % tabs.length;
+    activateTab(tabs[next].dataset.tab);
+    e.preventDefault();
   });
 
   document.querySelectorAll('a[href="#/"]').forEach(a => {
@@ -786,21 +1001,17 @@ function bindEvents() {
     });
   });
 
-  els.reset.addEventListener("click", () => {
-    state.q = "";
-    state.vat = new Set();
-    state.rook = new Set();
-    state.regio = new Set();
-    state.smaak = new Set();
-    state.minScore = state.defaults.minScore;
-    state.maxPrijs = state.defaults.maxPrijs;
-    state.inclOnbekend = true;
-    els.q.value = "";
-    els.minScore.value = state.defaults.minScore;
-    els.maxPrijs.value = state.defaults.maxPrijs;
-    els.inclOnbekend.checked = true;
-    document.querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", "false"));
-    render(true);
+  document.querySelectorAll(".js-reset").forEach(btn => btn.addEventListener("click", resetFilters));
+
+  els.filterBtn.addEventListener("click", () => { filtersOpen() ? closeFilters() : openFilters(); });
+  els.sheetClose.addEventListener("click", closeFilters);
+  els.sheetApply.addEventListener("click", closeFilters);
+  els.sheetBackdrop.addEventListener("click", closeFilters);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && filtersOpen()) closeFilters();
+  });
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", (mq) => {
+    if (mq.matches) closeFilters();
   });
 
   window.addEventListener("hashchange", route);
