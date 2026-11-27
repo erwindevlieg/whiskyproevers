@@ -23,6 +23,7 @@ SEARCH_EXTRA_FIELDS = (
     "opmerkingFles",
     "proefnotities",
     "wbId",
+    "ib",
 )
 DETAIL_FIELDS = (
     "sampleLink",
@@ -48,6 +49,7 @@ DETAIL_FIELDS = (
     "omschrijvingBron",
     "afbeelding",
     "aliases",
+    "ib",
 )
 MARKER_RE = re.compile(
     r"/\* data-build \*/.*?/\* /data-build \*/",
@@ -138,6 +140,8 @@ def compact_item(item: dict, thumb: dict | None) -> dict:
                 rec["p"] = s["prijsSample"]
             compact_samples.append(rec)
         row["ss"] = compact_samples
+    if item.get("ib"):
+        row["i"] = item["ib"]
     if thumb:
         row["t"] = 1
         row["g"] = "c" if thumb["kind"] == "clear" else "p"

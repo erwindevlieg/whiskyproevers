@@ -13,6 +13,9 @@ uit notes.json alleen als dat veld in de bron nog leeg is.
 Samples van dezelfde whisky in 3 cl en 6 cl worden tot één rij samengevoegd.
 Alleen zekere matches (zelfde naam na het weghalen van de samplemaat, plus
 dezelfde ABV en leeftijd). Oude id's blijven bereikbaar via 'redirects'.
+
+Onafhankelijke bottelaars worden herkend aan een zekere treffer in naam,
+regio of opmerkingFles en als veld 'ib' meegenomen. Er wordt nooit geraden.
 """
 
 from __future__ import annotations
@@ -23,6 +26,7 @@ import json
 import re
 import sys
 import unicodedata
+from collections import Counter
 from datetime import date
 from pathlib import Path
 
@@ -589,6 +593,163 @@ def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
     return added, images
 
 
+
+# Eerste zekere match wint. Specifiekere ranges staan vóór ruimere namen.
+# Alleen woordgrenzen op ASCII-letters/cijfers; officiële series en
+# winkelexclusives worden niet als IB getagd.
+IB_RULES: list[tuple[str, str]] = [
+    # Signatory Vintage
+    (r"signatory(?:\s+vintage)?", "Signatory Vintage"),
+    (r"symington'?s?\s+choice", "Signatory Vintage"),
+    (r"spirit\s+of\s+scotland", "Signatory Vintage"),
+    # Gordon & MacPhail (niet 'Gordon' of 'Discovery' alleen)
+    (r"gordon\s*(?:&|and)\s*mac\s*phail", "Gordon & MacPhail"),
+    (r"g\s*&\s*m", "Gordon & MacPhail"),
+    (r"speymalt", "Gordon & MacPhail"),
+    (r"connoisseurs'?\s+choice", "Gordon & MacPhail"),
+    # Elixir Distillers-ranges (SMOS vóór 'Malts of Scotland')
+    (r"single\s+malts\s+of\s+scotland", "Single Malts of Scotland"),
+    (r"malts\s+of\s+scotland", "Malts of Scotland"),
+    (r"elixir\s+distillers", "Elixir Distillers"),
+    (r"the\s+whisky\s+trail", "Elixir Distillers"),
+    (r"elements\s+of\s+islay", "Elements of Islay"),
+    (r"port\s+askaig", "Port Askaig"),
+    # Douglas Laing
+    (r"douglas\s+laing", "Douglas Laing"),
+    (r"xtra\s+old\s+particular|\bxop\b", "Douglas Laing"),
+    (r"old\s+particular", "Douglas Laing"),
+    (r"directors?'?\s+cut", "Douglas Laing"),
+    (r"provenance", "Douglas Laing"),
+    # Hunter Laing
+    (r"hunter\s+laing", "Hunter Laing"),
+    (r"hepburn'?s?\s+choice", "Hunter Laing"),
+    (r"old\s+malt\s+cask", "Hunter Laing"),
+    (r"the\s+first\s+editions?", "Hunter Laing"),
+    # Cadenhead
+    (r"cadenhead'?s?", "Cadenhead"),
+    # Adelphi (alleen het woord Adelphi; niet official Ardnamurchan)
+    (r"adelphi", "Adelphi"),
+    # Boutique-y
+    (r"that\s+boutique-?y(?:\s+whisky(?:\s+co(?:mpany)?)?)?", "That Boutique-y Whisky Co"),
+    (r"boutique-?y\s+whisky", "That Boutique-y Whisky Co"),
+    # SMWS
+    (r"scotch\s+malt\s+whisky\s+society", "SMWS"),
+    (r"smws", "SMWS"),
+    # Berry Bros
+    (r"berry\s+bros(?:thers)?(?:\s*(?:&|and)\s*rudd)?", "Berry Bros & Rudd"),
+    # Blackadder + herkenbare series
+    (r"blackadder", "Blackadder"),
+    (r"peat\s+reek", "Blackadder"),
+    (r"red\s+snake", "Blackadder"),
+    (r"sherry\s+snake", "Blackadder"),
+    (r"ingelred", "Blackadder"),
+    # Murray McDavid
+    (r"murray\s*mc\s*david", "Murray McDavid"),
+    # A.D. Rattray
+    (r"a\.?\s*d\.?\s*rattray", "A.D. Rattray"),
+    # The Whisky Agency
+    (r"(?:the\s+)?whisky\s+agency", "The Whisky Agency"),
+    # Thompson Bros
+    (r"thompson\s+bros(?:thers)?", "Thompson Bros"),
+    # Archives / Whiskybase
+    (r"whiskybase\s+(?:exclusive|bottl(?:ing|ings)?)", "Whiskybase"),
+    (r"archives", "Archives"),
+    # Càrn Mòr (Morrison IB-range; niet Mac Talla)
+    (r"c[aàáä]rn[\s\-]*m[oòóö]r", "Càrn Mòr"),
+    (r"celebration\s+of\s+the\s+cask", "Càrn Mòr"),
+    # Overige herkenbare bottelaars
+    (r"infrequent\s+flyers", "Infrequent Flyers"),
+    (r"alistair\s+walker", "Infrequent Flyers"),
+    (r"lady\s+of\s+the\s+glen", "Lady of the Glen"),
+    (r"the\s+maltman", "The Maltman"),
+    (r"meadowside", "The Maltman"),
+    (r"wemyss(?:\s+malts)?", "Wemyss Malts"),
+    (r"first\s+cask", "First Cask"),
+    (r"liquid\s+treasures", "Liquid Treasures"),
+    (r"living\s+souls", "Living Souls"),
+    (r"fragrant\s+drops", "Fragrant Drops"),
+    (r"bottle\s+dreams", "Bottle Dreams"),
+    (r"watt\s+whisky", "Watt Whisky"),
+    (r"hidden\s+spirits", "Hidden Spirits"),
+    (r"north\s+star(?:\s+spirits)?", "North Star Spirits"),
+    (r"rest\s*(?:&|and)\s*be\s+thankful", "Rest & Be Thankful"),
+    (r"samaroli", "Samaroli"),
+    (r"wilson\s*(?:&|and)\s*morgan", "Wilson & Morgan"),
+    (r"james\s+eadie", "James Eadie"),
+    (r"chapter\s+7", "Chapter 7"),
+    (r"valinch\s*(?:&|and)\s*mallet", "Valinch & Mallet"),
+    (r"ferg\s*(?:&|and)\s*harris", "Ferg & Harris"),
+    (r"little\s+brown\s+dog", "Little Brown Dog"),
+    (r"carrick\s+spirits", "Carrick Spirits"),
+    (r"the\s+duchess", "The Duchess"),
+    (r"dr[aàá]m[\s\-]*m[oòó]r", "Dràm Mòr"),
+    (r"duncan\s+taylor", "Duncan Taylor"),
+    (r"battlehill", "Duncan Taylor"),
+    (r"chieftain'?s", "Chieftain's"),
+    (r"hart\s+bros(?:thers)?", "Hart Brothers"),
+    (r"the\s+single\s+cask", "The Single Cask"),
+    (r"cooper'?s?\s+choice", "Cooper's Choice"),
+    (r"finn\s+thomson", "Finn Thomson"),
+    (r"dram\s*fools?", "Dramfool"),
+    (r"the\s+independent\s+selection", "The Independent Selection"),
+    (r"the\s+ultimate(?:\s+selection)?", "The Ultimate"),
+    (r"whiskydudes", "Whiskydudes"),
+    (r"brave\s+new\s+spirits", "Brave New Spirits"),
+    (r"silent\s+ambassador", "Silent Ambassador"),
+    (r"whisky\s+is\s+the\s+limit", "Whisky Is The Limit"),
+    (r"claxton'?s", "Claxton's"),
+    (r"goldfinch", "Goldfinch"),
+    (r"uncharted\s+whisky(?:\s+company)?", "Uncharted Whisky Company"),
+    (r"the\s+whisky\s+mercenary", "The Whisky Mercenary"),
+    (r"cask\s+masters", "Cask Masters"),
+    (r"cane\s*(?:&|and)\s*grain", "Cane & Grain"),
+    (r"whiskynerds", "Whiskynerds"),
+    (r"jack\s+wiebers?", "Jack Wiebers"),
+    (r"daily\s+dram", "Daily Dram"),
+    (r"hogshead\s+(?:indie|imports?)", "Hogshead Imports"),
+    (r"artful\s+dodger", "Artful Dodger"),
+    (r"single\s+cask\s+nation", "Single Cask Nation"),
+    (r"the\s+whisky\s+jury", "The Whisky Jury"),
+    (r"sansibar", "Sansibar"),
+    (r"decadent\s+drinks", "Decadent Drinks"),
+    (r"the\s+warehouse(?:\s+distillery)?", "The Warehouse"),
+]
+
+_IB_COMPILED = [
+    (re.compile(r"(?<![A-Za-z0-9])(?:" + pat + r")(?![A-Za-z0-9])", re.I), name)
+    for pat, name in IB_RULES
+]
+
+
+def detect_ib(item: dict) -> str | None:
+    """Geef de canonieke bottelaarsnaam terug bij een zekere treffer, anders None."""
+    parts = []
+    for key in ("naam", "regio", "opmerkingFles"):
+        val = item.get(key)
+        if val:
+            parts.append(str(val))
+    if not parts:
+        return None
+    hay = " ".join(parts)
+    for rx, name in _IB_COMPILED:
+        if rx.search(hay):
+            return name
+    return None
+
+
+def apply_ib(items) -> Counter:
+    """Zet 'ib' op items met een zekere bottelaarstreffer; laat andere ongemoeid."""
+    counts: Counter = Counter()
+    for item in items:
+        bottler = detect_ib(item)
+        if bottler:
+            item["ib"] = bottler
+            counts[bottler] += 1
+        else:
+            item.pop("ib", None)
+    return counts
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(
         description="Genereer de site-data uit het tabblad Overzicht van whisky_overzicht.xlsx."
@@ -681,6 +842,15 @@ def main(argv=None):
             print("Proefnotities aangevuld: %s" % notes_added, file=sys.stderr)
 
     output.parent.mkdir(parents=True, exist_ok=True)
+
+    ib_counts = apply_ib(payload["items"])
+    if ib_counts:
+        top = ", ".join("%s %s" % (name, n) for name, n in ib_counts.most_common(8))
+        print(
+            "Onafhankelijke bottelingen: %s (%s)"
+            % (sum(ib_counts.values()), top),
+            file=sys.stderr,
+        )
 
     # Volledige payload blijft de bron voor de publicatie; data.json wordt
     # daarna de kleine manifest. Een kopie staat naast de uitvoer als

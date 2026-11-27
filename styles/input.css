@@ -1173,6 +1173,12 @@
   .chip[data-chip="denemarken"] { --chip-h: 205; --chip-s: 55%; --chip-l: 36%; }
   .chip[data-chip="belgie"] { --chip-h: 350; --chip-s: 44%; --chip-l: 38%; }
   .chip[data-chip="regio"] { --chip-h: 240; --chip-s: 8%; --chip-l: 40%; }
+  .chip[data-chip="ib"] { --chip-h: 258; --chip-s: 34%; --chip-l: 38%; }
+  a.name + .chip[data-chip="ib"],
+  .compare-head .chip[data-chip="ib"] {
+    margin-left: 0.35rem;
+    vertical-align: middle;
+  }
   .chip-flavour {
     --chip-h: 220;
     --chip-s: 28%;
