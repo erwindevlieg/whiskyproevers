@@ -275,9 +275,9 @@
 
 <script>
 /* data-build */
-const DATA_BUILD = "29ab5416c3";
-const DATA_INDEX = "data/index-29ab5416c3.json";
-const DATA_CHUNK_PREFIX = "data/d/29ab5416c3-";
+const DATA_BUILD = "f11ad0bf5a";
+const DATA_INDEX = "data/index-f11ad0bf5a.json";
+const DATA_CHUNK_PREFIX = "data/d/f11ad0bf5a-";
 const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
@@ -1040,8 +1040,13 @@ function renderDistillery(slug) {
   if (d.sampleRange) stats.push(statCard("Sampleprijs", escapeHtml(d.sampleRange), ""));
   if (d.bottleRange) stats.push(statCard("Flesprijs", escapeHtml(d.bottleRange), ""));
   const chart = distilleryChartHtml(d.items);
+  const maker = (d.items[0] && makerWebsiteFor(d.items[0])) || "";
+  const makerLink = maker
+    ? extLink(maker, "Website van de maker", d.naam)
+    : "";
   els.distDetail.innerHTML = '<div class="dist-head"><h2>' + escapeHtml(d.naam) + "</h2>"
     + (d.regio ? regioChipHtml({ regioKort: d.regio }) : "")
+    + (makerLink ? '<div class="dist-links">' + makerLink + "</div>" : "")
     + "</div>"
     + (stats.length ? '<div class="stat-row">' + stats.join("") + "</div>" : "")
     + chart;
@@ -1162,6 +1167,42 @@ let ROWS = [];
 let REDIRECTS = {};
 let listScroll = null;
 let DESCRIPTIONS = null;
+let MAKER_WEBSITES = {};
+
+function loadMakerWebsites() {
+  return fetch("data/maker-websites.json")
+    .then(res => res.ok ? res.json() : {})
+    .then(data => { MAKER_WEBSITES = data || {}; return MAKER_WEBSITES; })
+    .catch(() => { MAKER_WEBSITES = {}; return MAKER_WEBSITES; });
+}
+
+function makerWebsiteFor(r) {
+  if (r && r.makerWebsite) return r.makerWebsite;
+  const keys = [];
+  if (r && r.distillerySlug) keys.push(r.distillerySlug);
+  if (r && r.distillery) {
+    keys.push(slugify(r.distillery));
+    keys.push(slugify(String(r.distillery).replace(/^the\s+/i, "")));
+  }
+  for (const key of keys) {
+    if (key && MAKER_WEBSITES[key]) return MAKER_WEBSITES[key];
+  }
+  return "";
+}
+
+function sourceLabel(url) {
+  if (!url) return "";
+  let host = "";
+  try { host = new URL(url).hostname.replace(/^www\./, "").toLowerCase(); }
+  catch (err) { return ""; }
+  const known = {
+    "whiskysite.nl": "Whiskysite.nl",
+    "drankdozijn.nl": "Drankdozijn",
+    "whisky.nl": "Whisky.nl",
+    "masterofmalt.com": "Master of Malt"
+  };
+  return known[host] || host;
+}
 let descriptionsPromise = null;
 
 function loadDescriptions() {
@@ -2069,6 +2110,7 @@ function collectLinks(r) {
   }
   add(r.flesLink, "Fles kopen" + (r.winkel ? " bij " + r.winkel : ""), r.flesPrijs != null ? euro.format(r.flesPrijs) : null);
   add(r.tweedeLink, "Fles bij " + (r.tweedeWinkel || "tweede winkel"), r.tweedePrijs != null ? euro.format(r.tweedePrijs) : null);
+  add(makerWebsiteFor(r), "Website van de maker", r.distillery || null);
   add(r.wbLink, "Whiskybase", r.score != null ? ("Score " + scoreFmt.format(r.score)) : null);
   add(r.whiskyfunLink, "Whiskyfun", r.whiskyfunScore || null);
   add(r.distillerLink, "Distiller", r.distillerScore ? String(r.distillerScore).split("—")[0].trim() : null);
@@ -2080,9 +2122,10 @@ function descriptionBlock(r) {
   const desc = descriptionFor(r);
   if (!desc || !desc.text) return "";
   const long = desc.text.length > 320 || desc.text.split("\n").length > 6;
+  const label = sourceLabel(desc.sourceUrl) || "bron";
   const bron = desc.sourceUrl
-    ? '<a class="bron" href="' + escapeAttr(desc.sourceUrl) + '" target="_blank" rel="noopener noreferrer">bron: Whiskysite.nl</a>'
-    : '<span class="bron">bron: Whiskysite.nl</span>';
+    ? '<a class="bron" href="' + escapeAttr(desc.sourceUrl) + '" target="_blank" rel="noopener noreferrer">bron: ' + escapeHtml(label) + "</a>"
+    : (label ? '<span class="bron">bron: ' + escapeHtml(label) + "</span>" : "");
   return sectionBlock(
     "Omschrijving",
     '<div class="omschrijving' + (long ? " is-collapsed" : "") + '" id="omschrijving-text">' + escapeHtml(desc.text) + "</div>"
@@ -3103,8 +3146,8 @@ async function runSmoke() {
 
 bindEvents();
 
-fetchIndex()
-  .then(payload => {
+Promise.all([fetchIndex(), loadMakerWebsites()])
+  .then(([payload]) => {
     const items = Array.isArray(payload) ? payload : (payload.items || []);
     REDIRECTS = payload.redirects || {};
     ROWS = items.map(enrich);

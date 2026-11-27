@@ -1575,3 +1575,6 @@
     .sort-menu { right: auto; left: 0; min-width: 10.75rem; }
   }
 
+
+  .dist-links { margin-top: 0.45rem; }
+  .dist-head .ext-link { display: inline-flex; }

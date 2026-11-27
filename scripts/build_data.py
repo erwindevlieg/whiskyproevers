@@ -6,9 +6,9 @@ Het Excel-bestand blijft de bron. Persoonlijke kolommen zoals
 Lege cellen worden null; de tekst 'onbekend' blijft staan zoals in de bron.
 Er wordt niets verzonnen of aangevuld.
 
-Optioneel worden productomschrijvingen uit descriptions.json (van
-scripts/fetch_descriptions.py) als 'omschrijving', 'omschrijvingBron' en 'afbeelding'
-meegenomen.
+Optioneel worden productomschrijvingen uit descriptions.json als
+'omschrijving', 'omschrijvingBron' en 'afbeelding' meegenomen, en proefnotities
+uit notes.json alleen als dat veld in de bron nog leeg is.
 
 Samples van dezelfde whisky in 3 cl en 6 cl worden tot één rij samengevoegd.
 Alleen zekere matches (zelfde naam na het weghalen van de samplemaat, plus
@@ -530,8 +530,38 @@ def merge_sample_sizes(payload):
     }
 
 
+def merge_notes(items, notes_path: Path) -> int:
+    """Voeg letterlijke proefnotities toe, alleen als het veld nog leeg is."""
+    if not notes_path or not notes_path.is_file():
+        return 0
+    data = json.loads(notes_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        return 0
+    added = 0
+    for item in items:
+        existing = (item.get("proefnotities") or "").strip()
+        if existing and existing.lower() != "onbekend":
+            continue
+        entry = data.get(item.get("id"))
+        if not entry:
+            for alias in item.get("aliases") or []:
+                entry = data.get(alias)
+                if entry:
+                    break
+        if not entry:
+            continue
+        text = (entry.get("text") or "").strip()
+        if not text:
+            continue
+        item["proefnotities"] = text
+        if entry.get("sourceUrl"):
+            item["bronNotities"] = entry["sourceUrl"]
+        added += 1
+    return added
+
+
 def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
-    """Voeg letterlijke Whiskysite-omschrijvingen en afbeeldings-URL's toe."""
+    """Voeg letterlijke productomschrijvingen en afbeeldings-URL's toe."""
     if not descriptions_path or not descriptions_path.is_file():
         return 0, 0
     data = json.loads(descriptions_path.read_text(encoding="utf-8"))
@@ -600,6 +630,12 @@ def main(argv=None):
         default=None,
         help="Pad naar descriptions.json (standaard: naast het uitvoerbestand, indien aanwezig).",
     )
+    parser.add_argument(
+        "--notes",
+        type=Path,
+        default=None,
+        help="Pad naar notes.json (standaard: naast het uitvoerbestand, indien aanwezig).",
+    )
     args = parser.parse_args(argv)
 
     output = args.output
@@ -635,6 +671,14 @@ def main(argv=None):
             desc_path = desc_path.expanduser().resolve()
         added, images = merge_descriptions(payload["items"], desc_path)
         report = merge_sample_sizes(payload)
+        notes_path = args.notes
+        if notes_path is None:
+            notes_path = output.parent / "notes.json"
+        else:
+            notes_path = notes_path.expanduser().resolve()
+        notes_added = merge_notes(payload["items"], notes_path)
+        if notes_added:
+            print("Proefnotities aangevuld: %s" % notes_added, file=sys.stderr)
 
     output.parent.mkdir(parents=True, exist_ok=True)
 
