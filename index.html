@@ -129,6 +129,14 @@
             <button type="button" class="toggle-item" role="radio" data-value="nee" aria-checked="false">Nee</button>
           </div>
         </div>
+        <div class="toggle-field">
+          <span class="pills-label" id="botteling-label">Botteling</span>
+          <div class="toggle-group" id="bottelingGroup" role="radiogroup" aria-labelledby="botteling-label" data-filter="botteling">
+            <button type="button" class="toggle-item" role="radio" data-value="alle" aria-checked="true">Alle</button>
+            <button type="button" class="toggle-item" role="radio" data-value="distilleerderij" aria-checked="false">Distilleerderij</button>
+            <button type="button" class="toggle-item" role="radio" data-value="onafhankelijk" aria-checked="false">Onafhankelijk</button>
+          </div>
+        </div>
       </div>
 
       <div class="filter-row">
@@ -275,9 +283,9 @@
 
 <script>
 /* data-build */
-const DATA_BUILD = "29ab5416c3";
-const DATA_INDEX = "data/index-29ab5416c3.json";
-const DATA_CHUNK_PREFIX = "data/d/29ab5416c3-";
+const DATA_BUILD = "fb0fd93c4e";
+const DATA_INDEX = "data/index-fb0fd93c4e.json";
+const DATA_CHUNK_PREFIX = "data/d/fb0fd93c4e-";
 const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
@@ -414,7 +422,8 @@ function expandIndexItem(it) {
     thumb: it.t ? ("assets/thumbs/" + it.id + ".webp") : "",
     thumbBg: it.g === "c" ? "clear" : it.g === "p" ? "photo" : "",
     thumbW: it.w,
-    thumbH: it.e
+    thumbH: it.e,
+    ib: it.i || it.ib || ""
   };
   if (it.ss && it.ss.length) {
     row.samples = it.ss.map(s => ({
@@ -1040,8 +1049,13 @@ function renderDistillery(slug) {
   if (d.sampleRange) stats.push(statCard("Sampleprijs", escapeHtml(d.sampleRange), ""));
   if (d.bottleRange) stats.push(statCard("Flesprijs", escapeHtml(d.bottleRange), ""));
   const chart = distilleryChartHtml(d.items);
+  const maker = (d.items[0] && makerWebsiteFor(d.items[0])) || "";
+  const makerLink = maker
+    ? extLink(maker, "Website van de maker", d.naam)
+    : "";
   els.distDetail.innerHTML = '<div class="dist-head"><h2>' + escapeHtml(d.naam) + "</h2>"
     + (d.regio ? regioChipHtml({ regioKort: d.regio }) : "")
+    + (makerLink ? '<div class="dist-links">' + makerLink + "</div>" : "")
     + "</div>"
     + (stats.length ? '<div class="stat-row">' + stats.join("") + "</div>" : "")
     + chart;
@@ -1150,6 +1164,7 @@ const state = {
   inclOnbekend: true,
   sampleAvail: "alle",
   flesPrijsBekend: "alle",
+  botteling: "alle",
   sort: "score",
   dir: "desc",
   shown: PAGE_SIZE,
@@ -1162,6 +1177,42 @@ let ROWS = [];
 let REDIRECTS = {};
 let listScroll = null;
 let DESCRIPTIONS = null;
+let MAKER_WEBSITES = {};
+
+function loadMakerWebsites() {
+  return fetch("data/maker-websites.json")
+    .then(res => res.ok ? res.json() : {})
+    .then(data => { MAKER_WEBSITES = data || {}; return MAKER_WEBSITES; })
+    .catch(() => { MAKER_WEBSITES = {}; return MAKER_WEBSITES; });
+}
+
+function makerWebsiteFor(r) {
+  if (r && r.makerWebsite) return r.makerWebsite;
+  const keys = [];
+  if (r && r.distillerySlug) keys.push(r.distillerySlug);
+  if (r && r.distillery) {
+    keys.push(slugify(r.distillery));
+    keys.push(slugify(String(r.distillery).replace(/^the\s+/i, "")));
+  }
+  for (const key of keys) {
+    if (key && MAKER_WEBSITES[key]) return MAKER_WEBSITES[key];
+  }
+  return "";
+}
+
+function sourceLabel(url) {
+  if (!url) return "";
+  let host = "";
+  try { host = new URL(url).hostname.replace(/^www\./, "").toLowerCase(); }
+  catch (err) { return ""; }
+  const known = {
+    "whiskysite.nl": "Whiskysite.nl",
+    "drankdozijn.nl": "Drankdozijn",
+    "whisky.nl": "Whisky.nl",
+    "masterofmalt.com": "Master of Malt"
+  };
+  return known[host] || host;
+}
 let descriptionsPromise = null;
 
 function loadDescriptions() {
@@ -1273,8 +1324,9 @@ function thumbUrl(r) {
 
 function photoHtml(r, size, alt) {
   const isHero = size === "xl" || size === "lg";
-  const thumb = !isHero ? thumbUrl(r) : "";
-  const url = isHero ? (photoUrl(r) || thumbUrl(r)) : (thumb || photoUrl(r));
+  const thumb = thumbUrl(r);
+  const remote = photoUrl(r);
+  const url = isHero ? (remote || thumb) : (thumb || remote);
   const cls = ["photo", "photo-" + size];
   if (!isHero && url) cls.push(r.thumbBg === "clear" ? "is-clear" : "has-photo-bg");
   const className = cls.join(" ");
@@ -1284,7 +1336,10 @@ function photoHtml(r, size, alt) {
   const dims = !isHero && r.thumbW && r.thumbH
     ? ' width="' + r.thumbW + '" height="' + r.thumbH + '"'
     : "";
-  return '<div class="' + className + ' is-loading">'
+  const thumbData = isHero && thumb && remote && thumb !== remote
+    ? ' data-thumb="' + escapeAttr(thumb) + '"' + (r.thumbBg ? ' data-thumb-bg="' + escapeAttr(r.thumbBg) + '"' : "")
+    : "";
+  return '<div class="' + className + ' is-loading"' + thumbData + '>'
     + '<img src="' + escapeAttr(url) + '" alt="' + escapeAttr(label) + '" loading="lazy" decoding="async"' + dims + '>'
     + "</div>";
 }
@@ -1294,16 +1349,21 @@ function bindPhotos(root) {
     const box = img.parentNode;
     const done = () => box.classList.remove("is-loading");
     const fail = () => {
+      const fallback = box.getAttribute("data-thumb");
+      if (fallback && img.getAttribute("src") !== fallback) {
+        if (box.getAttribute("data-thumb-bg") === "photo") box.classList.add("has-photo-bg");
+        else if (box.getAttribute("data-thumb-bg") === "clear") box.classList.add("is-clear");
+        img.setAttribute("src", fallback);
+        return;
+      }
       box.classList.remove("is-loading");
       box.classList.add("is-empty");
       box.innerHTML = '<span class="photo-placeholder" aria-hidden="true"></span>';
     };
+    img.addEventListener("load", done, { once: true });
+    img.addEventListener("error", fail);
     if (img.complete && img.naturalWidth) done();
     else if (img.complete) fail();
-    else {
-      img.addEventListener("load", done, { once: true });
-      img.addEventListener("error", fail, { once: true });
-    }
   });
 }
 
@@ -1335,6 +1395,14 @@ function regioChipHtml(r) {
   if (!r.regioKort) return "";
   const key = REGIO_CHIP[r.regioKort] || "regio";
   return '<span class="chip chip-regio" data-chip="' + key + '">' + escapeHtml(r.regioKort) + "</span>";
+}
+
+function ibChipHtml(r, compact) {
+  if (!r.ib) return "";
+  if (compact) {
+    return '<span class="chip" data-chip="ib" title="' + escapeAttr("Onafhankelijke botteling · " + r.ib) + '">Onafhankelijk</span>';
+  }
+  return '<span class="chip" data-chip="ib">Onafhankelijke botteling · ' + escapeHtml(r.ib) + "</span>";
 }
 
 function heroTone(r) {
@@ -1499,7 +1567,7 @@ function hideHoverCard() {
 function showHoverCard(r, anchor) {
   if (!canHoverPreview() || !els.hoverCard || !r) return;
   const tags = r.flavour.slice(0, 4).map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
-  const chips = regioChipHtml(r) + vatChipsHtml(r);
+  const chips = regioChipHtml(r) + vatChipsHtml(r) + ibChipHtml(r, true);
   const vat = unknownToEmpty(r.vattype);
   els.hoverCard.innerHTML =
     '<div class="hover-top">' + photoHtml(r, "sm", "")
@@ -1664,6 +1732,7 @@ function renderCompare(ids) {
   const head = '<tr><th class="cmp-label" scope="col"></th>'
     + rows.map(r => '<th scope="col"><div class="compare-head">' + photoHtml(r, "md")
       + '<a class="name" href="' + escapeAttr(detailHref(r)) + '">' + escapeHtml(displayName(r.naam)) + "</a>"
+      + ibChipHtml(r, true)
       + compareToggleHtml(r) + "</div></th>").join("")
     + "</tr>";
   const body = fields.filter(([kind]) => kind !== "photo").map(([kind, label]) => {
@@ -1796,10 +1865,12 @@ function matches(r) {
   if (state.sampleAvail === "nee" && r.sampleBeschikbaar !== "nee") return false;
   if (state.flesPrijsBekend === "ja" && r.flesPrijs == null) return false;
   if (state.flesPrijsBekend === "nee" && r.flesPrijs != null) return false;
+  if (state.botteling === "onafhankelijk" && !r.ib) return false;
+  if (state.botteling === "distilleerderij" && r.ib) return false;
   if (state.q) {
     const hay = [
       r.naam, r.distillery, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
-      r.wbStatus, r.wbReden, r.whiskyfunScore, r.distillerScore, r.opmerkingFles,
+      r.wbStatus, r.wbReden, r.whiskyfunScore, r.distillerScore, r.opmerkingFles, r.ib,
       r.searchExtra, r.flavour.join(" "), r.vatTags.join(" ")
     ].join(" ").toLowerCase();
     if (!hay.includes(state.q)) return false;
@@ -1881,6 +1952,7 @@ function activeFilterCount() {
   if (!state.inclOnbekend) n += 1;
   if (state.sampleAvail !== "alle") n += 1;
   if (state.flesPrijsBekend !== "alle") n += 1;
+  if (state.botteling !== "alle") n += 1;
   return n;
 }
 
@@ -1927,6 +1999,7 @@ function tableRowHtml(r) {
     + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label></td>'
     + '<td class="col-photo">' + photoHtml(r, "sm", "") + "</td>"
     + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ' data-hover-id="' + escapeAttr(r.id) + '">' + escapeHtml(name) + "</a>"
+    + ibChipHtml(r, true)
     + compareToggleHtml(r) + "</td>"
     + "<td>" + (regioChipHtml(r) || (regio ? escapeHtml(regio) : "")) + "</td>"
     + "<td>" + (vatChipsHtml(r) || (vat ? '<span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>" : "")) + "</td>"
@@ -1988,7 +2061,7 @@ function cardHtml(r) {
   const tasted = !!state.tasted[id];
   const name = displayName(r.naam);
   const meta = [abvCell(r), r.inhoud ? escapeHtml(r.inhoud) : ""].filter(Boolean).join(" · ");
-  const chips = regioChipHtml(r) + vatChipsHtml(r);
+  const chips = regioChipHtml(r) + vatChipsHtml(r) + ibChipHtml(r, true);
   return '<article class="whisky-card' + (tasted ? " tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
     + '<label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
     + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label>'
@@ -2069,6 +2142,7 @@ function collectLinks(r) {
   }
   add(r.flesLink, "Fles kopen" + (r.winkel ? " bij " + r.winkel : ""), r.flesPrijs != null ? euro.format(r.flesPrijs) : null);
   add(r.tweedeLink, "Fles bij " + (r.tweedeWinkel || "tweede winkel"), r.tweedePrijs != null ? euro.format(r.tweedePrijs) : null);
+  add(makerWebsiteFor(r), "Website van de maker", r.distillery || null);
   add(r.wbLink, "Whiskybase", r.score != null ? ("Score " + scoreFmt.format(r.score)) : null);
   add(r.whiskyfunLink, "Whiskyfun", r.whiskyfunScore || null);
   add(r.distillerLink, "Distiller", r.distillerScore ? String(r.distillerScore).split("—")[0].trim() : null);
@@ -2080,9 +2154,10 @@ function descriptionBlock(r) {
   const desc = descriptionFor(r);
   if (!desc || !desc.text) return "";
   const long = desc.text.length > 320 || desc.text.split("\n").length > 6;
+  const label = sourceLabel(desc.sourceUrl) || "bron";
   const bron = desc.sourceUrl
-    ? '<a class="bron" href="' + escapeAttr(desc.sourceUrl) + '" target="_blank" rel="noopener noreferrer">bron: Whiskysite.nl</a>'
-    : '<span class="bron">bron: Whiskysite.nl</span>';
+    ? '<a class="bron" href="' + escapeAttr(desc.sourceUrl) + '" target="_blank" rel="noopener noreferrer">bron: ' + escapeHtml(label) + "</a>"
+    : (label ? '<span class="bron">bron: ' + escapeHtml(label) + "</span>" : "");
   return sectionBlock(
     "Omschrijving",
     '<div class="omschrijving' + (long ? " is-collapsed" : "") + '" id="omschrijving-text">' + escapeHtml(desc.text) + "</div>"
@@ -2234,7 +2309,7 @@ function renderDetail(r) {
     ["Opmerking fles", knownText(r.opmerkingFles)]
   ]);
 
-  const chips = regioChipHtml(r) + vatChipsHtml(r);
+  const chips = regioChipHtml(r) + vatChipsHtml(r) + ibChipHtml(r, false);
   const scoreHero = r.score != null
     ? '<div class="hero-side"><div class="hero-score-label">Whiskybase</div>'
       + '<div class="hero-score">' + escapeHtml(scoreFmt.format(r.score)) + "</div>"
@@ -2439,6 +2514,7 @@ function serializeFilters() {
   if (!state.inclOnbekend) p.set("onbekend", "0");
   if (state.sampleAvail !== "alle") p.set("sample", state.sampleAvail);
   if (state.flesPrijsBekend !== "alle") p.set("fles", state.flesPrijsBekend);
+  if (state.botteling !== "alle") p.set("botteling", state.botteling);
   if (state.sort !== "score" || state.dir !== "desc") {
     p.set("sort", state.sort);
     p.set("dir", state.dir);
@@ -2486,6 +2562,8 @@ function applyFilterQuery(query) {
   state.sampleAvail = sample === "ja" || sample === "nee" ? sample : "alle";
   const fles = p.get("fles");
   state.flesPrijsBekend = fles === "ja" || fles === "nee" ? fles : "alle";
+  const botteling = p.get("botteling");
+  state.botteling = botteling === "distilleerderij" || botteling === "onafhankelijk" ? botteling : "alle";
   const sort = p.get("sort") || "score";
   state.sort = SORT_LABELS[sort] ? sort : "score";
   const dir = p.get("dir");
@@ -2604,6 +2682,7 @@ function resetFilters() {
   state.inclOnbekend = true;
   state.sampleAvail = "alle";
   state.flesPrijsBekend = "alle";
+  state.botteling = "alle";
   syncFormFromState();
   render(true);
 }
@@ -3103,8 +3182,8 @@ async function runSmoke() {
 
 bindEvents();
 
-fetchIndex()
-  .then(payload => {
+Promise.all([fetchIndex(), loadMakerWebsites()])
+  .then(([payload]) => {
     const items = Array.isArray(payload) ? payload : (payload.items || []);
     REDIRECTS = payload.redirects || {};
     ROWS = items.map(enrich);
