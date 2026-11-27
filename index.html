@@ -283,9 +283,9 @@
 
 <script>
 /* data-build */
-const DATA_BUILD = "cc45b08f41";
-const DATA_INDEX = "data/index-cc45b08f41.json";
-const DATA_CHUNK_PREFIX = "data/d/cc45b08f41-";
+const DATA_BUILD = "fb0fd93c4e";
+const DATA_INDEX = "data/index-fb0fd93c4e.json";
+const DATA_CHUNK_PREFIX = "data/d/fb0fd93c4e-";
 const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
@@ -1324,8 +1324,9 @@ function thumbUrl(r) {
 
 function photoHtml(r, size, alt) {
   const isHero = size === "xl" || size === "lg";
-  const thumb = !isHero ? thumbUrl(r) : "";
-  const url = isHero ? (photoUrl(r) || thumbUrl(r)) : (thumb || photoUrl(r));
+  const thumb = thumbUrl(r);
+  const remote = photoUrl(r);
+  const url = isHero ? (remote || thumb) : (thumb || remote);
   const cls = ["photo", "photo-" + size];
   if (!isHero && url) cls.push(r.thumbBg === "clear" ? "is-clear" : "has-photo-bg");
   const className = cls.join(" ");
@@ -1335,7 +1336,10 @@ function photoHtml(r, size, alt) {
   const dims = !isHero && r.thumbW && r.thumbH
     ? ' width="' + r.thumbW + '" height="' + r.thumbH + '"'
     : "";
-  return '<div class="' + className + ' is-loading">'
+  const thumbData = isHero && thumb && remote && thumb !== remote
+    ? ' data-thumb="' + escapeAttr(thumb) + '"' + (r.thumbBg ? ' data-thumb-bg="' + escapeAttr(r.thumbBg) + '"' : "")
+    : "";
+  return '<div class="' + className + ' is-loading"' + thumbData + '>'
     + '<img src="' + escapeAttr(url) + '" alt="' + escapeAttr(label) + '" loading="lazy" decoding="async"' + dims + '>'
     + "</div>";
 }
@@ -1345,16 +1349,21 @@ function bindPhotos(root) {
     const box = img.parentNode;
     const done = () => box.classList.remove("is-loading");
     const fail = () => {
+      const fallback = box.getAttribute("data-thumb");
+      if (fallback && img.getAttribute("src") !== fallback) {
+        if (box.getAttribute("data-thumb-bg") === "photo") box.classList.add("has-photo-bg");
+        else if (box.getAttribute("data-thumb-bg") === "clear") box.classList.add("is-clear");
+        img.setAttribute("src", fallback);
+        return;
+      }
       box.classList.remove("is-loading");
       box.classList.add("is-empty");
       box.innerHTML = '<span class="photo-placeholder" aria-hidden="true"></span>';
     };
+    img.addEventListener("load", done, { once: true });
+    img.addEventListener("error", fail);
     if (img.complete && img.naturalWidth) done();
     else if (img.complete) fail();
-    else {
-      img.addEventListener("load", done, { once: true });
-      img.addEventListener("error", fail, { once: true });
-    }
   });
 }
 

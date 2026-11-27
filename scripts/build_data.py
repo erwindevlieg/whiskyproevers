@@ -832,6 +832,9 @@ def main(argv=None):
             desc_path = desc_path.expanduser().resolve()
         added, images = merge_descriptions(payload["items"], desc_path)
         report = merge_sample_sizes(payload)
+        # Na het samenvoegen van 3/6 cl-rijen heeft het nieuwe id soms
+        # pas de foto/omschrijving in descriptions.json.
+        added, images = merge_descriptions(payload["items"], desc_path)
         notes_path = args.notes
         if notes_path is None:
             notes_path = output.parent / "notes.json"
