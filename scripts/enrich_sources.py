@@ -168,6 +168,7 @@ SOURCE_LABELS = {
     "whiskyxl.nl": "WhiskyXL",
     "melgers.nl": "Melgers",
     "dramtime.nl": "Dramtime.nl",
+    "gall.nl": "Gall & Gall",
 }
 
 
