@@ -629,6 +629,102 @@ def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
 
 
 
+def _price_candidates(item: dict) -> list[dict]:
+    """Bestaande winkelprijzen van een rij (cheapest, tweede, flesMeer) als losse regels."""
+    out = []
+    if item.get("flesPrijs") is not None:
+        out.append({
+            "winkel": item.get("winkel"),
+            "prijs": item["flesPrijs"],
+            "link": item.get("flesLink"),
+            "voorraad": item.get("opVoorraad"),
+            "gecontroleerd": item.get("gecontroleerdOp"),
+        })
+    if item.get("tweedePrijs") is not None:
+        out.append({
+            "winkel": item.get("tweedeWinkel"),
+            "prijs": item["tweedePrijs"],
+            "link": item.get("tweedeLink"),
+        })
+    for extra in item.get("flesMeer") or []:
+        if extra.get("prijs") is not None:
+            out.append(dict(extra))
+    return out
+
+
+def merge_flesprijzen(items, prices_path: Path) -> dict:
+    """Voeg winkelprijzen uit prijzen.json toe aan de bestaande flesprijs.
+
+    De laagste leverbare prijs wordt flesPrijs (met winkel en link), de
+    volgende tweedePrijs en de rest flesMeer. Een nieuwe prijs van dezelfde
+    winkel vervangt de oude. Prijzen met een andere flesmaat of zonder link
+    tellen niet mee. De datum waarop de prijs is gecontroleerd staat erbij.
+    """
+    stats = {"voor": 0, "na": 0, "nieuw": 0, "lager": 0, "prijzen": Counter()}
+    if not prices_path or not prices_path.is_file():
+        return stats
+    data = json.loads(prices_path.read_text(encoding="utf-8")).get("items") or {}
+    stats["voor"] = sum(1 for it in items if it.get("flesPrijs") is not None)
+    for item in items:
+        lines = data.get(item.get("id"))
+        if not lines:
+            for alias in item.get("aliases") or []:
+                lines = data.get(alias)
+                if lines:
+                    break
+        if not lines:
+            continue
+        old_price = item.get("flesPrijs")
+        size = item.get("flesGrootte")
+        fresh = []
+        for line in lines:
+            if line.get("prijs") is None or not line.get("link") or not line.get("winkel"):
+                continue
+            if size and line.get("grootte") and line["grootte"] != size:
+                continue
+            fresh.append({k: line.get(k) for k in ("winkel", "prijs", "link", "voorraad", "gecontroleerd", "grootte")})
+        if not fresh:
+            continue
+        fresh_shops = {(l["winkel"] or "").casefold() for l in fresh}
+        kept = [
+            c for c in _price_candidates(item)
+            if (c.get("winkel") or "").casefold() not in fresh_shops
+        ]
+        allc = kept + fresh
+        # Leverbaar eerst, dan laagste prijs; bij gelijke prijs blijft de bestaande staan.
+        allc.sort(key=lambda c: (c.get("voorraad") == "nee", c["prijs"]))
+        best = allc[0]
+        item["flesPrijs"] = best["prijs"]
+        item["winkel"] = best["winkel"]
+        item["flesLink"] = best.get("link")
+        item["opVoorraad"] = best.get("voorraad") or item.get("opVoorraad")
+        item["gecontroleerdOp"] = best.get("gecontroleerd") or item.get("gecontroleerdOp")
+        if not item.get("flesGrootte"):
+            item["flesGrootte"] = best.get("grootte") or "70 cl"
+        for key in ("tweedeWinkel", "tweedePrijs", "tweedeLink"):
+            item.pop(key, None)
+        item.pop("flesMeer", None)
+        if len(allc) > 1:
+            second = allc[1]
+            item["tweedeWinkel"] = second["winkel"]
+            item["tweedePrijs"] = second["prijs"]
+            if second.get("link"):
+                item["tweedeLink"] = second["link"]
+        if len(allc) > 2:
+            item["flesMeer"] = [
+                {"winkel": c["winkel"], "prijs": c["prijs"], **({"link": c["link"]} if c.get("link") else {})}
+                for c in allc[2:]
+            ]
+        if old_price is None:
+            stats["nieuw"] += 1
+        elif best["prijs"] < old_price:
+            stats["lager"] += 1
+        for l in fresh:
+            stats["prijzen"][l["winkel"]] += 1
+    stats["na"] = sum(1 for it in items if it.get("flesPrijs") is not None)
+    return stats
+
+
 # Eerste zekere match wint. Specifiekere ranges staan vóór ruimere namen.
 # Alleen woordgrenzen op ASCII-letters/cijfers; officiële series en
 # winkelexclusives worden niet als IB getagd.
@@ -884,6 +980,20 @@ def main(argv=None):
             print("Feiten aangevuld: %s velden" % facts_filled, file=sys.stderr)
 
     output.parent.mkdir(parents=True, exist_ok=True)
+
+    price_stats = merge_flesprijzen(payload["items"], output.parent / "prijzen.json")
+    if price_stats["na"]:
+        print(
+            "Flesprijzen: %s → %s whisky's met prijs, %s nieuw, %s lager (%s)"
+            % (
+                price_stats["voor"],
+                price_stats["na"],
+                price_stats["nieuw"],
+                price_stats["lager"],
+                ", ".join("%s %s" % kv for kv in price_stats["prijzen"].most_common()),
+            ),
+            file=sys.stderr,
+        )
 
     ib_counts = apply_ib(payload["items"])
     if ib_counts:

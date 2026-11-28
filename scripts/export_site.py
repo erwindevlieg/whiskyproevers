@@ -35,6 +35,7 @@ DETAIL_FIELDS = (
     "tweedeLink",
     "tweedePrijs",
     "tweedeWinkel",
+    "flesMeer",
     "opmerkingFles",
     "wbId",
     "wbLink",

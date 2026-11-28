@@ -2220,6 +2220,7 @@ function collectLinks(r) {
   }
   add(r.flesLink, "Fles kopen" + (r.winkel ? " bij " + r.winkel : ""), r.flesPrijs != null ? euro.format(r.flesPrijs) : null);
   add(r.tweedeLink, "Fles bij " + (r.tweedeWinkel || "tweede winkel"), r.tweedePrijs != null ? euro.format(r.tweedePrijs) : null);
+  (r.flesMeer || []).forEach(m => add(m.link, "Fles bij " + (m.winkel || "andere winkel"), m.prijs != null ? euro.format(m.prijs) : null));
   add(makerWebsiteFor(r), "Website van de maker", r.distillery || null);
   add(r.wbLink, "Whiskybase", r.score != null ? ("Score " + scoreFmt.format(r.score)) : null);
   add(r.whiskyfunLink, "Whiskyfun", r.whiskyfunScore || null);
@@ -2376,6 +2377,10 @@ function renderDetail(r) {
     ["Winkel", knownText(r.winkel)],
     ["Voorraad", knownText(voorraadLabel(r.opVoorraad) || r.opVoorraad)],
     ["Tweede winkel", tweede],
+    ...(r.flesMeer || []).map((m, i) => [
+      ["Derde", "Vierde", "Vijfde", "Zesde"][i] ? ["Derde", "Vierde", "Vijfde", "Zesde"][i] + " winkel" : "Andere winkel",
+      escapeHtml((m.winkel || "Winkel") + (m.prijs != null ? " · " + euro.format(m.prijs) : ""))
+    ]),
     ["Gecontroleerd op", knownText(r.gecontroleerdOp)]
   ]);
 
