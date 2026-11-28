@@ -1584,3 +1584,146 @@
 
   .dist-links { margin-top: 0.45rem; }
   .dist-head .ext-link { display: inline-flex; }
+
+
+  .filter-top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .range-dual {
+    position: relative;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+  }
+  .range-dual-rail {
+    position: absolute;
+    left: 0; right: 0;
+    height: 0.25rem;
+    border-radius: 999px;
+    background: hsl(var(--muted));
+    pointer-events: none;
+  }
+  .range-dual-fill {
+    position: absolute;
+    top: 0; bottom: 0;
+    border-radius: 999px;
+    background: hsl(var(--primary));
+  }
+  .range-dual input[type="range"] {
+    position: absolute;
+    left: 0; right: 0;
+    width: 100%;
+    margin: 0;
+    background: none;
+    pointer-events: none;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 1.25rem;
+  }
+  .range-dual input[type="range"]::-webkit-slider-thumb {
+    pointer-events: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 999px;
+    border: 2px solid hsl(var(--background));
+    background: hsl(var(--primary));
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.4);
+    cursor: pointer;
+  }
+  .range-dual input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 999px;
+    border: 2px solid hsl(var(--background));
+    background: hsl(var(--primary));
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.4);
+    cursor: pointer;
+  }
+  .range-dual input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 0.25rem;
+  }
+  .range-dual input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 0.25rem;
+    border: 0;
+  }
+
+  .tags-filter { min-width: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .tag-search {
+    width: 100%;
+    height: 2rem;
+    border: 1px solid hsl(var(--input));
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0 0.65rem;
+    font: inherit;
+    font-size: 0.8125rem;
+  }
+  .tag-search:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring) / 0.4); }
+  .col-tags .chip { margin: 0.1rem 0.15rem 0.1rem 0; }
+
+  .region-map {
+    margin: 0 0 1.1rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    background: hsl(var(--card));
+    overflow: hidden;
+    min-height: 14rem;
+  }
+  .region-map-mini {
+    margin: 0.85rem 0 1rem;
+    min-height: 8.5rem;
+    max-width: 22rem;
+  }
+  .region-map svg { display: block; width: 100%; height: auto; }
+  .region-map .rm-region {
+    fill: var(--rm-fill, hsl(var(--muted)));
+    stroke: hsl(var(--muted-foreground) / 0.45);
+    stroke-width: 0.8;
+    vector-effect: non-scaling-stroke;
+    transition: fill 0.15s ease, stroke 0.15s ease;
+  }
+  .region-map .rm-region.is-active {
+    --rm-fill: hsl(var(--primary));
+    stroke: hsl(var(--primary));
+    stroke-width: 1.4;
+  }
+  .region-map .rm-region.is-empty {
+    --rm-fill: hsl(var(--muted) / 0.7);
+  }
+  .region-map .rm-region[data-count]:not(.is-empty) { cursor: pointer; }
+  .region-map .rm-region[data-count]:not(.is-empty):hover {
+    --rm-fill: hsl(var(--primary) / 0.92);
+  }
+  .region-map .rm-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(11rem, 0.85fr);
+    gap: 0.15rem;
+  }
+  .region-map .rm-world {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+    padding: 0.55rem;
+    align-content: start;
+  }
+  .region-map .rm-world > div {
+    border: 1px solid hsl(var(--border));
+    border-radius: calc(var(--radius) - 2px);
+    background: hsl(var(--background));
+    overflow: hidden;
+  }
+  .region-map .rm-world svg { max-height: 6.5rem; }
+  .dark .region-map .rm-region {
+    stroke: hsl(var(--muted-foreground) / 0.55);
+  }
+
+  @media (max-width: 760px) {
+    .filter-top { grid-template-columns: 1fr; }
+    .region-map .rm-panel { grid-template-columns: 1fr; }
+    .region-map-mini { max-width: none; }
+  }
