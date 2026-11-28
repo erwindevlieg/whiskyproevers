@@ -297,9 +297,9 @@
 
 <script>
 /* data-build */
-const DATA_BUILD = "6e3324f7c6";
-const DATA_INDEX = "data/index-6e3324f7c6.json";
-const DATA_CHUNK_PREFIX = "data/d/6e3324f7c6-";
+const DATA_BUILD = "abfe2dcf83";
+const DATA_INDEX = "data/index-abfe2dcf83.json";
+const DATA_CHUNK_PREFIX = "data/d/abfe2dcf83-";
 const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
@@ -2296,6 +2296,23 @@ function statCard(label, value, meta) {
     + "</div>";
 }
 
+function stubFactLines(r) {
+  const t = r.stubFeiten;
+  if (!t) return [];
+  return String(t).split(/\n+/).map(s => s.trim()).filter(Boolean);
+}
+function stubKind(line) {
+  const peat = /\b(peat|peated|turf|geturfd|rokerig|smoke|smoky)\b/i.test(line);
+  const cask = /\b(cask|vat|matured|gerijpt|oak|eik|sherry|oloroso|bourbon|port|wijn|wine|finish|hout)\b/i.test(line);
+  if (peat && !cask) return "Rook";
+  if (cask) return "Vat";
+  return "Kenmerk";
+}
+function withBron(html, url) {
+  if (!html || !url || !isUrl(url)) return html;
+  const label = sourceLabel(url) || "bron";
+  return html + ' <a class="bron" href="' + escapeAttr(url) + '" target="_blank" rel="noopener noreferrer">bron: ' + escapeHtml(label) + "</a>";
+}
 function kenmerkValue(r, key) {
   const k = r.kenmerken && r.kenmerken[key];
   return k ? k.w : null;
@@ -2333,6 +2350,11 @@ function kenmerkenHtml(r) {
     ["Vatsoort", kenmerkValue(r, "vatSoort") ? kenmerkFact(r, "vatSoort", kenmerkValue(r, "vatSoort").join(", ")) : ""],
     ["Rijping", rijping ? kenmerkFact(r, "finishType", rijping) : ""]
   ];
+  const vattype = (r.vattype || "").trim();
+  stubFactLines(r).forEach(line => {
+    if (line === vattype) return;
+    items.push([stubKind(line), withBron(escapeHtml(line), r.stubBron)]);
+  });
   return factsHtml(items);
 }
 
@@ -2381,7 +2403,7 @@ function renderDetail(r) {
   const overzichtSpecs = factsHtml([
     ["Distilleerderij", distLink],
     ["Regio", knownText(r.regio)],
-    ["Vattype", knownText(r.vattype)],
+    ["Vattype", (stubFactLines(r).includes((r.vattype || "").trim()) ? withBron(knownText(r.vattype), r.stubBron) : knownText(r.vattype))],
     ["Leeftijd", r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : ""],
     ["Rook", knownText(r.rook)],
     ["NCF", knownText(ncfLabel(r.ncf) || r.ncf)],

@@ -250,7 +250,7 @@ def apply_all(repo: Path, write_facts: bool = True) -> dict:
             prev = descriptions.get(item["id"]) or {}
             same_src = (prev.get("sourceUrl") or "") == url
             if not es.is_useful_description(existing_desc):
-                if es.maybe_add_description(descriptions, item["id"], page["description"], url, stats):
+                if es.maybe_add_description(descriptions, item["id"], page["description"], url, stats, item.get("naam")):
                     report["added_desc"].append({"id": rec["id"], "naam": item["naam"], "url": url})
             elif same_src and len(page["description"]) > len(existing_desc) + 40:
                 prev = dict(prev)

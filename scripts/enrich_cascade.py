@@ -113,6 +113,30 @@ def dg_page_texts(repo: Path) -> dict[str, list[tuple[str, str]]]:
     return out
 
 
+
+def facts_from_stubs(repo: Path, descriptions: dict, items: list, stats: Counter) -> None:
+    """Vul lege feiten (vattype) uit bewaarde Whiskysite-stubregels; bestaande waarden blijven."""
+    items_by_id = {it["id"]: it for it in items}
+    facts = es.load_descriptions(repo / "facts.json")
+    changed = False
+    for iid, entry in descriptions.items():
+        stub = (entry.get("stubText") or "").strip()
+        if not stub:
+            continue
+        item = items_by_id.get(iid) or {}
+        vat_lines = [ln for ln in stub.split("\n") if src.stub_line_kind(ln) == "Vat"]
+        vat_empty = not item.get("vattype") or str(item.get("vattype")).lower().startswith("onbekend")
+        fact = dict(facts.get(iid) or {})
+        if vat_lines and vat_empty and not fact.get("vattype"):
+            fact["vattype"] = "\n".join(vat_lines)
+            if not fact.get("sourceUrl"):
+                fact["sourceUrl"] = entry.get("stubSourceUrl") or ""
+            facts[iid] = fact
+            stats["stub_vattype"] += 1
+            changed = True
+    if changed:
+        es.save_json(repo / "facts.json", facts)
+
 def build_kenmerken(repo: Path, stats: Counter) -> dict:
     items = es.load_items(repo)
     items_by_id = {it["id"]: it for it in items}
@@ -128,6 +152,8 @@ def build_kenmerken(repo: Path, stats: Counter) -> dict:
         if vat and not str(vat).lower().startswith("onbekend"):
             texts.append(("vattype", str(vat)))
         entry = descriptions.get(iid) or {}
+        if entry.get("stubText"):
+            texts.append((entry.get("stubSourceUrl") or "whiskysite", entry["stubText"]))
         if entry.get("text"):
             texts.append((entry.get("sourceUrl") or "omschrijving", entry["text"]))
         elif item.get("omschrijving"):
@@ -178,6 +204,7 @@ def main(argv=None) -> int:
             run_stage_fetched(repo, stats)
         # whiskysite en maker: bestaande waarden blijven staan.
     format_all(repo, stats)
+    facts_from_stubs(repo, es.load_descriptions(repo / "descriptions.json"), es.load_items(repo), stats)
     kenmerken = build_kenmerken(repo, stats)
     es.save_json(repo / "kenmerken.json", kenmerken)
     print("Kenmerken: %s whisky's" % len(kenmerken), file=sys.stderr)

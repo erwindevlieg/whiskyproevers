@@ -616,7 +616,21 @@ def save_json(path: Path, data) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def maybe_add_description(descriptions: dict, item_id: str, text: str, url: str, stats: Counter) -> bool:
+def preserve_stub_from(prev: dict, name: str | None = None) -> dict:
+    """Bewaar kenmerkregels uit een korte stub van een hogere bron (vaak Whiskysite)."""
+    if prev.get("stubText"):
+        return {"stubText": prev["stubText"], "stubSourceUrl": prev.get("stubSourceUrl") or prev.get("sourceUrl") or ""}
+    prev_text = (prev.get("text") or "").strip()
+    prev_url = prev.get("sourceUrl") or ""
+    if not prev_text or is_useful_description(prev_text):
+        return {}
+    facts = src.stub_fact_lines(prev_text, name)
+    if not facts:
+        return {}
+    return {"stubText": facts, "stubSourceUrl": prev_url}
+
+
+def maybe_add_description(descriptions: dict, item_id: str, text: str, url: str, stats: Counter, name: str | None = None) -> bool:
     text = src.format_description(strip_boilerplate(text))
     if not is_useful_description(text):
         stats["rejected_quality"] += 1
@@ -626,6 +640,10 @@ def maybe_add_description(descriptions: dict, item_id: str, text: str, url: str,
         stats["already_had"] += 1
         return False
     entry = dict(prev)
+    stub = preserve_stub_from(prev, name)
+    if stub:
+        entry.update(stub)
+        stats["stub_bewaard"] += 1
     entry["text"] = text
     entry["sourceUrl"] = url
     descriptions[item_id] = entry
@@ -713,7 +731,7 @@ def apply_shopcache(items: list[dict], descriptions: dict, stats: Counter) -> No
                 # Als de titel te ver afwijkt, slaan we over.
                 stats["shop_title_mismatch"] += 1
                 continue
-            maybe_add_description(descriptions, item["id"], desc, url, stats)
+            maybe_add_description(descriptions, item["id"], desc, url, stats, item.get("naam"))
 
 
 def slug_name_from_url(url: str) -> str:
@@ -859,7 +877,7 @@ def fetch_whisky_nl(matches: dict, descriptions: dict, stats: Counter, delay: fl
         if not confident_match(rec["naam"], label, None):
             stats["wnl_mismatch"] += 1
             continue
-        maybe_add_description(descriptions, item_id, desc, url, stats)
+        maybe_add_description(descriptions, item_id, desc, url, stats, rec.get("naam"))
         if index == 1 or index % 25 == 0 or index == len(items_by_id):
             print(
                 "whisky.nl %s/%s  nieuw=%s  cache=%s  toegevoegd bron Whisky.nl=%s"
@@ -1070,7 +1088,7 @@ def apply_fetched_markdown(items: list[dict], descriptions: dict, notes: dict, s
             stats["fetched_no_title"] += 1
             continue
         if parsed.get("description"):
-            maybe_add_description(descriptions, item["id"], parsed["description"], url, stats)
+            maybe_add_description(descriptions, item["id"], parsed["description"], url, stats, item.get("naam"))
         if parsed.get("notes"):
             maybe_add_notes(notes, item, parsed["notes"], url, stats)
 

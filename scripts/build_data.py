@@ -697,7 +697,9 @@ def derive_price_value(items) -> Counter:
 
 def _field_empty(item: dict, field: str) -> bool:
     val = item.get(field)
-    return val is None or val == ""
+    if val is None or val == "":
+        return True
+    return isinstance(val, str) and val.strip().lower().startswith("onbekend")
 
 
 def merge_facts(items, facts_path: Path) -> int:
@@ -752,6 +754,11 @@ def merge_descriptions(items, descriptions_path: Path) -> tuple[int, int]:
             if entry.get("sourceUrl"):
                 item["omschrijvingBron"] = entry["sourceUrl"]
             added += 1
+        stub = (entry.get("stubText") or "").strip()
+        if stub:
+            item["stubFeiten"] = stub
+            if entry.get("stubSourceUrl"):
+                item["stubBron"] = entry["stubSourceUrl"]
         image = (entry.get("image") or "").strip()
         if image.startswith("https://"):
             item["afbeelding"] = image
@@ -1142,6 +1149,31 @@ def main(argv=None):
             print("Feiten aangevuld: %s velden" % facts_filled, file=sys.stderr)
 
     output.parent.mkdir(parents=True, exist_ok=True)
+
+    from export_site import prepare_catalog
+    catalog = prepare_catalog(payload["items"])
+    payload["items"] = catalog["items"]
+    payload["count"] = len(catalog["items"])
+    if catalog["redirects"]:
+        redirects = dict(payload.get("redirects") or {})
+        redirects.update(catalog["redirects"])
+        payload["redirects"] = redirects
+    if catalog["verwijderd"]:
+        print(
+            "Geen whisky (niet geëxporteerd): %s"
+            % len(catalog["verwijderd"]),
+            file=sys.stderr,
+        )
+        for row in catalog["verwijderd"]:
+            print("  - %s [%s]" % (row["naam"], row["reden"]), file=sys.stderr)
+    if catalog["omgezet"]:
+        print("Als fles opgenomen (geen sample): %s" % len(catalog["omgezet"]), file=sys.stderr)
+        for row in catalog["omgezet"]:
+            print(
+                "  - %s → %s, %s €%s"
+                % (row["naam"], row["naar"], row["flesGrootte"], row["flesPrijs"]),
+                file=sys.stderr,
+            )
 
     price_stats = merge_flesprijzen(payload["items"], output.parent / "prijzen.json")
     if price_stats["na"]:

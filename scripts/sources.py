@@ -18,6 +18,11 @@ Regels
   link komen uit het bestaande overzicht.
 - Teksten worden letterlijk overgenomen. `format_description` verandert alleen
   witruimte en alinea-indeling, nooit woorden.
+- Als een korte stub van een hogere bron (vaak Whiskysite) wordt vervangen door
+  een langere omschrijving van een lagere bron, blijven de kenmerkregels uit
+  die stub bewaard (zonder maat/ABV-regel en zonder winkelmeldingen) als feit
+  met die bron. Bij een tegenstrijdig vat wint het Whiskysite-feit; vattags
+  komen dan niet uit de vervangende tekst.
 """
 from __future__ import annotations
 
@@ -281,3 +286,69 @@ def cask_tags_from_text(text: str) -> list[str]:
 
 def clean_inline(text: str) -> str:
     return re.sub(r"\s+", " ", _html.unescape(text or "")).strip()
+
+# --------------------------------------------------------------------------
+# Kenmerkregels uit een korte stub die door een langere omschrijving is vervangen
+# --------------------------------------------------------------------------
+
+# Alleen maat en sterkte, eventueel samen op één regel ("0,06 ltr 40%", "46% 0,06 ltr").
+_MEASURE_TOKEN_RE = re.compile(
+    r"(?i)\b\d+(?:[.,]\d+)?\s*(?:ltr|l|cl|ml)\.?\b|\b\d+(?:[.,]\d+)?\s*%"
+)
+_SHOP_NOTICE_RE = re.compile(
+    r"(?i)\bwordt\b.*\bverzonden\b"
+    r"|\bmax\.?\s*\d+\s*fles(?:sen)?\s+per\s+persoon"
+    r"|\bper\s+persoon\b"
+    r"|\bop\s*=\s*op\b"
+    r"|\btijdelijk\s+uitverkocht\b"
+    r"|\bbeperkt\s+aantal\s+per\s+(?:klant|persoon)"
+    r"|\bniet\s+op\s+voorraad\b"
+    r"|\bverwacht\s+(?:op|in|vanaf)\b"
+)
+_CASK_FACT_RE = re.compile(
+    r"(?i)\b(?:cask|vat(?:en|type)?|matured?|gerijpt|rijping|oak|eik(?:en|enhout)?"
+    r"|sherry|oloroso|amontillado|manzanilla|\bpx\b|pedro|bourbon|port|wijn|wine"
+    r"|finish|hout)\b"
+)
+_PEAT_FACT_RE = re.compile(r"(?i)\b(?:peat(?:ed)?|turf|geturfd|ongeturfd|rokerig|smoke|smoky)\b")
+
+
+def is_measure_or_abv_line(line: str) -> bool:
+    rest = _MEASURE_TOKEN_RE.sub(" ", line or "")
+    return not re.sub(r"[\s.,;:/\\-]+", "", rest)
+
+
+def is_shop_notice(line: str) -> bool:
+    return bool(_SHOP_NOTICE_RE.search(line or ""))
+
+
+def _name_key(text: str) -> str:
+    t = _MEASURE_TOKEN_RE.sub(" ", text or "")
+    t = re.sub(r"(?i)\b(?:cl\s+)?samples?\b", " ", t)
+    return re.sub(r"[^a-z0-9]+", " ", t.casefold()).strip()
+
+
+def stub_fact_lines(text: str, name: str | None = None) -> str:
+    """Houd kenmerkregels over uit een stub: geen maat/ABV-regel, geen winkelmelding, geen herhaalde naam."""
+    if not text:
+        return ""
+    name_key = _name_key(name) if name else ""
+    kept: list[str] = []
+    for raw in re.split(r"\n+", format_description(text) or text):
+        line = re.sub(r"\s+", " ", raw).strip(" .")
+        if not line or is_measure_or_abv_line(line) or is_shop_notice(line):
+            continue
+        if name_key and _name_key(line) == name_key:
+            continue
+        if line not in kept:
+            kept.append(line)
+    return "\n".join(kept)
+
+
+def stub_line_kind(line: str) -> str:
+    """Kort label voor weergave: Vat, Rook of Kenmerk."""
+    if _PEAT_FACT_RE.search(line or "") and not _CASK_FACT_RE.search(line or ""):
+        return "Rook"
+    if _CASK_FACT_RE.search(line or ""):
+        return "Vat"
+    return "Kenmerk"

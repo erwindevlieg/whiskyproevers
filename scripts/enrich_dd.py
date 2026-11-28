@@ -106,7 +106,7 @@ def apply_all(repo: Path, write_facts: bool = True) -> dict:
             continue
 
         if page.get("description"):
-            if es.maybe_add_description(descriptions, item_id, page["description"], url, stats):
+            if es.maybe_add_description(descriptions, item_id, page["description"], url, stats, item.get("naam")):
                 report["added_desc"].append({"id": item_id, "naam": item.get("naam"), "url": url})
 
         if page.get("notes"):

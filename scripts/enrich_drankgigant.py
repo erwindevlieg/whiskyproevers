@@ -225,7 +225,7 @@ def apply_cache(repo: Path, descriptions: dict, notes: dict, facts: dict, items_
                 own = "" if src.source_key(item.get("omschrijvingBron") or "") == SOURCE else (item.get("omschrijving") or "")
                 have = (own or (entry or {}).get("text") or "").strip()
                 if not es.is_useful_description(have):
-                    if es.maybe_add_description(descriptions, iid, info["omschrijving"], url, stats):
+                    if es.maybe_add_description(descriptions, iid, info["omschrijving"], url, stats, item.get("naam")):
                         stats["omschrijving"] += 1
                         report["added_desc"].append({"id": iid, "naam": item["naam"], "url": url})
             if src.may_fill(SOURCE, "proefnotities"):

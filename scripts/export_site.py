@@ -59,6 +59,8 @@ DETAIL_FIELDS = (
     "prijsPerClFles",
     "waardeVoorGeld",
     "waardeBasis",
+    "stubFeiten",
+    "stubBron",
 )
 MARKER_RE = re.compile(
     r"/\* data-build \*/.*?/\* /data-build \*/",
@@ -164,10 +166,11 @@ def flavour_tags(item: dict) -> list[str]:
         + [unknown_to_empty(n.get("tekst")) for n in item.get("notities") or []]
     ).strip()
     desc = unknown_to_empty(item.get("omschrijving"))
+    stub = unknown_to_empty(item.get("stubFeiten"))
     vat_raw = item.get("vattype") or ""
     vat = re.sub(r"niet[\s-]*sherry\w*", " ", str(vat_raw), flags=re.I)
     regio = re.sub(r"ongeturfd\w*", " ", str(item.get("regio") or ""), flags=re.I)
-    text = " ".join([notes, desc, vat, regio])
+    text = " ".join([notes, desc, vat, regio, stub])
     peat_text = re.sub(r"ongeturfd\w*", " ", text, flags=re.I)
     rook = item.get("rook") or ""
     tags: list[str] = []
@@ -185,6 +188,7 @@ def flavour_tags(item: dict) -> list[str]:
                 or cre.search(notes)
                 or cre.search(desc)
                 or cre.search(vat)
+                or cre.search(stub)
             ):
                 tags.append(label)
             continue
@@ -225,11 +229,19 @@ def regio_kort(regio) -> str | None:
 
 
 def extra_vat_tags(item: dict) -> list[str]:
-    """Vat/stijl-tags die expliciet in omschrijving of proefnotities staan en niet al uit het vattype komen."""
+    """Vat/stijl-tags uit tekst, bovenop het vattype.
+
+    Staat er een Whiskysite-stub met een vatfeit, dan wint die: vattags uit een
+    vervangende omschrijving (bijv. Drankgigant) worden niet toegevoegd.
+    """
+    have = set(derive_vat(item.get("vattype")))
+    stub = unknown_to_empty(item.get("stubFeiten"))
+    stub_vat = [t for t in derive_vat(stub) if t != "Gemengd"] if stub else []
+    if stub and (stub_vat or src.cask_tags_from_text(stub)):
+        return [t for t in stub_vat if t not in have]
     texts = [unknown_to_empty(item.get("omschrijving")), unknown_to_empty(item.get("proefnotities"))]
     texts += [unknown_to_empty(n.get("tekst")) for n in item.get("notities") or []]
     found = src.cask_tags_from_text("\n".join(t for t in texts if t))
-    have = set(derive_vat(item.get("vattype")))
     return [t for t in found if t not in have]
 
 
@@ -365,6 +377,167 @@ def clear_old_data_files(data_dir: Path, keep_prefix: str) -> None:
                 path.unlink()
 
 
+
+BOTTLE_VOLUME_RE = re.compile(
+    r"(?i)(?:\b0[.,]\d+\s*ltrs?\.?|\b(?:50|70|75|100)\s*cl)\b"
+)
+ABV_TRAIL_RE = re.compile(r"\s*\d+(?:[.,]\d+)?\s*%\s*$")
+EMPTY_NAME_RE = re.compile(
+    r"(?i)lege/?\s*empty sample fles|lege sample fles|empty sample bottle|\blege fles\b"
+)
+RUM_BRAND_RE = re.compile(
+    r"(?i)\b(?:don papa|foursquare|dictador|caroni|karukera|mount gay|montebello|"
+    r"new yarmouth|uitvlugt)\b"
+)
+RUM_DRINK_RE = re.compile(r"(?i)\b(?:rhum|(?:jamaican|blended|cane|old blended)\s+rum)\b")
+CASK_CONTEXT_RE = r"(?:cask|finish|vat(?:en)?|barrel|butt|hogshead|puncheon|barrique|matured|gerijpt|rijping|wood|fill)"
+
+
+def name_non_whisky_reason(naam: str) -> str | None:
+    """Naamcheck: rum/tequila/cognac/gin als drank, of een lege fles; geen cask-finish van whisky."""
+    n = naam or ""
+    if EMPTY_NAME_RE.search(n):
+        return "geen whisky-sample (lege fles)"
+    if re.search(r"(?i)^tequila\b", n) or re.search(r"(?i)\btequila\b(?![\s-]*" + CASK_CONTEXT_RE + ")", n):
+        return "geen whisky (tequila)"
+    if re.search(r"(?i)\b(?:cognac|armagnac)\b(?![\s-]*" + CASK_CONTEXT_RE + ")", n):
+        return "geen whisky (cognac)"
+    if re.search(r"(?i)\bgin\b(?![\s-]*" + CASK_CONTEXT_RE + ")", n):
+        return "geen whisky (gin)"
+    if RUM_BRAND_RE.search(n) or RUM_DRINK_RE.search(n):
+        return "geen whisky (rum)"
+    return None
+
+
+def is_full_bottle_in_sample_list(item: dict) -> bool:
+    """Whisky die als sample is gescrapet maar een volle fles is (bijv. 0,70 ltr)."""
+    reden = (item.get("wbReden") or "").lower()
+    if "geen sample" in reden and "volle" in reden:
+        return True
+    naam = item.get("naam") or ""
+    if BOTTLE_VOLUME_RE.search(naam) and not re.search(r"(?i)\b(?:3|6)\s*cl\b", naam):
+        if item.get("prijsSample") is not None and item.get("flesPrijs") is None:
+            return True
+    return False
+
+
+def non_whisky_reason(item: dict) -> str | None:
+    """Waarom dit item geen whisky is, of None als het wel (of een volle whiskyfles) is."""
+    if is_full_bottle_in_sample_list(item) and not name_non_whisky_reason(item.get("naam") or ""):
+        return None
+    status = (item.get("wbStatus") or "").strip().lower()
+    reden = (item.get("wbReden") or "").strip()
+    reden_l = reden.lower()
+    if status == "niet van toepassing" and (
+        reden_l.startswith("geen whisky") or "lege fles" in reden_l or "geen whisky-sample" in reden_l
+    ):
+        return reden or "niet van toepassing"
+    return name_non_whisky_reason(item.get("naam") or "")
+
+
+def _strip_sample_name(naam: str) -> str:
+    text = re.sub(
+        r"(?:[\s\-–—]*(?:\d+(?:[.,]\d+)?\s*cl(?:\s*sample)?|sample|monster|proefmonster))+\s*$",
+        "",
+        naam or "",
+        flags=re.I,
+    ).strip(" -–—")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _bottling_key(item: dict) -> tuple:
+    name = _strip_sample_name(item.get("naam") or "")
+    name = BOTTLE_VOLUME_RE.sub(" ", name)
+    name = ABV_TRAIL_RE.sub("", name)
+    name = re.sub(r"\s+", " ", name).strip().casefold()
+    return (name, item.get("abv"))
+
+
+def _bottle_size(naam: str) -> str:
+    m = re.search(r"(?i)\b0[.,](\d+)\s*ltrs?\b", naam or "")
+    if m:
+        cl = int(round(float("0." + m.group(1)) * 100))
+        return "%s cl" % cl
+    m = re.search(r"(?i)\b(50|70|75|100)\s*cl\b", naam or "")
+    if m:
+        return "%s cl" % m.group(1)
+    return "70 cl"
+
+
+def prepare_catalog(items: list[dict]) -> dict:
+    """Zet per ongeluk als sample gescrapete flessen om, en laat niet-whisky weg.
+
+    Geeft {items, verwijderd, omgezet, redirects} terug. Idempotent.
+    """
+    redirects: dict[str, str] = {}
+    promoted: list[dict] = []
+    bottles = [
+        it for it in items
+        if is_full_bottle_in_sample_list(it) and not name_non_whisky_reason(it.get("naam") or "")
+    ]
+    by_key: dict[tuple, list] = {}
+    bottle_ids = {it["id"] for it in bottles}
+    for it in items:
+        if it["id"] in bottle_ids:
+            continue
+        by_key.setdefault(_bottling_key(it), []).append(it)
+
+    converted_ids = set()
+    for bottle in bottles:
+        size = _bottle_size(bottle.get("naam") or "")
+        price = bottle.get("prijsSample")
+        link = bottle.get("sampleLink")
+        siblings = by_key.get(_bottling_key(bottle)) or []
+        if siblings:
+            target = siblings[0]
+            if price is not None and target.get("flesPrijs") is None:
+                target["flesPrijs"] = price
+                target["flesGrootte"] = size
+                target["flesLink"] = link
+                if not target.get("winkel") and link and "whiskysite.nl" in str(link):
+                    target["winkel"] = "Whiskysite"
+            aliases = list(target.get("aliases") or [])
+            if bottle["id"] not in aliases and bottle["id"] != target["id"]:
+                aliases.append(bottle["id"])
+                target["aliases"] = aliases
+            redirects[bottle["id"]] = target["id"]
+            converted_ids.add(bottle["id"])
+            promoted.append({
+                "naam": bottle.get("naam"), "id": bottle["id"],
+                "naar": target["id"], "flesPrijs": price, "flesGrootte": size,
+            })
+        else:
+            bottle["flesPrijs"] = price
+            bottle["flesGrootte"] = size
+            bottle["flesLink"] = link
+            if link and "whiskysite.nl" in str(link):
+                bottle["winkel"] = bottle.get("winkel") or "Whiskysite"
+            bottle["prijsSample"] = None
+            bottle["sampleLink"] = None
+            if (bottle.get("inhoud") or "").lower() in ("", "onbekend"):
+                bottle["inhoud"] = None
+            bottle["sampleBeschikbaar"] = "nee"
+            if (bottle.get("wbStatus") or "").lower() == "niet van toepassing":
+                bottle.pop("wbStatus", None)
+                bottle.pop("wbReden", None)
+            promoted.append({
+                "naam": bottle.get("naam"), "id": bottle["id"],
+                "naar": bottle["id"], "flesPrijs": price, "flesGrootte": size,
+            })
+
+    dropped = []
+    kept = []
+    for it in items:
+        if it["id"] in converted_ids:
+            continue
+        reason = non_whisky_reason(it)
+        if reason:
+            dropped.append({"id": it["id"], "naam": it.get("naam"), "reden": reason})
+            continue
+        kept.append(it)
+    return {"items": kept, "verwijderd": dropped, "omgezet": promoted, "redirects": redirects}
+
+
 def export_site(
     payload: dict,
     root: Path,
@@ -375,6 +548,13 @@ def export_site(
     root = root.resolve()
     data_dir = root / "data"
     thumbs_dir = root / "assets" / "thumbs"
+    prepared = prepare_catalog(payload["items"])
+    payload["items"] = prepared["items"]
+    payload["count"] = len(prepared["items"])
+    if prepared["redirects"]:
+        redirects = dict(payload.get("redirects") or {})
+        redirects.update(prepared["redirects"])
+        payload["redirects"] = redirects
     items = payload["items"]
 
     if thumb_stats is None and not skip_thumbs:

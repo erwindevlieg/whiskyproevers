@@ -68,3 +68,7 @@ python scripts/check_tags.py                           # lijst en detail hebben 
 ## Tags
 
 Alle tags (regio, vat, stijl, kenmerken en smaak) worden in `export_site.py` berekend en staan als `tg` in de index. Lijst, kaarten, filters en detailpagina gebruiken exact die lijst; de lijst kan inkorten met "+N". `scripts/check_tags.py` faalt als de index afwijkt van wat uit de detailgegevens volgt.
+
+Als een korte Whiskysite-stub (alleen maat/ABV of een kenmerkregel) wordt vervangen door een langere omschrijving van een lagere bron, blijven de kenmerkregels uit die stub bewaard (zonder maat/ABV-regel en zonder winkelmeldingen) als feit met bron Whiskysite. Bij een tegenstrijdig vat wint dat Whiskysite-feit; vattags komen dan niet uit de vervangende tekst.
+
+Items die geen whisky zijn (rum, tequila, cognac of gin als drank, lege sampleflessen) worden bij het bouwen niet geëxporteerd, op basis van de markering *niet van toepassing* en een naamcheck. Een volle whiskyfles die per ongeluk in de samplecategorie stond, wordt als fles opgenomen (niet als sample).

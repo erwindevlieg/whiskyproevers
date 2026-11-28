@@ -22,5 +22,13 @@
   "glenallachie-10-years-cask-strength-batch-13": {
     "leeftijd": 10,
     "sourceUrl": "https://www.drankgigant.nl/glenallachie-10-years-cask-strength-batch-13.html"
+  },
+  "glenlivet-12-years-old-double-oak-40-6-cl-sample": {
+    "vattype": "Matured in European Oak & American Oak",
+    "sourceUrl": "https://www.whiskysite.nl/nl/glenlivet-12-years-old-double-oak-40-6-cl-sample.html"
+  },
+  "bladnoch-alinta-reserve-46-7-6-cl-sample": {
+    "vattype": "Oloroso Sherry Cask Matured",
+    "sourceUrl": "https://www.whiskysite.nl/nl/bladnoch-alinta-reserve-467-6-cl-sample.html"
   }
 }
