@@ -294,9 +294,9 @@
 
 <script>
 /* data-build */
-const DATA_BUILD = "8ba65dfa1a";
-const DATA_INDEX = "data/index-8ba65dfa1a.json";
-const DATA_CHUNK_PREFIX = "data/d/8ba65dfa1a-";
+const DATA_BUILD = "09b3f25d66";
+const DATA_INDEX = "data/index-09b3f25d66.json";
+const DATA_CHUNK_PREFIX = "data/d/09b3f25d66-";
 const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
@@ -375,10 +375,11 @@ function deriveVat(vattype) {
 
 function flavourTags(r) {
   const notes = unknownToEmpty(r.proefnotities);
+  const desc = unknownToEmpty(r.omschrijving);
   const vat = (r.vattype || "").replace(/niet[\s-]*sherry\w*/gi, " ");
   const regio = (r.regio || "").replace(/ongeturfd\w*/gi, " ");
-  const text = [notes, vat, regio].join(" ");
-  const peatText = [notes, vat, regio].join(" ").replace(/ongeturfd\w*/gi, " ");
+  const text = [notes, desc, vat, regio].join(" ");
+  const peatText = text.replace(/ongeturfd\w*/gi, " ");
   const tags = [];
   for (const f of FLAVOUR) {
     if (f.id === "turfrook") {
@@ -387,7 +388,7 @@ function flavourTags(r) {
     }
     if (f.id === "sherryfruit") {
       const vatTags = deriveVat(r.vattype);
-      if (vatTags.includes("Oloroso") || vatTags.includes("PX") || vatTags.includes("Sherry") || f.re.test(notes) || f.re.test(vat)) {
+      if (vatTags.includes("Oloroso") || vatTags.includes("PX") || vatTags.includes("Sherry") || f.re.test(notes) || f.re.test(desc) || f.re.test(vat)) {
         tags.push(f.label);
       }
       continue;
@@ -437,6 +438,7 @@ function expandIndexItem(it) {
     thumbH: it.e,
     ib: it.i || it.ib || ""
   };
+  if (it.fl && it.fl.length) row._flavourPre = it.fl;
   if (it.ss && it.ss.length) {
     row.samples = it.ss.map(s => ({
       inhoud: s.h || s.inhoud || "",
@@ -451,7 +453,7 @@ function enrich(r) {
   return {
     ...row,
     vatTags: deriveVat(row.vattype),
-    flavour: flavourTags(row),
+    flavour: (row._flavourPre && row._flavourPre.length) ? row._flavourPre.slice() : flavourTags(row),
     regioKort: parseRegio(row.regio)
   };
 }
@@ -1330,6 +1332,7 @@ function mergeDetail(row, extra) {
   Object.assign(row, extra);
   if (samples) row.samples = samples;
   row._detail = true;
+  row.flavour = flavourTags(row);
   return row;
 }
 

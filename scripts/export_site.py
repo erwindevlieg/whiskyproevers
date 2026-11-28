@@ -93,6 +93,94 @@ def search_extra(item: dict) -> str:
     return " ".join(parts)
 
 
+
+FLAVOUR_SPECS = (
+    ("fruitig", "Fruitig", r"fruit|appel|\bpeer\b|perzik|pruim|kers|\bbes\b|bessen|braam|sinaasappel|citrus|citroen|sinaas|abrikoos|herfstfruit|\borange\b|berry|cherry|\bplum\b|\bapple\b|peach|lemon sherbet|citruszeste|citrusschil|gestoofd fruit"),
+    ("zoet", "Zoet", r"zoet|toffee|karamel|caramel|fudge|marshmallow|siroop|syrup|sherbet|honingraat|kerstcake|toffee-app|snoepzoet"),
+    ("sherryfruit", "Sherry / gedroogd fruit", r"sherry|rozijn|vijg|vijgen|\bdadel|\bdadels|sultana|krent|gedroogd fruit|raisin|kerstcake|rum-rozijn"),
+    ("kruidig", "Kruidig", r"kruid|kaneel|nootmuskaat|gember|peper|kruidnagel|gingerbread|nutmeg|cinnamon|clove|\bpepper\b|glühwein|kaneelpap"),
+    ("vanille", "Vanille / honing", r"vanille|vanilla|honing|\bhoney\b|honingraat|honingvanille"),
+    ("tropisch", "Tropisch", r"tropisch|ananas|mango|kokos|coconut|pineapple|banaan|banana|papaya|guave|passievrucht"),
+    ("chocolade", "Chocolade / koffie", r"chocolade|chocolate|mokka|mocha|koffie|coffee|cacao|cocoa|espresso"),
+    ("turfrook", "Turf / rook", r"geturfd|turf|rokerig|gerookt|\bpeat\b|\bsmoky\b|\bsmoke\b|fenol"),
+    ("maritiem", "Maritiem", r"zilt|zeezout|\bzout\b|\bzee\b|maritime|\bsea\b|iodine|jodium|zeewier|kelp|brine|zilte"),
+)
+FLAVOUR = [(fid, label, re.compile(pat, re.I)) for fid, label, pat in FLAVOUR_SPECS]
+
+
+def unknown_to_empty(value) -> str:
+    if value is None:
+        return ""
+    text = str(value).strip()
+    if not text or re.match(r"^onbekend\b", text, re.I):
+        return ""
+    return text
+
+
+def derive_vat(vattype) -> list[str]:
+    if not vattype:
+        return []
+    t = str(vattype).lower()
+    t = re.sub(r"niet[\s-]*sherry\w*", " ", t)
+    if re.match(r"^onbekend( vattype)?\b", t) and not re.search(r"(oloroso|sherry|bourbon|\bpx\b|port)", t):
+        return []
+    tags: list[str] = []
+    if re.search(r"oloroso", t):
+        tags.append("Oloroso")
+    if re.search(r"pedro xim[eé]nez|ximenez|\bpx\b|px-", t):
+        tags.append("PX")
+    if re.search(r"bourbon", t):
+        tags.append("Bourbon")
+    if re.search(r"\bport\b|tawny|colheita|ruby port", t):
+        tags.append("Port")
+    if re.search(r"\brum\b", t):
+        tags.append("Rum")
+    if re.search(r"rode wijn|red wine|witte wijn|white wine|barolo|burgundy|bordeaux|sauternes|madeira|marsala|tokaji|pineau|rioja|syrah", t):
+        tags.append("Wijn")
+    if re.search(r"cognac|armagnac", t):
+        tags.append("Cognac/Armagnac")
+    if re.search(r"virgin oak|nieuw eiken", t):
+        tags.append("Virgin oak")
+    if re.search(r"sherry", t) and "Oloroso" not in tags and "PX" not in tags:
+        tags.append("Sherry")
+    if len(tags) >= 2:
+        tags.append("Gemengd")
+    return tags
+
+
+def flavour_tags(item: dict) -> list[str]:
+    """Zelfde afleiding als flavourTags() in index.html, inclusief omschrijving."""
+    notes = unknown_to_empty(item.get("proefnotities"))
+    desc = unknown_to_empty(item.get("omschrijving"))
+    vat_raw = item.get("vattype") or ""
+    vat = re.sub(r"niet[\s-]*sherry\w*", " ", str(vat_raw), flags=re.I)
+    regio = re.sub(r"ongeturfd\w*", " ", str(item.get("regio") or ""), flags=re.I)
+    text = " ".join([notes, desc, vat, regio])
+    peat_text = re.sub(r"ongeturfd\w*", " ", text, flags=re.I)
+    rook = item.get("rook") or ""
+    tags: list[str] = []
+    for fid, label, cre in FLAVOUR:
+        if fid == "turfrook":
+            if rook in ("licht", "medium", "zwaar") or cre.search(peat_text):
+                tags.append(label)
+            continue
+        if fid == "sherryfruit":
+            vat_tags = derive_vat(vat_raw)
+            if (
+                "Oloroso" in vat_tags
+                or "PX" in vat_tags
+                or "Sherry" in vat_tags
+                or cre.search(notes)
+                or cre.search(desc)
+                or cre.search(vat)
+            ):
+                tags.append(label)
+            continue
+        if cre.search(text):
+            tags.append(label)
+    return tags
+
+
 def compact_item(item: dict, thumb: dict | None) -> dict:
     row = {"id": item["id"]}
     mapping = {
@@ -142,6 +230,9 @@ def compact_item(item: dict, thumb: dict | None) -> dict:
         row["ss"] = compact_samples
     if item.get("ib"):
         row["i"] = item["ib"]
+    tags = flavour_tags(item)
+    if tags:
+        row["fl"] = tags
     if thumb:
         row["t"] = 1
         row["g"] = "c" if thumb["kind"] == "clear" else "p"
