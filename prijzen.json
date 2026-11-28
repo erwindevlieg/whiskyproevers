@@ -1,0 +1,4021 @@
+{
+ "datum": "28-11-2026",
+ "items": {
+  "aberfeldy-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 29.87,
+    "link": "https://drankdozijn.nl/artikel/fles-aberfeldy-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/aberfeldy-12-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "aberfeldy-16-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 47.95,
+    "link": "https://drankdozijn.nl/artikel/fles-aberfeldy-16-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 64.95,
+    "link": "https://www.drankgigant.nl/aberfeldy-16-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "aberlour-10-years-old-forest-reserve-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 32.49,
+    "link": "https://drankdozijn.nl/artikel/fles-aberlour-10-years-forest-reserve-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.5,
+    "link": "https://www.drankgigant.nl/aberlour-10-year-forest-reserve.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "aberlour-12-years-old-double-cask-matured-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-aberlour-12-years-double-cask-matured-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 37.95,
+    "link": "https://www.drankgigant.nl/aberlour-12-year-double-cask-matured.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "aberlour-14-years-old-double-cask-matured-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 43.51,
+    "link": "https://drankdozijn.nl/artikel/fles-aberlour-14-years-double-cask-matured-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.95,
+    "link": "https://www.drankgigant.nl/aberlour-14-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "aberlour-16-years-old-double-cask-matured-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 59.95,
+    "link": "https://drankdozijn.nl/artikel/fles-aberlour-16-years-double-cask-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "aberlour-18-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 114.95,
+    "link": "https://drankdozijn.nl/artikel/fles-aberlour-18-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "aberlour-a-bunadh-batch-84": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 84.5,
+    "link": "https://www.drankgigant.nl/aberlour-a-bunadh-batch-84.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "aberlour-casg-annamh-48-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 43.95,
+    "link": "https://drankdozijn.nl/artikel/fles-aberlour-casg-annamh-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 46.95,
+    "link": "https://www.drankgigant.nl/aberlour-casg-annamh.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "aberlour-triple-cask-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 44.95,
+    "link": "https://drankdozijn.nl/artikel/fles-aberlour-triple-cask-matured-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 44.95,
+    "link": "https://www.drankgigant.nl/aberlour-triple-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "amrut-fusion-50-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 44.95,
+    "link": "https://www.drankgigant.nl/amrut-fusion.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "amrut-intermediate-sherry-single-malt-whisky-57-1-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.5,
+    "link": "https://www.drankgigant.nl/amrut-intermediate-sherry.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "amrut-peated-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 48.95,
+    "link": "https://www.drankgigant.nl/amrut-peated.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "amrut-portonova-62-1-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.95,
+    "link": "https://www.drankgigant.nl/amrut-portonova-62-1.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "ardmore-legacy-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 24.95,
+    "link": "https://www.drankgigant.nl/ardmore-legacy-70-cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "ardnahoe-bholsa-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 64.95,
+    "link": "https://drankdozijn.nl/artikel/fles-ardnahoe-bholsa-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "ardnahoe-infinite-loch-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 54.94,
+    "link": "https://drankdozijn.nl/artikel/fles-ardnahoe-infinite-loch-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "arran-10-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 32.95,
+    "link": "https://drankdozijn.nl/artikel/fles-arran-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.95,
+    "link": "https://www.drankgigant.nl/arran-10-years-single-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "arran-14-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 67.95,
+    "link": "https://drankdozijn.nl/artikel/fles-arran-14-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "arran-barrel-reserve-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 23.95,
+    "link": "https://drankdozijn.nl/artikel/fles-arran-barrel-reserve-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 23.95,
+    "link": "https://www.drankgigant.nl/arran-barrel-reserve.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "arran-port-cask-finish-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 42.96,
+    "link": "https://drankdozijn.nl/artikel/fles-arran-port-cask-finish-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/arran-port-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "arran-sauternes-cask-finish-6-cl-sample-50": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 41.31,
+    "link": "https://drankdozijn.nl/artikel/fles-arran-sauternes-cask-finish-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/arran-sauternes-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "arran-sherry-cask-55-8-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/arran-the-bodega-sherry-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "arran-signature-series-edition-3-duero-discovery-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 79.49,
+    "link": "https://drankdozijn.nl/artikel/fles-arran-duero-discovery-signature-series-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "arran-signature-series-edition-4-sherry-serenade-9-years-old-50-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 84.95,
+    "link": "https://www.drankgigant.nl/arran-9-years-signature-series-edition-4-sherry-serenade.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "auchentoshan-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 27.95,
+    "link": "https://drankdozijn.nl/artikel/fles-auchentoshan-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.95,
+    "link": "https://www.drankgigant.nl/auchentoshan-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "auchentoshan-18-years-old-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 109.5,
+    "link": "https://www.drankgigant.nl/auchentoshan-18-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "auchentoshan-sauvignon-blanc-47-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 74.5,
+    "link": "https://www.drankgigant.nl/auchentoshan-sauvignon-blanc-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "auchentoshan-three-wood-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 33.95,
+    "link": "https://drankdozijn.nl/artikel/fles-auchentoshan-three-wood-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/auchentoshan-three-wood.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balblair-12-year-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 42.95,
+    "link": "https://www.drankgigant.nl/balblair-12-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balblair-15-year-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.95,
+    "link": "https://www.drankgigant.nl/balblair-15-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balblair-18-year-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 139.5,
+    "link": "https://www.drankgigant.nl/balblair-18.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balblair-21-year-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 294.95,
+    "link": "https://drankdozijn.nl/artikel/fles-balblair-21-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "ballechin-10-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 42.95,
+    "link": "https://drankdozijn.nl/artikel/fles-ballechin-10-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "balvenie-12-years-old-double-wood-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 48.95,
+    "link": "https://drankdozijn.nl/artikel/fles-balvenie-12-years-double-wood-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 48.95,
+    "link": "https://www.drankgigant.nl/balvenie-12-years-double-wood.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balvenie-14-years-old-caribbean-cask-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 64.95,
+    "link": "https://drankdozijn.nl/artikel/fles-balvenie-14-years-caribbean-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.5,
+    "link": "https://www.drankgigant.nl/balvenie-14-years-caribbean-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balvenie-15-years-old-madeira-cask-finished-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 89.95,
+    "link": "https://drankdozijn.nl/artikel/fles-balvenie-15-years-madeira-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.5,
+    "link": "https://www.drankgigant.nl/balvenie-15-years-madeira-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balvenie-18-years-pedro-ximenez-cask": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 174.95,
+    "link": "https://drankdozijn.nl/artikel/fles-balvenie-18-years-pedro-ximenez-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 199.5,
+    "link": "https://www.drankgigant.nl/balvenie18-years-pedro-ximenez-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "balvenie-21-years-portwood-40": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 224.95,
+    "link": "https://drankdozijn.nl/artikel/fles-balvenie-21-years-portwood-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 295.0,
+    "link": "https://www.drankgigant.nl/balvenie-21-years-portwood.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "benriach-25-years-the-twenty-five": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 279.95,
+    "link": "https://drankdozijn.nl/artikel/fles-benriach-25-years-the-twenty-five-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 375.0,
+    "link": "https://www.drankgigant.nl/benriach-25-years-the-twenty-five.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "benromach-10-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-benromach-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/benromach-10-years-70-cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "benromach-15-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 69.95,
+    "link": "https://drankdozijn.nl/artikel/fles-benromach-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.95,
+    "link": "https://www.drankgigant.nl/benromach-15-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "benromach-21-years-old-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 169.5,
+    "link": "https://www.drankgigant.nl/benromach-21-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "big-peat-15th-anniversary-red-wine-cask-finish-50-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.5,
+    "link": "https://www.drankgigant.nl/big-peat-15th-anniversary-red-wine-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "big-peat-christmas-edition-2021-edition-52-8-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.5,
+    "link": "https://www.drankgigant.nl/big-peat-christmas-edition-2021.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bladnoch-alinta-reserve-46-7-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 109.95,
+    "link": "https://www.drankgigant.nl/bladnoch-alinta-reserve.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bladnoch-samsara-46-7-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 77.5,
+    "link": "https://www.drankgigant.nl/bladnoch-samsara.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "blair-athol-12-years-old-flora-fauna-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/blair-athol-12-year-flora-fauna.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "blanton-s-gold-edition-51-5-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 139.5,
+    "link": "https://www.drankgigant.nl/blanton-s-gold.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 149.0,
+    "link": "https://drankdozijn.nl/artikel/fles-blantons-gold-edition-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "blanton-s-original-single-barrel-46-5-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 119.5,
+    "link": "https://www.drankgigant.nl/blanton-s-original-single-barrel.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-11-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 27.97,
+    "link": "https://drankdozijn.nl/artikel/fles-bowmore-11-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/bowmore-11-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 37.95,
+    "link": "https://www.drankgigant.nl/bowmore-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-14-years-bordeaux-cask-finish-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 41.5,
+    "link": "https://drankdozijn.nl/artikel/fles-bowmore-14-years-bordeaux-cask-finish-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 48.95,
+    "link": "https://www.drankgigant.nl/bowmore-14-years-bordeaux-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-15-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 65.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bowmore-15-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.95,
+    "link": "https://www.drankgigant.nl/bowmore-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-16-years-ruby-port-cask-finish-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.5,
+    "link": "https://www.drankgigant.nl/bowmore-16-years-ruby-port-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-18-years-old-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.95,
+    "link": "https://www.drankgigant.nl/bowmore-18-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-18-years-old-single-malt-sherry-cask-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 174.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bowmore-18-years-sherry-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 199.5,
+    "link": "https://www.drankgigant.nl/bowmore-18-years-sherry-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bowmore-legend-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 27.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bowmore-legend-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/bowmore-legend.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bruichladdich-14-years-old-links-carnoustie-golf-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 225.0,
+    "link": "https://www.drankgigant.nl/bruichladdich-links-carnoustie-golf-links-14-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bruichladdich-21-years-old-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 149.96,
+    "link": "https://drankdozijn.nl/artikel/fles-bruichladdich-21-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "bruichladdich-the-classic-laddie-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 47.5,
+    "link": "https://drankdozijn.nl/artikel/fles-bruichladdich-the-classic-laddie-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 48.95,
+    "link": "https://www.drankgigant.nl/bruichladdich-the-classic-laddie.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bruichladdich-the-laddie-eight-50-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/bruichladdich-the-laddie-eight.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bunnahabhain-12-years-old-cask-strength-2026-edition-55-8-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.5,
+    "link": "https://www.drankgigant.nl/bunnahabhain-12-years-2026-cask-strength-edition.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 80.22,
+    "link": "https://drankdozijn.nl/artikel/fles-bunnahabhain-12-years-cask-strength-2026-edition-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "bunnahabhain-18-years-old-46-3-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 154.95,
+    "link": "https://www.drankgigant.nl/bunnahabhain-18-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bunnahabhain-25-years-old": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 439.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bunnahabhain-25-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 495.0,
+    "link": "https://www.drankgigant.nl/bunnahabhain-25-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bunnahabhain-moine-46-3-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 43.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bunnahabhain-moine-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 43.95,
+    "link": "https://www.drankgigant.nl/bunnahabhain-moine.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bunnahabhain-stiuireadair-46-3-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.5,
+    "link": "https://www.drankgigant.nl/bunnahabhain-stiuireadair.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bunnahabhain-toiteach-a-dha-46-3-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 39.5,
+    "link": "https://drankdozijn.nl/artikel/fles-bunnahabhain-toiteach-a-dha-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 42.95,
+    "link": "https://www.drankgigant.nl/bunnahabhain-toiteach-a-dha.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bushmills-21-years-old-single-malt-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 159.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bushmills-21-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 179.5,
+    "link": "https://www.drankgigant.nl/bushmills-21-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bushmills-malt-16-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 54.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bushmills-16-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/bushmills 16 year single malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "bushmills-malt-18-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 74.95,
+    "link": "https://drankdozijn.nl/artikel/fles-bushmills-18-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "caol-ila-12-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 36.95,
+    "link": "https://drankdozijn.nl/artikel/fles-caol-ila-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 36.95,
+    "link": "https://www.drankgigant.nl/caol-ila-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "caol-ila-moch-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 37.95,
+    "link": "https://drankdozijn.nl/artikel/fles-caol-ila-moch-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/caol-ila-moch.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "clynelish-14-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 43.95,
+    "link": "https://drankdozijn.nl/artikel/fles-clynelish-14-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/clynelish-14-year-70cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "compass-box-crimson-casks-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 57.95,
+    "link": "https://drankdozijn.nl/artikel/fles-compass-box-crimson-casks-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 64.5,
+    "link": "https://www.drankgigant.nl/compass-box-crimson-casks.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "compass-box-hedonism-2026-edition-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 89.95,
+    "link": "https://drankdozijn.nl/artikel/fles-compass-box-hedonism-2026-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "compass-box-nectarosity-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 47.95,
+    "link": "https://drankdozijn.nl/artikel/fles-compass-box-nectarosity-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "compass-box-orchard-house-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 39.95,
+    "link": "https://drankdozijn.nl/artikel/fles-compass-box-orchard-house-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/compass-box-orchard-house.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "compass-box-the-peat-monster-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 48.95,
+    "link": "https://www.drankgigant.nl/compass-box-the-peat-monster.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "connemara-peated-single-malt-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 23.95,
+    "link": "https://drankdozijn.nl/artikel/fles-connemara-peated-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 23.95,
+    "link": "https://www.drankgigant.nl/connemara-irish-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "cragganmore-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 32.49,
+    "link": "https://drankdozijn.nl/artikel/fles-cragganmore-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.5,
+    "link": "https://www.drankgigant.nl/cragganmore-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "craigellachie-13-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 37.95,
+    "link": "https://drankdozijn.nl/artikel/fles-craigellachie-13-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/craigellachie-13-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "craigellachie-13-years-old-armagnac-cask-finish-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 47.25,
+    "link": "https://drankdozijn.nl/artikel/fles-craigellachie-13-years-armagnac-finish-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "craigellachie-17-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 87.95,
+    "link": "https://drankdozijn.nl/artikel/fles-craigellachie-17-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.5,
+    "link": "https://www.drankgigant.nl/craigellachie-17-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "cu-dhub-the-black-blended-malt-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/cu-dhub-the-black-blended-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "dalmore-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 49.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-dalmore-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.95,
+    "link": "https://www.drankgigant.nl/dalmore-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "dalmore-15-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 99.49,
+    "link": "https://drankdozijn.nl/artikel/fles-the-dalmore-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 119.5,
+    "link": "https://www.drankgigant.nl/dalmore-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "dalwhinnie-15-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-dalwhinnie-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/dalwhinnie-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "deanston-15-years-old-tequila-cask-finish-52-5-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 94.95,
+    "link": "https://drankdozijn.nl/artikel/fles-deanston-15-years-2007-tequila-cask-finish-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.5,
+    "link": "https://www.drankgigant.nl/deanston-15-years-tequila-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "deanston-virgin-oak-46-3-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 22.49,
+    "link": "https://drankdozijn.nl/artikel/fles-deanston-virgin-oak-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "don-papa-alon-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 29.95,
+    "link": "https://drankdozijn.nl/artikel/fles-don-papa-alon-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/don-papa-alon-limited-edition.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "don-papa-gayuma-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 44.98,
+    "link": "https://drankdozijn.nl/artikel/fles-don-papa-gayuma-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.95,
+    "link": "https://www.drankgigant.nl/don-papa-gayuma.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "don-papa-masskara-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 24.87,
+    "link": "https://drankdozijn.nl/artikel/fles-don-papa-masskara-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 27.95,
+    "link": "https://www.drankgigant.nl/don-papa-masskara.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "don-papa-port-quincentennial-2025-release-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 124.95,
+    "link": "https://drankdozijn.nl/artikel/fles-don-papa-port-cask-quincentennial-2025-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "edradour-14-years-old-2012-bourbon-cask-ibisco-decanter-58-6-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 77.95,
+    "link": "https://www.drankgigant.nl/edradour-14-year-bourbon-2012-ibisco-decanter.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "edradour-no-2-8-years-old-2018-signatory-40th-anniversary-release-57-1-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 48.95,
+    "link": "https://www.drankgigant.nl/edradour-8-years-2018-no-2-signatory-40th-anniversary-release.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "elijah-craig-straight-rye-47-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 44.95,
+    "link": "https://www.drankgigant.nl/elijah-craig-straight-rye.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "fettercairn-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 35.95,
+    "link": "https://drankdozijn.nl/artikel/fles-fettercairn-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 37.95,
+    "link": "https://www.drankgigant.nl/fettercairn-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "filliers-10-years-old-single-malt-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.95,
+    "link": "https://www.drankgigant.nl/filliers-10-years-single-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "finlaggan-old-reserve-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 22.95,
+    "link": "https://drankdozijn.nl/artikel/fles-finlaggan-old-reserve-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 23.95,
+    "link": "https://www.drankgigant.nl/finlaggan-old-reserve.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "finlaggan-original-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 21.95,
+    "link": "https://drankdozijn.nl/artikel/fles-finlaggan-original-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glen-garioch-12-years-old-48-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 44.95,
+    "link": "https://www.drankgigant.nl/glen-garioch-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glen-garioch-founders-reserve-48-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glen-garioch-founders-reserve-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 37.95,
+    "link": "https://www.drankgigant.nl/glen-garioch-1797-founders-reserve.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glen-scotia-10-years-old-unpeated-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 36.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glen-scotia-10-years-unpeated-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glen-scotia-15-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 64.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glen-scotia-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glen-scotia-double-cask-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glen-scotia-double-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 37.95,
+    "link": "https://www.drankgigant.nl/glen-scotia-double-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glen-scotia-victoriana-54-2-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/glen-scotia-victoriana-cask-strength.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 69.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glen-scotia-victoriana-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenallachie-10-years-cask-strength-batch-10": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 69.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenallachie-10-years-cask-strength-batch-10-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenallachie-10-years-cask-strength-batch-13": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 72.95,
+    "link": "https://www.drankgigant.nl/glenallachie-10-years-cask-strength-batch-13.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenallachie-10-years-old-chinquapin-virgin-oak-48-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 71.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenallachie-10-years-chinquapin-virgin-oak-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenallachie-12-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 46.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenallachie-12-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/glenallachie-12-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenallachie-15-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 64.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenallachie-15-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 74.95,
+    "link": "https://www.drankgigant.nl/glenallachie-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenallachie-21-years-cask-strength-batch-6": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 349.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenallachie-21-years-cask-strength-batch-6-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenallachie-21-years-old-batch-7-51-9-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 315.0,
+    "link": "https://drankdozijn.nl/artikel/fles-glenallachie-21-years-cask-strength-batch-7-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glendalough-double-barrel-42-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.5,
+    "link": "https://www.drankgigant.nl/glendalough-double-barrel-irish-grain.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glendronach-12-years-old-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/glendronach-12-year-70-cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glendronach-ode-to-the-dark-50-8-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 57.47,
+    "link": "https://drankdozijn.nl/artikel/fles-glendronach-ode-to-the-dark-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.5,
+    "link": "https://www.drankgigant.nl/glendronach-ode-to-the-dark.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glendronach-ode-to-the-embers-48-4-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 59.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glendronach-ode-to-the-embers-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/glendronach-ode-to-the-embers.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glendronach-the-parisian-room-49-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 79.49,
+    "link": "https://drankdozijn.nl/artikel/fles-glendronach-the-parisian-room-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.95,
+    "link": "https://www.drankgigant.nl/glendronach-the-parisian-room.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glendronach-traditionally-peated-48-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 39.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glendronach-traditionally-peated-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glendronach-venetian-room-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 67.5,
+    "link": "https://www.drankgigant.nl/glendronach-the-venetian-room.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 67.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glendronach-the-venetian-room-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenfarclas-10-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 31.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfarclas-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.95,
+    "link": "https://www.drankgigant.nl/glenfarclas-10-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfarclas-15-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 61.49,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfarclas-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 64.95,
+    "link": "https://www.drankgigant.nl/glenfarclas-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfarclas-17-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 82.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfarclas-17-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 82.95,
+    "link": "https://www.drankgigant.nl/glenfarclas-17-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfarclas-190th-anniversary-51-4": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 94.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfarclas-190th-anniversary-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenfarclas-25-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 199.5,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfarclas-25-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 199.5,
+    "link": "https://www.drankgigant.nl/glenfarclas-25-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfarclas-26-years-old-oloroso-sherry-cask": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 149.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfarclas-26-years-oloroso-sherry-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenfarclas-8-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 28.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfarclas-8-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 28.95,
+    "link": "https://www.drankgigant.nl/glenfarclas-8-years-old.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfiddich-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.95,
+    "link": "https://www.drankgigant.nl/glenfiddich-12-year-70cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfiddich-15-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/glenfiddich-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfiddich-18-years-old-port-cask-finish-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 109.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfiddich-18-years-port-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenfiddich-23-years-old-grand-cru-40": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 274.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfiddich-23-years-grand-cru-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenfiddich-fire-cane-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfiddich-fire--cane-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 46.95,
+    "link": "https://www.drankgigant.nl/glenfiddich-fire-cane-70-cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfiddich-grande-couronne-26-years-old-43-8": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 595.0,
+    "link": "https://www.drankgigant.nl/glenfiddich-26-years-grande-couronne.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfiddich-project-xx-47-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 39.93,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfiddich-project-xx-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/glenfiddich-project-xx.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenfiddich-the-orchard-experiment-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 46.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenfiddich-orchard-experiment-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenglassaugh-12-years-old-45-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 46.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenglassaugh-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 47.95,
+    "link": "https://www.drankgigant.nl/glenglassaugh-12-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenglassaugh-portsoy-49-1-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.95,
+    "link": "https://www.drankgigant.nl/glenglassaugh-portsoy.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenglassaugh-sandend-50-5-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 52.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenglassaugh-sandend-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.95,
+    "link": "https://www.drankgigant.nl/glenglassaugh-sandend.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glengoyne-10-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 33.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glengoyne-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/glengoyne-10-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glengoyne-12-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glengoyne-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 37.95,
+    "link": "https://www.drankgigant.nl/glengoyne-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glengoyne-21-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 189.5,
+    "link": "https://drankdozijn.nl/artikel/fles-glengoyne-21-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 189.5,
+    "link": "https://www.drankgigant.nl/glengoyne-21-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glengoyne-25-years-old": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 444.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glengoyne-25-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glengoyne-30-years-old": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 889.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glengoyne-30-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glengoyne-white-oak-48-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/glengoyne-white-oak.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenlivet-12-years-old-double-oak-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 31.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-glenlivet-12-years-double-oak-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/the-glenlivet-12-years-double-oak-html.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenlivet-caribbean-reserve-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 30.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-glenlivet-caribbean-reserve-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/the-glenlivet-caribbean-reserve.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenlivet-founder-s-reserve-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 27.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-glenlivet-founders-reserve-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/glenlivet-founders-reserve.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenrothes-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 42.95,
+    "link": "https://www.drankgigant.nl/glenrothes-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenrothes-18-years-old-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 129.5,
+    "link": "https://www.drankgigant.nl/glenrothes-18-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 144.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-glenrothes-18-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "glenrothes-whisky-maker-s-cut-48-8-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 57.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-glenrothes-whisky-makers-cut-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/glenrothes-whisky-maker-s-cut.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "glenturret-12-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 69.95,
+    "link": "https://drankdozijn.nl/artikel/fles-glenturret-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "gouden-carolus-single-malt-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 42.95,
+    "link": "https://www.drankgigant.nl/gouden-carolus-single-malt-whisky-70-cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "green-spot-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/green-spot.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "hakushu-distillers-reserve-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 99.49,
+    "link": "https://drankdozijn.nl/artikel/fles-the-hakushu-distillers-reserve-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "hazelburn-10-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.5,
+    "link": "https://www.drankgigant.nl/hazelburn-10-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "heaven-s-door-double-barrel-50-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 67.5,
+    "link": "https://www.drankgigant.nl/heaven-s-door-double-barrel.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "hibiki-japanese-harmony-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 59.95,
+    "link": "https://drankdozijn.nl/artikel/fles-hibiki-japanese-harmony-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.5,
+    "link": "https://www.drankgigant.nl/hibiki-harmony.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "highland-park-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 30.95,
+    "link": "https://drankdozijn.nl/artikel/fles-highland-park-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/highland-park-12-years-2.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "highland-park-15-years-old-viking-heart-44-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 74.95,
+    "link": "https://drankdozijn.nl/artikel/fles-highland-park-15-years-viking-heart-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 89.5,
+    "link": "https://www.drankgigant.nl/highland-park-15-year-old-viking-heart.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "highland-park-18-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 119.49,
+    "link": "https://drankdozijn.nl/artikel/fles-highland-park-18-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "highland-park-21-years-old-46": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 249.95,
+    "link": "https://drankdozijn.nl/artikel/fles-highland-park-21-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "highland-park-heather-63-6-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 74.95,
+    "link": "https://drankdozijn.nl/artikel/fles-highland-park-heather-cask-strength-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "highland-park-triskelion-45-1-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 189.5,
+    "link": "https://www.drankgigant.nl/highland-park-triskelion.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "highland-park-wings-of-the-eagle-16-years-old-44-5-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 79.95,
+    "link": "https://drankdozijn.nl/artikel/fles-highland-park-16-years-wings-of-the-eagle-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 89.5,
+    "link": "https://www.drankgigant.nl/highland-park-16-year-wings-of-the-eagle.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "isle-of-jura-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 27.95,
+    "link": "https://www.drankgigant.nl/isle-of-jura-12-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "isle-of-jura-14-years-old-american-rye-cask-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/isle-of-jura-14-years-american-rye-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "isle-of-jura-bourbon-cask-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 21.95,
+    "link": "https://www.drankgigant.nl/isle-of-jura-bourbon-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "isle-of-jura-french-cognac-cask-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 27.95,
+    "link": "https://www.drankgigant.nl/isle-of-jura-french-cognac-cask-edition.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "isle-of-jura-red-wine-cask-finish-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/isle-of-jura-red-wine-cask-edition.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "jack-daniels-10-years-old-batch-5-48-5-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 139.5,
+    "link": "https://www.drankgigant.nl/jack-daniels-10-years-batch-5.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilchoman-13-years-old-50-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 89.95,
+    "link": "https://www.drankgigant.nl/kilchoman-13-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilchoman-casado-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 74.95,
+    "link": "https://drankdozijn.nl/artikel/fles-kilchoman-casado-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "kilchoman-coull-point-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 49.95,
+    "link": "https://drankdozijn.nl/artikel/fles-kilchoman-coull-point-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/kilchoman-coull-point.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilchoman-machir-bay-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/kilchoman-machir-bay.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilchoman-machir-bay-cask-strength-2025-release-58-1-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 72.95,
+    "link": "https://drankdozijn.nl/artikel/fles-kilchoman-machir-bay-cask-strength-2025-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilchoman-maury-cask-matured-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 64.95,
+    "link": "https://drankdozijn.nl/artikel/fles-kilchoman-maury-cask-matured-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "kilchoman-rockside-11-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 52.95,
+    "link": "https://www.drankgigant.nl/kilchoman-11-years-rockside.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilchoman-sanaig-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.95,
+    "link": "https://www.drankgigant.nl/kilchoman-sanaig.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilkerran-12-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 49.95,
+    "link": "https://drankdozijn.nl/artikel/fles-kilkerran-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.95,
+    "link": "https://www.drankgigant.nl/kilkerran-12-years-single-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kilkerran-16-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 109.5,
+    "link": "https://www.drankgigant.nl/kilkerran-16-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "kingsbarns-balcomie-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 57.5,
+    "link": "https://www.drankgigant.nl/kingsbarns-balcomie.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "lagavulin-16-years-old-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/lagavulin-16-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "lagavulin-8-years-old-48-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 40.49,
+    "link": "https://drankdozijn.nl/artikel/fles-lagavulin-8-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 42.5,
+    "link": "https://www.drankgigant.nl/lagavulin-8-years-old.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "lagg-distillery-kilmory-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 35.95,
+    "link": "https://drankdozijn.nl/artikel/fles-lagg-distillery-kilmory-edition-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "laphroaig-10-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 33.95,
+    "link": "https://drankdozijn.nl/artikel/fles-laphroaig-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 34.95,
+    "link": "https://www.drankgigant.nl/laphroaig-10-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "laphroaig-10-years-old-cask-strength-batch-17-58-3-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 99.95,
+    "link": "https://drankdozijn.nl/artikel/fles-laphroaig-10-years-cask-strength-2023-batch-17-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "laphroaig-10-years-old-sherry-oak-finish-48-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 67.95,
+    "link": "https://www.drankgigant.nl/laphroaig-10-years-sherry-oak-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "laphroaig-12-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 47.95,
+    "link": "https://drankdozijn.nl/artikel/fles-laphroaig-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 52.95,
+    "link": "https://www.drankgigant.nl/laphroaig-12-years-single-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "laphroaig-15-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 69.95,
+    "link": "https://drankdozijn.nl/artikel/fles-laphroaig-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.95,
+    "link": "https://www.drankgigant.nl/laphroaig-15-year-single-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "laphroaig-select-oak-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 29.95,
+    "link": "https://drankdozijn.nl/artikel/fles-laphroaig-oak-select-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/laphroaig-oak-select.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "ledaig-10-years-old-46-3-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 37.95,
+    "link": "https://drankdozijn.nl/artikel/fles-ledaig-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/ledaig-10-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "lochlea-sowing-edition-second-crop-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.5,
+    "link": "https://www.drankgigant.nl/lochlea-sowing-edition-second-crop.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "longmorn-the-distiller-s-choice-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 44.95,
+    "link": "https://drankdozijn.nl/artikel/fles-longmorn-the-distillers-choice-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/longmorn-distillers-choice.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "longrow-peated-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 42.89,
+    "link": "https://drankdozijn.nl/artikel/fles-longrow-peated-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.5,
+    "link": "https://www.drankgigant.nl/longrow-peated.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "macallan-12-years-old-110-proof-55-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 127.5,
+    "link": "https://drankdozijn.nl/artikel/fles-the-macallan-12-years-110-proof-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "macallan-12-years-old-double-cask-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 63.77,
+    "link": "https://drankdozijn.nl/artikel/fles-the-macallan-12-years-double-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 64.95,
+    "link": "https://www.drankgigant.nl/macallan-12-years-double-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "macallan-12-years-old-sherry-oak-cask-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 77.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-macallan-12-years-sherry-oak-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.95,
+    "link": "https://www.drankgigant.nl/macallan-12-years-sherry-oak.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "macallan-15-years-old-double-cask-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 124.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-macallan-15-years-double-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 149.5,
+    "link": "https://www.drankgigant.nl/macallan-15-years-double-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "millstone-american-oak-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 27.95,
+    "link": "https://drankdozijn.nl/artikel/fles-millstone-american-oak-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "millstone-single-malt-peated-px-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.25,
+    "link": "https://drankdozijn.nl/artikel/fles-millstone-peated-px-finish-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "minor-case-rye-45-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 42.95,
+    "link": "https://www.drankgigant.nl/minor-case-rye-whisky.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "monkey-shoulder-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 21.95,
+    "link": "https://www.drankgigant.nl/monkey-shoulder.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "monkey-shoulder-smokey-monkey-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 27.95,
+    "link": "https://drankdozijn.nl/artikel/fles-monkey-shoulder-smokey-monkey-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/monkey-shoulder-smokey-monkey.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nikka-coffey-grain-45-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 44.95,
+    "link": "https://drankdozijn.nl/artikel/fles-nikka-coffey-grain-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 47.95,
+    "link": "https://www.drankgigant.nl/nikka-coffey-grain-whisky.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nikka-coffey-malt-45-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 44.95,
+    "link": "https://drankdozijn.nl/artikel/fles-nikka-coffey-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/nikka-coffey-malt-whisky.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nikka-miyagikyo-45-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 63.95,
+    "link": "https://drankdozijn.nl/artikel/fles-nikka-miyagikyo-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 68.95,
+    "link": "https://www.drankgigant.nl/nikka-single-malt-miyagikyo.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nikka-tailored-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 79.95,
+    "link": "https://drankdozijn.nl/artikel/fles-nikka-tailored-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.95,
+    "link": "https://www.drankgigant.nl/nikka-tailored.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nikka-taketsuru-pure-malt-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 47.95,
+    "link": "https://www.drankgigant.nl/nikka-taketsuru-pure-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nikka-yoichi-10-years-old-45-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 129.5,
+    "link": "https://www.drankgigant.nl/nikka-10-years-yoichi.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nikka-yoichi-45-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 67.5,
+    "link": "https://www.drankgigant.nl/nikka-yoichi.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "nomad-outland-whisky-41-3-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.95,
+    "link": "https://www.drankgigant.nl/nomad-outland-whisky.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "oban-11-years-old-special-release-2023-58-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 145.0,
+    "link": "https://www.drankgigant.nl/oban-11-years-special-release-2023.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "oban-14-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 49.95,
+    "link": "https://drankdozijn.nl/artikel/fles-oban-14-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/oban-14-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "old-ballantruan-10-years-old-50-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 54.95,
+    "link": "https://drankdozijn.nl/artikel/fles-old-ballantruan-10-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/old-ballantruan-10-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "old-pulteney-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 26.95,
+    "link": "https://drankdozijn.nl/artikel/fles-old-pulteney-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 27.95,
+    "link": "https://www.drankgigant.nl/old-pulteney-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "old-pulteney-16-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 69.5,
+    "link": "https://www.drankgigant.nl/old-pulteney-16-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "port-askaig-100-proof-57-1-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 49.95,
+    "link": "https://drankdozijn.nl/artikel/fles-port-askaig-100-proof-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/port-askaig-100-proof.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "port-charlotte-10-years-old-heavily-peated-50-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/port-charlotte-10-years-heavily-peated.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "rampur-asava-indian-single-malt-45-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 74.95,
+    "link": "https://drankdozijn.nl/artikel/fles-rampur-asava-indian-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "redbreast-12-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/redbreast-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "redbreast-12-years-old-cask-strength-57-2-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 84.95,
+    "link": "https://drankdozijn.nl/artikel/fles-redbreast-12-years-cask-strength-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 89.95,
+    "link": "https://www.drankgigant.nl/redbreast-12-year-old-cask-strength-57-2.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "redbreast-15-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.5,
+    "link": "https://www.drankgigant.nl/redbreast-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "redbreast-18-years-old-irish-whiskey-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 159.5,
+    "link": "https://www.drankgigant.nl/redbreast-18-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "redbreast-21-years-pot-still": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 219.5,
+    "link": "https://drankdozijn.nl/artikel/fles-redbreast-21-years-pot-still-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "redbreast-lustau-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 52.95,
+    "link": "https://drankdozijn.nl/artikel/fles-redbreast-lustau-edition-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "sazerac-rye-45-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 44.95,
+    "link": "https://drankdozijn.nl/artikel/fles-sazerac-rye-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "scapa-10-years-old-48-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 47.95,
+    "link": "https://drankdozijn.nl/artikel/fles-scapa-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/scapa-10-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "scarabus-10-years-old-islay-single-malt-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 42.95,
+    "link": "https://drankdozijn.nl/artikel/fles-scarabus-10-years-islay-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/scarabus-islay-10-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "scarabus-islay-single-malt-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 34.95,
+    "link": "https://drankdozijn.nl/artikel/fles-scarabus-islay-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.5,
+    "link": "https://www.drankgigant.nl/scarabus-islay-single-malt.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "singleton-of-dufftown-18-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 79.5,
+    "link": "https://drankdozijn.nl/artikel/fles-singleton-of-dufftown-18-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "six-isles-voyager-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 38.95,
+    "link": "https://www.drankgigant.nl/the-six-isles-voyager.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "slyrs-pedro-ximenez-edition-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 67.5,
+    "link": "https://www.drankgigant.nl/slyrs-pedro-ximenez-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "smokehead-15-years-old-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 67.5,
+    "link": "https://www.drankgigant.nl/smokehead-15-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "smokehead-rum-rebel-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 43.95,
+    "link": "https://drankdozijn.nl/artikel/fles-smokehead-rum-rebel-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 43.95,
+    "link": "https://www.drankgigant.nl/smokehead-rum-rebel.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "smokehead-sherry-cask-blast-48-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 49.95,
+    "link": "https://drankdozijn.nl/artikel/fles-smokehead-sherry-cask-blast-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "smokehead-twisted-stout-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 49.95,
+    "link": "https://drankdozijn.nl/artikel/fles-smokehead-twisted-stout-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/smokehead-twisted-stout.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "speyburn-15-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 54.95,
+    "link": "https://drankdozijn.nl/artikel/fles-speyburn-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "springbank-10-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 79.95,
+    "link": "https://www.drankgigant.nl/springbank-10-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 99.95,
+    "link": "https://drankdozijn.nl/artikel/fles-springbank-10-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "springbank-15-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 169.5,
+    "link": "https://www.drankgigant.nl/springbank-15-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   },
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 174.95,
+    "link": "https://drankdozijn.nl/artikel/fles-springbank-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "springbank-5-years-old-100-proof-57-1-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 75.0,
+    "link": "https://www.drankgigant.nl/springbank-5-years-100-proof.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "starward-left-field-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/starward-left-field.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "suntory-toki-black-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 36.95,
+    "link": "https://www.drankgigant.nl/suntory-toki-black.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "talisker-10-years-old-45-8-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.5,
+    "link": "https://www.drankgigant.nl/talisker-10-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "talisker-port-ruighe-45-8-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/talisker-port-ruighe.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "talisker-skye-45-8-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 29.5,
+    "link": "https://drankdozijn.nl/artikel/fles-talisker-skye-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 29.95,
+    "link": "https://www.drankgigant.nl/talisker-skye-edition.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "talisker-storm-45-8-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 32.95,
+    "link": "https://drankdozijn.nl/artikel/fles-talisker-storm-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.95,
+    "link": "https://www.drankgigant.nl/talisker-storm.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tamdhu-12-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 46.49,
+    "link": "https://drankdozijn.nl/artikel/fles-tamdhu-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/tamdhu-12-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tamdhu-15-years-old": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 84.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tamdhu-15-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "tamdhu-18-years-old": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 169.5,
+    "link": "https://www.drankgigant.nl/tamdhu-18-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tamdhu-21-years-old": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 339.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tamdhu-21-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "the-dalmore-17-years-old-42-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 179.5,
+    "link": "https://www.drankgigant.nl/dalmore-17-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-macallan-a-night-on-earth-in-jerez-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 134.95,
+    "link": "https://www.drankgigant.nl/macallan-a-night-on-earth-in-jerez.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-macallan-a-night-on-earth-the-finale-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 124.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-macallan-a-night-on-earth-the-finale-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-macallan-rare-cask-2023-edition-43-3-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 394.95,
+    "link": "https://www.drankgigant.nl/macallan-rare-cask-2023-release.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-macallan-rare-cask-2024-edition-43": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 350.0,
+    "link": "https://www.drankgigant.nl/macallan-rare-cask-2024-release.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-macallan-rare-cask-black-edition-48": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 450.0,
+    "link": "https://www.drankgigant.nl/macallan-rare-cask-black.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-macallan-the-harmony-collection-vibrant-oak-44-2-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 174.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-macallan-harmony-collection-vibrant-oak-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 189.95,
+    "link": "https://www.drankgigant.nl/macallan-the-harmony-collection-vibrant-oak.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-whistler-calvados-cask-finish-irish-whiskey-43-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/the-whistler-calvados-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "the-whistler-oloroso-sherry-cask-finish-irish-whiskey-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 29.95,
+    "link": "https://drankdozijn.nl/artikel/fles-the-whistler-oloroso-sherry-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 38.95,
+    "link": "https://www.drankgigant.nl/the-whistler-oloroso-sherry-cask.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tobermory-12-years-old-46-3-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 44.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tobermory-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 44.95,
+    "link": "https://www.drankgigant.nl/tobermory-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tomatin-12-years-old-sherry-cask-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 39.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tomatin-12-years-sherry-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "tomatin-12-years-old-triple-cask-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 29.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tomatin-12-years-triple-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "tomatin-legacy-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 22.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tomatin-legacy-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 26.95,
+    "link": "https://www.drankgigant.nl/tomatin-legacy.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tomintoul-14-years-old-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 57.5,
+    "link": "https://www.drankgigant.nl/tomintoul-14-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tomintoul-16-years-old-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 59.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tomintoul-16-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 64.5,
+    "link": "https://www.drankgigant.nl/tomintoul-16-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tomintoul-18-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 99.5,
+    "link": "https://www.drankgigant.nl/tomintoul-18-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tomintoul-pinot-noir-cask-finish-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 37.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tomintoul-pinot-noir-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 39.95,
+    "link": "https://www.drankgigant.nl/tomintoul-pinot-noir-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tomintoul-white-port-cask-finish-40-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 37.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tomintoul-white-port-cask-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "tormore-12-years-old-46-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 43.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tormore-12-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 43.95,
+    "link": "https://www.drankgigant.nl/tormore-12-years.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tormore-16-years-old-46-8-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 77.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tormore-16-years-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   }
+  ],
+  "tormore-timeless-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 32.95,
+    "link": "https://drankdozijn.nl/artikel/fles-tormore-timeless-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 32.95,
+    "link": "https://www.drankgigant.nl/tormore-timeless.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "tullamore-dew-rouge-13-years-old-40-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 49.95,
+    "link": "https://www.drankgigant.nl/tullamore-dew-13-years-rouge.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "whisky-tomatin-cu-bocan-creation-5-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.5,
+    "link": "https://www.drankgigant.nl/tomatin-cu-bocan-creation-5.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "wolfburn-10-years-old-the-holly-the-ivy-christmas-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 54.95,
+    "link": "https://www.drankgigant.nl/wolfburn-10-years-the-holly-the-ivy.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "wolfburn-12-years-old-madeira-cask-finish-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/wolfburn-12-years-madeira-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "wolfburn-7-years-old-cask-strength-58-2-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 68.95,
+    "link": "https://www.drankgigant.nl/wolfburn-7-years-cask-strength-1.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "wolfburn-8-years-old-cognac-cask-finish-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 59.95,
+    "link": "https://www.drankgigant.nl/wolfburn-8-years-cognac-cask-finish-limited-release.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "wolfburn-manzanilla-cask-finish-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 67.95,
+    "link": "https://www.drankgigant.nl/wolfburn-manzanilla-cask-finish.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "writers-tears-cask-strength-2022-release-54-6-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 129.5,
+    "link": "https://www.drankgigant.nl/writers-tears-cask-strength-2022.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "writers-tears-cask-strength-2023-release-54-8-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 119.5,
+    "link": "https://www.drankgigant.nl/writers-tears-cask-strength-2023.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "yamazaki-12-years-old-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 139.95,
+    "link": "https://drankdozijn.nl/artikel/fles-yamazaki-12-years-single-malt-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 169.5,
+    "link": "https://www.drankgigant.nl/yamazaki-12-year.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "yamazaki-distillers-reserve-43-6-cl-sample": [
+   {
+    "winkel": "DrankDozijn",
+    "prijs": 84.95,
+    "link": "https://drankdozijn.nl/artikel/fles-yamazaki-distillers-reserve-70cl",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026",
+    "tot": "2026-11-28"
+   },
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 129.95,
+    "link": "https://www.drankgigant.nl/yamazaki-distillers-reserve-70cl.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ],
+  "yellow-rose-outlaw-bourbon-46-6-cl-sample": [
+   {
+    "winkel": "Drankgigant.nl",
+    "prijs": 74.5,
+    "link": "https://www.drankgigant.nl/yellow-rose-outlaw-bourbon.html",
+    "grootte": "70 cl",
+    "voorraad": "ja",
+    "gecontroleerd": "28-11-2026"
+   }
+  ]
+ }
+}

@@ -29,3 +29,15 @@ python scripts/build_data.py pad/naar/whisky_overzicht.xlsx
 `fetch_descriptions.py` schrijft `descriptions.json`. `fetch_images.py` vult daarin `image` (hotlink) met deze volgorde: flespagina (Whiskysite of andere winkel), daarna een zekere Whiskysite-zoekmatch op de fles, daarna Drankdozijn (alleen zekere naam-match; live-pagina’s van Drankdozijn zijn vaak Cloudflare-geblokkeerd voor kale HTTP, daarom worden gerenderde/gecachte pagina’s gebruikt), daarna Whiskybase (alleen bij WB-status exact of labelversie; bij een Cloudflare-blokkade wordt live overgeslagen), en pas daarna een non-generieke samplefoto. Generieke 3/6 cl-sampleplaatjes worden overgeslagen. `build_data.py` voegt `omschrijving`, `omschrijvingBron` en `afbeelding` toe wanneer die er zijn. Omschrijvingen worden letterlijk overgenomen, niet herschreven. De pagina laadt `descriptions.json` op de detailweergave als fallback voor de tekst.
 
 Het blok Omschrijving op de detailpagina verschijnt alleen als er een shoptekst is; andere ontbrekende velden blijven leeg of `onbekend`. Er wordt niets verzonnen.
+
+## Flesprijzen
+
+De flesprijs in de lijst en op de detailpagina is de laagste leverbare prijs over alle winkels. Naast de prijzen uit het Excel-bestand komen er prijzen uit `prijzen.json`, die `scripts/fetch_flesprijzen.py` schrijft vanuit de sitemaps en productpagina's van Drankgigant.nl en DrankDozijn. Er wordt alleen een prijs opgeslagen bij een zekere match (naam, leeftijd, editie, ABV binnen 0,3 en flesmaat 70 cl of de flesmaat van de whisky), en alleen voor leverbare flessen; samples, miniaturen en cadeausets tellen niet. Per prijs staan winkel, link, flesmaat en controledatum in `prijzen.json`. `build_data.py` voegt ze samen met de bestaande prijs: de laagste staat bovenaan, de volgende als tweede winkel en de rest in een lijst op de detailpagina. DrankDozijn toont soms een doorgestreepte oude prijs naast de actuele prijs; de actuele prijs (JSON-LD `offers.price`) telt.
+
+```bash
+python scripts/fetch_flesprijzen.py --shop drankgigant
+python scripts/fetch_flesprijzen.py --shop drankdozijn --cdp-port 9333   # Chrome met --remote-debugging-port, Cloudflare blokkeert kale HTTP
+python scripts/build_data.py pad/naar/whisky_overzicht.xlsx
+```
+
+Het script is bedoeld om later als GitHub Action te draaien; die staat nu niet aan. DrankDozijn vraagt daarvoor een echte browser (Cloudflare).
