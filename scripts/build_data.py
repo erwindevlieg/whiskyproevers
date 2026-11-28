@@ -868,6 +868,14 @@ def detect_ib(item: dict) -> str | None:
     return None
 
 
+
+# Speyside (M) is het merk van The Speyside Distillery (Kingussie), niet Macallan.
+# Bron: https://www.whiskybase.com/whiskies/brand/90780/about
+_SPEYSIDE_M_NAME = re.compile(r"(?i)\bspeyside\s*\(\s*m\s*\)")
+_SPEYSIDE_M_WB = re.compile(r"(?i)speyside-m-")
+SPEYSIDE_M_REGIO = "Speyside, single malt (Speyside Distillery)"
+
+
 def apply_ib(items) -> Counter:
     """Zet 'ib' op items met een zekere bottelaarstreffer; laat andere ongemoeid."""
     counts: Counter = Counter()
@@ -879,6 +887,26 @@ def apply_ib(items) -> Counter:
         else:
             item.pop("ib", None)
     return counts
+
+
+
+def apply_speyside_m(items) -> int:
+    """Zet Speyside (M) op Speyside Distillery, niet op Macallan.
+
+    Bron: https://www.whiskybase.com/whiskies/brand/90780/about
+    Speyside (M) is een merk van The Speyside Distillery in Kingussie.
+    """
+    changed = 0
+    for item in items:
+        naam = item.get("naam") or ""
+        link = item.get("wbLink") or ""
+        if not (_SPEYSIDE_M_NAME.search(naam) or _SPEYSIDE_M_WB.search(link)):
+            continue
+        current = (item.get("regio") or "").strip()
+        if current != SPEYSIDE_M_REGIO:
+            item["regio"] = SPEYSIDE_M_REGIO
+            changed += 1
+    return changed
 
 
 def main(argv=None):
@@ -1003,6 +1031,11 @@ def main(argv=None):
             % (sum(ib_counts.values()), top),
             file=sys.stderr,
         )
+
+
+    speyside_m = apply_speyside_m(payload["items"])
+    if speyside_m:
+        print("Speyside (M): %s items naar Speyside Distillery" % speyside_m, file=sys.stderr)
 
     # Volledige payload blijft de bron voor de publicatie; data.json wordt
     # daarna de kleine manifest. Een kopie staat naast de uitvoer als

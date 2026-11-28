@@ -293,9 +293,9 @@
 
 <script>
 /* data-build */
-const DATA_BUILD = "76f03a7a8a";
-const DATA_INDEX = "data/index-76f03a7a8a.json";
-const DATA_CHUNK_PREFIX = "data/d/76f03a7a8a-";
+const DATA_BUILD = "0a2fb13da5";
+const DATA_INDEX = "data/index-0a2fb13da5.json";
+const DATA_CHUNK_PREFIX = "data/d/0a2fb13da5-";
 const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
@@ -487,6 +487,7 @@ const DIST_ALIAS_RAW = {
   "benriach":"BenRiach","ben riach":"BenRiach",
   "an cnoc":"anCnoc","ancnoc":"anCnoc","knockdhu":"anCnoc","ancnoc knockdhu":"anCnoc",
   "the macallan":"Macallan","macallan":"Macallan",
+  "speyside distillery":"Speyside Distillery","the speyside distillery":"Speyside Distillery",
   "the glenlivet":"Glenlivet","the glenturret":"Glenturret","the dalmore":"Dalmore",
   "isle of jura":"Jura","jura distillery":"Jura",
   "isle of arran":"Arran",
@@ -596,13 +597,21 @@ function stripSeries(name) {
 }
 function canonicalDist(name) {
   if (!name) return null;
-  name = stripSeries(stripDistSuffix(String(name).trim().replace(/[.\s]+$/, "")));
-  name = name.replace(/\s+/g, " ").replace(/^[,.\-\s]+|[,.\-\s]+$/g, "");
-  if (!name) return null;
-  const key = normKey(name);
+  const raw = String(name).trim().replace(/[.\s]+$/, "");
+  const rawKey = normKey(raw);
+  if (DIST_ALIASES[rawKey]) return DIST_ALIASES[rawKey];
+  const stripped = stripSeries(stripDistSuffix(raw));
+  const cleaned = stripped.replace(/\s+/g, " ").replace(/^[,.\-\s]+|[,.\-\s]+$/g, "");
+  // "Speyside Distillery" mag niet worden ingekort tot de regio "Speyside".
+  if (cleaned && cleaned !== raw && NOT_DISTILLERY.has(normKey(cleaned))) {
+    if (!rawKey || rawKey.length < 2) return null;
+    return raw.replace(/\s+/g, " ");
+  }
+  if (!cleaned) return null;
+  const key = normKey(cleaned);
   if (!key || key.length < 2 || NOT_DISTILLERY.has(key)) return null;
   if (DIST_ALIASES[key]) return DIST_ALIASES[key];
-  return name;
+  return cleaned;
 }
 function fromParens(text) {
   if (!text) return null;
