@@ -1,4 +1,4 @@
-/* Lazy-loaded regiokaart. Geodata: assets/regions.geojson (ScotchRegions + Natural Earth, vereenvoudigd). */
+/* Lazy-loaded regiokaart voor de whiskypagina. Geodata: assets/regions.geojson (ScotchRegions + Natural Earth, vereenvoudigd). */
 (function (global) {
   const GEO_URL = "assets/regions.geojson";
   let geoPromise = null;
@@ -63,14 +63,6 @@
     return parts.join("");
   }
 
-  function fillFor(count, max, active) {
-    if (active) return null; // class handles it
-    if (!count) return null;
-    const t = Math.sqrt(count / max);
-    const a = (0.38 + 0.54 * t).toFixed(2);
-    return "hsl(var(--primary) / " + a + ")";
-  }
-
   function svgEl(name, attrs) {
     const el = document.createElementNS("http://www.w3.org/2000/svg", name);
     Object.keys(attrs).forEach((k) => el.setAttribute(k, attrs[k]));
@@ -81,13 +73,26 @@
     return [box[0] - pad, box[1] - pad, box[2] + pad, box[3] + pad];
   }
 
+  function focusBBox(local, isScot) {
+    const spanX = local[2] - local[0];
+    const spanY = local[3] - local[1];
+    const span = Math.max(spanX, spanY);
+    let pad;
+    if (isScot) {
+      // Kleine gebieden (Campbeltown, Islay) vullen de kaart, met net genoeg
+      // omgeving. Grote regio's (Highland, Islands) krijgen een kleine rand.
+      const targetSpan = Math.max(1.15, Math.min(span / 0.42, span + 2.4));
+      pad = Math.max(0.28, (targetSpan - span) / 2);
+    } else {
+      pad = Math.max(span * 0.12, 0.15);
+    }
+    return expandBBox(local, pad);
+  }
+
   function drawFeatures(features, opts) {
     const width = opts.width || 640;
     const height = opts.height || 520;
-    const counts = opts.counts || {};
     const active = opts.region || "";
-    const clickable = opts.clickable !== false;
-    const max = Math.max(1, ...features.map((f) => counts[f.properties.name] || 0));
     const bbox = opts.bbox || bboxOf(features);
     if (!bbox) return null;
     const pad = opts.pad || 12;
@@ -97,101 +102,56 @@
       role: "img",
       "aria-label": opts.label || "Regiokaart"
     });
+    const rest = [];
+    let activePath = null;
     features.forEach((f) => {
       const name = f.properties.name;
       const d = pathData(f.geometry, project);
       if (!d) return;
-      const count = counts[name] || 0;
       const path = svgEl("path", { d: d, "class": "rm-region" });
-      if (name === active) path.classList.add("is-active");
-      else if (!count) path.classList.add("is-empty");
-      if (count) {
-        path.setAttribute("data-count", String(count));
-        const fill = fillFor(count, max, name === active);
-        if (fill) path.style.setProperty("--rm-fill", fill);
-      }
       path.setAttribute("aria-label", name);
-      if (clickable && count && typeof opts.onSelect === "function") {
-        path.setAttribute("tabindex", "0");
-        path.setAttribute("role", "button");
-        const go = (ev) => { ev.preventDefault(); opts.onSelect(name); };
-        path.addEventListener("click", go);
-        path.addEventListener("keydown", (ev) => {
-          if (ev.key === "Enter" || ev.key === " ") go(ev);
-        });
+      if (name === active) {
+        path.classList.add("is-active");
+        activePath = path;
+      } else {
+        rest.push(path);
       }
-      svg.appendChild(path);
     });
+    rest.forEach((p) => svg.appendChild(p));
+    if (activePath) svg.appendChild(activePath);
     return svg;
   }
 
   function mount(el, opts) {
     opts = opts || {};
     loadGeo().then((geo) => {
-      const counts = opts.counts || {};
-      const mode = opts.mode || "overview";
       const region = opts.region || "";
       const features = geo.features || [];
-      const scotland = features.filter((f) => f.properties.group === "scotland");
-      const world = features.filter((f) => f.properties.group === "world");
-      el.hidden = false;
-      el.innerHTML = "";
-
-      if (mode === "detail") {
-        const hit = features.find((f) => f.properties.name === region);
-        if (!hit) { el.hidden = true; el.innerHTML = ""; return; }
-        const isScot = hit.properties.group === "scotland";
-        const group = isScot ? scotland : [hit];
-        const local = bboxOf([hit]);
-        const span = Math.max(local[2] - local[0], local[3] - local[1]);
-        const tight = isScot && span < 2.4;
-        const svg = drawFeatures(group, {
-          width: isScot ? 520 : 360,
-          height: isScot ? 400 : 260,
-          counts: counts,
-          region: region,
-          clickable: false,
-          label: region,
-          bbox: tight ? expandBBox(local, Math.max(0.55, span * 1.6)) : null
-        });
-        if (svg) el.appendChild(svg);
+      const hit = features.find((f) => f.properties.name === region);
+      if (!hit) {
+        el.hidden = true;
+        el.innerHTML = "";
         return;
       }
-
-      const panel = document.createElement("div");
-      panel.className = "rm-panel";
-      const scotWrap = document.createElement("div");
-      const scotSvg = drawFeatures(scotland, {
-        width: 560,
-        height: 480,
-        counts: counts,
+      const isScot = hit.properties.group === "scotland";
+      const group = isScot
+        ? features.filter((f) => f.properties.group === "scotland")
+        : [hit];
+      const local = bboxOf([hit]);
+      const svg = drawFeatures(group, {
+        width: isScot ? 520 : 360,
+        height: isScot ? 400 : 260,
         region: region,
-        onSelect: opts.onSelect,
-        label: "Schotland"
+        label: region,
+        bbox: local ? focusBBox(local, isScot) : null
       });
-      if (scotSvg) scotWrap.appendChild(scotSvg);
-      const worldWrap = document.createElement("div");
-      worldWrap.className = "rm-world";
-      const presentWorld = world.filter((f) => (counts[f.properties.name] || 0) > 0);
-      presentWorld.forEach((f) => {
-        const box = document.createElement("div");
-        const svg = drawFeatures([f], {
-          width: 220,
-          height: 140,
-          counts: counts,
-          region: region,
-          onSelect: opts.onSelect,
-          pad: 10,
-          label: f.properties.name
-        });
-        if (svg) {
-          box.appendChild(svg);
-          worldWrap.appendChild(box);
-        }
-      });
-      panel.appendChild(scotWrap);
-      if (presentWorld.length) panel.appendChild(worldWrap);
-      el.appendChild(panel);
+      el.hidden = false;
+      el.innerHTML = "";
+      if (svg) el.appendChild(svg);
+      const caption = document.createElement("p");
+      caption.className = "t-meta rm-caption";
+      caption.textContent = region;
+      el.appendChild(caption);
     }).catch(() => {
       el.hidden = true;
     });

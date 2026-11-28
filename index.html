@@ -238,7 +238,6 @@
   <div class="dist-list-view" id="distListView" hidden>
     <a class="back" href="#/">← Overzicht</a>
     <h2>Distilleerderijen</h2>
-    <div class="region-map" id="distRegionMap" hidden></div>
     <div class="list-bar">
       <div class="field search-field">
         <label class="sr-only" for="distQ">Zoeken</label>
@@ -1011,22 +1010,6 @@ function markBottleSort(root) {
 
 let regionMapPromise = null;
 
-function regioCounts() {
-  const counts = {};
-  (ROWS || []).forEach(r => {
-    if (r.regioKort) counts[r.regioKort] = (counts[r.regioKort] || 0) + 1;
-  });
-  return counts;
-}
-
-function selectRegionFilter(name) {
-  if (!name) return;
-  state.regio = new Set([name]);
-  syncFormFromState();
-  closeFilters();
-  location.hash = listHash();
-}
-
 function loadRegionMap() {
   if (window.RegionMap) return Promise.resolve(window.RegionMap);
   if (regionMapPromise) return regionMapPromise;
@@ -1046,16 +1029,12 @@ function mountRegionMap(target, opts) {
   if (!el) return;
   loadRegionMap().then(mod => {
     if (!mod || !mod.mount) return;
-    mod.mount(el, Object.assign({
-      counts: regioCounts(),
-      onSelect: selectRegionFilter
-    }, opts || {}));
+    mod.mount(el, opts || {});
   }).catch(() => {});
 }
 
 function renderDistList() {
   document.title = "Distilleerderijen · Whisky proefoverzicht";
-  mountRegionMap("distRegionMap", { mode: "overview" });
   const list = filterDistilleries();
   els.distCount.innerHTML = "<strong>" + intFmt.format(list.length) + "</strong> van <strong>" + intFmt.format(DISTILLERIES.length) + "</strong> distilleerderijen";
   els.distRows.innerHTML = list.map(d => {
@@ -2440,7 +2419,7 @@ function renderDetail(r) {
     + accordion("Meer details", meer);
   bindPhotos(els.detail);
   const mini = els.detail.querySelector(".region-map-mini");
-  if (mini) mountRegionMap(mini, { mode: "detail", region: r.regioKort || "" });
+  if (mini) mountRegionMap(mini, { region: r.regioKort || "" });
 }
 
 function renderDetailMissing() {
