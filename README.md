@@ -65,6 +65,14 @@ python scripts/check_tags.py                           # lijst en detail hebben 
 
 `enrich_drankgigant.py` gebruikt dezelfde strikte match als de flesprijzen (naam, bottelaar, leeftijd, editie, ABV binnen 0,3, flesmaat; geen samples of cadeausets) en haalt omschrijving, proefnotities en foto op. `facts.json` bevat aangevulde feiten, `kenmerken.json` de kenmerken uit `scripts/attributes.py` (vatsterkte, natuurlijke kleur, niet koudgefilterd, single cask en vatnummer, distillatie- en bottelingsjaar, fenolgehalte, oplage, first fill/refill, vatsoort, finish en duur). Een kenmerk staat er alleen als de tekst het letterlijk zegt, met de bron erbij.
 
+## Whiskysite-flespagina's
+
+`scripts/enrich_wsfles.py` zoekt in de sitemap van whiskysite.nl naar de volle fles (meestal 70 cl) bij dezelfde whisky als het sample. De match is even streng als bij de andere bronnen (bottelaar, leeftijd of jaartal, vatnummer, ABV binnen 0,3, flesmaat). Alleen lege velden worden gevuld. Is de tekst op de samplepagina een stub en die op de flespagina een volledige omschrijving, dan gaat de flespagina voor — ook boven Drankgigant of een andere lagere bron. De bron blijft Whiskysite.nl, met de URL van de flespagina. robots.txt (crawl-delay 2 s) wordt aangehouden.
+
+```bash
+python scripts/enrich_cascade.py --fetch-wsfles
+```
+
 ## Extra bronnen en bijna-matches
 
 `scripts/enrich_extra.py` voegt informatiebronnen toe aan de cascade (geen prijzen):

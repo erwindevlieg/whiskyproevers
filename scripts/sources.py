@@ -32,6 +32,7 @@ import re
 # Bronsleutel -> weergavenaam en hostnamen.
 SOURCES = {
     "whiskysite": {"label": "Whiskysite", "hosts": ["whiskysite.nl"]},
+    "whiskysitefles": {"label": "Whiskysite (fles)", "hosts": []},
     "maker": {"label": "Website van de maker", "hosts": []},
     "drankdozijn": {"label": "Drankdozijn", "hosts": ["drankdozijn.nl"]},
     "gall": {"label": "Gall & Gall", "hosts": ["gall.nl"]},
@@ -51,23 +52,23 @@ SOURCES = {
 FIELDS = {
     "omschrijving": {
         "modus": "eerste",
-        "volgorde": ["whiskysite", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
     },
     "afbeelding": {
         "modus": "eerste",
-        "volgorde": ["whiskysite", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "drankgigant", "gall", "dramshop", "whiskybaseshop", "drankenhandelleiden"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "drankgigant", "gall", "dramshop", "whiskybaseshop", "drankenhandelleiden"],
     },
     "feiten": {  # regio, vattype, leeftijd, abv, inhoud: alleen lege velden
         "modus": "eerste",
-        "volgorde": ["whiskysite", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden"],
+        "volgorde": ["whiskysite", "whiskysitefles", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden"],
     },
     "proefnotities": {
         "modus": "samenvoegen",
-        "volgorde": ["whiskysite", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
     },
     "tags": {  # smaaktags en vat/stijl-tags uit alle teksten
         "modus": "samenvoegen",
-        "volgorde": ["whiskysite", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
     },
     "flesprijs": {
         "modus": "laagste",

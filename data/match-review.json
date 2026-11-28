@@ -2,6 +2,126 @@
   "uitleg": "Kandidaten die net niet door de strikte check kwamen. Zet 'goedgekeurd' op true om een koppeling te gebruiken, of op false om hem te verwerpen; null = nog niet bekeken. De cascade (scripts/enrich_extra.py) gebruikt alleen regels met goedgekeurd: true.",
   "kandidaten": [
     {
+      "id": "adelphi-lochlea-5-years-old-2018-cask-114-59-2-6-cl-sample",
+      "whisky": "Adelphi Lochlea 5 Years Old 2018 Cask 114 59,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Lochlea Adelphi Lochlea 5 Years Old 2018 Cask 114 0,70 ltr 59,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/adelphi-lochlea-5-years-old-2018-cask-114-070-ltr.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "berry-bros-rudd-orkney-2008-cask-14-61-8-6-cl-sample",
+      "whisky": "Berry Bros & Rudd Orkney 2008 Cask 14 61,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Highland Park Berry Bros & Rudd Orkney 2008 Cask 14 0,70 ltr 61,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/berry-bros-and-rudd-orkney-2008-cask-14-070-ltr-61.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-raw-cask-glentauchers-10-years-old-2012-64-3-6-cl-sample",
+      "whisky": "Blackadder Raw Cask Glentauchers 10 Years Old 2012 64,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glentauchers Blackadder Raw Cask Glentauchers 10 Years Old 2012 0,70 ltr 64,3%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blackadder-raw-cask-glentauchers-10-years-old-2012.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "secret-speyside-16-years-old-2009-little-brown-dog-54-2-6-cl-sample",
+      "whisky": "Secret Speyside 16 Years Old 2009 Little Brown Dog 54,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Speyside Secret Speyside 16 Years Old 2009 Little Brown Dog 0.70 ltr 54,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/secret-speyside-16-years-old-2009-little-brown-dog.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "adelphi-piccadily-distillery-6-years-old-2019-52-6-cl-sample",
+      "whisky": "Adelphi Piccadily Distillery 6 Years Old 2019 52% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Indri Trini Adelphi Piccadily Distillery 6 Years Old 2019 0,70 ltr 52%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/adelphi-piccadily-distillery-6-years-old-2019-070.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-14-years-old-2011-signatory-cask-strength-cask-4-57-2-6-cl-sample",
+      "whisky": "Blair Athol 14 Years Old 2011 Signatory Cask Strength Cask 4 57,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blair Athol 14 Years Old 2011 Signatory Cask Strength Cask 4 57,2% 6 C",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blair-athol-14-years-old-2011-signatory--160655685.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "orkney-22-years-old-2003-uncharted-whisky-company-55-6-cl-sample",
+      "whisky": "Orkney 22 Years Old 2003 Uncharted Whisky Company 55% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Highland Park Orkney 22 Years Old 2003 Uncharted Whisky Company 0,70 ltr 55%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/orkney-22-years-old-2003-uncharted-whisky-company.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "fettercairn-9-years-old-2015-claxton-s-warehouse-8-51-5-6-cl-sample",
+      "whisky": "Fettercairn 9 Years Old 2015 Claxton's Warehouse 8 51,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Tullibardine Fettercairn 9 Years Old 2015 Claxton's Warehouse 8 0,70 ltr 51,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/fettercairn-9-years-old-2015-claxtons-warehouse-8.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "old-particular-bowmore-11-years-old-2014-48-4-6-cl-sample",
+      "whisky": "Old Particular Bowmore 11 Years Old 2014 48,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bowmore Old Particular Bowmore 11 Years Old 2014 0,70 ltr 48,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/old-particular-bowmore-11-years-old-2014-070-ltr-4.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "old-particular-caol-ila-10-years-old-2015-48-4-6-cl-sample",
+      "whisky": "Old Particular Caol Ila 10 Years Old 2015 48,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Caol Ila Old Particular Caol Ila 10 Years Old 2015 0,70 ltr 48,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/old-particular-caol-ila-10-years-old-2015-070-ltr.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.25,
+      "goedgekeurd": null
+    },
+    {
       "id": "glen-ord-2009-signatory-cask-strength-cask-4-56-7-6-cl-sample",
       "whisky": "Glen Ord 2009 Signatory Cask Strength Cask 4 56,7% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -110,6 +230,66 @@
       "goedgekeurd": null
     },
     {
+      "id": "benriach-10-years-old-north-star-spirits-53-5-6-cl-sample",
+      "whisky": "Benriach 10 Years Old North Star Spirits 53,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Benriach Benriach 10 Years Old 2014 North Star Spirits 0,70 ltr 53,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/benriach-10-years-old-2014-north-star-spirits-070.html",
+      "verschil": [
+        "pagina noemt jaartal 2014"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-private-cask-11-years-old-2012-bottled-for-the-netherlands-51-2-6-cl-sample",
+      "whisky": "Arran Private Cask 11 Years Old 2012 Bottled For The Netherlands 51,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Arran Private Cask 11 Years Old 2012 Bottled For The Netherlands 51,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/arran-private-cask-11-years-old-2012-bot-154801894.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-13-years-old-bargh-garbh-50-6-cl-sample",
+      "whisky": "Bunnahabhain 13 Years Old Bargh Garbh 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain 13 Years Old Bargh Garbh 1,00 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bunnahabhain-13-years-old-bargh-garbh-100-ltr-50.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendronach-forgue-10-years-old-43-6-cl-sample",
+      "whisky": "Glendronach Forgue 10 Years Old 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glendronach Glendronach Forgue 10 Years Old 1,00 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glendronach-forgue-10-years-old-liter.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "don-martin-8-years-old-45-6-cl-sample",
+      "whisky": "Don Martin 8 Years Old 45% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Don Martin Don Martin 8 Years Old 0,50 ltr 45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/don-martin-8-years-old-050-ltr-45.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
       "id": "laphroaig-9-years-old-2016-signatory-cask-strength-cask-8-61-2-6-cl-sample",
       "whisky": "Laphroaig 9 Years Old 2016 Signatory Cask Strength Cask 8 61,2% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -131,6 +311,78 @@
         "ABV onbekend op pagina"
       ],
       "waarschijnlijkheid": 1.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "macallan-12-years-old-double-cask-40-6-cl-sample",
+      "whisky": "Macallan 12 Years Old Double Cask 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Macallan 12 Years Old Double Cask 2025 Release 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/macallan-12-years-old-double-cask-2025-release-070.html",
+      "verschil": [
+        "pagina noemt jaartal 2025"
+      ],
+      "waarschijnlijkheid": 1.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glasgow-5-years-old-2016-north-star-spirits-51-5-6-cl-sample",
+      "whisky": "Glasgow 5 Years Old 2016 North Star Spirits 51,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glasgow Distillery Glasgow 5 Years Old 2016 North Star Spirits 0,70 ltr 51,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glasgow-5-years-old-2016-north-star-spirits-070-lt.html",
+      "verschil": [
+        "naam afwijkend (- | distillery)"
+      ],
+      "waarschijnlijkheid": 1.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-10-years-old-2012-carn-mor-bourbon-cask-47-5-6-cl-sample",
+      "whisky": "Benriach 10 Years Old 2012 Carn Mor Bourbon Cask 47.5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Benriach Benriach 10 Years Old 2012 Carn Mor 0.70 ltr 47.5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/benriach-10-years-old-2012-carn-mor-070-ltr-475.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 1.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-no-1-6-years-old-2020-signatory-anniversary-release-57-1-6-cl-sample",
+      "whisky": "Edradour No. 1 6 Years Old 2020 Signatory Anniversary Release 57,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Edradour No. 1 6 Years Old 2020 Signatory Anniversary Release 57,1% 6",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/edradour-no-1-6-years-old-2020-signatory-164836025.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 1.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ben-nevis-11-years-old-2014-signatory-cask-strength-cask-232-59-6-6-cl-sample",
+      "whisky": "Ben Nevis 11 Years Old 2014 Signatory Cask Strength Cask 232 59,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ben Nevis 11 Years Old 2014 Signatory Cask Strength Cask 232 59,6% 6 C",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ben-nevis-11-years-old-2014-signatory-ca-162988949.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 1.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ben-nevis-12-years-old-2014-the-ultimate-selection-cask-430-432-46-6-cl-sample",
+      "whisky": "Ben Nevis 12 Years Old 2014 The Ultimate Selection Cask 430 + 432 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ben Nevis 12 Years Old 2014 The Ultimate Selection Cask 430 + 432 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ben-nevis-12-years-old-2014-the-ultimate-164836969.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 1.0,
       "goedgekeurd": null
     },
     {
@@ -158,18 +410,6 @@
       "goedgekeurd": null
     },
     {
-      "id": "yellow-spot-12-years-old-46-6-cl-sample",
-      "whisky": "Yellow Spot 12 Years Old 46% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Yellow Spot Yellow Spot 12 jaar",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/yellow-spot-12-jaar.html",
-      "verschil": [
-        "ABV onbekend op pagina"
-      ],
-      "waarschijnlijkheid": 0.95,
-      "goedgekeurd": null
-    },
-    {
       "id": "glen-keith-8-years-old-2013-carn-mor-47-5-6-cl-sample",
       "whisky": "Glen Keith 8 Years Old 2013 Carn Mor 47,5% 6 CL Sample",
       "bron": "Drankenhandel Leiden",
@@ -182,6 +422,102 @@
       "goedgekeurd": null
     },
     {
+      "id": "speyside-m-18-years-old-signatory-vintage-100-proof-edition-exceptional-cask-18-57-1-6-cl-sample",
+      "whisky": "Speyside (M) 18 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #18 57,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Speyside (M) 18 Years Old Signatory Vintage 100 Proof Edition Exceptio",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/speyside-m-18-years-old-signatory-vintage-100-proo.html",
+      "verschil": [
+        "vatnummer 18 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "adelphi-the-cargill-5-years-old-57-4-6-cl-sample",
+      "whisky": "Adelphi The Cargill 5 Years Old 57,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "The Gargill Adelphi The Cargill 5 Years Old 0,70 ltr 57,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/adelphi-the-cargill-5-years-old-070-ltr-574.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-7-years-old-living-souls-50-6-cl-sample",
+      "whisky": "Ardnamurchan 7 Years Old Living Souls 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bowmore Ardnamurchan 7 Years Old Living Souls 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ardnamurchan-7-years-old-living-souls-070-ltr-50.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "plantation-single-cask-belize-2015-44-4-6-cl-sample",
+      "whisky": "Plantation Single Cask Belize 2015 44,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Plantation Plantation Single Cask Belize 2015 0,70 ltr 44,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/plantation-single-cask-belize-2015-070-ltr-444.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "balmenach-10-years-old-2016-the-ultimate-selection-cask-25-29-46-6-cl-sample",
+      "whisky": "Balmenach 10 Years Old 2016 The Ultimate Selection Cask 25 + 29 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Balmenach 10 Years Old 2016 The Ultimate Selection Cask 25 + 29 46% 6",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/balmenach-10-years-old-2016-the-ultimate-164942090.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.917,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-raw-cask-macduff-14-years-old-2008-59-7-6-cl-sample",
+      "whisky": "Blackadder Raw Cask Macduff 14 Years Old 2008 59,7% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Macduff Blackadder Macduff 14 Years Old 2008 0,70 ltr 59,7%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blackadder-macduff-14-years-old-2008-070-ltr-597.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.917,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bowmore-10-years-old-2016-signatory-cask-strength-cask-26-57-7-6-cl-sample",
+      "whisky": "Bowmore 10 Years Old 2016 Signatory Cask Strength Cask 26 57,7% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bowmore 10 Years Old 2016 Signatory Unchill Filtered Collection 46% 6",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bowmore-10-years-old-2016-signatory-unch-165419878.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.917,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-12-years-old-2010-the-maltman-53-1-6-cl-sample",
+      "whisky": "Bunnahabhain 12 Years Old 2010 The Maltman 53,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain Moine 12 Years Old 2010 The Maltman 0,70 ltr 53,1%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bunnahabhain-moine-12-years-old-2010-the-maltman-0.html",
+      "verschil": [
+        "naam afwijkend (- | moine)"
+      ],
+      "waarschijnlijkheid": 0.917,
+      "goedgekeurd": null
+    },
+    {
       "id": "adelphi-piccadily-distillery-6-years-old-2019-52-6-cl-sample",
       "whisky": "Adelphi Piccadily Distillery 6 Years Old 2019 52% 6 CL Sample",
       "bron": "Dramshop.nl",
@@ -189,18 +525,6 @@
       "kandidaatUrl": "https://www.dramshop.nl/nl/piccadily-distillery-indri-2019-cask-4073.html",
       "verschil": [
         "leeftijd 6 niet op pagina"
-      ],
-      "waarschijnlijkheid": 0.9,
-      "goedgekeurd": null
-    },
-    {
-      "id": "ledaig-9-years-old-2017-spirit-of-scotland-60-2-6-cl-sample",
-      "whisky": "Ledaig 9 Years Old 2017 Spirit Of Scotland 60,2% 6 CL Sample",
-      "bron": "Dramshop.nl",
-      "kandidaatNaam": "Ledaig 2017 #42 NL - Spirit of Scotland",
-      "kandidaatUrl": "https://www.dramshop.nl/nl/ledaig-2017-42-nl-spirit-of-scotland.html",
-      "verschil": [
-        "leeftijd 9 niet op pagina"
       ],
       "waarschijnlijkheid": 0.9,
       "goedgekeurd": null
@@ -230,13 +554,409 @@
       "goedgekeurd": null
     },
     {
-      "id": "glen-scotia-15-years-old-46-6-cl-sample",
-      "whisky": "Glen Scotia 15 Years Old 46% 6 CL Sample",
-      "bron": "Dramshop.nl",
-      "kandidaatNaam": "Glen Scotia Glen Scotia 15 years",
-      "kandidaatUrl": "https://www.dramshop.nl/nl/glen-scotia-15-years.html",
+      "id": "glenallachie-21-years-cask-strength-batch-6",
+      "whisky": "GlenAllachie 21 Years Cask Strength Batch 6",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glenallachie Glenallachie 21 Years Old Batch 6 0,70 ltr 52,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glenallachie-21-years-old-batch-6-070-ltr-528.html",
       "verschil": [
-        "naam afwijkend (- | bottle code l4)"
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "longmorn-2008-gordon-macphail-46-6-cl-sample",
+      "whisky": "Longmorn 2008 Gordon & MacPhail 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Longmorn Longmorn 13 Years Old Gordon & MacPhail 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/longmorn-13-years-old-gordon-and-macphail-070-ltr.html",
+      "verschil": [
+        "pagina noemt leeftijd 13"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-an-cidhe-50-6-cl-sample",
+      "whisky": "Bunnahabhain An Cidhe 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain An Cidhe 1,00 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bunnahabhain-an-cidhe-100-ltr-50.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "aberlour-casg-annamh-48-6-cl-sample",
+      "whisky": "Aberlour Casg Annamh 48% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Aberlour Casg Annamh 1,00 ltr 48%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/aberlour-casg-annamh-100-ltr-48.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "macallan-18-years-old-sherry-oak-2022-release-43-6-cl-sample",
+      "whisky": "Macallan 18 Years Old Sherry Oak 2022 Release 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Macallan 18 Years Old Sherry Oak 2023 Release 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/macallan-18-years-old-sherry-oak-2023-release-070.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "macallan-18-years-old-sherry-oak-2022-release-43-6-cl-sample",
+      "whisky": "Macallan 18 Years Old Sherry Oak 2022 Release 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Macallan 18 Years Old Sherry Oak 2024 Release 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/macallan-18-years-old-sherry-oak-2024-release-070.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "macallan-18-years-old-sherry-oak-2023-release-43-6-cl-sample",
+      "whisky": "Macallan 18 Years Old Sherry Oak 2023 Release 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Macallan 18 Years Old Sherry Oak 2024 Release 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/macallan-18-years-old-sherry-oak-2024-release-070.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-an-cladach-50-6-cl-sample",
+      "whisky": "Bunnahabhain An Cladach 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain An Cladach 1,00 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bunnahabhain-an-cladach-liter-50.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-tri-seudan-50-6-cl-sample",
+      "whisky": "Bunnahabhain Tri Seudan 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain Tri Seudan 1,00 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bunnahabhain-tri-seudan-100-ltr-50.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendronach-sevillian-room-43-6-cl-sample",
+      "whisky": "Glendronach Sevillian Room 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glendronach Glendronach Sevillian Room 1,00 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glendronach-sevillian-room-100-ltr-43.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-premium-cask-21-years-old-bottled-for-whisky-in-leiden-2023-55-3-6-cl-sample",
+      "whisky": "Arran Premium Cask 21 Years Old Bottled For Whisky In Leiden 2023 55,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Arran Premium Cask 21 Years Old Bottled For Whisky In Leiden 2023 55,3",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/arran-premium-cask-21-years-old-bottled-144164160.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "four-roses-small-batch-limited-edition-2025-54-55-6-cl-sample",
+      "whisky": "Four Roses Small Batch Limited Edition 2025 54,55% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Four Roses Small Batch Limited Edition 2025 0,70 ltr 54,55%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/four-roses-small-batch-limited-edition-2025-070-lt.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "monkey-shoulder-40-6-cl-sample",
+      "whisky": "Monkey Shoulder 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Monkey Shoulder Monkey Shoulder 1,00 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/monkey-shoulder-100-ltr-40.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "balvenie-12-years-old-montilla-wine-seasoned-cask-47-3-6-cl-sample",
+      "whisky": "Balvenie 12 Years Old Montilla Wine Seasoned Cask 47,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Balvenie Balvenie 12 Years Old Montilla Wine Seasoned Cask 0,70 ltr 47,3%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/balvenie-12-years-old-montilla-wine-seasoned-cask.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "de-lepelaar-single-grain-whisky-px-cask-45-6-cl-sample",
+      "whisky": "De Lepelaar Single Grain Whisky PX Cask 45% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "De Lepelaar De Lepelaar Single Grain Whisky PX Cask 0,50 ltr 45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/de-lepelaar-single-grain-whisky-px-cask-050-ltr-45.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "millstone-single-malt-oloroso-cask-46-6-cl-sample",
+      "whisky": "Millstone Single Malt Oloroso Cask 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Millstone Millstone Single Malt Oloroso Cask 0,20 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/millstone-single-malt-oloroso-cask-020-ltr-46.html",
+      "verschil": [
+        "maat 70 cl vs 20 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "speyburn-bordeaux-red-wine-cask-40-6-cl-sample",
+      "whisky": "Speyburn Bordeaux Red Wine Cask 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Speyburn Speyburn Bordeaux Red Wine Cask 1,00 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/speyburn-bordeaux-red-wine-cask-100-ltr-40.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "thomas-h-handy-sazerac-straight-rye-63-1",
+      "whisky": "Thomas H. Handy Sazerac Straight Rye 63,1%",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Thomas H. Handy Thomas H. Handy Sazerac Straight Rye 0,75 ltr 63,1%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/thomas-h-handy-sazerac-straight-rye-075-ltr-631.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "thomas-h-handy-sazerac-straight-rye-65-45",
+      "whisky": "Thomas H. Handy Sazerac Straight Rye 65,45%",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Thomas H. Handy Thomas H. Handy Sazerac Straight Rye 0,75 ltr 65,45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/thomas-h-handy-sazerac-straight-rye-075-ltr-6545.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "nikka-from-the-barrel-51-4-6-cl-sample",
+      "whisky": "Nikka from the Barrel 51,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Nikka Nikka from the Barrel 0,50 ltr 51,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/nikka-from-the-barrel.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-raw-cask-red-snake-8-years-old-rn154-60-6-6-cl-sample",
+      "whisky": "Blackadder Raw Cask Red Snake 8 Years Old RN154 60,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Red Snake Blackadder Raw Cask Red Snake RN154 0,70 ltr 60,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blackadder-raw-cask-red-snake-rn154-070-ltr-606.html",
+      "verschil": [
+        "leeftijd 8 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "cody-road-bourbon-whiskey-45-6-cl-sample",
+      "whisky": "Cody Road Bourbon Whiskey 45% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Cody Road Cody Road Bourbon Whiskey 0,50 ltr 45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/cody-road-bourbon-whiskey-050-ltr-45.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-px-cask-48-6-cl-sample",
+      "whisky": "Laphroaig PX Cask 48% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Laphroaig Laphroaig PX Cask 1,00 ltr 48%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/laphroaig-px-cask-liter.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "millstone-single-malt-peated-px-46-6-cl-sample",
+      "whisky": "Millstone Single Malt Peated PX 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Millstone Millstone Single Malt Peated PX 0,20 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/millstone-single-malt-peated-px-020-ltr-156569185.html",
+      "verschil": [
+        "maat 70 cl vs 20 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "wild-turkey-kentucky-spirit-single-barrel-bourbon-whiskey-50-5-6-cl-sample",
+      "whisky": "Wild Turkey Kentucky Spirit Single Barrel Bourbon Whiskey 50,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Wild Turkey Kentucky Spirit Single Barrel Bourbon Whiskey 1,00 ltr 50,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/wild-turkey-kentucky-spirit-single-barrel-bourbon.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "cody-road-rye-whiskey-40-6-cl-sample",
+      "whisky": "Cody Road Rye Whiskey 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Cody Road Cody Road Rye Whiskey 0,50 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/cody-road-rye-whiskey.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "george-dickel-rye-45-6-cl-sample",
+      "whisky": "George Dickel Rye 45% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "George Dickel George Dickel Rye 0,75 ltr 45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/george-dickel-rye-075-ltr-45.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ingram-bourbon-52-5-6-cl-sample",
+      "whisky": "Ingram Bourbon 52,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "ingram Ingram Bourbon 0,75 ltr 52,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ingram-bourbon-075-ltr-525.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ingram-straight-rye-49-6-cl-sample",
+      "whisky": "Ingram Straight Rye 49% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "ingram Ingram Straight Rye 0,75 ltr 49%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ingram-straight-rye-075-ltr-49.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ingram-uncharted-46-6-cl-sample",
+      "whisky": "Ingram Uncharted 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "ingram Ingram Uncharted 0,75 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ingram-uncharted-075-ltr-46.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "jack-daniels-single-barrel-heritage-barrel-50-6-cl-sample",
+      "whisky": "Jack Daniels Single Barrel Heritage Barrel 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Jack Daniel's Jack Daniels Single Barrel Heritage Barrel 1,00 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/jack-daniels-single-barrel-heritage-barrel-100-ltr.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "morrison-mac-talla-strata-15-years-old-46-6-cl-sample",
+      "whisky": "Morrison Mac Talla Strata 15 Years Old 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Mac-Talla Morrison Mac Talla Strata 15 Years Old 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/morrison-mac-talla-strata-15-years-old-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "weller-special-reserve-45-6-cl-sample",
+      "whisky": "Weller Special Reserve 45% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Weller Weller Special Reserve 1,00 ltr 45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/weller-special-reserve-100-ltr-45.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "very-old-barton-kentucky-straight-bourbon-whisky-50-6-cl-sample",
+      "whisky": "Very Old Barton Kentucky Straight Bourbon Whisky 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Very Old Barton Very Old Barton Kentucky Straight Bourbon Whisky 0,75 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/very-old-barton-kentucky-straight-bourbon-whisky-0.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
       ],
       "waarschijnlijkheid": 0.85,
       "goedgekeurd": null
@@ -275,6 +995,18 @@
         "maat 70 cl vs 100 cl"
       ],
       "waarschijnlijkheid": 0.817,
+      "goedgekeurd": null
+    },
+    {
+      "id": "roseisle-12-years-old-origame-kite-ii-special-release-2024-55-6-6-cl-sample",
+      "whisky": "Roseisle 12 Years Old Origame Kite II Special Release 2024 55,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Roseisle Roseisle 12 Years Old Origame Kite II Special Release 2024 0,70 ltr 55,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/roseisle-12-years-old-origame-kite-ii-special-rele.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.783,
       "goedgekeurd": null
     },
     {
@@ -530,6 +1262,138 @@
       "goedgekeurd": null
     },
     {
+      "id": "mannochmore-16-years-old-2008-signatory-symington-s-choice-cask-6-54-5-6-cl-sample",
+      "whisky": "Mannochmore 16 Years Old 2008 Signatory Symington's Choice Cask 6 54,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Mannochmore 16 Years Old 2008 Signatory Symington's Choice Cask 6 54,5",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/mannochmore-16-years-old-2008-signatory-157243017.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-10-years-old-2012-the-ultimate-selection-cask-900794-46-6-cl-sample",
+      "whisky": "Bunnahabhain 10 Years Old 2012 The Ultimate Selection Cask 900794 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bunnahabhain 10 Years Old 2012 The Ultimate Selection Cask 900794 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bunnahabhain-10-years-old-2012-the-ultimate-select.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-premium-cask-21-years-old-bottled-for-whisky-in-leiden-2023-55-3-6-cl-sample",
+      "whisky": "Arran Premium Cask 21 Years Old Bottled For Whisky In Leiden 2023 55,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Arran Premium Cask 21 Years Old Premium Cask 0,70 ltr 55,3%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/arran-premium-cask-21-years-old-premium-cask-070-l.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teeling-14-years-old-2008-px-cask-bottled-for-bresser-timmer-57-3-6-cl-sample",
+      "whisky": "Teeling 14 Years Old 2008 PX Cask Bottled For Bresser & Timmer 57,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Teeling 14 Years Old 2008 PX Cask Bottled For Bresser & Timmer 0,70 lt",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/teeling-14-years-old-2008-px-cask-bottled-for-bres.html",
+      "verschil": [
+        "naam afwijkend (- | lt)"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "auchentoshan-24-years-old-1999-signatory-symington-s-choice-cask-4-55-6-6-cl-sample",
+      "whisky": "Auchentoshan 24 Years Old 1999 Signatory Symington's Choice Cask 4 55,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Auchentoshan 24 Years Old 1999 Signatory Symington's Choice Cask 4 55,",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/auchentoshan-24-years-old-1999-signatory-158291178.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "orkney-20-years-old-2005-signatory-cask-strength-cask-dru17-a63-2-55-2-6-cl-sample",
+      "whisky": "Orkney 20 Years Old 2005 Signatory Cask Strength Cask DRU17 A63 #2 55,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Orkney 20 Years Old 2005 Signatory Cask Strength Cask DRU17 A63 #2 55,",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/orkney-20-years-old-2005-signatory-cask--165338109.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-the-classic-laddie-10-years-old-50-6-cl-sample",
+      "whisky": "Bruichladdich The Classic Laddie 10 Years Old 50%  6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bruichladdich Bruichladdich The Classic Laddie 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bruichladdich-the-classic-laddie-070-ltr-50.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "port-askaig-oloroso-sherry-cask-50-5-6-cl-sample",
+      "whisky": "Port Askaig Oloroso Sherry Cask 50,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Port Askaig Oloroso Sherry Cask 0,70 ltr 50,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/port-askaig-oloroso-sherry-cask-070-ltr-505.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-10-years-old-release-46-8-6-cl-sample",
+      "whisky": "Ardnamurchan AD / 10 Years Old Release 46,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ardnamurchan Ardnamurchan AD/ 0,70 ltr 46,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ardnamurchan-ad-070-ltr-468.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-46-8-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ 46,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ardnamurchan Ardnamurchan AD / 10 Years Old Release 0,70 ltr 46,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ardnamurchan-ad-10-years-old-release-070-ltr-468.html",
+      "verschil": [
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "nikka-yoichi-45-6-cl-sample",
+      "whisky": "Nikka Yoichi 45% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Nikka Nikka Yoichi 10 Years Old 0,70 ltr 45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/nikka-yoichi-10-years-old-070-ltr-45.html",
+      "verschil": [
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
       "id": "glen-grant-14-years-old-2011-gordon-macphail-57-1-6-cl-sample",
       "whisky": "Glen Grant 14 Years Old 2011 Gordon & MacPhail 57,1% 6 CL Sample",
       "bron": "Dramshop.nl",
@@ -549,6 +1413,18 @@
       "kandidaatUrl": "https://www.dramshop.nl/nl/coal-ila-2012-made-for-your-moment-gordon-macphail.html",
       "verschil": [
         "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.721,
+      "goedgekeurd": null
+    },
+    {
+      "id": "speyside-m-18-years-old-signatory-vintage-100-proof-edition-exceptional-cask-19-57-1-6-cl-sample",
+      "whisky": "Speyside (M) 18 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #19 57,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Speyside (M) 18 Years Old Signatory Vintage 100 Proof Edition Exceptio",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/speyside-m-18-years-old-signatory-vintage-100-proo.html",
+      "verschil": [
+        "vatnummer 19 niet op pagina"
       ],
       "waarschijnlijkheid": 0.721,
       "goedgekeurd": null
@@ -614,6 +1490,18 @@
       "goedgekeurd": null
     },
     {
+      "id": "southern-collective-murphy-s-blessing-single-barrel-spirits4all-61-6-cl-sample",
+      "whisky": "Southern Collective Murphy's Blessing Single Barrel Spirits4all 61% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Southern Collective Southern Collective Murphy's Blessing Single Barrel Spirits4all 0,75 ltr 61%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/southern-collective-murphys-blessing-single-barrel.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.683,
+      "goedgekeurd": null
+    },
+    {
       "id": "caol-ila-16-years-old-2007-the-ultimate-selection-cask-202-46-6-cl-sample",
       "whisky": "Caol Ila 16 Years Old 2007 The Ultimate Selection Cask 202 46% 6 CL Sample",
       "bron": "Drankenhandel Leiden",
@@ -657,18 +1545,6 @@
       "kandidaatUrl": "https://www.dramshop.nl/nl/arran-amarone-cask-finish.html",
       "verschil": [
         "ABV onbekend"
-      ],
-      "waarschijnlijkheid": 0.65,
-      "goedgekeurd": null
-    },
-    {
-      "id": "arran-signature-series-edition-3-duero-discovery-50-6-cl-sample",
-      "whisky": "Arran Signature Series Edition 3 Duero Discovery 50% 6 CL Sample",
-      "bron": "Dramshop.nl",
-      "kandidaatNaam": "Arran Arran Signature Series 3 Duero Discovery",
-      "kandidaatUrl": "https://www.dramshop.nl/nl/arran-signature-series-3-duero-discovery.html",
-      "verschil": [
-        "ABV onbekend op pagina"
       ],
       "waarschijnlijkheid": 0.65,
       "goedgekeurd": null
@@ -734,18 +1610,6 @@
       "goedgekeurd": null
     },
     {
-      "id": "royal-brackla-18-years-old-46-6-cl-sample",
-      "whisky": "Royal Brackla 18 Years Old 46% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Royal Brackla Royal Brackla 18-year-old",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/royal-brackla-18-year-old.html",
-      "verschil": [
-        "ABV onbekend op pagina"
-      ],
-      "waarschijnlijkheid": 0.65,
-      "goedgekeurd": null
-    },
-    {
       "id": "redbreast-lustau-46-6-cl-sample",
       "whisky": "Redbreast Lustau 46% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -765,18 +1629,6 @@
       "kandidaatUrl": "https://shop.whiskybase.com/nl/arran-amarone-cask-finish-135560559.html",
       "verschil": [
         "ABV onbekend"
-      ],
-      "waarschijnlijkheid": 0.65,
-      "goedgekeurd": null
-    },
-    {
-      "id": "glen-scotia-15-years-old-46-6-cl-sample",
-      "whisky": "Glen Scotia 15 Years Old 46% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Glen Scotia Glen Scotia 15-year-old",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/glen-scotia-15-year-old-137493557.html",
-      "verschil": [
-        "ABV onbekend op pagina"
       ],
       "waarschijnlijkheid": 0.65,
       "goedgekeurd": null
@@ -854,6 +1706,162 @@
       "goedgekeurd": null
     },
     {
+      "id": "glenfarclas-family-casks-1989-summer-release-2022-cask-13031-52-3",
+      "whisky": "Glenfarclas Family Casks 1989 Summer Release 2022 Cask 13031 52,3%",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glenfarclas Family Casks 1989 Summer Release 2022 Cask 13031 52,3% 6 C",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glenfarclas-family-casks-1989-summer-rel-159256817.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "linkwood-31-years-old-1995-signatory-symington-s-choice-cask-12-50-6-6-cl-sample",
+      "whisky": "Linkwood 31 Years Old 1995 Signatory Symington's Choice Cask 12 50,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Linkwood 31 Years Old 1995 Signatory Symington's Choice Cask 12 50,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/linkwood-31-years-old-1995-signatory-sym-165419652.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teaninich-17-years-old-2007-signatory-symington-s-choice-cask-6-55-3-6-cl-sample",
+      "whisky": "Teaninich 17 Years Old 2007 Signatory Symington's Choice Cask 6 55,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Teaninich 17 Years Old 2007 Signatory Symington's Choice Cask 6 55,3%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/teaninich-17-years-old-2007-signatory-sy-158702811.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-amarone-cask-finish-6-cl-sample",
+      "whisky": "Arran Amarone Cask Finish 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Arran Arran Amarone Cask Finish 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/arran-amarone-cask-finish-111976972.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "north-british-32-years-old-1991-bottled-for-whisky-in-leiden-2024-46-6-6-cl-sample",
+      "whisky": "North British 32 Years Old 1991 Bottled For Whisky In Leiden 2024 46,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "North British 32 Years Old 1991 Bottled For Whisky In Leiden 2024 46,6",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/north-british-32-years-old-1991-bottled-151861799.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "whisky-of-voodoo-the-high-priest-whitlaw-8-years-old-52-6-6-cl-sample",
+      "whisky": "Whisky of VooDoo The High Priest Whitlaw 8 Years Old 52,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Whitlaw Whisky of VooDoo The High Priest Whitlaw 8 Years Old 0,70 ltr 52,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/whisky-of-voodoo-the-high-priest-whitlaw-8-years-o.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-the-midgie-2026-release-48-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ The Midgie 2026 Release 48% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ardnamurchan Ardnamurchan AD/ The Midgie 2026 Release 0,70 ltr 48%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ardnamurchan-ad-the-midgie-2026-release-070-ltr-48.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-12th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 12th Edition 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman 100% Islay 12th Release 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-100-islay-12th-release-070-ltr-50.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ledaig-castaway-61-1-6-cl-sample",
+      "whisky": "Ledaig Castaway 61,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ledaig Ledaig Castaway 0,70 ltr 61,1%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ledaig-castaway-070-ltr-611-164771523.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "millstone-100-rye-black-label-50-6-cl-sample",
+      "whisky": "Millstone 100% Rye Black Label 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Millstone Millstone 100% Rye Black Label 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/millstone-100-rye-black-label.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "shinobu-blended-43-6-cl-sample",
+      "whisky": "Shinobu Blended 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Shinobu The Shinobu Blended 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/the-shinobu-blended-070-ltr-43.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-15th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 15th Edition 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman 100% Islay 15th Edition 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-100-islay-15th-edition-070-ltr-50.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "auchentoshan-11-years-old-2014-douglas-laing-old-particular-dutch-dram-masters-55-5-6-cl-sample",
+      "whisky": "Auchentoshan 11 Years Old 2014 Douglas Laing Old Particular Dutch Dram Masters 55,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Auchentoshan 11 Years Old 2014 Douglas Laing Old Particular Dutch Dram",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/auchentoshan-11-years-old-2014-douglas-laing-old-p.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.625,
+      "goedgekeurd": null
+    },
+    {
       "id": "benrinnes-12-years-old-2011-the-ultimate-selection-cask-5-57-3-6-cl-sample",
       "whisky": "Benrinnes 12 Years Old 2011 The Ultimate Selection Cask 5 57,3% 6 CL Sample",
       "bron": "Dramshop.nl",
@@ -916,19 +1924,6 @@
       "goedgekeurd": null
     },
     {
-      "id": "talisker-distillers-edition-45-8-6-cl-sample",
-      "whisky": "Talisker Distillers Edition 45,8% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Talisker Talisker 1991 Distillers Edition  - 100 cl",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/talisker-1991.html",
-      "verschil": [
-        "maat 70 cl vs 100 cl",
-        "pagina noemt jaartal 1991"
-      ],
-      "waarschijnlijkheid": 0.6,
-      "goedgekeurd": null
-    },
-    {
       "id": "bus-single-cask-tawny-port-54-6-cl-sample",
       "whisky": "Bus Single Cask Tawny Port 54% 6 CL Sample",
       "bron": "Drankenhandel Leiden",
@@ -953,15 +1948,76 @@
       "goedgekeurd": null
     },
     {
-      "id": "glen-scotia-12-years-old-icons-of-campbeltown-no-4-the-griffin-53-8-6-cl-sample",
-      "whisky": "Glen Scotia 12 Years Old Icons Of Campbeltown No.4 The Griffin 53,8% 6 CL Sample",
-      "bron": "Drankenhandel Leiden",
-      "kandidaatNaam": "Glen Scotia Glen Scotia 12 Years Icons of Campbeltown Release No 4 70cl",
-      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glen-scotia-12-years-icons-campbeltown-release-4.html",
+      "id": "de-lepelaar-single-grain-whisky-oloroso-cask-46-6-cl-sample",
+      "whisky": "De Lepelaar Single Grain Whisky Oloroso Cask 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "De Lepelaar De Lepelaar Single Grain Whisky Oloroso Cask 0,50 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/de-lepelaar-single-grain-whisky-oloroso-cask-050-l.html",
       "verschil": [
-        "naam afwijkend (griffin | -)"
+        "maat 70 cl vs 50 cl"
       ],
-      "waarschijnlijkheid": 0.564,
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "de-lepelaar-single-peated-smoked-malt-whisky-46-6-cl-sample",
+      "whisky": "De Lepelaar Single Peated Smoked Malt Whisky 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "De Lepelaar De Lepelaar Single Peated Smoked Malt Whisky 0,50 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/de-lepelaar-single-peated-smoked-malt-whisky-050-l.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-7-years-old-campbeltown-malt-festival-edition-2026-53-9-6-cl-sample",
+      "whisky": "Glen Scotia 7 Years Old Campbeltown Malt Festival Edition 2026 53,9% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glen Scotia 7 Years Old Campbeltown Malt Festival Edition 2026 53,9% 6",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glen-scotia-7-years-old-campbeltown-malt-162241123.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ironroot-promethean-50-6-cl-sample",
+      "whisky": "Ironroot Promethean 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ironroot Ironroot Promethean 2026 0,75 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ironroot-promethean-2026-075-ltr-50.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl",
+        "pagina noemt jaartal 2026"
+      ],
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ballechin-16-years-old-2010-signatory-unchill-filtered-collection-46-6-cl-sample",
+      "whisky": "Ballechin 16 Years Old 2010 Signatory Unchill Filtered Collection 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ballechin 16 Years Old 2010 Signatory Unchill Filtered Collection 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ballechin-16-years-old-2010-signatory-un-164955942.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.583,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-10-years-old-2016-signatory-unchill-filtered-collection-46-6-cl-sample",
+      "whisky": "Laphroaig 10 Years Old 2016 Signatory Unchill Filtered Collection 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Laphroaig 10 Years Old 2016 Signatory Unchill Filtered Collection 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/laphroaig-10-years-old-2016-signatory-un-165419852.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.583,
       "goedgekeurd": null
     },
     {
@@ -1008,18 +2064,6 @@
       "kandidaatUrl": "https://shop.whiskybase.com/nl/hellyers-road-double-cask.html",
       "verschil": [
         "naam afwijkend (geen zekere naam-match)"
-      ],
-      "waarschijnlijkheid": 0.55,
-      "goedgekeurd": null
-    },
-    {
-      "id": "indri-dru-cask-strength-57-2-6-cl-sample",
-      "whisky": "Indri Dru Cask Strength 57,2% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Indri Indri Drú",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/indri-dru.html",
-      "verschil": [
-        "editie cask strength vs -"
       ],
       "waarschijnlijkheid": 0.55,
       "goedgekeurd": null
@@ -1121,6 +2165,294 @@
       "goedgekeurd": null
     },
     {
+      "id": "macallan-classic-cut-limited-2024-edition-52-4-6-cl-sample",
+      "whisky": "Macallan Classic Cut Limited 2024 Edition 52,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Macallan Classic Cut Limited 2022 Edition 0,70 ltr 52,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/macallan-classic-cut-limited-2022-edition-070-ltr.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "torabhaig-iona-s-first-edition-60-9-6-cl-sample",
+      "whisky": "Torabhaig Iona's First Edition 60,9% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Torabhaig Allt Gleann Torabhaig Iona's First Edition 0.70 ltr 60,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/torabhaig-ionas-first-edition-070-ltr-609.html",
+      "verschil": [
+        "naam afwijkend (- | allt gleann)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-sherry-cask-55-8-6-cl-sample",
+      "whisky": "Arran Sherry Cask 55,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Arran Arran Sherry Cask 0,70 ltr 55,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/arran-sherry-cask.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blanton-s-gold-edition-51-5-6-cl-sample",
+      "whisky": "Blanton's Gold Edition 51,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Buffalo Trace Blanton's Gold Edition 0,70 ltr 51,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blantons-gold-edition-070-ltr-515.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blanton-s-straight-from-the-barrel-60-9-6-cl-sample",
+      "whisky": "Blanton's Straight From The Barrel 60,9% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Buffalo Trace Blanton's Straight From The Barrel 0,70 ltr 60,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blantons-straight-from-the-barrel-070-ltr-609.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "midleton-vintage-2023-release-40-6-cl-sample",
+      "whisky": "Midleton Vintage 2023 Release 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Midleton Midleton Vintage 2024 Release 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/midleton-vintage-2024-release-070-ltr-40.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-quarter-cask-56-2-6-cl-sample",
+      "whisky": "Arran Quarter Cask 56,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Arran Arran Quarter Cask 0,70 ltr 56,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/arran-quarter-cask.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "compass-box-hedonism-2025-edition-46-6-cl-sample",
+      "whisky": "Compass Box Hedonism 2025 Edition 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Compass Box Compass Box Hedonism 2026 Edition 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/compass-box-hedonism-2026-edition-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "compass-box-hedonism-2026-edition-46-6-cl-sample",
+      "whisky": "Compass Box Hedonism 2026 Edition 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Compass Box Compass Box Hedonism 2025 Edition 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/compass-box-hedonism-2025-edition-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hellyers-road-single-malt-whisky-double-cask-46-2-6-cl-sample",
+      "whisky": "Hellyers Road Single Malt Whisky Double Cask 46,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Hellyers Road Single Malt Whisky Double Cask 0,70 ltr 46,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/hellyers-road-single-malt-whisky-double-153854771.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "indri-single-cask-4074-bourbon-barrel-for-the-netherlands-by-win-58-5-6-cl-sample",
+      "whisky": "Indri Single Cask 4074 Bourbon Barrel For The Netherlands by WIN 58,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Indri Single Cask 4074 Bourbon Barrel For The Netherlands by WIN 58,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/indri-single-cask-4074-bourbon-barrel-fo-161320719.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "paul-john-christmas-edition-2026-46-6-cl-sample",
+      "whisky": "Paul John Christmas Edition 2026 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Paul John Paul John Christmas Edition 2020 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/paul-john-christmas-edition-2020-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "writers-tears-cask-strength-2022-release-54-6-6-cl-sample",
+      "whisky": "Writers Tears Cask Strength 2022 Release 54,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Writer's Tears Writers Tears Cask Strength 2023 Release 0,70 ltr 54,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/writers-tears-cask-strength-2023-release-070-ltr-5.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "writers-tears-cask-strength-2023-release-54-8-6-cl-sample",
+      "whisky": "Writers Tears Cask Strength 2023 Release 54,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Writer's Tears Writers Tears Cask Strength 2022 Release 0,70 ltr 54,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/writers-tears-cask-strength-2022-release-070-ltr-5.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "woodford-reserve-43-2-6-cl-sample",
+      "whisky": "Woodford Reserve 43,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Woodford Woodford Reserve 0,70 ltr 43,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/woodford-reserve-070-ltr-432.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "suntory-toki-black-43-6-cl-sample",
+      "whisky": "Suntory Toki Black 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Toki Suntory Toki Black 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/suntory-toki-black-070-ltr-43.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blanton-s-original-single-barrel-46-5-6-cl-sample",
+      "whisky": "Blanton's Original Single Barrel 46,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Buffalo Trace Blanton's Original Single Barrel 0,70 ltr 46,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blantons-original-single-barrel-070-ltr-465.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "catoctin-creek-roundstone-rye-80-proof-40-6-cl-sample",
+      "whisky": "Catoctin Creek Roundstone Rye 80 Proof 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Catoctin Catoctin Creek Roundstone Rye 80 Proof 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/catoctin-creek-roundstone-rye-80-proof-070-ltr-40.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "catoctin-creek-roundstone-rye-80-proof-40-6-cl-sample-4bb834",
+      "whisky": "Catoctin Creek Roundstone Rye 80 Proof 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Catoctin Catoctin Creek Roundstone Rye 80 Proof 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/catoctin-creek-roundstone-rye-80-proof-070-ltr-40.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "indri-agneya-46-6-cl-sample",
+      "whisky": "Indri Agneya 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Indri Trini Indri Agneya 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/indri-agneya-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (- | trini)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "morrison-mac-talla-terra-classic-46-6-cl-sample",
+      "whisky": "Morrison Mac Talla Terra Classic 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Mac-Talla Morrison Mac Talla Terra Classic 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/morrison-mac-talla-terra-classic-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "torabhaig-cnoc-na-moine-the-legacy-series-batch-3-46-6-cl-sample",
+      "whisky": "Torabhaig Cnoc Na Moine - The Legacy Series Batch 3 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Torabhaig Allt Gleann Torabhaig Cnoc Na Moine - The Legacy Series Batch 3 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/torabhaig-cnoc-na-moine-the-legacy-series-batch-3.html",
+      "verschil": [
+        "naam afwijkend (- | allt gleann)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "torabhaig-sound-of-sleat-the-legacy-series-batch-4-46-6-cl-sample",
+      "whisky": "Torabhaig Sound Of Sleat - The Legacy Series Batch 4 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Torabhaig Allt Gleann Torabhaig Sound Of Sleat - The Legacy Series Batch 4 0.70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/torabhaig-sound-of-sleat-the-legacy-series-batch-4.html",
+      "verschil": [
+        "naam afwijkend (- | allt gleann)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-no-2-7-years-old-2018-signatory-vintage-100-proof-inaugural-release-57-1-6-cl-sample",
+      "whisky": "Edradour No.2 7 Years Old 2018 Signatory Vintage 100 Proof Inaugural Release 57,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Edradour No.2 7 Years Old 2018 Signatory Vintage 100 Proof Inaugural R",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/edradour-no2-7-years-old-2018-signatory-160074729.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.536,
+      "goedgekeurd": null
+    },
+    {
       "id": "glen-garioch-2011-signatory-vintage-48-2-6-cl-sample",
       "whisky": "Glen Garioch 2011 Signatory Vintage 48,2% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -1181,6 +2513,54 @@
       "goedgekeurd": null
     },
     {
+      "id": "balvenie-14-years-old-caribbean-cask-43-6-cl-sample",
+      "whisky": "Balvenie 14 Years Old Caribbean Cask 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Balvenie Balvenie 14 Years Old Caribbean Cask Giftpack 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/balvenie-14-years-old-caribbean-cask-giftpack-070.html",
+      "verschil": [
+        "naam afwijkend (- | giftpack)"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-salute-21-years-old-fashion-roses-the-richard-quinn-edition-40-6-cl-sample",
+      "whisky": "Royal Salute 21 Years Old Fashion Roses The Richard Quinn Edition 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Royal Salute 21 Years Old Fashion Roses The Richard Quinn Edition 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/royal-salute-21-years-old-fashion-roses-161783984.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lagavulin-12-years-old-special-release-2025-56-5-6-cl-sample",
+      "whisky": "Lagavulin 12 Years Old Special Release 2025 56,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Lagavulin Lagavulin 12 Years Old Special Release 2023 Cask Strength 0,70 ltr 56,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/lagavulin-12-years-old-special-release-2023-cask-s.html",
+      "verschil": [
+        "editie - vs cask strength"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
+      "id": "eagle-rare-bourbon-10-years-old-45-6-cl-sample",
+      "whisky": "Eagle Rare Bourbon 10 Years Old 45% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "eagle rare Eagle Rare 10 Years Old 0,70 ltr 45%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/eagle-rare-10-years-old-070-ltr-45-135868682.html",
+      "verschil": [
+        "naam afwijkend (bourbon | -)"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
       "id": "bunnahabhain-20-years-old-armagnac-cask-finish-49-9-6-cl-sample",
       "whisky": "Bunnahabhain 20 Years Old Armagnac Cask Finish 49,9% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -1228,6 +2608,42 @@
         "leeftijd 10 niet op pagina"
       ],
       "waarschijnlijkheid": 0.5,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glengoyne-white-oak-48-6-cl-sample",
+      "whisky": "Glengoyne White Oak 48% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glengoyne Glengoyne 24 Years Old White Oak Bourbon 0,70 ltr 47,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glengoyne-24-years-old-white-oak-bourbon-070-ltr-4.html",
+      "verschil": [
+        "pagina noemt leeftijd 24"
+      ],
+      "waarschijnlijkheid": 0.5,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-peat-reek-10-years-old-58-6-6-cl-sample",
+      "whisky": "Blackadder Peat Reek 10 Years Old 58,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blackadder Blackadder Peat Reek 10 Years Old 0,70 ltr 57,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blackadder-peat-reek-10-years-old-070-ltr-579.html",
+      "verschil": [
+        "ABV 58,6 vs 57,9"
+      ],
+      "waarschijnlijkheid": 0.5,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenfiddich-12-years-old-rum-cask-finish-43-6-cl-sample",
+      "whisky": "Glenfiddich 12 Years Old Rum Cask Finish 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glenfiddich Glenfiddich 12 Years Old Rum Cask Finish 1,00 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glenfiddich-solera-1glenfiddich-12-years-old-rum-c.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.483,
       "goedgekeurd": null
     },
     {
@@ -1303,6 +2719,66 @@
       "goedgekeurd": null
     },
     {
+      "id": "speyside-dailuaine-10-years-old-james-eadie-48-3-6-cl-sample",
+      "whisky": "Speyside (Dailuaine) 10 Years Old James Eadie 48,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Dailuaine Speyside (Dailuaine) 10 Years Old James Eadie 0,70 ltr 48,3%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/speyside-dailuiane-10-years-old-james-eadie-070-lt.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "singles-whisky-balmenach-8-years-old-oloroso-sherry-cask-5121-50-6-cl-sample",
+      "whisky": "Singles Whisky Balmenach 8 Years Old Oloroso Sherry Cask 5121 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Turntable Singles Whisky Balmenach 8 Years Old Oloroso Sherry Cask 5121 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/singles-whisky-balmenach-8-years-old-oloroso-sherr.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-10-years-old-signatory-the-monuments-of-scotland-50-8-6-cl-sample",
+      "whisky": "Blair Athol 10 Years Old Signatory The Monuments Of Scotland 50,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blair Athol 10 Years Old Signatory The Monuments Of Scotland 50,8% 6 C",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blair-athol-10-years-old-signatory-the-m-164188471.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "cardhu-red-wine-cask-12-years-old-40-6-cl-sample",
+      "whisky": "Cardhu Red Wine Cask 12 Years Old 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Cardhu Cardhu 12 Years Old Wine Cask 200th Anniversary 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/cardhu-12-years-old-wine-cask-200th-anniversary-07.html",
+      "verschil": [
+        "vatnummer 12 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tomatin-2010-italian-collection-barolo-46-6-cl-sample",
+      "whisky": "Tomatin 2010 Italian Collection Barolo 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Tomatin Tomatin 2010 Italian Collection Amarone 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/tomatin-2010-italian-collection-amarone-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (barolo | amarone)"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
       "id": "caol-ila-distillers-edition-43-6-cl-sample",
       "whisky": "Caol Ila Distillers Edition 43% 6 CL Sample",
       "bron": "Dramshop.nl",
@@ -1346,6 +2822,54 @@
       "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenfarclas-spring-edition-2021-70cl.html",
       "verschil": [
         "pagina noemt jaartal 2021"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "nikka-taketsuru-17-years-old-43-6-cl-sample",
+      "whisky": "Nikka Taketsuru 17 Years Old 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Nikka Nikka Taketsuru Pure Malt 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/nikka-taketsuru-pure-malt-070-ltr-43.html",
+      "verschil": [
+        "leeftijd 17 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "isle-of-jura-12-years-old-40-6-cl-sample",
+      "whisky": "Isle of Jura 12 Years Old 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Isle Of Jura Isle of Jura Bourbon Cask 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/isle-of-jura-bourbon-cask-070-ltr-40.html",
+      "verschil": [
+        "leeftijd 12 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-12-years-old-43-6-cl-sample",
+      "whisky": "Caol Ila 12 Years Old 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Caol Ila Caol Ila Distillers Edition 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/caol-ila-distillers-edition-070-ltr-43-139541033.html",
+      "verschil": [
+        "leeftijd 12 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "scarabus-islay-bordeaux-cask-46-6-cl-sample",
+      "whisky": "Scarabus Islay Bordeaux Cask 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Scarabus Scarabus Islay Malt 15 Years Old 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/scarabus-islay-malt-15-years-old-070-ltr-46.html",
+      "verschil": [
+        "pagina noemt leeftijd 15"
       ],
       "waarschijnlijkheid": 0.417,
       "goedgekeurd": null
@@ -1501,6 +3025,55 @@
       "goedgekeurd": null
     },
     {
+      "id": "highland-park-cask-strength-release-no-4-64-3-6-cl-sample",
+      "whisky": "Highland Park Cask Strength Release No. 4 64,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Highland Park Cask Strength Release No. 2 0,70 ltr 63,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/highland-park-cask-strength-release-no-2-070-ltr-6.html",
+      "verschil": [
+        "ABV 64,3 vs 63,9"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-14-2-57-7-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 14.2 57,7% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bruichladdich Octomore Edition 16.2 0,70 ltr 58,1%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bruichladdich-octomore-edition-162-070-ltr-581.html",
+      "verschil": [
+        "ABV 57,7 vs 58,1"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-17-1-59-7-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 17.1 59,7% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bruichladdich Octomore Edition 16.1 0,70 ltr 59,3%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bruichladdich-octomore-edition-161-070-ltr-593.html",
+      "verschil": [
+        "ABV 59,7 vs 59,3"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-the-midgie-48-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ The Midgie 48% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Ardnamurchan Ardnamurchan AD/ The Midgie 2026 Release 0,70 ltr 48%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/ardnamurchan-ad-the-midgie-2026-release-070-ltr-48.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt jaartal 2026"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
       "id": "teeling-14-years-old-2008-px-cask-bottled-for-bresser-timmer-57-3-6-cl-sample",
       "whisky": "Teeling 14 Years Old 2008 PX Cask Bottled For Bresser & Timmer 57,3% 6 CL Sample",
       "bron": "Dramshop.nl",
@@ -1534,6 +3107,54 @@
         "editie cask strength vs -"
       ],
       "waarschijnlijkheid": 0.383,
+      "goedgekeurd": null
+    },
+    {
+      "id": "speyside-m-17-years-old-signatory-vintage-100-proof-edition-exceptional-cask-16-57-1-6-cl-sample",
+      "whisky": "Speyside (M) 17 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #16 57,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Speyside (M) 17 Years Old Signatory Vintage 100 Proof Edition Exceptio",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/speyside-m-17-years-old-signatory-vintag-164862443.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.379,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-17-years-old-signatory-vintage-100-proof-edition-exceptional-cask-12-57-1-6-cl-sample",
+      "whisky": "Blair Athol 17 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #12 57,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blair Athol 17 Years Old Signatory Vintage 100 Proof Edition Exception",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blair-athol-17-years-old-signatory-vinta-158285712.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.379,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-17-years-old-signatory-vintage-100-proof-edition-exceptional-cask-9-57-1-6-cl-sample",
+      "whisky": "Blair Athol 17 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #9 57,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blair Athol 17 Years Old Signatory Vintage 100 Proof Edition Exception",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blair-athol-17-years-old-signatory-vinta-158285712.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.379,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-8-1-aged-13-years-dramfools-jim-mcewan-signature-collection-59-2-6-cl-sample",
+      "whisky": "Bruichladdich 8.1 Aged 13 Years Dramfools Jim McEwan Signature Collection 59,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Bruichladdich 8.1 Aged 13 Years Dramfools Jim McEwan Signature Collect",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/bruichladdich-81-aged-13-years-dramfools-161713579.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.379,
       "goedgekeurd": null
     },
     {
@@ -1718,6 +3339,54 @@
       "goedgekeurd": null
     },
     {
+      "id": "royal-brackla-12-years-old-new-label-46-6-cl-sample",
+      "whisky": "Royal Brackla 12 Years Old New Label 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Royal Brackla Royal Brackla 12 Years Old 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/royal-brackla-12-years-old-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (label new | -)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kavalan-solist-ex-bourbon-oak-55-6-6-cl-sample",
+      "whisky": "Kavalan Solist Ex Bourbon Oak 55,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kavalan Kavalan Solist ex-Bourbon Cask 0,70 ltr 55,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kavalan-solist-ex-bourbon-cask-070-ltr-556.html",
+      "verschil": [
+        "naam afwijkend (oak | -)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-15-years-old-viking-heart-44-6-cl-sample",
+      "whisky": "Highland Park 15 Years Old Viking Heart 44% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Highland Park 15 Years Old 0,70 ltr 44%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/highland-park-15-years-old-070-ltr-44.html",
+      "verschil": [
+        "naam afwijkend (heart viking | -)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "port-charlotte-2013-pmc-01-54-5-6-cl-sample",
+      "whisky": "Port Charlotte 2013 PMC:01 54,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Port Charlotte Port Charlotte 2013 SYC:01 0,70 ltr 54,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/port-charlotte-2013-syc01-070-ltr-544.html",
+      "verschil": [
+        "naam afwijkend (pmc | syc)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
       "id": "unnamed-orkney-17-years-old-2006-the-ultimate-selection-cask-dru17-a65-23-26-27-46-6-cl-sample",
       "whisky": "Unnamed Orkney 17 Years Old 2006 The Ultimate Selection Cask DRU17/A65-23/26/27 46% 6 CL Sample",
       "bron": "Drankenhandel Leiden",
@@ -1851,6 +3520,18 @@
       "goedgekeurd": null
     },
     {
+      "id": "first-cask-distilled-at-an-orkney-distillery-17-years-old-2003-57-8-6-cl-sample",
+      "whisky": "First Cask Distilled At An Orkney Distillery 17 Years Old 2003 57,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "First Cask Distilled At An Orkney Distillery 17 Years Old 2003 57,8% 6",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/first-cask-distilled-at-an-orkney-distil-126632757.html",
+      "verschil": [
+        "samplemaat 6 cl"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
       "id": "glenlivet-15-years-old-french-oak-reserve-40-6-cl-sample",
       "whisky": "Glenlivet 15 Years Old French Oak Reserve 40% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -1858,18 +3539,6 @@
       "kandidaatUrl": "https://shop.whiskybase.com/nl/glenlivet-15-year-old-118415951.html",
       "verschil": [
         "naam afwijkend (reserve | -)"
-      ],
-      "waarschijnlijkheid": 0.3,
-      "goedgekeurd": null
-    },
-    {
-      "id": "aberargie-golden-promise-48-2-6-cl-sample",
-      "whisky": "Aberargie Golden Promise 48,2% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Aberargie Aberargie - Golden Promise Barley",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/aberargie-2018-164480967.html",
-      "verschil": [
-        "naam afwijkend (- | barley)"
       ],
       "waarschijnlijkheid": 0.3,
       "goedgekeurd": null
@@ -1906,6 +3575,54 @@
       "bron": "Drankenhandel Leiden",
       "kandidaatNaam": "Paul John Paul John Christmas Edition 2023 70cl",
       "kandidaatUrl": "https://www.drankenhandelleiden.nl/paul-john-christmas-edition-2023.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blanton-s-straight-from-the-barrel-65-3-6-cl-sample",
+      "whisky": "Blanton's Straight From The Barrel 65,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blanton's Blanton's Straight From The Barrel 0,70 ltr 64,8%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blantons-straight-from-the-barrel-070-ltr-648.html",
+      "verschil": [
+        "ABV 65,3 vs 64,8"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hellyers-road-single-malt-whisky-aurora-40-6-cl-sample",
+      "whisky": "Hellyers Road Single Malt Whisky Aurora 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Hellyers Hellyers Road Aurora Australis 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/hellyers-road-aurora-australis-070-ltr-40.html",
+      "verschil": [
+        "naam afwijkend (- | australis)"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hellyers-road-single-malt-whisky-aurora-40-6-cl-sample-254ed0",
+      "whisky": "Hellyers Road Single Malt Whisky Aurora 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Hellyers Hellyers Road Aurora Australis 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/hellyers-road-aurora-australis-070-ltr-40.html",
+      "verschil": [
+        "naam afwijkend (- | australis)"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "shizuoka-united-s-2023-edition-50-5-6-cl-sample",
+      "whisky": "Shizuoka United S 2023 Edition 50,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Shizuoka Shizuoka United S First Edition 0,70 ltr 50,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/shizuoka-united-s-first-edition-070-ltr-505.html",
       "verschil": [
         "naam afwijkend (geen zekere naam-match)"
       ],
@@ -2023,18 +3740,6 @@
       "goedgekeurd": null
     },
     {
-      "id": "highland-park-18-years-old-43-6-cl-sample",
-      "whisky": "Highland Park 18 Years Old 43% 6 CL Sample",
-      "bron": "Drankenhandel Leiden",
-      "kandidaatNaam": "Highland Park Highland Park 18 Years Viking Pride 70cl",
-      "kandidaatUrl": "https://www.drankenhandelleiden.nl/highland-park-18-years-viking-pride-70cl.html",
-      "verschil": [
-        "naam afwijkend (- | pride viking)"
-      ],
-      "waarschijnlijkheid": 0.25,
-      "goedgekeurd": null
-    },
-    {
       "id": "bruichladdich-the-organic-2011-50-6-cl-sample",
       "whisky": "Bruichladdich The Organic 2011  50% 6 CL Sample",
       "bron": "Drankenhandel Leiden",
@@ -2143,6 +3848,42 @@
       "goedgekeurd": null
     },
     {
+      "id": "highland-park-viking-tribe-46-6-cl-sample",
+      "whisky": "Highland Park Viking Tribe 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Highland Park 25 Years Old 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/highland-park-25-years-old-070-ltr-46.html",
+      "verschil": [
+        "pagina noemt leeftijd 25"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-peat-reek-10-years-old-58-6-6-cl-sample",
+      "whisky": "Blackadder Peat Reek 10 Years Old 58,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blackadder Peat Reek 10 Years Old 0,70 ltr 57,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blackadder-peat-reek-10-years-old-070-ltr-579-copy.html",
+      "verschil": [
+        "ABV 58,6 vs 57,9"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-loch-gorm-2026-edition-10-years-old-46-6-cl-sample",
+      "whisky": "Kilchoman Loch Gorm 2026 Edition 10 Years Old 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman Loch Gruinart 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-loch-gruinart-070-ltr-46.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
       "id": "kanosuke-single-malt-peated-48-6-cl-sample",
       "whisky": "Kanosuke Single Malt Peated 48% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -2198,6 +3939,54 @@
       "kandidaatUrl": "https://www.drankenhandelleiden.nl/teeling-santa-teresa-1796-cask-finish.html",
       "verschil": [
         "editie rum vs -"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "dalmore-luminary-2024-edition-48-6-6-cl-sample",
+      "whisky": "Dalmore Luminary 2024 Edition 48,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Dalmore The Dalmore Luminary Edition No. 2 0,70 ltr 48,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/the-dalmore-luminary-edition-no-2-070-ltr-486.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "the-macallan-a-night-on-earth-the-finale-43-6-cl-sample",
+      "whisky": "The Macallan A Night On Earth The Finale 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "The Macallan A Night On Earth The Journey 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/the-macallan-a-night-on-earth-the-journey-070-ltr.html",
+      "verschil": [
+        "naam afwijkend (finale | journey)"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "chateau-du-breuil-le-breuil-origine-single-malt-46-6-cl-sample",
+      "whisky": "Chateau Du Breuil Le Breuil Origine Single Malt 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Chateau Breuil Chateau Du Breuil Le Breuil Chevalier 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/chateau-du-breuil-le-breuil-chevalier-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (origine | chevalier)"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-quarter-cask-48-6-cl-sample",
+      "whisky": "Laphroaig Quarter Cask 48% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Laphroaig Laphroaig Quarter Cask Giftpack 0,70 ltr 48%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/laphroaig-quarter-cask-giftpack-070-ltr-48.html",
+      "verschil": [
+        "naam afwijkend (- | giftpack)"
       ],
       "waarschijnlijkheid": 0.217,
       "goedgekeurd": null
@@ -2281,15 +4070,40 @@
       "goedgekeurd": null
     },
     {
-      "id": "glenallachie-10-years-old-spanish-oak-finish-48-6-cl-sample",
-      "whisky": "Glenallachie 10 Years Old Spanish Oak Finish 48% 6 CL Sample",
-      "bron": "Dramshop.nl",
-      "kandidaatNaam": "Glenallachie Glenallachie 10YO French Oak",
-      "kandidaatUrl": "https://www.dramshop.nl/nl/glenallachie-10yo-french-oak.html",
+      "id": "kilchoman-small-batch-french-inspiration-1-49-7-6-cl-sample",
+      "whisky": "Kilchoman Small Batch French Inspiration #1 49,7% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman Small Batch French Inspiration #2 0,70 ltr 49,1%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-small-batch-french-inspiration-2-070-ltr.html",
       "verschil": [
-        "naam afwijkend (spanish | french)"
+        "ABV 49,7 vs 49,1"
       ],
-      "waarschijnlijkheid": 0.183,
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-small-batch-french-inspiration-2-49-1-6-cl-sample",
+      "whisky": "Kilchoman Small Batch French Inspiration #2 49,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman Small Batch French Inspiration #1 0,70 ltr 49,7%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-small-batch-french-inspiration-1-070-ltr.html",
+      "verschil": [
+        "ABV 49,1 vs 49,7"
+      ],
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-sanaig-cask-strength-2026-release-57-5-6-cl-sample",
+      "whisky": "Kilchoman Sanaig Cask Strength 2026 Release 57,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman Sanaig 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-sanaig.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.2,
       "goedgekeurd": null
     },
     {
@@ -2300,6 +4114,18 @@
       "kandidaatUrl": "https://www.dramshop.nl/nl/kilchoman-cognac-cask-matured-164958495.html",
       "verschil": [
         "naam afwijkend (european mezcal tour | cognac)"
+      ],
+      "waarschijnlijkheid": 0.183,
+      "goedgekeurd": null
+    },
+    {
+      "id": "quiet-man-12-years-old-bourbon-cask-46-6-cl-sample",
+      "whisky": "Quiet Man 12 Years Old Bourbon Cask 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Quiet Man Quiet Man 12 Years Old Bordeaux Cask Finish 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/quiet-man-12-years-old-bordeaux-cask-finish-070-lt.html",
+      "verschil": [
+        "naam afwijkend (bourbon | bordeaux)"
       ],
       "waarschijnlijkheid": 0.183,
       "goedgekeurd": null
@@ -2330,19 +4156,6 @@
       "goedgekeurd": null
     },
     {
-      "id": "royal-brackla-18-years-old-46-6-cl-sample",
-      "whisky": "Royal Brackla 18 Years Old 46% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Royal Brackla Royal Brackla 2010 Brachadair",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/royal-brackla-2010-brd-brachadair.html",
-      "verschil": [
-        "leeftijd 18 niet op pagina",
-        "pagina noemt jaartal 2010"
-      ],
-      "waarschijnlijkheid": 0.167,
-      "goedgekeurd": null
-    },
-    {
       "id": "millstone-single-malt-oloroso-cask-10-years-old-46-6-cl-sample",
       "whisky": "Millstone Single Malt Oloroso Cask 10 Years Old 46% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -2351,19 +4164,6 @@
       "verschil": [
         "leeftijd 10 niet op pagina",
         "vatnummer 10 niet op pagina"
-      ],
-      "waarschijnlijkheid": 0.167,
-      "goedgekeurd": null
-    },
-    {
-      "id": "nikka-from-the-barrel-51-4-6-cl-sample",
-      "whisky": "Nikka from the Barrel 51,4% 6 CL Sample",
-      "bron": "Drankenhandel Leiden",
-      "kandidaatNaam": "Nikka Nikka Whisky From The Barrel 50cl",
-      "kandidaatUrl": "https://www.drankenhandelleiden.nl/nikka-whisky-from-the-barrel-50cl.html",
-      "verschil": [
-        "maat 70 cl vs 50 cl",
-        "ABV onbekend op pagina"
       ],
       "waarschijnlijkheid": 0.167,
       "goedgekeurd": null
@@ -2478,6 +4278,91 @@
       "goedgekeurd": null
     },
     {
+      "id": "thomas-h-handy-sazerac-straight-rye-63-1",
+      "whisky": "Thomas H. Handy Sazerac Straight Rye 63,1%",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Thomas H. Handy Thomas H. Handy Sazerac Straight Rye 0,75 ltr 63,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/thomas-h-handy-sazerac-straight-rye-075-ltr-636.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl",
+        "ABV 63,1 vs 63,6"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hibiki-japanese-harmony-43-6-cl-sample",
+      "whisky": "Hibiki Japanese Harmony 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Hibiki Hibiki Japanese Harmony Master Select 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/hibiki-japanese-harmony-master-select-070-ltr-43.html",
+      "verschil": [
+        "naam afwijkend (- | master select)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lindores-abbey-the-cask-of-lindores-ii-bourbon-cask-49-4-6-cl-sample",
+      "whisky": "Lindores Abbey The Cask Of Lindores II Bourbon Cask 49,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Lindores Lindores Abbey Cask Of Lindores STR Edition II 0,70 ltr 49,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/lindores-abbey-cask-of-lindores-str-edition-ii-070.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "penderyn-icon-of-wales-copperopolis-46-6-cl-sample",
+      "whisky": "Penderyn Icon of Wales Copperopolis 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Penderyn Penderyn Icon Of Wales Hiraeth 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/penderyn-icon-of-wales-hiraeth-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (copperopolis | hiraeth)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "boann-irish-whiskey-single-pot-still-marsala-cask-47-6-cl-sample",
+      "whisky": "Boann Irish Whiskey Single Pot Still Marsala Cask  47% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Boann Irish Whiskey Single Pot Still Madeira Cask 0,70 ltr 47%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/boann-irish-whiskey-single-pot-still-mad-153854658.html",
+      "verschil": [
+        "editie marsala vs madeira"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lochlea-ploughing-edition-first-crop-46-6-cl-sample",
+      "whisky": "Lochlea Ploughing Edition First Crop 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Lochlea Lochlea Ploughing Edition Third Crop 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/lochlea-ploughing-edition-third-crop-070-ltr-46.html",
+      "verschil": [
+        "naam afwijkend (first | third)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "elements-of-islay-bourbon-cask-54-5-6-cl-sample",
+      "whisky": "Elements Of Islay Bourbon Cask 54,5% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Elements of Islay Elements Of Islay Fireside 0,70 ltr 54,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/elements-of-islay-fireside-070-ltr-545.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
       "id": "edradour-no-2-7-years-old-2018-signatory-vintage-100-proof-inaugural-release-57-1-6-cl-sample",
       "whisky": "Edradour No.2 7 Years Old 2018 Signatory Vintage 100 Proof Inaugural Release 57,1% 6 CL Sample",
       "bron": "Whiskybase Shop",
@@ -2498,6 +4383,18 @@
       "kandidaatUrl": "https://www.drankenhandelleiden.nl/teeling-21-years-reserve-3.html",
       "verschil": [
         "editie wine vs -"
+      ],
+      "waarschijnlijkheid": 0.136,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-2015-chardonnay-cask-michael-eppan-46-6-cl-sample",
+      "whisky": "Edradour 2015 Chardonnay Cask Michael Eppan 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Edradour Edradour 2015 Cabernet & Merlot Cask Michael Eppan 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/edradour-2015-cabernet-and-merlot-cask-michael-epp.html",
+      "verschil": [
+        "naam afwijkend (chardonnay | cabernet merlot)"
       ],
       "waarschijnlijkheid": 0.136,
       "goedgekeurd": null
@@ -2552,6 +4449,30 @@
       "goedgekeurd": null
     },
     {
+      "id": "glendronach-ode-to-the-valley-sherry-port-casks-46-2-6-cl-sample",
+      "whisky": "Glendronach Ode To The Valley Sherry & Port Casks 46,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glendronach Glendronach Ode To The Valley 0,70 ltr 46,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glendronach-ode-to-the-valley-070-ltr-462.html",
+      "verschil": [
+        "editie port vs -"
+      ],
+      "waarschijnlijkheid": 0.121,
+      "goedgekeurd": null
+    },
+    {
+      "id": "milk-honey-apex-mouton-red-wine-cask-56-7-6-cl-sample",
+      "whisky": "Milk & Honey APEX Mouton Red Wine Cask 56,7% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Milk & Honey Milk & Honey Apex Orange Wine 0,70 ltr 57%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/milk-and-honey-apex-orange-wine-070-ltr-57.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.121,
+      "goedgekeurd": null
+    },
+    {
       "id": "glenallachie-8-years-old-koval-rye-wood-finish-48-6-cl-sample",
       "whisky": "Glenallachie 8 Years Old Koval Rye Wood Finish 48% 6 CL Sample",
       "bron": "Drankenhandel Leiden",
@@ -2559,6 +4480,42 @@
       "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenallachie-8-years-scottish-oak-finish.html",
       "verschil": [
         "naam afwijkend (koval rye wood | oak scottish)"
+      ],
+      "waarschijnlijkheid": 0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-2015-lagrein-casks-michael-eppan-46-6-cl-sample",
+      "whisky": "Edradour 2015 Lagrein Casks Michael Eppan 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Edradour Edradour 2015 Cabernet & Merlot Cask Michael Eppan 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/edradour-2015-cabernet-and-merlot-cask-michael-epp.html",
+      "verschil": [
+        "naam afwijkend (casks lagrein | cabernet merlot)"
+      ],
+      "waarschijnlijkheid": 0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-2015-pinot-grigio-cask-michael-eppan-46-6-cl-sample",
+      "whisky": "Edradour 2015 Pinot Grigio Cask Michael Eppan 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Edradour Edradour 2015 Cabernet & Merlot Cask Michael Eppan 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/edradour-2015-cabernet-and-merlot-cask-michael-epp.html",
+      "verschil": [
+        "naam afwijkend (grigio pinot | cabernet merlot)"
+      ],
+      "waarschijnlijkheid": 0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lindores-abbey-distillery-friar-john-cor-chapter-2-60-9-6-cl-sample",
+      "whisky": "Lindores Abbey Distillery Friar John Cor Chapter 2 60,9% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Lindores Lindores Abbey Distillery Friar John Cor Chapter 3 0,70 ltr 60,2%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/lindores-abbey-distillery-friar-john-cor-chapter-3.html",
+      "verschil": [
+        "ABV 60,9 vs 60,2"
       ],
       "waarschijnlijkheid": 0.1,
       "goedgekeurd": null
@@ -2650,19 +4607,6 @@
         "editie 100 proof vs -"
       ],
       "waarschijnlijkheid": 0.067,
-      "goedgekeurd": null
-    },
-    {
-      "id": "arran-15-years-old-rare-batch-french-oak-grand-cru-52-5-6-cl-sample",
-      "whisky": "Arran 15 Years Old Rare Batch French Oak Grand Cru 52,5% 6 CL Sample",
-      "bron": "Drankenhandel Leiden",
-      "kandidaatNaam": "Arran Arran 15 Years French Oak Grand Cru Casks 70cl",
-      "kandidaatUrl": "https://www.drankenhandelleiden.nl/arran-15-years-french-oak-grand-cru-casks.html",
-      "verschil": [
-        "ABV onbekend op pagina",
-        "editie rare cask vs -"
-      ],
-      "waarschijnlijkheid": 0.056,
       "goedgekeurd": null
     },
     {
@@ -2805,18 +4749,6 @@
       "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-port-cask-matured.html",
       "verschil": [
         "editie - vs port"
-      ],
-      "waarschijnlijkheid": 0.05,
-      "goedgekeurd": null
-    },
-    {
-      "id": "whisky-paul-john-edited-46-6-cl-sample",
-      "whisky": "Whisky Paul John Edited 46% 6 CL Sample",
-      "bron": "Whiskybase Shop",
-      "kandidaatNaam": "Paul John Paul John 46% Brilliance",
-      "kandidaatUrl": "https://shop.whiskybase.com/nl/paul-john-46-brilliance.html",
-      "verschil": [
-        "naam afwijkend (edited | brilliance)"
       ],
       "waarschijnlijkheid": 0.05,
       "goedgekeurd": null
@@ -2966,6 +4898,138 @@
       "goedgekeurd": null
     },
     {
+      "id": "glenfarclas-190th-anniversary-51-4",
+      "whisky": "Glenfarclas 190th Anniversary (51,4%)",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glenfarclas 190th Anniversay 0,70 ltr 51,4%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glenfarclas-190th-anniversay-070-ltr-514.html",
+      "verschil": [
+        "naam afwijkend (anniversary | anniversay)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kavalan-solist-port-cask-58-6-6-cl-sample",
+      "whisky": "Kavalan Solist Port Cask 58,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kavalan Kavalan Solist Fino 0,70 ltr 58,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kavalan-solist-fino-070-ltr-586.html",
+      "verschil": [
+        "editie port vs fino"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kavalan-solist-sherry-cask-58-6-6-cl-sample",
+      "whisky": "Kavalan Solist Sherry Cask 58,6% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kavalan Kavalan Solist Fino 0,70 ltr 58,6%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kavalan-solist-fino-070-ltr-586.html",
+      "verschil": [
+        "editie - vs fino"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "gouden-carolus-single-malt-sherry-oak-46-6-cl-sample",
+      "whisky": "Gouden Carolus Single Malt Sherry Oak 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Gouden Carolus Gouden Carolus Single Malt 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/gouden-carolus-single-malt.html",
+      "verschil": [
+        "editie sherry oak vs -"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "isle-of-jura-journey-40-6-cl-sample",
+      "whisky": "Isle of Jura Journey 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Isle Of Jura Isle of Jura Bourbon Cask 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/isle-of-jura-bourbon-cask-070-ltr-40.html",
+      "verschil": [
+        "naam afwijkend (journey | bourbon)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "gouden-carolus-port-oak-46-6-cl-sample",
+      "whisky": "Gouden Carolus Port Oak 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Gouden Carolus Gouden Carolus Single Malt 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/gouden-carolus-single-malt.html",
+      "verschil": [
+        "editie port vs -"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-twelve-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Twelve 46% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Benriach Benriach The Smoky Ten 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/benriach-the-smoky-ten.html",
+      "verschil": [
+        "naam afwijkend (twelve | ten)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-moch-43-6-cl-sample",
+      "whisky": "Caol Ila Moch 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Caol Ila Caol Ila Distillers Edition 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/caol-ila-distillers-edition-070-ltr-43-139541033.html",
+      "verschil": [
+        "naam afwijkend (moch | distillers)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-sauternes-cask-matured-2024-edition-50-6-cl-sample",
+      "whisky": "Kilchoman Sauternes Cask Matured 2024 Edition 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman Cognac Cask Matured 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-cognac-cask-matured-070-ltr-50.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "leiper-s-fork-tn-whiskey-50-6-cl-sample",
+      "whisky": "Leiper's Fork TN Whiskey 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Leipers Fork Leiper's Fork Tennessee Whiskey 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/leipers-fork-tennessee-whiskey-070-ltr-50.html",
+      "verschil": [
+        "naam afwijkend (tn | tennessee)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "starward-unexpeated-finish-48-6-cl-sample",
+      "whisky": "Starward Unexpeated Finish 48% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Starward Starward Peated Finish 0,70 ltr 48%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/starward-peated-finish-070-ltr-48.html",
+      "verschil": [
+        "naam afwijkend (unexpeated | peated)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
       "id": "royal-salute-21-years-old-fashion-roses-the-richard-quinn-edition-40-6-cl-sample",
       "whisky": "Royal Salute 21 Years Old Fashion Roses The Richard Quinn Edition 40% 6 CL Sample",
       "bron": "Drankenhandel Leiden",
@@ -3025,6 +5089,31 @@
       "verschil": [
         "leeftijd 10 niet op pagina",
         "vatnummer 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kavalan-solist-vinho-barrique-56-3-6-cl-sample",
+      "whisky": "Kavalan Solist Vinho Barrique 56,3% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kavalan Kavalan Solist Vinho Barrique 0,70 ltr 57,1%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kavalan-solist-vinho-barrique-070-ltr-571.html",
+      "verschil": [
+        "ABV 56,3 vs 57,1"
+      ],
+      "waarschijnlijkheid": -0.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-sherry-cask-11-years-old-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay Sherry Cask 11 Years Old 50% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Kilchoman 100% Islay 12th Release 0,70 ltr 50%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/kilchoman-100-islay-12th-release-070-ltr-50.html",
+      "verschil": [
+        "leeftijd 11 niet op pagina",
+        "vatnummer 11 niet op pagina"
       ],
       "waarschijnlijkheid": 0.0,
       "goedgekeurd": null
@@ -3354,6 +5443,45 @@
       "goedgekeurd": null
     },
     {
+      "id": "shinobu-pure-malt-15-years-old-43-6-cl-sample",
+      "whisky": "Shinobu Pure Malt 15 Years Old 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Shinobu The Shinobu Pure Malt Lightly Peated 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/the-shinobu-pure-malt-lightly-peated-070-ltr-43.html",
+      "verschil": [
+        "leeftijd 15 niet op pagina",
+        "editie - vs peated"
+      ],
+      "waarschijnlijkheid": -0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-10-years-old-unpeated-40-6-cl-sample",
+      "whisky": "Glen Scotia 10 Years Old Unpeated 40% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Glen Scotia Glen Scotia Harbour 0,70 ltr 40%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/glen-scotia-harbour-070-ltr-40.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina",
+        "editie unpeated vs -"
+      ],
+      "waarschijnlijkheid": -0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "shinobu-pure-malt-10-years-old-43-6-cl-sample",
+      "whisky": "Shinobu Pure Malt 10 Years Old 43% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Shinobu The Shinobu Pure Malt Lightly Peated 0,70 ltr 43%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/the-shinobu-pure-malt-lightly-peated-070-ltr-43.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina",
+        "editie - vs peated"
+      ],
+      "waarschijnlijkheid": -0.2,
+      "goedgekeurd": null
+    },
+    {
       "id": "ardnamurchan-ad-sauternes-cask-peated-50-6-cl-sample",
       "whisky": "Ardnamurchan AD/ Sauternes Cask Peated 50% 6 CL Sample",
       "bron": "Dramshop.nl",
@@ -3419,6 +5547,32 @@
       "goedgekeurd": null
     },
     {
+      "id": "thomas-h-handy-sazerac-straight-rye-65-45",
+      "whisky": "Thomas H. Handy Sazerac Straight Rye 65,45%",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Thomas H. Handy Thomas H. Handy Sazerac Straight Rye 0,75 ltr 64,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/thomas-h-handy-sazerac-straight-rye-075-ltr-645.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl",
+        "ABV 65,45 vs 64,5"
+      ],
+      "waarschijnlijkheid": -0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-peat-reek-embers-amontilado-finish-57-4-6-cl-sample",
+      "whisky": "Blackadder Peat Reek Embers Amontilado Finish 57,4% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Blackadder Blackadder Peat Reek 10 Years Old 0,70 ltr 57,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/blackadder-peat-reek-10-years-old-070-ltr-579.html",
+      "verschil": [
+        "ABV 57,4 vs 57,9",
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": -0.35,
+      "goedgekeurd": null
+    },
+    {
       "id": "blackadder-peat-reek-10-years-old-57-9-6-cl-sample",
       "whisky": "Blackadder Peat Reek 10 Years Old 57,9% 6 CL Sample",
       "bron": "Dramshop.nl",
@@ -3429,6 +5583,45 @@
         "leeftijd 10 niet op pagina"
       ],
       "waarschijnlijkheid": -0.421,
+      "goedgekeurd": null
+    },
+    {
+      "id": "the-macallan-the-harmony-collection-vibrant-oak-44-2-6-cl-sample",
+      "whisky": "The Macallan The Harmony Collection Vibrant Oak 44,2% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "The Macallan The Harmony Collection Jing 0,70 ltr 43,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/the-macallan-the-harmony-collection-jing-070-ltr-4.html",
+      "verschil": [
+        "ABV 44,2 vs 43,9",
+        "editie vibrant oak vs jing"
+      ],
+      "waarschijnlijkheid": -0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "the-macallan-the-harmony-collection-guardian-oak-44-2-6-cl-sample",
+      "whisky": "The Macallan The Harmony Collection Guardian Oak 44,2%  6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "The Macallan The Harmony Collection Jing 0,70 ltr 43,9%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/the-macallan-the-harmony-collection-jing-070-ltr-4.html",
+      "verschil": [
+        "ABV 44,2 vs 43,9",
+        "editie - vs jing"
+      ],
+      "waarschijnlijkheid": -0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "clydeside-distillery-bottled-for-craft-spirits-55-6-cl-sample",
+      "whisky": "Clydeside Distillery Bottled For Craft Spirits 55% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Clydeside Clydeside Distillery 8 Years Old 0,70 ltr 55,5%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/clydeside-distillery-8-years-old-070-ltr-555.html",
+      "verschil": [
+        "ABV 55 vs 55,5",
+        "pagina noemt leeftijd 8"
+      ],
+      "waarschijnlijkheid": -0.45,
       "goedgekeurd": null
     },
     {
@@ -3455,6 +5648,32 @@
         "editie cask strength vs -"
       ],
       "waarschijnlijkheid": -0.583,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-valknut-46-8-6-cl-sample",
+      "whisky": "Highland Park Valknut 46,8% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Highland Park 25 Years Old 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/highland-park-25-years-old-070-ltr-46.html",
+      "verschil": [
+        "ABV 46,8 vs 46",
+        "pagina noemt leeftijd 25"
+      ],
+      "waarschijnlijkheid": -0.583,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-triskelion-45-1-6-cl-sample",
+      "whisky": "Highland Park Triskelion 45,1% 6 CL Sample",
+      "bron": "Whiskysite.nl (fles)",
+      "kandidaatNaam": "Highland Park 25 Years Old 0,70 ltr 46%",
+      "kandidaatUrl": "https://www.whiskysite.nl/nl/highland-park-25-years-old-070-ltr-46.html",
+      "verschil": [
+        "ABV 45,1 vs 46",
+        "pagina noemt leeftijd 25"
+      ],
+      "waarschijnlijkheid": -0.683,
       "goedgekeurd": null
     }
   ]

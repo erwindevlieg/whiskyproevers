@@ -127,6 +127,14 @@
     "firstFill": {
       "w": true,
       "b": "vattype"
+    },
+    "nietKoudgefilterd": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/tamdhu-cigar-malt-batch-iii-070-ltr-538.html"
+    },
+    "natuurlijkeKleur": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/tamdhu-cigar-malt-batch-iii-070-ltr-538.html"
     }
   },
   "glenallachie-21-years-cask-strength-batch-6": {
@@ -886,26 +894,26 @@
       "w": true,
       "b": "naam"
     },
+    "firstFill": {
+      "w": true,
+      "b": "vattype"
+    },
+    "vatSoort": {
+      "w": [
+        "Hogshead"
+      ],
+      "b": "vattype"
+    },
+    "finishType": {
+      "w": "finish",
+      "b": "vattype"
+    },
     "vatNummer": {
       "w": "4",
       "b": "https://www.dramshop.nl/nl/knockando-2010-15-years-signatory-vintag-162390376.html"
     },
     "oplage": {
       "w": 335,
-      "b": "https://www.dramshop.nl/nl/knockando-2010-15-years-signatory-vintag-162390376.html"
-    },
-    "firstFill": {
-      "w": true,
-      "b": "https://www.dramshop.nl/nl/knockando-2010-15-years-signatory-vintag-162390376.html"
-    },
-    "vatSoort": {
-      "w": [
-        "Hogshead"
-      ],
-      "b": "https://www.dramshop.nl/nl/knockando-2010-15-years-signatory-vintag-162390376.html"
-    },
-    "finishType": {
-      "w": "finish",
       "b": "https://www.dramshop.nl/nl/knockando-2010-15-years-signatory-vintag-162390376.html"
     }
   },
@@ -922,26 +930,26 @@
       "w": true,
       "b": "naam"
     },
+    "firstFill": {
+      "w": true,
+      "b": "vattype"
+    },
+    "vatSoort": {
+      "w": [
+        "Hogshead"
+      ],
+      "b": "vattype"
+    },
+    "finishType": {
+      "w": "finish",
+      "b": "vattype"
+    },
     "vatNummer": {
       "w": "104",
       "b": "https://www.dramshop.nl/nl/benriach-2015-11-years-cask-104-signatory-vintage.html"
     },
     "oplage": {
       "w": 341,
-      "b": "https://www.dramshop.nl/nl/benriach-2015-11-years-cask-104-signatory-vintage.html"
-    },
-    "firstFill": {
-      "w": true,
-      "b": "https://www.dramshop.nl/nl/benriach-2015-11-years-cask-104-signatory-vintage.html"
-    },
-    "vatSoort": {
-      "w": [
-        "Hogshead"
-      ],
-      "b": "https://www.dramshop.nl/nl/benriach-2015-11-years-cask-104-signatory-vintage.html"
-    },
-    "finishType": {
-      "w": "finish",
       "b": "https://www.dramshop.nl/nl/benriach-2015-11-years-cask-104-signatory-vintage.html"
     }
   },
@@ -1283,6 +1291,12 @@
     "finishType": {
       "w": "finish",
       "b": "https://www.drankgigant.nl/the-glenlivet-caribbean-reserve.html"
+    },
+    "vatSoort": {
+      "w": [
+        "Barrel"
+      ],
+      "b": "https://www.whiskysite.nl/nl/the-glenlivet-caribbean-reserve.html"
     }
   },
   "glenlossie-10-years-old-2010-lady-of-the-glen-56-2-6-cl-sample": {
@@ -1357,6 +1371,12 @@
         "Barrique"
       ],
       "b": "naam"
+    }
+  },
+  "knockando-15-years-old-rich-matured-43-6-cl-sample": {
+    "refill": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/knockando-15-years-old-rich-matured.html"
     }
   },
   "knockando-2008-signatory-cask-strength-cask-101-50-5-6-cl-sample": {
@@ -1565,20 +1585,20 @@
   "aberargie-golden-promise-48-2-6-cl-sample": {
     "firstFill": {
       "w": true,
-      "b": "https://www.dramshop.nl/nl/aberargie-golden-promise.html"
+      "b": "vattype"
     },
     "vatSoort": {
       "w": [
         "Butt",
         "Barrel"
       ],
-      "b": "https://www.dramshop.nl/nl/aberargie-golden-promise.html"
+      "b": "vattype"
     }
   },
   "aberargie-inaugural-release-48-2-6-cl-sample": {
     "firstFill": {
       "w": true,
-      "b": "https://www.dramshop.nl/nl/aberargie-inaugural-release.html"
+      "b": "vattype"
     },
     "vatSoort": {
       "w": [
@@ -1590,14 +1610,14 @@
   "aberargie-laureate-48-2-6-cl-sample": {
     "firstFill": {
       "w": true,
-      "b": "https://www.dramshop.nl/nl/aberargie-laureate.html"
+      "b": "vattype"
     },
     "vatSoort": {
       "w": [
         "Butt",
         "Barrel"
       ],
-      "b": "https://www.dramshop.nl/nl/aberargie-laureate.html"
+      "b": "vattype"
     }
   },
   "aberfeldy-11-years-old-2014-signatory-cask-strength-cask-4-60-6-cl-sample": {
@@ -1610,6 +1630,12 @@
     "vatsterkte": {
       "w": true,
       "b": "naam"
+    }
+  },
+  "aberfeldy-12-years-old-madeira-cask-40-6-cl-sample": {
+    "finishType": {
+      "w": "finish",
+      "b": "https://www.whiskysite.nl/nl/aberfeldy-12-years-old-madeira-cask-070-ltr-40.html"
     }
   },
   "ardlair-13-years-old-2011-the-ultimate-selection-63-5-6-cl-sample": {
@@ -1726,6 +1752,12 @@
     "vatNummer": {
       "w": "9",
       "b": "naam"
+    }
+  },
+  "blair-athol-2014-signatory-vintage-100-proof-edition-64-57-1-6-cl-sample": {
+    "vatsterkte": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/blair-athol-2014-signatory-vintage-100-proof-editi.html"
     }
   },
   "blended-malt-19-years-old-the-whisky-trail-elixir-distillers-45-6-cl-sample": {
@@ -1949,11 +1981,7 @@
     },
     "firstFill": {
       "w": true,
-      "b": "https://www.whiskysite.nl/nl/lochlea-cask-strength-batch-1-601-6-cl-sample.html"
-    },
-    "oplage": {
-      "w": 15000,
-      "b": "https://www.dramshop.nl/nl/lochlea-cask-strength-edition-batch-1.html"
+      "b": "vattype"
     }
   },
   "macduff-2011-signatory-vintage-100-proof-edition-55-57-1-6-cl-sample": {
@@ -2296,13 +2324,13 @@
   "balmenach-22-years-old-living-souls-44-9-6-cl-sample": {
     "firstFill": {
       "w": true,
-      "b": "https://www.dramshop.nl/nl/balmenach-22-years-living-souls.html"
+      "b": "vattype"
     },
     "vatSoort": {
       "w": [
         "Barrel"
       ],
-      "b": "https://www.dramshop.nl/nl/balmenach-22-years-living-souls.html"
+      "b": "vattype"
     }
   },
   "glenburgie-13-years-old-2011-infrequent-flyers-58-9-6-cl-sample": {
@@ -2387,14 +2415,6 @@
     "finishType": {
       "w": "finish",
       "b": "https://whisky.nl/arran-15-years-rare-batch-70cl.html"
-    },
-    "natuurlijkeKleur": {
-      "w": true,
-      "b": "https://www.dramshop.nl/nl/arran-15y-rare-batch-french-oak-grand-cru.html"
-    },
-    "oplage": {
-      "w": 4198,
-      "b": "https://www.dramshop.nl/nl/arran-15y-rare-batch-french-oak-grand-cru.html"
     }
   },
   "adelphi-piccadily-distillery-6-years-old-2019-52-6-cl-sample": {
@@ -2678,7 +2698,7 @@
     },
     "finishType": {
       "w": "finish",
-      "b": "https://www.gall.nl/starward-whisky-left-field-70cl-465356.html"
+      "b": "https://www.whiskysite.nl/nl/starward-left-field-070-ltr-40.html"
     }
   },
   "tomintoul-pinot-noir-cask-finish-40-6-cl-sample": {
@@ -2690,7 +2710,7 @@
   "highland-queen-sherry-finish-40-6-cl-sample": {
     "finishType": {
       "w": "finish",
-      "b": "https://www.dramshop.nl/nl/highland-queen-sherry-cask-finish.html"
+      "b": "vattype"
     }
   },
   "nomad-outland-whisky-41-3-6-cl-sample": {
@@ -2789,22 +2809,6 @@
     "finishType": {
       "w": "volledige rijping",
       "b": "https://www.whiskysite.nl/nl/bruichladdich-bere-barley-2013-50-6-cl-sample.html"
-    },
-    "nietKoudgefilterd": {
-      "w": true,
-      "b": "https://www.drankenhandelleiden.nl/bruichladdich-bere-barley-2013.html"
-    },
-    "natuurlijkeKleur": {
-      "w": true,
-      "b": "https://www.drankenhandelleiden.nl/bruichladdich-bere-barley-2013.html"
-    },
-    "firstFill": {
-      "w": true,
-      "b": "https://www.drankenhandelleiden.nl/bruichladdich-bere-barley-2013.html"
-    },
-    "refill": {
-      "w": true,
-      "b": "https://www.drankenhandelleiden.nl/bruichladdich-bere-barley-2013.html"
     }
   },
   "carsebridge-1982-signatory-cask-strength-48-9-6-cl-sample": {
@@ -2984,22 +2988,22 @@
     }
   },
   "adelphi-lochlea-5-years-old-2018-cask-114-59-2-6-cl-sample": {
+    "firstFill": {
+      "w": true,
+      "b": "vattype"
+    },
+    "vatSoort": {
+      "w": [
+        "Barrel"
+      ],
+      "b": "vattype"
+    },
     "vatNummer": {
       "w": "114",
       "b": "https://www.dramshop.nl/nl/lochlea-2018-2024-adelphi.html"
     },
     "oplage": {
       "w": 265,
-      "b": "https://www.dramshop.nl/nl/lochlea-2018-2024-adelphi.html"
-    },
-    "firstFill": {
-      "w": true,
-      "b": "https://www.dramshop.nl/nl/lochlea-2018-2024-adelphi.html"
-    },
-    "vatSoort": {
-      "w": [
-        "Barrel"
-      ],
       "b": "https://www.dramshop.nl/nl/lochlea-2018-2024-adelphi.html"
     }
   },
@@ -3023,6 +3027,10 @@
     "singleCask": {
       "w": true,
       "b": "naam"
+    },
+    "vatsterkte": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/ardnamurchan-2018-single-cask-1128-golden-promise.html"
     }
   },
   "ardnamurchan-ad-heritage-barley-release-59-2-6-cl-sample": {
@@ -3059,10 +3067,6 @@
     "finishType": {
       "w": "volledige rijping",
       "b": "https://www.whiskysite.nl/nl/ardnamurchan-ad-tokaji-cask-release-52-6-cl-sample.html"
-    },
-    "oplage": {
-      "w": 8736,
-      "b": "https://www.dramshop.nl/nl/ardnamurchan-ad-tokaji-cask-release.html"
     }
   },
   "arran-10-years-old-local-barley-batch-2-concerto-50-6-cl-sample": {
@@ -3151,6 +3155,12 @@
     "natuurlijkeKleur": {
       "w": true,
       "b": "https://www.drankgigant.nl/balblair-12-years.html"
+    }
+  },
+  "balblair-12-years-old-2012-fragrant-drops-58-2-6-cl-sample": {
+    "vatsterkte": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/balblair-12-years-old-2012-fragrant-drops-070-ltr.html"
     }
   },
   "balblair-15-year-old-46-6-cl-sample": {
@@ -3416,35 +3426,9 @@
     }
   },
   "glen-scotia-12-years-old-46-6-cl-sample": {
-    "nietKoudgefilterd": {
-      "w": true,
-      "b": "https://whisky.nl/glen-scotia-12-years-70cl.html"
-    },
     "firstFill": {
       "w": true,
-      "b": "https://whisky.nl/glen-scotia-12-years-70cl.html"
-    }
-  },
-  "glen-scotia-12-years-old-icons-of-campbeltown-no-4-the-griffin-53-8-6-cl-sample": {
-    "nietKoudgefilterd": {
-      "w": true,
-      "b": "https://www.dramshop.nl/nl/glen-scotia-12-year-old-icons-no4-the-griffin.html"
-    },
-    "natuurlijkeKleur": {
-      "w": true,
-      "b": "https://www.dramshop.nl/nl/glen-scotia-12-year-old-icons-no4-the-griffin.html"
-    },
-    "finishType": {
-      "w": "finish",
-      "b": "https://www.dramshop.nl/nl/glen-scotia-12-year-old-icons-no4-the-griffin.html"
-    },
-    "finishDuur": {
-      "w": "12 maanden",
-      "b": "https://www.dramshop.nl/nl/glen-scotia-12-year-old-icons-no4-the-griffin.html"
-    },
-    "firstFill": {
-      "w": true,
-      "b": "https://shop.whiskybase.com/nl/glen-scotia-12-year-old-165003174.html"
+      "b": "https://shop.whiskybase.com/nl/glen-scotia-12-year-old-159815808.html"
     }
   },
   "glen-scotia-5-years-old-2016-bottled-for-whiskysite-nl-56-7-6-cl-sample": {
@@ -3601,10 +3585,6 @@
     "vatsterkte": {
       "w": true,
       "b": "naam"
-    },
-    "singleCask": {
-      "w": true,
-      "b": "https://www.drankenhandelleiden.nl/indri-dru-cask-strength.html"
     }
   },
   "indri-single-cask-4074-bourbon-barrel-for-the-netherlands-by-win-58-5-6-cl-sample": {
@@ -3682,15 +3662,15 @@
     }
   },
   "lochlea-sowing-edition-second-crop-46-6-cl-sample": {
-    "firstFill": {
-      "w": true,
-      "b": "https://www.drankgigant.nl/lochlea-sowing-edition-second-crop.html"
-    },
     "nietKoudgefilterd": {
       "w": true,
       "b": "https://www.drankgigant.nl/lochlea-sowing-edition-second-crop.html"
     },
     "natuurlijkeKleur": {
+      "w": true,
+      "b": "https://www.drankgigant.nl/lochlea-sowing-edition-second-crop.html"
+    },
+    "firstFill": {
       "w": true,
       "b": "https://www.drankgigant.nl/lochlea-sowing-edition-second-crop.html"
     }
@@ -3701,14 +3681,6 @@
         "Barrel"
       ],
       "b": "naam"
-    },
-    "vatsterkte": {
-      "w": true,
-      "b": "https://shop.whiskybase.com/nl/nikka-from-the-barrel.html"
-    },
-    "singleCask": {
-      "w": true,
-      "b": "https://shop.whiskybase.com/nl/nikka-from-the-barrel.html"
     }
   },
   "north-british-17-years-old-2007-bottle-dreams-56-1-6-cl-sample": {
@@ -3765,12 +3737,6 @@
     "refill": {
       "w": true,
       "b": "https://www.whiskysite.nl/nl/oban-10-years-old-coastal-orchard-specia-154067680.html"
-    }
-  },
-  "oban-12-years-old-special-release-2025-54-7-6-cl-sample": {
-    "vatsterkte": {
-      "w": true,
-      "b": "https://www.drankenhandelleiden.nl/oban-12-years-special-release-2025.html"
     }
   },
   "old-pulteney-coastal-port-finish-46-6-cl-sample": {
@@ -4226,6 +4192,12 @@
       "b": "https://www.whiskysite.nl/nl/glenglassaugh-10-years-old-2014-infreque-158977969.html"
     }
   },
+  "lindores-the-exclusive-cask-19-2819-australian-red-wine-cask-matured-61-7-6-cl-sample": {
+    "singleCask": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/lindores-the-exclusive-cask-192819-australian-red.html"
+    }
+  },
   "milk-honey-apex-mouton-red-wine-cask-56-7-6-cl-sample": {
     "finishType": {
       "w": "volledige rijping",
@@ -4574,15 +4546,15 @@
     }
   },
   "ardmore-12-years-old-living-souls-46-6-cl-sample": {
-    "finishType": {
-      "w": "volledige rijping",
-      "b": "https://www.whiskysite.nl/nl/ardmore-12-years-old-living-souls-46-6-cl-sample.html"
-    },
     "vatSoort": {
       "w": [
         "Barrel"
       ],
-      "b": "https://www.dramshop.nl/nl/ardmore-12-years-living-souls.html"
+      "b": "vattype"
+    },
+    "finishType": {
+      "w": "volledige rijping",
+      "b": "https://www.whiskysite.nl/nl/ardmore-12-years-old-living-souls-46-6-cl-sample.html"
     }
   },
   "ardnamurchan-ad-the-midgie-48-6-cl-sample": {
@@ -4787,10 +4759,16 @@
       "b": "https://www.whiskysite.nl/nl/ardmore-15-years-old-2001-coopers-choice-515-6-cl.html"
     }
   },
+  "ardnamurchan-6-years-old-2016-north-star-spirits-58-5-6-cl-sample": {
+    "vatsterkte": {
+      "w": true,
+      "b": "https://www.whiskysite.nl/nl/ardnamurchan-6-years-old-2016-north-star-spirits-0.html"
+    }
+  },
   "ardnamurchan-7-years-old-living-souls-50-6-cl-sample": {
     "firstFill": {
       "w": true,
-      "b": "https://www.dramshop.nl/nl/ardnamurchan-7-years-living-souls-163291374.html"
+      "b": "vattype"
     }
   },
   "ardnamurchan-ad-10-years-old-release-46-8-6-cl-sample": {
@@ -4884,16 +4862,16 @@
     }
   },
   "bladnoch-alinta-reserve-46-7-6-cl-sample": {
-    "oplage": {
-      "w": 2000,
-      "b": "https://www.drankgigant.nl/bladnoch-alinta-reserve.html"
-    },
     "nietKoudgefilterd": {
       "w": true,
       "b": "https://www.drankgigant.nl/bladnoch-alinta-reserve.html"
     },
     "natuurlijkeKleur": {
       "w": true,
+      "b": "https://www.drankgigant.nl/bladnoch-alinta-reserve.html"
+    },
+    "oplage": {
+      "w": 2000,
       "b": "https://www.drankgigant.nl/bladnoch-alinta-reserve.html"
     }
   },
@@ -5364,14 +5342,14 @@
   "ledaig-2020-signatory-vintage-100-proof-edition-76-57-1-6-cl-sample": {
     "refill": {
       "w": true,
-      "b": "https://shop.whiskybase.com/nl/ledaig-2020-sv-signatory-vintage.html"
+      "b": "vattype"
     },
     "vatSoort": {
       "w": [
         "Hogshead",
         "Barrel"
       ],
-      "b": "https://www.dramshop.nl/nl/ledaig-2020-signatory-vintage-100-proof-76.html"
+      "b": "vattype"
     }
   },
   "ledaig-9-years-old-2017-spirit-of-scotland-60-2-6-cl-sample": {
