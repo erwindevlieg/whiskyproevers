@@ -185,7 +185,6 @@ def is_real_notes(text: str) -> bool:
 def is_real_description(desc: str, *names: str) -> bool:
     """True alleen bij lopende tekst, niet bij een herhaalde producttitel."""
     text = es.strip_boilerplate(desc or "")
-    text = re.sub(r"(?i)\blees meer\.?\b", " ", text)
     compact = re.sub(r"\s+", " ", text).strip()
     if not compact:
         return False
