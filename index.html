@@ -110,6 +110,17 @@
           </div>
           <input id="maxPrijs" type="range" min="1" max="100" step="1" value="100" disabled>
         </div>
+        <div class="field">
+          <div class="slider-top">
+            <label id="flesPrijsRange-label">Flesprijs</label>
+            <span class="slider-val" id="flesPrijsVal">—</span>
+          </div>
+          <div class="range-dual" role="group" aria-labelledby="flesPrijsRange-label">
+            <div class="range-dual-rail" aria-hidden="true"><div class="range-dual-fill" id="flesPrijsFill"></div></div>
+            <input id="minFlesPrijs" type="range" min="0" max="1000" step="1" value="0" disabled aria-label="Minimale flesprijs">
+            <input id="maxFlesPrijs" type="range" min="0" max="1000" step="1" value="1000" disabled aria-label="Maximale flesprijs">
+          </div>
+        </div>
       </div>
 
       <div class="filter-toggles">
@@ -139,17 +150,17 @@
         </div>
       </div>
 
-      <div class="filter-row">
-        <span class="pills-label side" id="vat-label">Vattype</span>
-        <div class="pills" id="vat-pills" role="group" aria-labelledby="vat-label"></div>
+      <div class="filter-row filter-tags">
+        <span class="pills-label side" id="tags-label">Tags</span>
+        <div class="tags-filter">
+          <label class="sr-only" for="tagQ">Zoek tags</label>
+          <input id="tagQ" class="tag-search" type="search" placeholder="Zoek tags…" autocomplete="off">
+          <div class="pills" id="tag-pills" role="group" aria-labelledby="tags-label"></div>
+        </div>
       </div>
       <div class="filter-row">
         <span class="pills-label side" id="rook-label">Rook</span>
         <div class="pills" id="rook-pills" role="group" aria-labelledby="rook-label"></div>
-      </div>
-      <div class="filter-row">
-        <span class="pills-label side" id="regio-label">Regio</span>
-        <div class="pills" id="regio-pills" role="group" aria-labelledby="regio-label"></div>
       </div>
       <div class="filter-row">
         <span class="pills-label side" id="smaak-label">Smaak</span>
@@ -194,8 +205,7 @@
             <th class="col-check" scope="col">Geproefd</th>
             <th class="col-photo" scope="col"><span class="sr-only">Foto</span></th>
             <th class="sortable" data-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>
-            <th class="sortable" data-sort="regio" scope="col" aria-sort="none">Regio <span class="arrow">↕</span></th>
-            <th class="sortable" data-sort="vattype" scope="col" aria-sort="none">Vattype <span class="arrow">↕</span></th>
+            <th class="sortable col-tags" data-sort="regio" scope="col" aria-sort="none">Tags <span class="arrow">↕</span></th>
             <th class="sortable col-abv" data-sort="abv" scope="col" aria-sort="none">ABV <span class="arrow">↕</span></th>
             <th class="sortable col-score" data-sort="score" scope="col" aria-sort="descending">Score <span class="arrow">↓</span></th>
           </tr>
@@ -228,6 +238,7 @@
   <div class="dist-list-view" id="distListView" hidden>
     <a class="back" href="#/">← Overzicht</a>
     <h2>Distilleerderijen</h2>
+    <div class="region-map" id="distRegionMap" hidden></div>
     <div class="list-bar">
       <div class="field search-field">
         <label class="sr-only" for="distQ">Zoeken</label>
@@ -290,7 +301,7 @@ const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
 const ROOK_ORDER = ["geen","licht","medium","zwaar"];
-const REGIO_ORDER = ["Speyside","Highland","Islay","Lowland","Campbeltown","Orkney","Arran","Mull","Islands","Ierland","Taiwan","Japan","Kentucky","Canada","Nederland","Denemarken","België"];
+const REGIO_ORDER = ["Speyside","Highland","Islay","Lowland","Campbeltown","Orkney","Arran","Mull","Islands","Ierland","Taiwan","Japan","Kentucky","Texas","Canada","Nederland","Denemarken","België","Australië","India"];
 const FLAVOUR = [
   { id: "fruitig", label: "Fruitig", re: /fruit|appel|\bpeer\b|perzik|pruim|kers|\bbes\b|bessen|braam|sinaasappel|citrus|citroen|sinaas|abrikoos|herfstfruit|\borange\b|berry|cherry|\bplum\b|\bapple\b|peach|lemon sherbet|citruszeste|citrusschil|gestoofd fruit/i },
   { id: "zoet", label: "Zoet", re: /zoet|toffee|karamel|caramel|fudge|marshmallow|siroop|syrup|sherbet|honingraat|kerstcake|toffee-app|snoepzoet/i },
@@ -336,6 +347,7 @@ function parseRegio(regio) {
     ["isle of arran","Arran"],["arran","Arran"],["islands","Islands"],
     ["kentucky","Kentucky"],["canada","Canada"],["nederland","Nederland"],
     ["denemarken","Denemarken"],["belgië","België"],["belgie","België"],
+    ["australi","Australië"],["india","India"],["texas","Texas"],
     ["bourbon","Kentucky"],["mull","Mull"]
   ];
   for (const [k,v] of map) if (head.includes(k)) return v;
@@ -977,8 +989,7 @@ function whiskyTableHtml(list) {
     + '<th class="col-check" scope="col">Geproefd</th>'
     + '<th class="col-photo" scope="col"><span class="sr-only">Foto</span></th>'
     + '<th class="sortable" data-bottle-sort="naam" scope="col" aria-sort="none">Naam <span class="arrow">↕</span></th>'
-    + '<th class="sortable" data-bottle-sort="regio" scope="col" aria-sort="none">Regio <span class="arrow">↕</span></th>'
-    + '<th class="sortable" data-bottle-sort="vattype" scope="col" aria-sort="none">Vattype <span class="arrow">↕</span></th>'
+    + '<th class="sortable col-tags" data-bottle-sort="regio" scope="col" aria-sort="none">Tags <span class="arrow">↕</span></th>'
     + '<th class="sortable col-abv" data-bottle-sort="abv" scope="col" aria-sort="none">ABV <span class="arrow">↕</span></th>'
     + '<th class="sortable col-score" data-bottle-sort="score" scope="col" aria-sort="none">Score <span class="arrow">↕</span></th>'
     + "</tr></thead>"
@@ -998,8 +1009,53 @@ function markBottleSort(root) {
   });
 }
 
+let regionMapPromise = null;
+
+function regioCounts() {
+  const counts = {};
+  (ROWS || []).forEach(r => {
+    if (r.regioKort) counts[r.regioKort] = (counts[r.regioKort] || 0) + 1;
+  });
+  return counts;
+}
+
+function selectRegionFilter(name) {
+  if (!name) return;
+  state.regio = new Set([name]);
+  syncFormFromState();
+  closeFilters();
+  location.hash = listHash();
+}
+
+function loadRegionMap() {
+  if (window.RegionMap) return Promise.resolve(window.RegionMap);
+  if (regionMapPromise) return regionMapPromise;
+  regionMapPromise = new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = "assets/js/region-map.js";
+    s.async = true;
+    s.onload = () => resolve(window.RegionMap);
+    s.onerror = () => reject(new Error("region-map"));
+    document.head.appendChild(s);
+  });
+  return regionMapPromise;
+}
+
+function mountRegionMap(target, opts) {
+  const el = typeof target === "string" ? document.getElementById(target) : target;
+  if (!el) return;
+  loadRegionMap().then(mod => {
+    if (!mod || !mod.mount) return;
+    mod.mount(el, Object.assign({
+      counts: regioCounts(),
+      onSelect: selectRegionFilter
+    }, opts || {}));
+  }).catch(() => {});
+}
+
 function renderDistList() {
   document.title = "Distilleerderijen · Whisky proefoverzicht";
+  mountRegionMap("distRegionMap", { mode: "overview" });
   const list = filterDistilleries();
   els.distCount.innerHTML = "<strong>" + intFmt.format(list.length) + "</strong> van <strong>" + intFmt.format(DISTILLERIES.length) + "</strong> distilleerderijen";
   els.distRows.innerHTML = list.map(d => {
@@ -1164,13 +1220,15 @@ const state = {
   inclOnbekend: true,
   sampleAvail: "alle",
   flesPrijsBekend: "alle",
+  minFlesPrijs: 0,
+  maxFlesPrijs: 1000,
   botteling: "alle",
   sort: "score",
   dir: "desc",
   shown: PAGE_SIZE,
   tasted: loadTasted(),
   compare: loadCompare(),
-  defaults: { minScore: 60, maxPrijs: 100, scoreMin: 60, scoreMax: 92, prijsMin: 1, prijsMax: 100 }
+  defaults: { minScore: 60, maxPrijs: 100, scoreMin: 60, scoreMax: 92, prijsMin: 1, prijsMax: 100, flesMin: 0, flesMax: 1000 }
 };
 
 let ROWS = [];
@@ -1378,8 +1436,8 @@ const REGIO_CHIP = {
   Speyside: "speyside", Highland: "highland", Islay: "islay", Lowland: "lowland",
   Campbeltown: "campbeltown", Orkney: "orkney", Arran: "arran", Mull: "mull",
   Islands: "islands", Ierland: "ierland", Taiwan: "taiwan", Japan: "japan",
-  Kentucky: "kentucky", Canada: "canada", Nederland: "nederland",
-  Denemarken: "denemarken", België: "belgie"
+  Kentucky: "kentucky", Texas: "texas", Canada: "canada", Nederland: "nederland",
+  Denemarken: "denemarken", België: "belgie", "Australië": "australie", India: "india"
 };
 
 function vatChipsHtml(r) {
@@ -1396,6 +1454,10 @@ function regioChipHtml(r) {
   if (!r.regioKort) return "";
   const key = REGIO_CHIP[r.regioKort] || "regio";
   return '<span class="chip chip-regio" data-chip="' + key + '">' + escapeHtml(r.regioKort) + "</span>";
+}
+
+function tagsHtml(r) {
+  return regioChipHtml(r) + vatChipsHtml(r);
 }
 
 function ibChipHtml(r, compact) {
@@ -1669,6 +1731,7 @@ function compareValue(kind, r) {
   if (kind === "abv") return abvCell(r);
   if (kind === "regio") return knownText(r.regioKort || r.regio);
   if (kind === "vattype") return knownText(r.vattype);
+  if (kind === "tags") return tagsHtml(r) || knownText(r.regioKort || r.regio) || knownText(r.vattype);
   if (kind === "rook") return knownText(r.rook);
   if (kind === "leeftijd") return r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : "";
   if (kind === "ncf") return knownText(ncfLabel(r.ncf) || r.ncf);
@@ -1719,8 +1782,7 @@ function renderCompare(ids) {
     ["photo", "Foto"],
     ["score", "WB-score"],
     ["abv", "ABV"],
-    ["regio", "Regio"],
-    ["vattype", "Vattype"],
+    ["tags", "Tags"],
     ["rook", "Rook"],
     ["leeftijd", "Leeftijd"],
     ["ncf", "NCF"],
@@ -1766,6 +1828,11 @@ const els = {
   q: document.getElementById("q"),
   minScore: document.getElementById("minScore"),
   maxPrijs: document.getElementById("maxPrijs"),
+  minFlesPrijs: document.getElementById("minFlesPrijs"),
+  maxFlesPrijs: document.getElementById("maxFlesPrijs"),
+  flesPrijsVal: document.getElementById("flesPrijsVal"),
+  flesPrijsFill: document.getElementById("flesPrijsFill"),
+  tagQ: document.getElementById("tagQ"),
   minScoreVal: document.getElementById("minScoreVal"),
   maxPrijsVal: document.getElementById("maxPrijsVal"),
   inclOnbekend: document.getElementById("inclOnbekend"),
@@ -1847,6 +1914,30 @@ function priceFilterActive() {
   return state.maxPrijs < state.defaults.maxPrijs;
 }
 
+function flesPriceFilterActive() {
+  return state.minFlesPrijs > state.defaults.flesMin || state.maxFlesPrijs < state.defaults.flesMax;
+}
+
+function formatFlesRange() {
+  const fmt = v => euro.format(v).replace(",00", "");
+  if (!flesPriceFilterActive()) return fmt(state.defaults.flesMin) + " – " + fmt(state.defaults.flesMax);
+  return fmt(state.minFlesPrijs) + " – " + fmt(state.maxFlesPrijs);
+}
+
+function syncFlesSliderUi() {
+  const min = state.defaults.flesMin, max = state.defaults.flesMax;
+  const span = Math.max(1, max - min);
+  const a = ((state.minFlesPrijs - min) / span) * 100;
+  const b = ((state.maxFlesPrijs - min) / span) * 100;
+  if (els.flesPrijsFill) {
+    els.flesPrijsFill.style.left = a + "%";
+    els.flesPrijsFill.style.right = (100 - b) + "%";
+  }
+  if (els.flesPrijsVal) els.flesPrijsVal.textContent = formatFlesRange();
+  if (els.minFlesPrijs) els.minFlesPrijs.value = state.minFlesPrijs;
+  if (els.maxFlesPrijs) els.maxFlesPrijs.value = state.maxFlesPrijs;
+}
+
 function matches(r) {
   if (r.score == null) {
     if (!state.inclOnbekend) return false;
@@ -1866,6 +1957,9 @@ function matches(r) {
   if (state.sampleAvail === "nee" && r.sampleBeschikbaar !== "nee") return false;
   if (state.flesPrijsBekend === "ja" && r.flesPrijs == null) return false;
   if (state.flesPrijsBekend === "nee" && r.flesPrijs != null) return false;
+  if (flesPriceFilterActive()) {
+    if (r.flesPrijs == null || r.flesPrijs < state.minFlesPrijs || r.flesPrijs > state.maxFlesPrijs) return false;
+  }
   if (state.botteling === "onafhankelijk" && !r.ib) return false;
   if (state.botteling === "distilleerderij" && r.ib) return false;
   if (state.q) {
@@ -1953,6 +2047,7 @@ function activeFilterCount() {
   if (!state.inclOnbekend) n += 1;
   if (state.sampleAvail !== "alle") n += 1;
   if (state.flesPrijsBekend !== "alle") n += 1;
+  if (flesPriceFilterActive()) n += 1;
   if (state.botteling !== "alle") n += 1;
   return n;
 }
@@ -2002,8 +2097,7 @@ function tableRowHtml(r) {
     + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ' data-hover-id="' + escapeAttr(r.id) + '">' + escapeHtml(name) + "</a>"
     + ibChipHtml(r, true)
     + compareToggleHtml(r) + "</td>"
-    + "<td>" + (regioChipHtml(r) || (regio ? escapeHtml(regio) : "")) + "</td>"
-    + "<td>" + (vatChipsHtml(r) || (vat ? '<span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>" : "")) + "</td>"
+    + '<td class="col-tags">' + (tagsHtml(r) || (regio ? escapeHtml(regio) : "") || (vat ? '<span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>" : "")) + "</td>"
     + '<td class="col-abv">' + abvCell(r) + "</td>"
     + '<td class="col-score">' + scoreCell(r) + "</td>"
     + "</tr>";
@@ -2013,6 +2107,7 @@ function render(resetPage) {
   if (resetPage) state.shown = PAGE_SIZE;
   els.minScoreVal.textContent = num.format(state.minScore);
   els.maxPrijsVal.textContent = euro.format(state.maxPrijs).replace(",00", "");
+  syncFlesSliderUi();
 
   const list = ROWS.filter(matches).sort(cmp);
   const visible = list.slice(0, state.shown);
@@ -2253,6 +2348,7 @@ function renderDetail(r) {
     : "";
   const overzichtSpecs = factsHtml([
     ["Distilleerderij", distLink],
+    ["Tags", tagsHtml(r) || knownText(r.regioKort) || knownText(r.vattype)],
     ["Regio", knownText(r.regio)],
     ["Vattype", knownText(r.vattype)],
     ["Leeftijd", r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : ""],
@@ -2260,7 +2356,9 @@ function renderDetail(r) {
     ["NCF", knownText(ncfLabel(r.ncf) || r.ncf)],
     ["Kleurstof", knownText(kleurLabel(r.kleurstof) || r.kleurstof)]
   ]);
-  const overzicht = descriptionBlock(r) + overzichtSpecs;
+  const regionKey = r.regioKort || "";
+  const miniMap = '<div class="region-map region-map-mini" data-region="' + escapeAttr(regionKey) + '"></div>';
+  const overzicht = descriptionBlock(r) + miniMap + overzichtSpecs;
 
   const criticFacts = factsHtml([
     ["Whiskyfun", knownText(r.whiskyfunScore)],
@@ -2341,6 +2439,8 @@ function renderDetail(r) {
     ])
     + accordion("Meer details", meer);
   bindPhotos(els.detail);
+  const mini = els.detail.querySelector(".region-map-mini");
+  if (mini) mountRegionMap(mini, { mode: "detail", region: r.regioKort || "" });
 }
 
 function renderDetailMissing() {
@@ -2464,13 +2564,18 @@ function route() {
 function applyBounds(items) {
   const scores = items.map(r => r.score).filter(v => v != null);
   const prices = items.map(r => r.prijsSample).filter(v => v != null);
+  const flesPrices = items.map(r => r.flesPrijs).filter(v => v != null);
   const scoreMin = scores.length ? Math.floor(Math.min(...scores) * 10) / 10 : 60;
   const scoreMax = scores.length ? Math.ceil(Math.max(...scores) * 10) / 10 : 92;
   const prijsMin = prices.length ? Math.floor(Math.min(...prices)) : 1;
   const prijsMax = prices.length ? Math.ceil(Math.max(...prices)) : 100;
-  state.defaults = { minScore: scoreMin, maxPrijs: prijsMax, scoreMin, scoreMax, prijsMin, prijsMax };
+  const flesMin = flesPrices.length ? Math.floor(Math.min(...flesPrices)) : 0;
+  const flesMax = flesPrices.length ? Math.ceil(Math.max(...flesPrices)) : 1000;
+  state.defaults = { minScore: scoreMin, maxPrijs: prijsMax, scoreMin, scoreMax, prijsMin, prijsMax, flesMin, flesMax };
   state.minScore = scoreMin;
   state.maxPrijs = prijsMax;
+  state.minFlesPrijs = flesMin;
+  state.maxFlesPrijs = flesMax;
   els.minScore.min = scoreMin;
   els.minScore.max = scoreMax;
   els.minScore.step = "0.1";
@@ -2478,6 +2583,16 @@ function applyBounds(items) {
   els.maxPrijs.min = prijsMin;
   els.maxPrijs.max = prijsMax;
   els.maxPrijs.value = prijsMax;
+  if (els.minFlesPrijs && els.maxFlesPrijs) {
+    ["minFlesPrijs","maxFlesPrijs"].forEach(key => {
+      els[key].min = flesMin;
+      els[key].max = flesMax;
+      els[key].step = "1";
+      els[key].disabled = false;
+    });
+    els.minFlesPrijs.value = flesMin;
+    els.maxFlesPrijs.value = flesMax;
+  }
   els.minScore.disabled = false;
   els.maxPrijs.disabled = false;
   els.inclOnbekend.checked = true;
@@ -2485,10 +2600,26 @@ function applyBounds(items) {
 }
 
 function initPills() {
-  makePills(document.getElementById("vat-pills"), uniqueInOrder(ROWS.flatMap(r => r.vatTags), VAT_ORDER), "vat");
+  const tagBox = document.getElementById("tag-pills");
+  const regioVals = uniqueInOrder(ROWS.map(r => r.regioKort), REGIO_ORDER);
+  const vatVals = uniqueInOrder(ROWS.flatMap(r => r.vatTags), VAT_ORDER);
+  if (tagBox) {
+    tagBox.innerHTML =
+      regioVals.map(v => '<button type="button" class="pill" data-group="regio" data-value="' + escapeAttr(v) + '" aria-pressed="false">' + escapeHtml(v) + "</button>").join("")
+      + vatVals.map(v => '<button type="button" class="pill" data-group="vat" data-value="' + escapeAttr(v) + '" aria-pressed="false">' + escapeHtml(v) + "</button>").join("");
+  }
   makePills(document.getElementById("rook-pills"), uniqueInOrder(ROWS.map(r => r.rook).filter(r => ROOK_ORDER.includes(r)), ROOK_ORDER), "rook");
-  makePills(document.getElementById("regio-pills"), uniqueInOrder(ROWS.map(r => r.regioKort), REGIO_ORDER), "regio");
   makePills(document.getElementById("smaak-pills"), uniqueInOrder(ROWS.flatMap(r => r.flavour), FLAVOUR.map(f => f.label)), "smaak");
+}
+
+function filterTagPills() {
+  const q = ((els.tagQ && els.tagQ.value) || "").trim().toLowerCase();
+  const box = document.getElementById("tag-pills");
+  if (!box) return;
+  box.querySelectorAll(".pill").forEach(btn => {
+    const hay = (btn.dataset.value || btn.textContent || "").toLowerCase();
+    btn.hidden = !!(q && !hay.includes(q));
+  });
 }
 
 function setTasted(id, checked) {
@@ -2515,6 +2646,10 @@ function serializeFilters() {
   if (!state.inclOnbekend) p.set("onbekend", "0");
   if (state.sampleAvail !== "alle") p.set("sample", state.sampleAvail);
   if (state.flesPrijsBekend !== "alle") p.set("fles", state.flesPrijsBekend);
+  if (flesPriceFilterActive()) {
+    p.set("fmin", String(state.minFlesPrijs));
+    p.set("fmax", String(state.maxFlesPrijs));
+  }
   if (state.botteling !== "alle") p.set("botteling", state.botteling);
   if (state.sort !== "score" || state.dir !== "desc") {
     p.set("sort", state.sort);
@@ -2563,6 +2698,14 @@ function applyFilterQuery(query) {
   state.sampleAvail = sample === "ja" || sample === "nee" ? sample : "alle";
   const fles = p.get("fles");
   state.flesPrijsBekend = fles === "ja" || fles === "nee" ? fles : "alle";
+  const fminRaw = p.get("fmin"), fmaxRaw = p.get("fmax");
+  const fmin = fminRaw == null || fminRaw === "" ? NaN : Number(fminRaw);
+  const fmax = fmaxRaw == null || fmaxRaw === "" ? NaN : Number(fmaxRaw);
+  state.minFlesPrijs = Number.isFinite(fmin) ? fmin : state.defaults.flesMin;
+  state.maxFlesPrijs = Number.isFinite(fmax) ? fmax : state.defaults.flesMax;
+  if (state.minFlesPrijs > state.maxFlesPrijs) {
+    const tmp = state.minFlesPrijs; state.minFlesPrijs = state.maxFlesPrijs; state.maxFlesPrijs = tmp;
+  }
   const botteling = p.get("botteling");
   state.botteling = botteling === "distilleerderij" || botteling === "onafhankelijk" ? botteling : "alle";
   const sort = p.get("sort") || "score";
@@ -2579,6 +2722,7 @@ function syncFormFromState() {
   if (els.q) els.q.value = state.q;
   if (els.minScore) els.minScore.value = state.minScore;
   if (els.maxPrijs) els.maxPrijs.value = state.maxPrijs;
+  syncFlesSliderUi();
   if (els.inclOnbekend) els.inclOnbekend.checked = state.inclOnbekend;
   document.querySelectorAll(".pill").forEach(btn => {
     const set = state[btn.dataset.group];
@@ -2680,9 +2824,12 @@ function resetFilters() {
   state.smaak = new Set();
   state.minScore = state.defaults.minScore;
   state.maxPrijs = state.defaults.maxPrijs;
+  state.minFlesPrijs = state.defaults.flesMin;
+  state.maxFlesPrijs = state.defaults.flesMax;
   state.inclOnbekend = true;
   state.sampleAvail = "alle";
   state.flesPrijsBekend = "alle";
+  if (els.tagQ) { els.tagQ.value = ""; filterTagPills(); }
   state.botteling = "alle";
   syncFormFromState();
   render(true);
@@ -2779,6 +2926,19 @@ function bindEvents() {
   els.q.addEventListener("input", () => { state.q = els.q.value.trim().toLowerCase(); render(true); });
   els.minScore.addEventListener("input", () => { state.minScore = Number(els.minScore.value); render(true); });
   els.maxPrijs.addEventListener("input", () => { state.maxPrijs = Number(els.maxPrijs.value); render(true); });
+  function onFlesRangeInput(which) {
+    let minV = Number(els.minFlesPrijs.value);
+    let maxV = Number(els.maxFlesPrijs.value);
+    if (which === "min" && minV > maxV) minV = maxV;
+    if (which === "max" && maxV < minV) maxV = minV;
+    state.minFlesPrijs = minV;
+    state.maxFlesPrijs = maxV;
+    syncFlesSliderUi();
+    render(true);
+  }
+  if (els.minFlesPrijs) els.minFlesPrijs.addEventListener("input", () => onFlesRangeInput("min"));
+  if (els.maxFlesPrijs) els.maxFlesPrijs.addEventListener("input", () => onFlesRangeInput("max"));
+  if (els.tagQ) els.tagQ.addEventListener("input", filterTagPills);
   els.inclOnbekend.addEventListener("change", () => { state.inclOnbekend = els.inclOnbekend.checked; render(true); });
   document.querySelectorAll(".toggle-group").forEach(group => {
     group.addEventListener("click", (e) => {
