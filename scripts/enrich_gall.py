@@ -109,7 +109,6 @@ def parse_page(html: str, url: str) -> dict:
             "",
             html_desc,
         ).strip()
-        html_desc = re.sub(r"(?i)\blees meer\b", "", html_desc).strip()
         html_desc = es.strip_boilerplate(html_desc)
     if html_desc and len(html_desc) > len(description or ""):
         description = html_desc
