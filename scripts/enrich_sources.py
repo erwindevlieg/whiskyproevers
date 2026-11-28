@@ -421,8 +421,26 @@ def clean_text(text: str) -> str:
     return re.sub(r"\n{3,}", "\n\n", cleaned)
 
 
+READMORE_LINE_RE = re.compile(
+    r"(?i)^(?:lees meer|lees minder|lees verder|toon meer|toon minder)\s*\.?\s*$"
+)
+
+
+def strip_readmore_lines(text: str) -> str:
+    """Verwijder alleen hele regels die precies een 'lees meer'-CTA zijn.
+
+    Zinnen als 'Lees meer over deze whisky in...' blijven staan.
+    """
+    if not text:
+        return ""
+    kept = [line for line in text.split("\n") if not READMORE_LINE_RE.match(line.strip())]
+    cleaned = "\n".join(kept)
+    return re.sub(r"\n{3,}", "\n\n", cleaned).strip()
+
+
 def strip_boilerplate(text: str) -> str:
     text = clean_text(text)
+    text = strip_readmore_lines(text)
     text = WNL_CUT_RE.sub("", text).strip()
     # verwijder losse CTA-zinnen
     kept = []
