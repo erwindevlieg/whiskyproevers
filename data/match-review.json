@@ -1,0 +1,3461 @@
+{
+  "uitleg": "Kandidaten die net niet door de strikte check kwamen. Zet 'goedgekeurd' op true om een koppeling te gebruiken, of op false om hem te verwerpen; null = nog niet bekeken. De cascade (scripts/enrich_extra.py) gebruikt alleen regels met goedgekeurd: true.",
+  "kandidaten": [
+    {
+      "id": "glen-ord-2009-signatory-cask-strength-cask-4-56-7-6-cl-sample",
+      "whisky": "Glen Ord 2009 Signatory Cask Strength Cask 4 56,7% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glen Ord Glen Ord 2009 Signatory Vintage - Cask 4",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glen-ord-2009-sv-signatory-vintage.html",
+      "verschil": [
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 1.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "braeval-13-years-old-2009-north-star-spirits-55-6-cl-sample",
+      "whisky": "Braeval 13 Years Old 2009 North Star Spirits 55% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Braeval Braeval 2009 North Star Spirits",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/braeval-2008-north-star-spirits.html",
+      "verschil": [
+        "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "adelphi-ben-nevis-11-years-old-2013-59-9-6-cl-sample",
+      "whisky": "Adelphi Ben Nevis 11 Years Old 2013 59,9% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Adelphi Ben Nevis 2013 #14 - Adelphi",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ben-nevis-2013-14-adelphi.html",
+      "verschil": [
+        "leeftijd 11 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teaninich-16-years-old-2007-whiskydudes-59-6-6-cl-sample",
+      "whisky": "Teaninich 16 Years Old 2007 Whiskydudes 59,6% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Teaninich Teaninich 2007 – 2023 Whiskydudes",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/teaninich-2007-2023-whiskydudes.html",
+      "verschil": [
+        "leeftijd 16 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-12-years-old-2010-the-whisky-agency-52-1-6-cl-sample",
+      "whisky": "Bruichladdich 12 Years Old 2010 The Whisky Agency 52,1% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Bruichladdich Bruichladdich 2010 - The Whisky Agency",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/bruichladdich-2010-the-whisky-agency.html",
+      "verschil": [
+        "leeftijd 12 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tomatin-13-years-old-2011-cadenhead-chairman-s-stock-50-2-6-cl-sample",
+      "whisky": "Tomatin 13 Years Old 2011 Cadenhead Chairman's Stock 50,2% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Tomatin 2011 Cadenhead Chairman's Stock",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/tomatin-2011-cadenhead-chairmans-stock.html",
+      "verschil": [
+        "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "adelphi-akkeshi-3-years-old-2018-57-7-6-cl-sample",
+      "whisky": "Adelphi Akkeshi 3 Years Old 2018 57,7% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Adelphi Akkeshi 2018 - Adelphi",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/akkeshi-2018-adelphi-159548216.html",
+      "verschil": [
+        "leeftijd 3 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-13-years-old-2012-gordon-macphail-58-4-6-cl-sample",
+      "whisky": "Bunnahabhain 13 Years Old 2012 Gordon & MacPhail 58,4% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain 2012 Gordon & MacPhail - Cask #2921",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/bunnahabhain-2012-gm-gordon-macphail.html",
+      "verschil": [
+        "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "knockdhu-16-years-old-2006-chapter-7-51-5-6-cl-sample",
+      "whisky": "Knockdhu 16 Years Old 2006 Chapter 7 51,5% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Knockdhu Knockdhu 2006  Chapter 7",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/knockdhu-2006-ch7-chapter-7.html",
+      "verschil": [
+        "leeftijd 16 niet op pagina"
+      ],
+      "waarschijnlijkheid": 1.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-9-years-old-2016-signatory-cask-strength-cask-8-61-2-6-cl-sample",
+      "whisky": "Laphroaig 9 Years Old 2016 Signatory Cask Strength Cask 8 61,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Laphroaig Laphroaig 2016 Signatory Vintage - Cask  8",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/laphroaig-2016-sv-signatory-vintage.html",
+      "verschil": [
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 1.117,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-8-years-old-feis-ile-2025-57-8-6-cl-sample",
+      "whisky": "Caol Ila 8 Years Old Feis Ile 2025 57,8% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Caol Ila Caol Ila 8 Years Feis Ile 2025 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/caol-ila-8-years-feis-ile-2025.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 1.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glasgow-5-years-old-2016-north-star-spirits-51-5-6-cl-sample",
+      "whisky": "Glasgow 5 Years Old 2016 North Star Spirits 51,5% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glasgow Distillery Glasgow Distillery 2016 North Star Spirits",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glasgow-distillery-2016-north-star-spirits.html",
+      "verschil": [
+        "leeftijd 5 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-12-years-old-46-6-cl-sample",
+      "whisky": "Glen Scotia 12 Years Old 46% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glen Scotia 12 years",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glen-scotia-12-years.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "yellow-spot-12-years-old-46-6-cl-sample",
+      "whisky": "Yellow Spot 12 Years Old 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Yellow Spot Yellow Spot 12 jaar",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/yellow-spot-12-jaar.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-keith-8-years-old-2013-carn-mor-47-5-6-cl-sample",
+      "whisky": "Glen Keith 8 Years Old 2013 Carn Mor 47,5% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glen Keith Glen Keith 2013 Carn Mor 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glen-keith-2013-carn-mor.html",
+      "verschil": [
+        "leeftijd 8 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.95,
+      "goedgekeurd": null
+    },
+    {
+      "id": "adelphi-piccadily-distillery-6-years-old-2019-52-6-cl-sample",
+      "whisky": "Adelphi Piccadily Distillery 6 Years Old 2019 52% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Adelphi Piccadily Distillery (Indri) 2019 - cask 4073 - Adelphi",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/piccadily-distillery-indri-2019-cask-4073.html",
+      "verschil": [
+        "leeftijd 6 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.9,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ledaig-9-years-old-2017-spirit-of-scotland-60-2-6-cl-sample",
+      "whisky": "Ledaig 9 Years Old 2017 Spirit Of Scotland 60,2% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ledaig 2017 #42 NL - Spirit of Scotland",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ledaig-2017-42-nl-spirit-of-scotland.html",
+      "verschil": [
+        "leeftijd 9 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.9,
+      "goedgekeurd": null
+    },
+    {
+      "id": "speyside-m-18-years-old-signatory-vintage-100-proof-edition-exceptional-cask-18-57-1-6-cl-sample",
+      "whisky": "Speyside (M) 18 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #18 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Speyside 18(M) Speyside 18(M) 18 Years 100 Proof Edition 18 Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/speyside-18m-18-years-100-proof-edition-18.html",
+      "verschil": [
+        "vatnummer 18 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.864,
+      "goedgekeurd": null
+    },
+    {
+      "id": "speyside-m-18-years-old-signatory-vintage-100-proof-edition-exceptional-cask-19-57-1-6-cl-sample",
+      "whisky": "Speyside (M) 18 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #19 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Speyside 18(M) Speyside 18(M) 18 Years 100 Proof Edition 18 Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/speyside-18m-18-years-100-proof-edition-18.html",
+      "verschil": [
+        "vatnummer 19 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.864,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-15-years-old-46-6-cl-sample",
+      "whisky": "Glen Scotia 15 Years Old 46% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glen Scotia Glen Scotia 15 years",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glen-scotia-15-years.html",
+      "verschil": [
+        "naam afwijkend (- | bottle code l4)"
+      ],
+      "waarschijnlijkheid": 0.85,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-no-1-6-years-old-2020-signatory-anniversary-release-57-1-6-cl-sample",
+      "whisky": "Edradour No. 1 6 Years Old 2020 Signatory Anniversary Release 57,1% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Edradour No.1 - 6 Year old - 2020 - Andrew Symington 40th anniversary Release - Signatory",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/edradour-no1-6-year-old-2020-40th-anniversary-rele.html",
+      "verschil": [
+        "naam afwijkend (- | 40th andrew symington)"
+      ],
+      "waarschijnlijkheid": 0.821,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-10-years-old-2012-the-ultimate-selection-cask-900794-46-6-cl-sample",
+      "whisky": "Bunnahabhain 10 Years Old 2012 The Ultimate Selection Cask 900794 46% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Bunnahabhain 2012 The Ultimate",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/bunnahabhain-2012-the-ultimate.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.817,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendronach-forgue-10-years-old-43-6-cl-sample",
+      "whisky": "Glendronach Forgue 10 Years Old 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "GlenDronach Glendronach Forgue 10 Years 100cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glendronach-forgue-10-years.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.817,
+      "goedgekeurd": null
+    },
+    {
+      "id": "big-peat-10-years-old-winter-edition-2026-48-6-cl-sample",
+      "whisky": "Big Peat 10 Years Old Winter Edition 2026 48% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Big Peat Winter Edition 2026",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/big-peat-winter-edition-2026.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "auchroisk-11-years-old-2014-spirit-of-scotland-57-5-6-cl-sample",
+      "whisky": "Auchroisk 11 Years Old 2014 Spirit Of Scotland 57,5% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Auchroisk Auchroisk 2014 Gordon & MacPhail - Spirit of Scotland",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/auchroisk-2014-gm-gordon-macphail-164022479.html",
+      "verschil": [
+        "leeftijd 11 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "macallan-18-years-old-double-cask-2022-release-43-6-cl-sample",
+      "whisky": "Macallan 18 Years Old Double Cask 2022 Release 43% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Macallan Macallan 18-year-old Double Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/macallan-18-year-old-158885366.html",
+      "verschil": [
+        "vatnummer 2022 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "orkney-2011-signatory-vintage-100-proof-edition-83-57-1-6-cl-sample",
+      "whisky": "Orkney 2011 Signatory Vintage 100 Proof Edition #83 57,1% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Orkney (HP) 2011 Signatory Vintage - 100 Proof #83",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/orkney-hp-2011-sv-signatory-vintage-164093479.html",
+      "verschil": [
+        "naam afwijkend (- | hp)"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "red-spot-46-6-cl-sample",
+      "whisky": "Red Spot 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Red Spot Red Spot 15-year-old",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/red-spot-15-year-old.html",
+      "verschil": [
+        "pagina noemt leeftijd 15"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-cask-strength-release-57-7-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Cask Strength Release 57,7% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Ardnamurchan Ardnamurchan AD/Cask Strength 57.7% 2025",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/ardnamurchan-ad-x2f-158820267.html",
+      "verschil": [
+        "pagina noemt jaartal 2025"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-twelve-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Twelve 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 12-year-old The Smoky Twelve",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-12-year-old-113904325.html",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-staoisha-9-years-old-2014-the-ultimate-selection-46-6-cl-sample",
+      "whisky": "Bunnahabhain Staoisha 9 Years Old 2014 The Ultimate Selection 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain-Staoisha 2014 The Ultimate 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bunnahabhain-staoisha-2014-the-ultimate.html",
+      "verschil": [
+        "leeftijd 9 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-an-cidhe-50-6-cl-sample",
+      "whisky": "Bunnahabhain An Cidhe 50% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Bunnahabhain An Cidhe",
+      "kandidaatUrl": "https://www.drankgigant.nl/bunnahabhain-an-cidhe.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-an-cladach-50-6-cl-sample",
+      "whisky": "Bunnahabhain An Cladach 50% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Bunnahabhain An Cladach",
+      "kandidaatUrl": "https://www.drankgigant.nl/bunnahabhain-an-cladach.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-tri-seudan-50-6-cl-sample",
+      "whisky": "Bunnahabhain Tri Seudan 50% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Bunnahabhain Tri Seudan",
+      "kandidaatUrl": "https://www.drankgigant.nl/bunnahabhain-tri-seudan.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "compass-box-nectarosity-46-6-cl-sample",
+      "whisky": "Compass Box Nectarosity 46% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Compass Box Nectarosity",
+      "kandidaatUrl": "https://www.drankgigant.nl/compass-box-nectarosity.html",
+      "verschil": [
+        "maat 70 cl vs 75 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendronach-forgue-10-years-old-43-6-cl-sample",
+      "whisky": "Glendronach Forgue 10 Years Old 43% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Glendronach 10 Year Forgue",
+      "kandidaatUrl": "https://www.drankgigant.nl/glendronach-forgue-10-years.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendronach-sevillian-room-43-6-cl-sample",
+      "whisky": "Glendronach Sevillian Room 43% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Glendronach The Sevillian Room",
+      "kandidaatUrl": "https://www.drankgigant.nl/glendronach-the-sevillian-room.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenfiddich-12-years-old-rum-cask-finish-43-6-cl-sample",
+      "whisky": "Glenfiddich 12 Years Old Rum Cask Finish 43% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Glenfiddich 12 Years Rum Cask Finish",
+      "kandidaatUrl": "https://www.drankgigant.nl/glenfiddich-12-years-rum-cask-finish.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenlivet-triple-cask-matured-white-oak-reserve-40-6-cl-sample",
+      "whisky": "Glenlivet Triple Cask Matured White Oak Reserve 40% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "The Glenlivet Triple Cask White Oak Reserve",
+      "kandidaatUrl": "https://www.drankgigant.nl/glenlivet-triple-cask-white-oak-reserve.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "gouden-carolus-port-oak-46-6-cl-sample",
+      "whisky": "Gouden Carolus Port Oak 46% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Gouden Carolus Port Oak Single Malt",
+      "kandidaatUrl": "https://www.drankgigant.nl/gouden-carolus-single-malt-port-oak.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "gouden-carolus-single-malt-sherry-oak-46-6-cl-sample",
+      "whisky": "Gouden Carolus Single Malt Sherry Oak 46% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Gouden Carolus Whisky Sherry Oak",
+      "kandidaatUrl": "https://www.drankgigant.nl/gouden-carolus-whisky-sherry-oak.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "jack-daniels-single-barrel-heritage-barrel-50-6-cl-sample",
+      "whisky": "Jack Daniels Single Barrel Heritage Barrel 50% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Jack Daniels Single Barrel Heritage Barrel",
+      "kandidaatUrl": "https://www.drankgigant.nl/jack-daniels-single-barrel-heritage-barrel.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "nikka-from-the-barrel-51-4-6-cl-sample",
+      "whisky": "Nikka from the Barrel 51,4% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Nikka from the Barrel",
+      "kandidaatUrl": "https://www.drankgigant.nl/nikka-from-the-barrel.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "speyburn-bordeaux-red-wine-cask-40-6-cl-sample",
+      "whisky": "Speyburn Bordeaux Red Wine Cask 40% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Speyburn Bordeaux Red Wine Cask",
+      "kandidaatUrl": "https://www.drankgigant.nl/speyburn-bordeaux-red-wine-cask.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl"
+      ],
+      "waarschijnlijkheid": 0.75,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-grant-14-years-old-2011-gordon-macphail-57-1-6-cl-sample",
+      "whisky": "Glen Grant 14 Years Old 2011 Gordon & MacPhail 57,1% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glen Grant 2011 Made for your Moment - Gordon & Macphail",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glen-grant-2011-made-for-your-moment-gordon-macpha.html",
+      "verschil": [
+        "leeftijd 14 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.721,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-13-years-old-2012-gordon-macphail-57-1-6-cl-sample",
+      "whisky": "Caol Ila 13 Years Old 2012 Gordon & MacPhail 57,1% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Caol Ila 2012 Made for your Moment - Gordon & Macphail",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/coal-ila-2012-made-for-your-moment-gordon-macphail.html",
+      "verschil": [
+        "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.721,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lagg-5-years-old-single-cask-lg20-1264-for-the-netherlands-59-6-cl-sample",
+      "whisky": "Lagg 5 Years Old Single Cask LG20/1264 For The Netherlands 59% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Lagg 2020 - 5 years old - single cask for the Netherlands",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/lagg-2020-5-years-old-single-cask-for-the-netherla.html",
+      "verschil": [
+        "pagina noemt jaartal 2020"
+      ],
+      "waarschijnlijkheid": 0.717,
+      "goedgekeurd": null
+    },
+    {
+      "id": "horse-with-no-name-habanero-infused-bourbon-45-6-cl-sample",
+      "whisky": "Horse With No Name Habanero Infused Bourbon 45% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Horse With No Name Horse With No Name Bourbon Infused with Habanero 50cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/horse-with-no-name-bourbon-infused-with-habanero-5.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.707,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tomatin-2011-gordon-macphail-discovery-43-6-cl-sample",
+      "whisky": "Tomatin 2011 Gordon & MacPhail Discovery 43% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Tomatin Tomatin 2011 Gordon & MacPhail",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/tomatin-2010-gm-gordon-macphail-148181021.html",
+      "verschil": [
+        "naam afwijkend (discovery | -)"
+      ],
+      "waarschijnlijkheid": 0.7,
+      "goedgekeurd": null
+    },
+    {
+      "id": "aberlour-16-years-old-double-cask-matured-43-6-cl-sample",
+      "whisky": "Aberlour 16 Years Old Double Cask Matured 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Aberlour Aberlour 16 Years Double Cask Matured 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/aberlour-16-years-double-cask-matured.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.7,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenallachie-9-years-old-2014-murray-mcdavid-57-7-6-cl-sample",
+      "whisky": "Glenallachie 9 Years Old 2014 Murray McDavid 57,7% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "GlenAllachie GlenAllachie 9 Years Murray McDavid 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenallachie-9-years-murray-mcdavid.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.7,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-16-years-old-2007-the-ultimate-selection-cask-202-46-6-cl-sample",
+      "whisky": "Caol Ila 16 Years Old 2007 The Ultimate Selection Cask 202 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Caol Ila Caol Ila 2007 16 Years Sherry Cask Finish The Ultimate 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/caol-ila-2007-the-ultimate.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.679,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-10-years-old-signatory-the-monuments-of-scotland-50-8-6-cl-sample",
+      "whisky": "Blair Athol 10 Years Old Signatory The Monuments Of Scotland 50,8% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Blair Athol Blair Athol 10 Years The Monuments of Scotland Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/blair-athol-10-years-the-monuments-of-scotland.html",
+      "verschil": [
+        "naam afwijkend (- | vintage)"
+      ],
+      "waarschijnlijkheid": 0.664,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-13-years-old-2012-gordon-macphail-58-4-6-cl-sample",
+      "whisky": "Bunnahabhain 13 Years Old 2012 Gordon & MacPhail 58,4% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Bunnahabhain 2012 Made for your Moment - Gordon & Macphail",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/bunnahabhain-2012-made-for-the-moment-gordon-macph.html",
+      "verschil": [
+        "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-amarone-cask-finish-6-cl-sample",
+      "whisky": "Arran Amarone Cask Finish 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Arran Arran Amarone cask finish",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/arran-amarone-cask-finish.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-signature-series-edition-3-duero-discovery-50-6-cl-sample",
+      "whisky": "Arran Signature Series Edition 3 Duero Discovery 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Arran Arran Signature Series 3 Duero Discovery",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/arran-signature-series-3-duero-discovery.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "compass-box-hedonism-2024-edition-43-6-cl-sample",
+      "whisky": "Compass Box Hedonism 2024 Edition 43% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Compass Box Compass Box Hedonism 2024",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/compass-box-hedonism-2024.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-10-years-old-release-46-8-6-cl-sample",
+      "whisky": "Ardnamurchan AD / 10 Years Old Release 46,8% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/10:16 Cask 944",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-1016-cask-944.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-46-8-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ 46,8% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/10:16 Cask 944",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-1016-cask-944.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-46-8-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ 46,8% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/09:16 Cask 884",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-0916-cask-884.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-15th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 15th Edition 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Kilchoman 100% Islay 15th Edition",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/kilchoman-100-islay-15th-edition.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-brackla-18-years-old-46-6-cl-sample",
+      "whisky": "Royal Brackla 18 Years Old 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Royal Brackla Royal Brackla 18-year-old",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/royal-brackla-18-year-old.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "redbreast-lustau-46-6-cl-sample",
+      "whisky": "Redbreast Lustau 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Redbreast Redbreast Lustau Edition",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/redbreast-lustau-edition-132115034.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-amarone-cask-finish-6-cl-sample",
+      "whisky": "Arran Amarone Cask Finish 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Arran Arran Amarone Cask Finish",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/arran-amarone-cask-finish-135560559.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-15-years-old-46-6-cl-sample",
+      "whisky": "Glen Scotia 15 Years Old 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glen Scotia Glen Scotia 15-year-old",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glen-scotia-15-year-old-137493557.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hakushu-distillers-reserve-43-6-cl-sample",
+      "whisky": "Hakushu Distillers Reserve 43% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Hakushu Hakushu Distiller's Reserve",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/hakushu-distiller-x27s-reserve.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-quarter-cask-48-6-cl-sample",
+      "whisky": "Laphroaig Quarter Cask 48% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Laphroaig Laphroaig Quarter Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/laphroaig-quarter-cask.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "santis-edition-dreifaltigkeit-52-6-cl-sample",
+      "whisky": "Santis Edition Dreifaltigkeit 52% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Säntis Malt Säntis Malt - Dreifaltigkeit",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/santis-malt-dreifaltigkeit-70-cl.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "mortlach-2016-signatory-vintage-100-proof-edition-84-57-1-6-cl-sample",
+      "whisky": "Mortlach 2016 Signatory Vintage 100 Proof Edition #84 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Mortlach Mortlach 10 Years 100 Proof Edition 84 Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/mortlach-10-years-100-proof-edition-84-signatory.html",
+      "verschil": [
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "mortlach-2013-signatory-vintage-100-proof-edition-60-57-1-6-cl-sample",
+      "whisky": "Mortlach 2013 Signatory Vintage 100 Proof Edition #60 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Mortlach Mortlach 10 Years 100 Proof Edition 84 Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/mortlach-10-years-100-proof-edition-84-signatory.html",
+      "verschil": [
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-10-years-old-2012-the-ultimate-selection-cask-900794-46-6-cl-sample",
+      "whisky": "Bunnahabhain 10 Years Old 2012 The Ultimate Selection Cask 900794 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain 2012 The Ultimate 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bunnahabhain-2012-the-ultimate.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.65,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benrinnes-12-years-old-2011-the-ultimate-selection-cask-5-57-3-6-cl-sample",
+      "whisky": "Benrinnes 12 Years Old 2011 The Ultimate Selection Cask 5 57,3% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Benrinnes 2011 Cask Strength - The Ultimate",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/benrinnes-2011-cask-strength-the-ultimate.html",
+      "verschil": [
+        "editie - vs cask strength"
+      ],
+      "waarschijnlijkheid": 0.617,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glentauchers-11-years-old-2011-the-ultimate-selection-cask-900448-66-5-6-cl-sample",
+      "whisky": "Glentauchers 11 Years Old 2011 The Ultimate Selection Cask 900448 66,5% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glentauchers 2011 Cask Strength - The Ultimate",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glentauchers-2011-cask-strength-the-ultimate.html",
+      "verschil": [
+        "editie - vs cask strength"
+      ],
+      "waarschijnlijkheid": 0.617,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-17-years-old-signatory-vintage-100-proof-edition-exceptional-cask-12-57-1-6-cl-sample",
+      "whisky": "Blair Athol 17 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #12 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Blair Athol Blair Athol 2007 17 Years 100 Proof Edition 12 Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/blair-athol-2007-17-years-100-proof-edition-12.html",
+      "verschil": [
+        "vatnummer 12 niet op pagina",
+        "pagina noemt jaartal 2007"
+      ],
+      "waarschijnlijkheid": 0.614,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-17-years-old-signatory-vintage-100-proof-edition-exceptional-cask-9-57-1-6-cl-sample",
+      "whisky": "Blair Athol 17 Years Old Signatory Vintage 100 Proof Edition Exceptional Cask #9 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Blair Athol Blair Athol 2007 17 Years 100 Proof Edition 12 Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/blair-athol-2007-17-years-100-proof-edition-12.html",
+      "verschil": [
+        "vatnummer 9 niet op pagina",
+        "pagina noemt jaartal 2007"
+      ],
+      "waarschijnlijkheid": 0.614,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-10-years-old-white-port-cask-release-52-6-cl-sample",
+      "whisky": "Ardnamurchan AD / 10 Years Old White Port Cask Release 52% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan 10 years old - White Port Cask Release",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-10-years-old-white-port-cask-release.html",
+      "verschil": [
+        "naam afwijkend (ad | -)"
+      ],
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "talisker-distillers-edition-45-8-6-cl-sample",
+      "whisky": "Talisker Distillers Edition 45,8% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Talisker Talisker 1991 Distillers Edition  - 100 cl",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/talisker-1991.html",
+      "verschil": [
+        "maat 70 cl vs 100 cl",
+        "pagina noemt jaartal 1991"
+      ],
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bus-single-cask-tawny-port-54-6-cl-sample",
+      "whisky": "Bus Single Cask Tawny Port 54% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bus Bus Single Cask Tawny Port 50cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bus-single-cask-tawny-port.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl"
+      ],
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "big-peat-10-years-old-winter-edition-2026-48-6-cl-sample",
+      "whisky": "Big Peat 10 Years Old Winter Edition 2026 48% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Big Peat Big Peat 10 Years Winter Edition 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/big-peat-10-years-winter-edition.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.6,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-12-years-old-icons-of-campbeltown-no-4-the-griffin-53-8-6-cl-sample",
+      "whisky": "Glen Scotia 12 Years Old Icons Of Campbeltown No.4 The Griffin 53,8% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glen Scotia Glen Scotia 12 Years Icons of Campbeltown Release No 4 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glen-scotia-12-years-icons-campbeltown-release-4.html",
+      "verschil": [
+        "naam afwijkend (griffin | -)"
+      ],
+      "waarschijnlijkheid": 0.564,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glentauchers-2005-gordon-macphail-43-6-cl-sample",
+      "whisky": "Glentauchers 2005 Gordon & MacPhail 43% 6 CL Sample",
+      "bron": "Gordon & MacPhail",
+      "kandidaatNaam": "August 2019 DL Glentauchers 2005 43% (Worldwide)",
+      "kandidaatUrl": "https://www.gordonandmacphail.com/our-whiskies-2/august-2019-dl-glentauchers-2005-43-worldwide",
+      "verschil": [
+        "naam afwijkend (- | distillery labels)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-sherry-cask-55-8-6-cl-sample",
+      "whisky": "Arran Sherry Cask 55,8% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Arran Arran Sherry Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/arran-sherry-cask-131755824.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-quarter-cask-56-2-6-cl-sample",
+      "whisky": "Arran Quarter Cask 56,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Arran Arran Quarter Cask - 56.2%",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/arran-quarter-cask.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hellyers-road-single-malt-whisky-double-cask-46-2-6-cl-sample",
+      "whisky": "Hellyers Road Single Malt Whisky Double Cask 46,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Hellyers Road Hellyers Road Double Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/hellyers-road-double-cask.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "indri-dru-cask-strength-57-2-6-cl-sample",
+      "whisky": "Indri Dru Cask Strength 57,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Indri Indri Drú",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/indri-dru.html",
+      "verschil": [
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "paul-john-christmas-edition-2025-release-48-6-cl-sample",
+      "whisky": "Paul John Christmas Edition 2025 Release 48% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Paul John Paul John Christmas Edition 2026",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/paul-john-christmas-edition-2026.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "whisky-paul-john-classic-cask-strength-55-2-6-cl-sample",
+      "whisky": "Whisky Paul John Classic Cask Strength 55,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Paul John Paul John 55.2% Classic",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/paul-john-552-classic.html",
+      "verschil": [
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-sanaig-cask-strength-2026-release-57-5-6-cl-sample",
+      "whisky": "Kilchoman Sanaig Cask Strength 2026 Release 57,5% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman Sanaig - Cask Strength",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-sanaig-165325247.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "macallan-18-years-old-double-cask-2022-release-43-6-cl-sample",
+      "whisky": "Macallan 18 Years Old Double Cask 2022 Release 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Macallan Macallan 18 Years Double Cask Collection 2026 Release 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/macallan-18-years-double-cask-collection-2026.html",
+      "verschil": [
+        "vatnummer 2022 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bowmore-10-years-old-2016-signatory-cask-strength-cask-26-57-7-6-cl-sample",
+      "whisky": "Bowmore 10 Years Old 2016 Signatory Cask Strength Cask 26 57,7% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bowmore Bowmore 10 Years Cask Strength Collection Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bowmore-10-years-cask-strength-collection.html",
+      "verschil": [
+        "vatnummer 26 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-9-years-old-2016-signatory-cask-strength-cask-8-61-2-6-cl-sample",
+      "whisky": "Laphroaig 9 Years Old 2016 Signatory Cask Strength Cask 8 61,2% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Laphroaig Laphroaig 9 Years Cask Strength Collection Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/laphroaig-9-years-cask-strength-collection.html",
+      "verschil": [
+        "vatnummer 8 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-amarone-cask-finish-6-cl-sample",
+      "whisky": "Arran Amarone Cask Finish 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Arran Amarone Cask Finish",
+      "kandidaatUrl": "https://www.drankgigant.nl/arran-amarone-cask-finish.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-15th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 15th Edition 50% 6 CL Sample",
+      "bron": "Drankgigant",
+      "kandidaatNaam": "Kilchoman 100% Islay 15th Edition",
+      "kandidaatUrl": "https://www.drankgigant.nl/kilchoman-100-islay-15th-edition.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.55,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-garioch-2011-signatory-vintage-48-2-6-cl-sample",
+      "whisky": "Glen Garioch 2011 Signatory Vintage 48,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glen Garioch Glen Garioch 2011 Signatory Vintage - 1st fill Barrels",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glen-garioch-2011-sv-signatory-vintage.html",
+      "verschil": [
+        "naam afwijkend (- | 1st barrels fill)"
+      ],
+      "waarschijnlijkheid": 0.521,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benromach-vintage-2015-cask-strength-batch-1-58-8-6-cl-sample",
+      "whisky": "Benromach Vintage 2015 Cask Strength Batch 1 58,8% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benromach Benromach 2015 - Cask Strength Batch 1",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benromach-2015.html",
+      "verschil": [
+        "naam afwijkend (vintage | -)"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenallachie-21-years-old-batch-7-51-9-6-cl-sample",
+      "whisky": "Glenallachie 21 Years Old Batch 7 51,9% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "GlenAllachie GlenAllachie 21 Years Batch 7 Cask Strength 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenallachie-21-years-batch-7-cask-strength.html",
+      "verschil": [
+        "editie - vs cask strength"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
+      "id": "the-singleton-14-years-old-special-release-2023-55-6-cl-sample",
+      "whisky": "The Singleton 14 Years Old Special Release 2023 55% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Singleton Singleton 14 Years Special Releases 2024",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/singleton-14-years-special-releases-2023.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-7-years-old-campbeltown-malt-festival-edition-2026-53-9-6-cl-sample",
+      "whisky": "Glen Scotia 7 Years Old Campbeltown Malt Festival Edition 2026 53,9% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glen Scotia Glen Scotia 7 Years Campbeltown Malts Festival 2026 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glen-scotia-7-years-malts-festival-2026.html",
+      "verschil": [
+        "naam afwijkend (- | malts)"
+      ],
+      "waarschijnlijkheid": 0.517,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-20-years-old-armagnac-cask-finish-49-9-6-cl-sample",
+      "whisky": "Bunnahabhain 20 Years Old Armagnac Cask Finish 49,9% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain 2005 - Armagnac Finish",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/bunnahabhain-2005.html",
+      "verschil": [
+        "leeftijd 20 niet op pagina",
+        "pagina noemt jaartal 2005"
+      ],
+      "waarschijnlijkheid": 0.5,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-the-classic-laddie-10-years-old-50-6-cl-sample",
+      "whisky": "Bruichladdich The Classic Laddie 10 Years Old 50%  6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Bruichladdich The Classic Laddie 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-the-classic-laddie-70cl.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.5,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ben-nevis-12-years-old-2014-the-ultimate-selection-cask-430-432-46-6-cl-sample",
+      "whisky": "Ben Nevis 12 Years Old 2014 The Ultimate Selection Cask 430 + 432 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Ben Nevis Ben Nevis 2014 The Ultimate 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/ben-nevis-2014-the-ultimate.html",
+      "verschil": [
+        "leeftijd 12 niet op pagina",
+        "vatnummer 430 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.5,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ledaig-hebridean-moon-10-years-old-58-8-6-cl-sample",
+      "whisky": "Ledaig Hebridean Moon 10 Years Old 58,8% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Ledaig Ledaig Hebridean Moon 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/ledaig-hebridean-moon.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.5,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ben-nevis-11-years-old-2014-signatory-cask-strength-cask-232-59-6-6-cl-sample",
+      "whisky": "Ben Nevis 11 Years Old 2014 Signatory Cask Strength Cask 232 59,6% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ben Nevis 2014 Port Pipe - Signatory Vintage",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ben-nevis-2014-port-pipe-signatory-vintage.html",
+      "verschil": [
+        "editie cask strength vs port"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenlivet-15-years-old-french-oak-reserve-40-6-cl-sample",
+      "whisky": "Glenlivet 15 Years Old French Oak Reserve 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glenlivet Glenlivet 15 Years French Oak 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenlivet-15-years-french-oak.html",
+      "verschil": [
+        "naam afwijkend (reserve | -)"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benromach-12-years-old-sherry-cask-matured-46-6-cl-sample",
+      "whisky": "Benromach 12 Years Old Sherry Cask Matured 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Benromach Benromach 12 Years Exclusively Sherry Cask Matured 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/benromach-12-years-exclusively-sherry-cask-matured.html",
+      "verschil": [
+        "naam afwijkend (- | exclusively)"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "cardhu-red-wine-cask-12-years-old-40-6-cl-sample",
+      "whisky": "Cardhu Red Wine Cask 12 Years Old 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Cardhu Cardhu 12 Years Wine Cask Matured 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/cardhu-12-years-wine-cask-matured.html",
+      "verschil": [
+        "vatnummer 12 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tomatin-2006-portuguese-collection-madeira-edition-46-6-cl-sample",
+      "whisky": "Tomatin 2006 Portuguese Collection Madeira Edition 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Tomatin Tomatin 2006 15 Years The Madeira Edition 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/tomatin-2006-15-years-the-madeira-edition-70cl.html",
+      "verschil": [
+        "pagina noemt leeftijd 15"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "balvenie-the-stories-14-years-old-the-week-of-peat-48-3-6-cl-sample",
+      "whisky": "Balvenie The Stories 14 Years Old The Week Of Peat 48,3% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Balvenie Balvenie 14 Years The Week of Peat 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/balvenie-14-years-the-week-of-peat.html",
+      "verschil": [
+        "naam afwijkend (stories | -)"
+      ],
+      "waarschijnlijkheid": 0.45,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-distillers-edition-43-6-cl-sample",
+      "whisky": "Caol Ila Distillers Edition 43% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Caol Ila Caol Ila 12 Years Old Whisky",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/caol-ila-12-years.html",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "isle-of-jura-journey-40-6-cl-sample",
+      "whisky": "Isle of Jura Journey 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Isle of Jura Isle of Jura 12-year-old",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/isle-of-jura-12-year-old-102387591.html",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tullamore-dew-rouge-13-years-old-40-6-cl-sample",
+      "whisky": "Tullamore Dew Rouge 13 Years Old 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Tullamore Dew Tullamore Dew - 40%",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/tullamore-dew-40.html",
+      "verschil": [
+        "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenfarclas-spring-edition-55-6-cl-sample",
+      "whisky": "Glenfarclas Spring Edition 55% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glenfarclas Glenfarclas Spring Edition 2021 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenfarclas-spring-edition-2021-70cl.html",
+      "verschil": [
+        "pagina noemt jaartal 2021"
+      ],
+      "waarschijnlijkheid": 0.417,
+      "goedgekeurd": null
+    },
+    {
+      "id": "miltonduff-10-years-old-gordon-macphail-discovery-43-6-cl-sample",
+      "whisky": "Miltonduff 10 Years Old Gordon & MacPhail Discovery 43% 6 CL Sample",
+      "bron": "Gordon & MacPhail",
+      "kandidaatNaam": "May 2018 Disco Miltonduff 10YO 43%",
+      "kandidaatUrl": "https://www.gordonandmacphail.com/our-whiskies/may-2018-disco-miltonduff-10yo-43",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-cask-strength-release-57-7-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Cask Strength Release 57,7% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD Cask Strength 2025",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-cask-strength-2025.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt jaartal 2025"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-original-ten-43-6-cl-sample",
+      "whisky": "Benriach The Original Ten 43% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 10-year-old The Original Ten",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-10-year-old-113904293.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "auchroisk-10-years-old-gordon-macphail-discovery-43-6-cl-sample",
+      "whisky": "Auchroisk 10 Years Old Gordon & MacPhail Discovery 43% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Auchroisk Auchroisk 10-year-old Gordon & MacPhail",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/auchroisk-10-year-old-gm-gordon-macphail.html",
+      "verschil": [
+        "naam afwijkend (discovery | -)"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-queen-sherry-finish-40-6-cl-sample",
+      "whisky": "Highland Queen Sherry Finish 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Highland Queen Sherry Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/highland-queen-sherry-cask.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-ten-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Ten 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 10-year-old The Smoky Ten",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-10-year-old-113915292.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-15th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 15th Edition 50% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman 09-year-old - 100% Islay 15th Edition",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-09-year-old-159886904.html",
+      "verschil": [
+        "ABV onbekend",
+        "pagina noemt leeftijd 9"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-original-ten-43-6-cl-sample",
+      "whisky": "Benriach The Original Ten 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Benriach Benriach The Original Ten 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/benriach-the-original-ten.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "balmenach-10-years-old-2016-the-ultimate-selection-cask-25-29-46-6-cl-sample",
+      "whisky": "Balmenach 10 Years Old 2016 The Ultimate Selection Cask 25 + 29 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Balmenach Balmenach 2016 The Ultimate 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/balmenach-2016-the-ultimate.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina",
+        "vatnummer 25 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-amarone-cask-finish-6-cl-sample",
+      "whisky": "Arran Amarone Cask Finish 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Arran Arran Amarone Cask Finish 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/arran-amarone-cask-finish.html",
+      "verschil": [
+        "ABV onbekend"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-ten-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Ten 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Benriach Benriach The Smoky Ten 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/benriach-the-smoky-ten.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-twelve-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Twelve 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Benriach Benriach The Smoky Twelve 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/benriach-the-smoky-twelve.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.4,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teeling-14-years-old-2008-px-cask-bottled-for-bresser-timmer-57-3-6-cl-sample",
+      "whisky": "Teeling 14 Years Old 2008 PX Cask Bottled For Bresser & Timmer 57,3% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Teeling Teeling \"B&T\" 2008 PX",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/teeling-b-t-2008-px.html",
+      "verschil": [
+        "leeftijd 14 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.383,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-double-barrel-rum-cask-finish-46-6-cl-sample",
+      "whisky": "Glen Scotia Double Barrel Rum Cask Finish 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glen Scotia Glen Scotia Double Cask Rum Cask Finish",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glen-scotia-double-cask-rum-cask-finish.html",
+      "verschil": [
+        "naam afwijkend (barrel | -)"
+      ],
+      "waarschijnlijkheid": 0.383,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-12-years-old-icons-of-campbeltown-cask-strength-no-3-51-7-6-cl-sample",
+      "whisky": "Glen Scotia 12 Years Old Icons Of Campbeltown Cask Strength No. 3 51,7% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glen Scotia Glen Scotia 12-year-old -  Icons of Campbeltown No. 3: The Wulver",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glen-scotia-12-year-old-160348714.html",
+      "verschil": [
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.383,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-10-years-old-2016-signatory-unchill-filtered-collection-46-6-cl-sample",
+      "whisky": "Laphroaig 10 Years Old 2016 Signatory Unchill Filtered Collection 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Laphroaig Laphroaig 2016 Signatory Vintage - 1st Fill Barrels",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/laphroaig-2016-sv-signatory-vintage-165470760.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.372,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-spey-2015-signatory-vintage-100-proof-edition-37-57-1-6-cl-sample",
+      "whisky": "Glen Spey 2015 Signatory Vintage 100 Proof Edition #37 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glen Spey Glen Spey 2015 9 Years Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glen-spey-2015-9-years-signatory-vintage.html",
+      "verschil": [
+        "pagina noemt leeftijd 9",
+        "editie 100 proof vs -"
+      ],
+      "waarschijnlijkheid": 0.367,
+      "goedgekeurd": null
+    },
+    {
+      "id": "eden-mill-the-art-of-st-andrews-2023-46-5-6-cl-sample",
+      "whisky": "Eden Mill The Art Of St. Andrews 2023 46,5% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Eden Mill St. Andrews Limited Release",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/eden-mill-st-andrews-limited-release.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-10-years-old-40-6-cl-sample",
+      "whisky": "Highland Park 10 Years Old 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Highland Park Highland Park 10 jaar Viking Scars",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/highland-park-10-jaar-viking-scars.html",
+      "verschil": [
+        "naam afwijkend (- | scars viking)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "boann-irish-whiskey-single-pot-still-marsala-cask-47-6-cl-sample",
+      "whisky": "Boann Irish Whiskey Single Pot Still Marsala Cask  47% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Boann Boann Distillery Single Pot Still Marsala Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/boann-distillery-single-pot-still-marsala-cask.html",
+      "verschil": [
+        "naam afwijkend (- | distillery)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-7-years-old-campbeltown-malt-festival-edition-2026-53-9-6-cl-sample",
+      "whisky": "Glen Scotia 7 Years Old Campbeltown Malt Festival Edition 2026 53,9% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glen Scotia Glen Scotia 07-year-old - Campbeltown Malts Festival 2026",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glen-scotia-07-year-old.html",
+      "verschil": [
+        "naam afwijkend (- | malts)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "singleton-of-dufftown-17-years-old-special-release-2020-55-1-6-cl-sample",
+      "whisky": "Singleton of Dufftown 17 Years Old Special Release 2020 55,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Singleton Singleton 17 Years Special Release 2020 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/singleton-17-years-special-release-2020.html",
+      "verschil": [
+        "naam afwijkend (dufftown | -)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenrothes-14-years-old-2008-douglas-laing-old-particular-48-4-6-cl-sample",
+      "whisky": "Glenrothes 14 Years Old 2008 Douglas Laing Old Particular 48,4% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glenrothes Glenrothes 14 Years Single Cask Old Particular 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenrothes-14-years-single-cask-old-particular.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenrothes-2011-signatory-vintage-48-2-6-cl-sample",
+      "whisky": "Glenrothes 2011 Signatory Vintage 48,2% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glenrothes Glen Rothes 12 Years Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glen-rothes-12-years-signatory-vintage.html",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hooghoudt-double-cask-whisky-7-years-old-45-6-cl-sample",
+      "whisky": "Hooghoudt Double Cask Whisky 7 Years Old 45% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Hooghoudt Hooghoudt Single Grain Double Cask 7 Years 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/hooghoudt-single-grain-double-cask-7-years.html",
+      "verschil": [
+        "naam afwijkend (- | grain)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "aultmore-15-years-old-dry-marsala-cask-finish-46-6-cl-sample",
+      "whisky": "Aultmore 15 Years Old Dry Marsala Cask Finish 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Aultmore Aultmore 15 Years Ruby Marsala Cask Finish 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/aultmore-15-years-ruby-marsala-cask-finish.html",
+      "verschil": [
+        "naam afwijkend (dry | ruby)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "aultmore-15-years-old-sweet-marsala-cask-finish-46-6-cl-sample",
+      "whisky": "Aultmore 15 Years Old Sweet Marsala Cask Finish 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Aultmore Aultmore 15 Years Ruby Marsala Cask Finish 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/aultmore-15-years-ruby-marsala-cask-finish.html",
+      "verschil": [
+        "naam afwijkend (sweet | ruby)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-10-years-old-unpeated-40-6-cl-sample",
+      "whisky": "Glen Scotia 10 Years Old Unpeated 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Glen Scotia Glen Scotia 10 Years 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glen-scotia-10-years.html",
+      "verschil": [
+        "editie unpeated vs -"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bowmore-captivo-oak-20-years-old-50-8-6-cl-sample",
+      "whisky": "Bowmore Captivo Oak 20 Years Old 50,8% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bowmore Bowmore 20 Years Oak Voyage Captivo Collection 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bowmore-20-years-oak-voyage-captivo-collection.html",
+      "verschil": [
+        "naam afwijkend (- | collection voyage)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "eagle-rare-bourbon-10-years-old-45-6-cl-sample",
+      "whisky": "Eagle Rare Bourbon 10 Years Old 45% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Eagle Rare Eagle Rare 10 Years 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/eagle-rare-10-years.html",
+      "verschil": [
+        "naam afwijkend (bourbon | -)"
+      ],
+      "waarschijnlijkheid": 0.35,
+      "goedgekeurd": null
+    },
+    {
+      "id": "unnamed-orkney-17-years-old-2006-the-ultimate-selection-cask-dru17-a65-23-26-27-46-6-cl-sample",
+      "whisky": "Unnamed Orkney 17 Years Old 2006 The Ultimate Selection Cask DRU17/A65-23/26/27 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Unnamed Orkney Unnamed Orkney 2006 The Ultimate 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/unnamed-orkney-2006-the-ultimate.html",
+      "verschil": [
+        "leeftijd 17 niet op pagina",
+        "vatnummer dru17 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.329,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-16-2-58-1-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 16.2 58,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Octomore 16.2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-octomore-16-2.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-17-3-60-9-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 17.3 60,9% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Octomore 16.2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-octomore-16-2.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-14-2-57-7-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 14.2 57,7% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Octomore 16.2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-octomore-16-2.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-15-2-57-9-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 15.2 57,9% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Octomore 16.2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-octomore-16-2.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-16-1-59-3-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 16.1 59,3% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Octomore 16.2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-octomore-16-2.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-17-2-59-5-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 17.2 59,5% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Octomore 16.2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-octomore-16-2.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-octomore-edition-17-1-59-7-6-cl-sample",
+      "whisky": "Bruichladdich Octomore Edition 17.1 59,7% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Octomore 16.2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-octomore-16-2.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "indri-agneya-46-6-cl-sample",
+      "whisky": "Indri Agneya 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Indri Indri Agneya 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/indri-agneya.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "laphroaig-quarter-cask-48-6-cl-sample",
+      "whisky": "Laphroaig Quarter Cask 48% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Laphroaig Laphroaig Quarter Cask 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/laphroaig-quater-cask-70cl.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "santis-edition-dreifaltigkeit-52-6-cl-sample",
+      "whisky": "Santis Edition Dreifaltigkeit 52% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Santis Santis Edition Dreifaltigkeit 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/santis-edition-dreifaltigkeit-70cl.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.317,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenlivet-15-years-old-french-oak-reserve-40-6-cl-sample",
+      "whisky": "Glenlivet 15 Years Old French Oak Reserve 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glenlivet Glenlivet 15-year-old French Oak",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glenlivet-15-year-old-118415951.html",
+      "verschil": [
+        "naam afwijkend (reserve | -)"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "aberargie-golden-promise-48-2-6-cl-sample",
+      "whisky": "Aberargie Golden Promise 48,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Aberargie Aberargie - Golden Promise Barley",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/aberargie-2018-164480967.html",
+      "verschil": [
+        "naam afwijkend (- | barley)"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lagg-distillery-small-batch-quarter-cask-6-years-old-56-6-cl-sample",
+      "whisky": "Lagg Distillery Small Batch Quarter Cask 6 Years Old 56% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Lagg Lagg Small Batch - Quarter Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/lagg-quarter-cask.html",
+      "verschil": [
+        "leeftijd 6 niet op pagina",
+        "vatnummer 6 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "strathmill-2012-signatory-vintage-100-proof-edition-36-57-1-6-cl-sample",
+      "whisky": "Strathmill 2012 Signatory Vintage 100 Proof Edition #36 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Strathmill Strathmill 2012 12 Years Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/strathmill-2012-12-years-signatory-vintage.html",
+      "verschil": [
+        "pagina noemt leeftijd 12",
+        "editie 100 proof vs -"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "paul-john-christmas-edition-2026-46-6-cl-sample",
+      "whisky": "Paul John Christmas Edition 2026 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Paul John Paul John Christmas Edition 2023 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/paul-john-christmas-edition-2023.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bowmore-10-years-old-2016-signatory-cask-strength-cask-26-57-7-6-cl-sample",
+      "whisky": "Bowmore 10 Years Old 2016 Signatory Cask Strength Cask 26 57,7% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Bowmore 2016 - Signatory Vintage - 1st fill bourbon #26",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/bowmore-2016-signatory-vintage-1st-fill-bourbon-26.html",
+      "verschil": [
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.283,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-raw-cask-red-snake-8-years-old-rn154-60-6-6-cl-sample",
+      "whisky": "Blackadder Raw Cask Red Snake 8 Years Old RN154 60,6% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Blackadder Blackadder Red Snake Redneck 154 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/blackadder-red-snake-redneck-154.html",
+      "verschil": [
+        "leeftijd 8 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.279,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tomatin-2011-gordon-macphail-discovery-43-6-cl-sample",
+      "whisky": "Tomatin 2011 Gordon & MacPhail Discovery 43% 6 CL Sample",
+      "bron": "Gordon & MacPhail",
+      "kandidaatNaam": "Discovery from Tomatin Distillery 2011",
+      "kandidaatUrl": "https://www.gordonandmacphail.com/our-whiskies-2/discovery-from-tomatin-distillery-2011",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-original-twelve-46-6-cl-sample",
+      "whisky": "Benriach The Original Twelve 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 12-year-old The Smoky Twelve",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-12-year-old-113904325.html",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-brackla-12-years-old-2011-duncan-taylor-54-5-6-cl-sample",
+      "whisky": "Royal Brackla 12 Years Old 2011 Duncan Taylor 54,5% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Royal Brackla Royal Brackla 2011 Duncan Taylor",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/royal-brackla-2011-dt-duncan-taylor.html",
+      "verschil": [
+        "ABV 54,5 vs 53,8",
+        "leeftijd 12 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "paul-john-christmas-edition-2026-46-6-cl-sample",
+      "whisky": "Paul John Christmas Edition 2026 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Paul John Paul John Christmas Edition 2026  - 50ml",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/paul-john-christmas-edition-2026-164773369.html",
+      "verschil": [
+        "maat 70 cl vs 5 cl",
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-ten-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Ten 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 12-year-old The Smoky Twelve",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-12-year-old-113904325.html",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "big-peat-10-years-old-winter-edition-2026-48-6-cl-sample",
+      "whisky": "Big Peat 10 Years Old Winter Edition 2026 48% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Big Peat Big Peat 1992 - The Black Edition - 48.3%",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/big-peat-1992-the-black-edition-douglas-laing.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-brackla-12-years-old-new-label-46-6-cl-sample",
+      "whisky": "Royal Brackla 12 Years Old New Label 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Royal Brackla Royal Brackla 12 Years 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/royal-brackla-12-years.html",
+      "verschil": [
+        "naam afwijkend (label new | -)"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-18-years-old-43-6-cl-sample",
+      "whisky": "Highland Park 18 Years Old 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Highland Park Highland Park 18 Years Viking Pride 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/highland-park-18-years-viking-pride-70cl.html",
+      "verschil": [
+        "naam afwijkend (- | pride viking)"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bruichladdich-the-organic-2011-50-6-cl-sample",
+      "whisky": "Bruichladdich The Organic 2011  50% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Bruichladdich Bruichladdich 16 Years Organic Barley 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/bruichladdich-16-years-organic-barley.html",
+      "verschil": [
+        "pagina noemt leeftijd 16"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-10-years-old-40-6-cl-sample",
+      "whisky": "Highland Park 10 Years Old 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Highland Park Highland Park 10 Years Viking Scars 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/highland-park-10-years-viking-scars-grote-fles-whi.html",
+      "verschil": [
+        "naam afwijkend (- | scars viking)"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "oban-10-years-old-coastal-orchard-special-release-2024-58-6-cl-sample",
+      "whisky": "Oban 10 Years Old Coastal Orchard Special Release 2024 58% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Oban Oban 10 Years Special Release 2024 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/oban-10-years-special-release-2024.html",
+      "verschil": [
+        "naam afwijkend (coastal orchard | -)"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "scarabus-islay-sherry-cask-46-6-cl-sample",
+      "whisky": "Scarabus Islay Sherry Cask 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Scarabus Scarabus 10 Years Islay Single Malt 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/scarabus-10-years-islay-single-malt-70cl.html",
+      "verschil": [
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "big-peat-port-cask-finish-48-6-cl-sample",
+      "whisky": "Big Peat Port Cask Finish 48% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Big Peat Big Peat Port Edition 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/big-peat-port-edition.html",
+      "verschil": [
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-distillers-edition-43-6-cl-sample",
+      "whisky": "Caol Ila Distillers Edition 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Caol Ila Caol Ila 12 Years 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/caol-ila-12-years.html",
+      "verschil": [
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "mac-talla-15-years-old-46-6-cl-sample",
+      "whisky": "Mac Talla 15 Years Old 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Mac-Talla Mac-Talla Terra 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/mac-talla-terra.html",
+      "verschil": [
+        "leeftijd 15 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "port-charlotte-2013-pmc-01-54-5-6-cl-sample",
+      "whisky": "Port Charlotte 2013 PMC:01 54,5% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Port Charlotte Port Charlotte SYC: 01 2013 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/port-charlotte-syc01-2013.html",
+      "verschil": [
+        "naam afwijkend (pmc | syc)"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "scarabus-islay-bordeaux-cask-46-6-cl-sample",
+      "whisky": "Scarabus Islay Bordeaux Cask 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Scarabus Scarabus 10 Years Islay Single Malt 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/scarabus-10-years-islay-single-malt-70cl.html",
+      "verschil": [
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": 0.25,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kanosuke-single-malt-peated-48-6-cl-sample",
+      "whisky": "Kanosuke Single Malt Peated 48% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kanosuke Kanosuke Single Malt Peated Japanese Whisky",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kanosuke-single-malt-peated-japanese-whisky.html",
+      "verschil": [
+        "naam afwijkend (- | japanese)"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lagg-distillery-kilmory-46-6-cl-sample",
+      "whisky": "Lagg Distillery Kilmory 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Lagg Lagg Kilmory",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/lagg-2019-144387645.html",
+      "verschil": [
+        "naam afwijkend (distillery | -)"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "wagging-finger-single-malt-whisky-4-years-old-50-3-6-cl-sample",
+      "whisky": "Wagging Finger Single Malt Whisky 4 Years Old 50,3% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Wagging Finger Wagging Finger 04-year-old - Single Malt 2nd Edition",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/wagging-finger-04-year-old.html",
+      "verschil": [
+        "naam afwijkend (- | 2nd)"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-quarter-cask-56-2-6-cl-sample",
+      "whisky": "Arran Quarter Cask 56,2% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Arran Arran Quarter Cask 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/arran-quarter-cask.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teeling-santa-teresa-rum-cask-finish-46-6-cl-sample",
+      "whisky": "Teeling Santa Teresa Rum Cask Finish 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Teeling Teeling Santa Teresa 1796 Cask Finish 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/teeling-santa-teresa-1796-cask-finish.html",
+      "verschil": [
+        "editie rum vs -"
+      ],
+      "waarschijnlijkheid": 0.217,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenburgie-13-years-old-2011-infrequent-flyers-58-9-6-cl-sample",
+      "whisky": "Glenburgie 13 Years Old 2011 Infrequent Flyers 58,9% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glenburgie 2011 Infrequent Flyers - Languedoc Red Wine Cask",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glenburgie-2011-infrequent-flyers.html",
+      "verschil": [
+        "leeftijd 13 niet op pagina",
+        "editie - vs wine"
+      ],
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendalough-double-barrel-cask-strength-61-3-6-cl-sample",
+      "whisky": "Glendalough Double Barrel Cask Strength 61,3% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glendalough Double Barrel",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glendalough-double-barrel.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-cask-strength-release-57-7-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Cask Strength Release 57,7% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/10:16 Cask 944",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-1016-cask-944.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-cask-strength-release-57-7-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Cask Strength Release 57,7% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/09:16 Cask 884",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-0916-cask-884.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendalough-double-barrel-cask-strength-61-3-6-cl-sample",
+      "whisky": "Glendalough Double Barrel Cask Strength 61,3% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glendalough Glendalough Double Barrel",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glendalough-double-barrel.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-sanaig-cask-strength-2026-release-57-5-6-cl-sample",
+      "whisky": "Kilchoman Sanaig Cask Strength 2026 Release 57,5% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman Sanaig",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-sanaig-131058149.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenallachie-10-years-old-spanish-oak-finish-48-6-cl-sample",
+      "whisky": "Glenallachie 10 Years Old Spanish Oak Finish 48% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glenallachie Glenallachie 10YO French Oak",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glenallachie-10yo-french-oak.html",
+      "verschil": [
+        "naam afwijkend (spanish | french)"
+      ],
+      "waarschijnlijkheid": 0.183,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-mezcal-cask-matured-european-tour-2026-50-6-cl-sample",
+      "whisky": "Kilchoman Mezcal Cask Matured European Tour 2026 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Kilchoman Cognac Cask Matured 2026 – 50%",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/kilchoman-cognac-cask-matured-164958495.html",
+      "verschil": [
+        "naam afwijkend (european mezcal tour | cognac)"
+      ],
+      "waarschijnlijkheid": 0.183,
+      "goedgekeurd": null
+    },
+    {
+      "id": "floki-young-malt-sheep-dung-smoked-reserve-12-months-47-6-cl-sample",
+      "whisky": "Floki Young Malt Sheep Dung Smoked Reserve 12 Months 47% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Floki Floki Sheep Dung Smoked Reserve 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/floki-sheep-dung-smoked-reserve.html",
+      "verschil": [
+        "naam afwijkend (months young | -)"
+      ],
+      "waarschijnlijkheid": 0.175,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-sherry-cask-2025-release-50-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Sherry Cask 2025 Release 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/10 years old",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-10-years-old.html",
+      "verschil": [
+        "pagina noemt leeftijd 10",
+        "vatnummer 2025 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.167,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-brackla-18-years-old-46-6-cl-sample",
+      "whisky": "Royal Brackla 18 Years Old 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Royal Brackla Royal Brackla 2010 Brachadair",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/royal-brackla-2010-brd-brachadair.html",
+      "verschil": [
+        "leeftijd 18 niet op pagina",
+        "pagina noemt jaartal 2010"
+      ],
+      "waarschijnlijkheid": 0.167,
+      "goedgekeurd": null
+    },
+    {
+      "id": "millstone-single-malt-oloroso-cask-10-years-old-46-6-cl-sample",
+      "whisky": "Millstone Single Malt Oloroso Cask 10 Years Old 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Millstone Millstone - Oloroso Sherry Cask",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/millstone-2018.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina",
+        "vatnummer 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.167,
+      "goedgekeurd": null
+    },
+    {
+      "id": "nikka-from-the-barrel-51-4-6-cl-sample",
+      "whisky": "Nikka from the Barrel 51,4% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Nikka Nikka Whisky From The Barrel 50cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/nikka-whisky-from-the-barrel-50cl.html",
+      "verschil": [
+        "maat 70 cl vs 50 cl",
+        "ABV onbekend op pagina"
+      ],
+      "waarschijnlijkheid": 0.167,
+      "goedgekeurd": null
+    },
+    {
+      "id": "eden-mill-the-guard-bridge-46-6-cl-sample",
+      "whisky": "Eden Mill The Guard Bridge 46% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Eden Mill - The Gaurd Bridge",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/eden-mill-the-gaurd-bridge.html",
+      "verschil": [
+        "naam afwijkend (guard | gaurd)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "filey-bay-moscatel-finish-46-6-cl-sample",
+      "whisky": "Filey Bay Moscatel Finish 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Filey Bay Filey Bay Yorkshire Single Malt Moscatel #4",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/filey-bay-yorkshire-single-malt-whisky-163425344.html",
+      "verschil": [
+        "naam afwijkend (- | yorkshire)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-loch-gorm-2026-edition-10-years-old-46-6-cl-sample",
+      "whisky": "Kilchoman Loch Gorm 2026 Edition 10 Years Old 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman Loch Gorm 2018 editie",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-loch-gorm-71171060.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lochlea-ploughing-edition-first-crop-46-6-cl-sample",
+      "whisky": "Lochlea Ploughing Edition First Crop 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Lochlea Lochlea Ploughing Edition - Third Crop",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/lochlea-ploughing-edition-160254427.html",
+      "verschil": [
+        "naam afwijkend (first | third)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "turntable-track-10-brown-suger-52-5-6-cl-sample",
+      "whisky": "Turntable Track 10 Brown Suger 52,5% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Turntable Track 10 \"Brown Sugar\"",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/turntable-track-10-quotbrown-sugar-quot-tusp-turnt.html",
+      "verschil": [
+        "naam afwijkend (suger | sugar)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "the-gauldrons-sherry-cask-batch-2-50-6-cl-sample",
+      "whisky": "The Gauldrons Sherry Cask Batch 2 50% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Gauldrons Gauldrons Sherry Casks Batch 2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/gauldrons-sherry-casks-batch-2.html",
+      "verschil": [
+        "naam afwijkend (- | casks)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "millstone-peated-american-oak-43-6-cl-sample",
+      "whisky": "Millstone Peated American Oak 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Millstone Millstone American Oak 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/millstone-american-oak-70cl.html",
+      "verschil": [
+        "editie peated vs -"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "big-peat-the-sinterklaas-edition-2026-56-4-6-cl-sample",
+      "whisky": "Big Peat The Sinterklaas Edition 2026 56,4% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Big Peat Big Peat The 2nd Sinterklaas Edition 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/big-peat-the-2nd-sinterklaas-edition.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "mac-talla-mara-cask-strength-islay-single-malt-whisky-58-2-6-cl-sample",
+      "whisky": "Mac Talla Mara Cask Strength Islay Single Malt Whisky 58,2% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Mac-Talla Mac-Talla Mara 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/mac-talla-mara.html",
+      "verschil": [
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": 0.15,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-no-2-7-years-old-2018-signatory-vintage-100-proof-inaugural-release-57-1-6-cl-sample",
+      "whisky": "Edradour No.2 7 Years Old 2018 Signatory Vintage 100 Proof Inaugural Release 57,1% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Edradour Edradour No.2 - 2018 Signatory Vintage - Châteauneuf-du-Pape",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/edradour-2018-sv-signatory-vintage.html",
+      "verschil": [
+        "leeftijd 7 niet op pagina",
+        "editie 100 proof vs -"
+      ],
+      "waarschijnlijkheid": 0.144,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teeling-rising-reserve-4-white-wine-21-years-old-46-6-cl-sample",
+      "whisky": "Teeling Rising Reserve 4 White Wine 21 Years Old 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Teeling Teeling 21 Years Reserve No 3 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/teeling-21-years-reserve-3.html",
+      "verschil": [
+        "editie wine vs -"
+      ],
+      "waarschijnlijkheid": 0.136,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ballechin-16-years-old-2010-signatory-unchill-filtered-collection-46-6-cl-sample",
+      "whisky": "Ballechin 16 Years Old 2010 Signatory Unchill Filtered Collection 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Ballechin Ballechin 2010 - Signatory Vintage",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/ballechin-2010-sv-signatory-vintage.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "leeftijd 16 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-salute-21-years-old-fashion-roses-the-richard-quinn-edition-40-6-cl-sample",
+      "whisky": "Royal Salute 21 Years Old Fashion Roses The Richard Quinn Edition 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Royal Salute Royal Salute 21 Years Harris Reed The Fashion Collection Pink 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/royal-salute-harris-reed-pink.html",
+      "verschil": [
+        "naam afwijkend (quinn richard roses | collection harris pink reed)"
+      ],
+      "waarschijnlijkheid": 0.123,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-salute-21-years-old-fashion-roses-the-richard-quinn-edition-40-6-cl-sample",
+      "whisky": "Royal Salute 21 Years Old Fashion Roses The Richard Quinn Edition 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Royal Salute Royal Salute 21 Years Harris Reed The Fashion Collection Yellow 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/royal-salute-harris-reed-yellow.html",
+      "verschil": [
+        "naam afwijkend (quinn richard roses | collection harris reed yellow)"
+      ],
+      "waarschijnlijkheid": 0.123,
+      "goedgekeurd": null
+    },
+    {
+      "id": "the-macallan-a-night-on-earth-the-finale-43-6-cl-sample",
+      "whisky": "The Macallan A Night On Earth The Finale 43% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Macallan Macallan A Night on Earth The Journey 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/macallan-a-night-on-earth-the-journey.html",
+      "verschil": [
+        "naam afwijkend (finale | journey)"
+      ],
+      "waarschijnlijkheid": 0.121,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenallachie-8-years-old-koval-rye-wood-finish-48-6-cl-sample",
+      "whisky": "Glenallachie 8 Years Old Koval Rye Wood Finish 48% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "GlenAllachie GlenAllachie 8 Years Scottish Oak Finish 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glenallachie-8-years-scottish-oak-finish.html",
+      "verschil": [
+        "naam afwijkend (koval rye wood | oak scottish)"
+      ],
+      "waarschijnlijkheid": 0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-peat-reek-embers-amontilado-finish-57-4-6-cl-sample",
+      "whisky": "Blackadder Peat Reek Embers Amontilado Finish 57,4% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Blackadder Peat Reek Embers Special Reserve Amontillado Cask",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/peat-reek-embers-amontillado-cask.html",
+      "verschil": [
+        "naam afwijkend (amontilado | amontillado emb11 reserve special)"
+      ],
+      "waarschijnlijkheid": 0.094,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-valknut-46-8-6-cl-sample",
+      "whisky": "Highland Park Valknut 46,8% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Highland Park Highland Park 21 years",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/highland-park-21-years.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 21"
+      ],
+      "waarschijnlijkheid": 0.067,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-heather-63-6-6-cl-sample",
+      "whisky": "Highland Park Heather 63,6% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Highland Park Highland Park 21 years",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/highland-park-21-years.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 21"
+      ],
+      "waarschijnlijkheid": 0.067,
+      "goedgekeurd": null
+    },
+    {
+      "id": "big-peat-10-years-old-winter-edition-2026-48-6-cl-sample",
+      "whisky": "Big Peat 10 Years Old Winter Edition 2026 48% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Big Peat",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/big-peat.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.067,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-beach-bonfires-sweet-cherry-cooper-s-choice-golden-cut-50-6-cl-sample",
+      "whisky": "Bunnahabhain ''Beach Bonfires & Sweet Cherry'' Cooper's Choice Golden Cut 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Bunnahabhain \"Honeyed Smoke & Spice\" - Coopers Choice \"The Golden Cut\"",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/bunnahabhain-honeyed-smoke-spice.html",
+      "verschil": [
+        "naam afwijkend (beach bonfires cherry sweet | honeyed smoke spice)"
+      ],
+      "waarschijnlijkheid": 0.067,
+      "goedgekeurd": null
+    },
+    {
+      "id": "caol-ila-distillers-edition-43-6-cl-sample",
+      "whisky": "Caol Ila Distillers Edition 43% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Caol Ila Caol Ila 12 jaar",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/caol-ila-12-jaar.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": 0.067,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blair-athol-2014-signatory-vintage-100-proof-edition-64-57-1-6-cl-sample",
+      "whisky": "Blair Athol 2014 Signatory Vintage 100 Proof Edition #64 57,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Blair Athol Blair Athol 11 Years Signatory Vintage 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/blair-athol-11-years-signatory-vintage.html",
+      "verschil": [
+        "pagina noemt leeftijd 11",
+        "editie 100 proof vs -"
+      ],
+      "waarschijnlijkheid": 0.067,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-15-years-old-rare-batch-french-oak-grand-cru-52-5-6-cl-sample",
+      "whisky": "Arran 15 Years Old Rare Batch French Oak Grand Cru 52,5% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Arran Arran 15 Years French Oak Grand Cru Casks 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/arran-15-years-french-oak-grand-cru-casks.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie rare cask vs -"
+      ],
+      "waarschijnlijkheid": 0.056,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-sherry-cask-55-8-6-cl-sample",
+      "whisky": "Arran Sherry Cask 55,8% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Arran Arran Sherry Cask finish – The Bodega",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/arran-sherry-cask-finish-the-bodega.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "midleton-vintage-2023-release-40-6-cl-sample",
+      "whisky": "Midleton Vintage 2023 Release 40% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Midleton Midleton Very Rare 2024 Vintage Release",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/midleton-very-rare-2024-vintage-release.html",
+      "verschil": [
+        "editie - vs rare cask"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-sauternes-cask-matured-2024-edition-50-6-cl-sample",
+      "whisky": "Kilchoman Sauternes Cask Matured 2024 Edition 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Kilchoman Cognac Cask Matured 2026 – 50%",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/kilchoman-cognac-cask-matured-164958495.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bunnahabhain-13-years-old-bargh-garbh-50-6-cl-sample",
+      "whisky": "Bunnahabhain 13 Years Old Bargh Garbh 50% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Bunnahabhain Bunnahabhain 13-year-old - Bàgh Garbh",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/bunnahabhain-13-year-old.html",
+      "verschil": [
+        "naam afwijkend (bargh | bagh)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teeling-rising-reserve-4-white-wine-21-years-old-46-6-cl-sample",
+      "whisky": "Teeling Rising Reserve 4 White Wine 21 Years Old 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Teeling Teeling 21-year-old - Rising Reserve No 1",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/teeling-21-year-old-teeling-whiskey-company.html",
+      "verschil": [
+        "editie wine vs -"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenlivet-captain-s-reserve-40-6-cl-sample",
+      "whisky": "Glenlivet Captain's Reserve 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glenlivet Glenlivet Caribbean Reserve",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glenlivet-caribbean-reserve.html",
+      "verschil": [
+        "naam afwijkend (captains | caribbean)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glenlivet-captain-s-reserve-40-6-cl-sample",
+      "whisky": "Glenlivet Captain's Reserve 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Glenlivet Glenlivet Founder's Reserve",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/glenlivet-founders-reserve.html",
+      "verschil": [
+        "naam afwijkend (captains | founders)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "hellyers-road-single-malt-whisky-double-cask-46-2-6-cl-sample",
+      "whisky": "Hellyers Road Single Malt Whisky Double Cask 46,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Hellyers Road Hellyers Road The Journeyman",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/hellyers-road-the-journeyman.html",
+      "verschil": [
+        "editie double cask vs -"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "paul-john-christmas-edition-2026-46-6-cl-sample",
+      "whisky": "Paul John Christmas Edition 2026 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Paul John Paul John 46% Brilliance",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/paul-john-46-brilliance.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-maury-cask-matured-50-6-cl-sample",
+      "whisky": "Kilchoman Maury Cask Matured 50% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman Cognac Cask Matured",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-cognac-cask-matured-164773625.html",
+      "verschil": [
+        "naam afwijkend (maury | cognac)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-sauternes-cask-matured-2024-edition-50-6-cl-sample",
+      "whisky": "Kilchoman Sauternes Cask Matured 2024 Edition 50% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman Cognac Cask Matured",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-cognac-cask-matured-164773625.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-sauternes-cask-matured-2024-edition-50-6-cl-sample",
+      "whisky": "Kilchoman Sauternes Cask Matured 2024 Edition 50% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman Port Cask Matured",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-port-cask-matured.html",
+      "verschil": [
+        "editie - vs port"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "whisky-paul-john-edited-46-6-cl-sample",
+      "whisky": "Whisky Paul John Edited 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Paul John Paul John 46% Brilliance",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/paul-john-46-brilliance.html",
+      "verschil": [
+        "naam afwijkend (edited | brilliance)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "torabhaig-iona-s-first-edition-60-9-6-cl-sample",
+      "whisky": "Torabhaig Iona's First Edition 60,9% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Torabhaig Torabhaig The Distillers' Series Iona's First Edition 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/torabhaig-the-distillers-series-ionas-first-editio.html",
+      "verschil": [
+        "naam afwijkend (- | distillers series)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "arran-sherry-cask-55-8-6-cl-sample",
+      "whisky": "Arran Sherry Cask 55,8% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Arran Arran The Bodega Sherry Cask 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/arran-the-bodega-sherry-cask-70cl.html",
+      "verschil": [
+        "naam afwijkend (geen zekere naam-match)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glendronach-ode-to-the-valley-sherry-port-casks-46-2-6-cl-sample",
+      "whisky": "Glendronach Ode To The Valley Sherry & Port Casks 46,2% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "GlenDronach Glendronach Ode to the Valley 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/glendronach-ode-to-the-valley.html",
+      "verschil": [
+        "editie port vs -"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tomintoul-white-port-cask-finish-40-6-cl-sample",
+      "whisky": "Tomintoul White Port Cask Finish 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Tomintoul Tomintoul Tawny Port Cask Finish 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/tomintoul-tawny-port-cask-finish.html",
+      "verschil": [
+        "naam afwijkend (white | tawny)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "rampur-asava-indian-single-malt-45-6-cl-sample",
+      "whisky": "Rampur Asava Indian Single Malt 45% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Rampur Rampur Asava 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/rampur-asava-70cl.html",
+      "verschil": [
+        "naam afwijkend (indian | -)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "finlaggan-original-40-6-cl-sample",
+      "whisky": "Finlaggan Original 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Finlaggan Finlaggan Original Peaty 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/finlaggan-original-peaty.html",
+      "verschil": [
+        "naam afwijkend (- | peaty)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "irish-whiskey-roe-co-cask-strength-62-3-6-cl-sample",
+      "whisky": "Irish Whiskey Roe & Co Cask Strength 62,3% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Roe & Co Roe & Co Cask Strength Blended Irish Whiskey 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/roe-co-cask-strength-irish-blended-whiskey.html",
+      "verschil": [
+        "naam afwijkend (- | blended)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-small-batch-french-inspiration-1-49-7-6-cl-sample",
+      "whisky": "Kilchoman Small Batch French Inspiration #1 49,7% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Kilchoman Kilchoman French Inspiration #1 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/kilchoman-french-inspiration-1.html",
+      "verschil": [
+        "naam afwijkend (batch small | -)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-small-batch-french-inspiration-2-49-1-6-cl-sample",
+      "whisky": "Kilchoman Small Batch French Inspiration #2 49,1% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Kilchoman Kilchoman French Inspiration #2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/kilchoman-french-inspiration-2.html",
+      "verschil": [
+        "naam afwijkend (batch small | -)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lagg-distillery-corriecravie-edition-55-6-cl-sample",
+      "whisky": "Lagg Distillery Corriecravie Edition 55% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Lagg Lagg Corriecravie Edition 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/lagg-corriecravie-edition.html",
+      "verschil": [
+        "naam afwijkend (distillery | -)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "lagg-distillery-kilmory-46-6-cl-sample",
+      "whisky": "Lagg Distillery Kilmory 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Lagg Lagg Kilmory Edition 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/lagg-kilmory-edition.html",
+      "verschil": [
+        "naam afwijkend (distillery | -)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ledaig-rioja-cask-finish-46-3-6-cl-sample",
+      "whisky": "Ledaig Rioja Cask Finish 46,3% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Ledaig Ledaig Sinclair Series Rioja Cask Finish 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/ledaig-sinclair-series-rioja-cask-finish.html",
+      "verschil": [
+        "naam afwijkend (- | series sinclair)"
+      ],
+      "waarschijnlijkheid": 0.05,
+      "goedgekeurd": null
+    },
+    {
+      "id": "royal-salute-21-years-old-fashion-roses-the-richard-quinn-edition-40-6-cl-sample",
+      "whisky": "Royal Salute 21 Years Old Fashion Roses The Richard Quinn Edition 40% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Royal Salute Royal Salute 21 Years Harris Reed Edition II Design 2 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/royal-salute-21-years-harris-reed-ii-design-2.html",
+      "verschil": [
+        "naam afwijkend (fashion quinn richard roses | design harris ii reed)"
+      ],
+      "waarschijnlijkheid": 0.032,
+      "goedgekeurd": null
+    },
+    {
+      "id": "old-particular-laphroaig-10-years-old-2015-48-4-6-cl-sample",
+      "whisky": "Old Particular Laphroaig 10 Years Old 2015 48,4% 6 CL Sample",
+      "bron": "Douglas Laing",
+      "kandidaatNaam": "Old Particular Laphroaig 10 Years Old Trinidad Rum Finish",
+      "kandidaatUrl": "https://www.douglaslaing.com/products/old-particular-laphroaig-10yo-trinidad-rum-finish",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie - vs rum"
+      ],
+      "waarschijnlijkheid": -0.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-sherry-cask-11-years-old-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay Sherry Cask 11 Years Old 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Kilchoman 100% Islay 15th Edition",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/kilchoman-100-islay-15th-edition.html",
+      "verschil": [
+        "leeftijd 11 niet op pagina",
+        "vatnummer 11 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "edradour-18-years-old-amarone-cask-matured-46-6-cl-sample",
+      "whisky": "Edradour 18 Years Old Amarone Cask Matured 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Edradour Edradour 2007 - Amarone Casks",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/edradour-2007-164243788.html",
+      "verschil": [
+        "leeftijd 18 niet op pagina",
+        "pagina noemt jaartal 2007"
+      ],
+      "waarschijnlijkheid": 0.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "millstone-single-malt-oloroso-cask-10-years-old-46-6-cl-sample",
+      "whisky": "Millstone Single Malt Oloroso Cask 10 Years Old 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Millstone Millstone Oloroso Sherry 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/millstone-oloroso-sherry-70cl.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina",
+        "vatnummer 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": 0.0,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benromach-contrasts-46-6-cl-sample",
+      "whisky": "Benromach Contrasts 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benromach Benromach 12-year-old - Contrasts: Unpeated",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benromach-12-year-old.html",
+      "verschil": [
+        "pagina noemt leeftijd 12",
+        "editie - vs unpeated"
+      ],
+      "waarschijnlijkheid": -0.033,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ichiro-s-malt-grain-46-6-cl-sample",
+      "whisky": "Ichiro's Malt & Grain 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Ichiros Ichiros Malt & Grain 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/ichiros-malt-grain-70cl.html",
+      "verschil": [
+        "ABV 46 vs 46,5"
+      ],
+      "waarschijnlijkheid": -0.033,
+      "goedgekeurd": null
+    },
+    {
+      "id": "teeling-rising-reserve-4-white-wine-21-years-old-46-6-cl-sample",
+      "whisky": "Teeling Rising Reserve 4 White Wine 21 Years Old 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Teeling Teeling 21 Years Rising Reserve No 4 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/teeling-21-years-rising-reserve-no-4.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie wine vs -"
+      ],
+      "waarschijnlijkheid": -0.071,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-single-cask-series-runa-62-6-cl-sample",
+      "whisky": "Highland Park Single Cask Series RUNA 62% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Highland Park Highland Park 21 years",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/highland-park-21-years.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 21"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-viking-tribe-46-6-cl-sample",
+      "whisky": "Highland Park Viking Tribe 46% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Highland Park Highland Park 21 years",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/highland-park-21-years.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 21"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "glen-scotia-12-years-old-icons-of-campbeltown-cask-strength-no-3-51-7-6-cl-sample",
+      "whisky": "Glen Scotia 12 Years Old Icons Of Campbeltown Cask Strength No. 3 51,7% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Glen Scotia 12 years",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/glen-scotia-12-years.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-12th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 12th Edition 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Kilchoman 100% Islay Sherry Cask 11 YO",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/kilchoman-100-islay-sherry-cask-11-yo.html",
+      "verschil": [
+        "ABV onbekend",
+        "pagina noemt leeftijd 11"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-15th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 15th Edition 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Kilchoman 100% Islay Sherry Cask 11 YO",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/kilchoman-100-islay-sherry-cask-11-yo.html",
+      "verschil": [
+        "ABV onbekend",
+        "pagina noemt leeftijd 11"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-original-twelve-46-6-cl-sample",
+      "whisky": "Benriach The Original Twelve 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 10-year-old The Original Ten",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-10-year-old-113904293.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-original-ten-43-6-cl-sample",
+      "whisky": "Benriach The Original Ten 43% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 10-year-old The Smoky Ten",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-10-year-old-113915292.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "tullamore-dew-rouge-13-years-old-40-6-cl-sample",
+      "whisky": "Tullamore Dew Rouge 13 Years Old 40% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Tullamore Dew Tullamore Dew XO",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/tullamore-dew-xo.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "leeftijd 13 niet op pagina"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-ten-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Ten 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 10-year-old The Original Ten",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-10-year-old-113904293.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benriach-the-smoky-twelve-46-6-cl-sample",
+      "whisky": "Benriach The Smoky Twelve 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Benriach BenRiach 10-year-old The Smoky Ten",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/benriach-10-year-old-113915292.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 10"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "kilchoman-100-islay-12th-edition-50-6-cl-sample",
+      "whisky": "Kilchoman 100% Islay 12th Edition 50% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Kilchoman Kilchoman 09-year-old - 100% Islay 15th Edition",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/kilchoman-09-year-old-159886904.html",
+      "verschil": [
+        "ABV onbekend",
+        "pagina noemt leeftijd 9"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "millstone-rye-10-years-old-american-oak-52-62-6-cl-sample",
+      "whisky": "Millstone Rye 10 Years Old American Oak 52,62% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Millstone Millstone 92 Rye",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/millstone-2017-157240513.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-valknut-46-8-6-cl-sample",
+      "whisky": "Highland Park Valknut 46,8% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Highland Park Highland Park 12 Years 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/highland-park-12-years.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "highland-park-heather-63-6-6-cl-sample",
+      "whisky": "Highland Park Heather 63,6% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Highland Park Highland Park 12 Years 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/highland-park-12-years.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "pagina noemt leeftijd 12"
+      ],
+      "waarschijnlijkheid": -0.1,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-rum-cask-release-55-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Rum Cask Release 55% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/10:16 Cask 944",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-1016-cask-944.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie rum vs -"
+      ],
+      "waarschijnlijkheid": -0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-rum-cask-release-55-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Rum Cask Release 55% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/09:16 Cask 884",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-0916-cask-884.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie rum vs -"
+      ],
+      "waarschijnlijkheid": -0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-the-midgie-2026-release-48-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ The Midgie 2026 Release 48% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD Cask Strength 2025",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-cask-strength-2025.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie - vs cask strength"
+      ],
+      "waarschijnlijkheid": -0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "peat-s-beast-single-cask-2007-55-6-cl-sample",
+      "whisky": "Peat's Beast Single Cask 2007 55% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Peat's Beast PX",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/peats-beast-px.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie - vs pedro ximenez"
+      ],
+      "waarschijnlijkheid": -0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "peat-s-beast-single-cask-2010-57-6-cl-sample",
+      "whisky": "Peat's Beast Single Cask 2010 57% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Peat's Beast PX",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/peats-beast-px.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie - vs pedro ximenez"
+      ],
+      "waarschijnlijkheid": -0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "penderyn-celt-peated-41-6-cl-sample",
+      "whisky": "Penderyn Celt Peated 41% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Penderyn Penderyn Celt",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/penderyn-celt.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie peated vs -"
+      ],
+      "waarschijnlijkheid": -0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "bowmore-10-years-old-2016-signatory-unchill-filtered-collection-46-6-cl-sample",
+      "whisky": "Bowmore 10 Years Old 2016 Signatory Unchill Filtered Collection 46% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Bowmore Bowmore 2016 Signatory Vintage - 1st Fill & Refill Oloroso Sherry Finish",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/bowmore-2016-sv-signatory-vintage-165470792.html",
+      "verschil": [
+        "leeftijd 10 niet op pagina",
+        "editie - vs oloroso"
+      ],
+      "waarschijnlijkheid": -0.133,
+      "goedgekeurd": null
+    },
+    {
+      "id": "benromach-contrasts-46-6-cl-sample",
+      "whisky": "Benromach Contrasts 46% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Benromach Benromach 12 Years Contrasts: Unpeated 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/benromach-12-years-contrasts-unpeated.html",
+      "verschil": [
+        "pagina noemt leeftijd 12",
+        "editie - vs unpeated"
+      ],
+      "waarschijnlijkheid": -0.2,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-sauternes-cask-peated-50-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Sauternes Cask Peated 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/10:16 Cask 944",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-1016-cask-944.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie peated vs -"
+      ],
+      "waarschijnlijkheid": -0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-sauternes-cask-peated-50-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Sauternes Cask Peated 50% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Ardnamurchan AD/09:16 Cask 884",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/ardnamurchan-ad-0916-cask-884.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie peated vs -"
+      ],
+      "waarschijnlijkheid": -0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "big-peat-port-cask-finish-48-6-cl-sample",
+      "whisky": "Big Peat Port Cask Finish 48% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Big Peat",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/big-peat.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie port vs -"
+      ],
+      "waarschijnlijkheid": -0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "whisky-paul-john-classic-cask-strength-55-2-6-cl-sample",
+      "whisky": "Whisky Paul John Classic Cask Strength 55,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Paul John Paul John Bold",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/paul-john-bold-95213533.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength, classic cut vs -"
+      ],
+      "waarschijnlijkheid": -0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "mac-talla-mara-cask-strength-islay-single-malt-whisky-58-2-6-cl-sample",
+      "whisky": "Mac Talla Mara Cask Strength Islay Single Malt Whisky 58,2% 6 CL Sample",
+      "bron": "Whiskybase Shop",
+      "kandidaatNaam": "Mac-Talla Mac-Talla Mara Morrison Scotch Whisky Distillers",
+      "kandidaatUrl": "https://shop.whiskybase.com/nl/mac-talla-mara-morrison-scotch-whisky-distillers.html",
+      "verschil": [
+        "ABV onbekend op pagina",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": -0.3,
+      "goedgekeurd": null
+    },
+    {
+      "id": "blackadder-peat-reek-10-years-old-57-9-6-cl-sample",
+      "whisky": "Blackadder Peat Reek 10 Years Old 57,9% 6 CL Sample",
+      "bron": "Dramshop.nl",
+      "kandidaatNaam": "Blackadder Peat Reek Embers Special Reserve Amontillado Cask",
+      "kandidaatUrl": "https://www.dramshop.nl/nl/peat-reek-embers-amontillado-cask.html",
+      "verschil": [
+        "ABV 57,9 vs 57,4",
+        "leeftijd 10 niet op pagina"
+      ],
+      "waarschijnlijkheid": -0.421,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-cask-strength-release-57-7-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Cask Strength Release 57,7% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Ardnamurchan Ardnamurchan AD/ 10:16 Cask 944 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/ardnamurchan-ad-cask-944.html",
+      "verschil": [
+        "ABV 57,7 vs 57,1",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": -0.583,
+      "goedgekeurd": null
+    },
+    {
+      "id": "ardnamurchan-ad-cask-strength-release-57-7-6-cl-sample",
+      "whisky": "Ardnamurchan AD/ Cask Strength Release 57,7% 6 CL Sample",
+      "bron": "Drankenhandel Leiden",
+      "kandidaatNaam": "Ardnamurchan Ardnamurchan AD/ 09:16 Cask 884 70cl",
+      "kandidaatUrl": "https://www.drankenhandelleiden.nl/ardnamurchan-ad-cask-884.html",
+      "verschil": [
+        "ABV 57,7 vs 57,1",
+        "editie cask strength vs -"
+      ],
+      "waarschijnlijkheid": -0.583,
+      "goedgekeurd": null
+    }
+  ]
+}

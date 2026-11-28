@@ -65,6 +65,32 @@ python scripts/check_tags.py                           # lijst en detail hebben 
 
 `enrich_drankgigant.py` gebruikt dezelfde strikte match als de flesprijzen (naam, bottelaar, leeftijd, editie, ABV binnen 0,3, flesmaat; geen samples of cadeausets) en haalt omschrijving, proefnotities en foto op. `facts.json` bevat aangevulde feiten, `kenmerken.json` de kenmerken uit `scripts/attributes.py` (vatsterkte, natuurlijke kleur, niet koudgefilterd, single cask en vatnummer, distillatie- en bottelingsjaar, fenolgehalte, oplage, first fill/refill, vatsoort, finish en duur). Een kenmerk staat er alleen als de tekst het letterlijk zegt, met de bron erbij.
 
+## Extra bronnen en bijna-matches
+
+`scripts/enrich_extra.py` voegt informatiebronnen toe aan de cascade (geen prijzen):
+
+| bron | soort | hoe |
+| --- | --- | --- |
+| Dramshop.nl, Whiskybase Shop (shop.whiskybase.com, de winkel, niet de database), Drankenhandel Leiden | NL-winkels (Lightspeed) | openbare collectielijst en `product.html?format=json`, crawl-delay 2 s volgens robots.txt |
+| Gordon & MacPhail | bottelaar | productpagina's uit de sitemap (sterkte, jaartal, leeftijd, vat, proefnotities, foto) |
+| Douglas Laing, North Star Spirits | bottelaar (Shopify) | `/products.json` |
+| Cadenhead | bottelaar (WooCommerce) | productsitemap; bevat alleen de huidige uitgaven |
+
+Bottelaarsites staan in de volgorde direct na de maker, de extra winkels na Drankgigant. Ze vullen alleen lege velden; proefnotities en tags worden samengevoegd met de bron per stuk. Whiskysite-feiten winnen bij tegenspraak.
+
+De match is even streng als bij Drankgigant: zelfde bottelaar, `confident_match` op de titel aangevuld met de feiten van de pagina (ABV, vatnummer, leeftijd), ABV binnen 0,3, zelfde flesmaat, plus gelijke onderscheidende woorden. Bij een single cask volstaat in plaats van de leeftijd: hetzelfde vatnummer, hetzelfde distillatiejaar en ABV binnen 0,1. Noemt de pagina een leeftijd of jaartal dat niet in de naam staat, dan is het geen zekere match.
+
+Wat net niet door die check komt (een of twee zachte verschillen: leeftijd of jaartal ontbreekt, editiewoord, ABV niet op de pagina of tot 1 % anders, andere flesmaat, andere schrijfwijze) komt in `data/match-review.json`, met whisky, kandidaat-URL, bron en verschil. Zet `"goedgekeurd": true` om een koppeling te gebruiken (ook voor Drankgigant-pagina's die op ABV of maat afvielen), `false` om hem te verwerpen. De cascade gebruikt alleen `true`; bij een nieuwe run blijven die keuzes staan.
+
+`scripts/analyse_gaten.py` deelt elke whisky zonder omschrijving, proefnotities of foto in naar één oorzaak (nieuwe bron, bijna-match, naamverschil, onafhankelijke botteling zonder kandidaat, alleen als sample, overig) en schrijft een rapport buiten de repo.
+
+```bash
+python scripts/enrich_cascade.py --fetch-extra     # pagina's van de extra bronnen ophalen (cache) en de cascade draaien
+python scripts/build_data.py pad/naar/whisky_overzicht.xlsx
+python scripts/check_tags.py
+python scripts/analyse_gaten.py --out /tmp/analyse.json
+```
+
 ## Tags
 
 Alle tags (regio, vat, stijl, kenmerken en smaak) worden in `export_site.py` berekend en staan als `tg` in de index. Lijst, kaarten, filters en detailpagina gebruiken exact die lijst; de lijst kan inkorten met "+N". `scripts/check_tags.py` faalt als de index afwijkt van wat uit de detailgegevens volgt.

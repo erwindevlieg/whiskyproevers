@@ -171,6 +171,12 @@ SOURCE_LABELS = {
     "melgers.nl": "Melgers",
     "dramtime.nl": "Dramtime.nl",
     "gall.nl": "Gall & Gall",
+    "shop.whiskybase.com": "Whiskybase Shop",
+    "drankenhandelleiden.nl": "Drankenhandel Leiden",
+    "gordonandmacphail.com": "Gordon & MacPhail",
+    "douglaslaing.com": "Douglas Laing",
+    "northstarspirits.com": "North Star Spirits",
+    "cadenhead.scot": "Cadenhead",
 }
 
 

@@ -30,5 +30,61 @@
   "bladnoch-alinta-reserve-46-7-6-cl-sample": {
     "vattype": "Oloroso Sherry Cask Matured",
     "sourceUrl": "https://www.whiskysite.nl/nl/bladnoch-alinta-reserve-467-6-cl-sample.html"
+  },
+  "knockando-2010-signatory-cask-strength-cask-4-54-4-6-cl-sample": {
+    "vattype": "1st fill Oloroso sherry hogshead finish",
+    "sourceUrl": "https://www.dramshop.nl/nl/knockando-2010-15-years-signatory-vintag-162390376.html"
+  },
+  "benriach-2015-signatory-cask-strength-cask-104-58-5-6-cl-sample": {
+    "vattype": "1st fill amontillado hogshead finish",
+    "sourceUrl": "https://www.dramshop.nl/nl/benriach-2015-11-years-cask-104-signatory-vintage.html"
+  },
+  "aberargie-golden-promise-48-2-6-cl-sample": {
+    "vattype": "68% 1st Fill Bourbon Barrels, 32% 1st Fill Sherry Butts",
+    "sourceUrl": "https://www.dramshop.nl/nl/aberargie-golden-promise.html"
+  },
+  "aberargie-inaugural-release-48-2-6-cl-sample": {
+    "vattype": "1st Fill Bourbon & Sherry",
+    "sourceUrl": "https://www.dramshop.nl/nl/aberargie-inaugural-release.html"
+  },
+  "aberargie-laureate-48-2-6-cl-sample": {
+    "vattype": "68% 1st Fill Sherry Butts, 32% 1st Fill Bourbon Barrels",
+    "sourceUrl": "https://www.dramshop.nl/nl/aberargie-laureate.html"
+  },
+  "lochlea-cask-strength-batch-1-60-1-6-cl-sample": {
+    "vattype": "1st Fill Bourbon / Oloroso Sherry",
+    "sourceUrl": "https://www.dramshop.nl/nl/lochlea-cask-strength-edition-batch-1.html"
+  },
+  "balmenach-22-years-old-living-souls-44-9-6-cl-sample": {
+    "vattype": "1st fill bourbon barrels",
+    "sourceUrl": "https://www.dramshop.nl/nl/balmenach-22-years-living-souls.html"
+  },
+  "highland-queen-sherry-finish-40-6-cl-sample": {
+    "vattype": "sherry cask finish",
+    "sourceUrl": "https://www.dramshop.nl/nl/highland-queen-sherry-cask-finish.html"
+  },
+  "adelphi-lochlea-5-years-old-2018-cask-114-59-2-6-cl-sample": {
+    "vattype": "First Fill Bourbon Barrel",
+    "sourceUrl": "https://www.dramshop.nl/nl/lochlea-2018-2024-adelphi.html"
+  },
+  "ardmore-12-years-old-living-souls-46-6-cl-sample": {
+    "vattype": "Ex-Islay bourbon barrels",
+    "sourceUrl": "https://www.dramshop.nl/nl/ardmore-12-years-living-souls.html"
+  },
+  "ardnahoe-infinite-loch-50-6-cl-sample": {
+    "vattype": "Bourbon and Oloroso Sherry",
+    "sourceUrl": "https://www.dramshop.nl/nl/ardnahoe-infinite-loch.html"
+  },
+  "ardnamurchan-7-years-old-living-souls-50-6-cl-sample": {
+    "vattype": "1st Fill Bourbon",
+    "sourceUrl": "https://www.dramshop.nl/nl/ardnamurchan-7-years-living-souls-163291374.html"
+  },
+  "kilchoman-11-years-old-family-collection-54-7-6-cl-sample": {
+    "vattype": "Oloroso Sherry Matured",
+    "sourceUrl": "https://www.dramshop.nl/nl/the-kilchoman-family-collection-11-year-old.html"
+  },
+  "ledaig-2020-signatory-vintage-100-proof-edition-76-57-1-6-cl-sample": {
+    "vattype": "Refill Oloroso Sherry Hogshead Refill Bourbon Barrels",
+    "sourceUrl": "https://www.dramshop.nl/nl/ledaig-2020-signatory-vintage-100-proof-76.html"
   }
 }
