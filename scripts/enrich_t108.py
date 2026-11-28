@@ -403,7 +403,7 @@ def apply_caches(repo: Path, dry_run: bool = False) -> dict:
             stats["pages_unmatched"] += 1
 
     for item_id, (_, page) in best_desc.items():
-        if es.maybe_add_description(descriptions, item_id, page["description"], page["url"], stats):
+        if es.maybe_add_description(descriptions, item_id, page["description"], page["url"], stats, items_by_id[item_id].get("naam")):
             item = items_by_id[item_id]
             report["added_desc"].append({
                 "id": item_id,

@@ -46,7 +46,7 @@ def has_image(item: dict, desc_entry: dict | None) -> bool:
     return False
 
 
-def apply_all(repo: Path) -> dict:
+def apply_all(repo: Path, write_facts: bool = True) -> dict:
     items_by_id = {it["id"]: it for it in es.load_items(repo)}
     desc_path = repo / "descriptions.json"
     notes_path = repo / "notes.json"
@@ -106,7 +106,7 @@ def apply_all(repo: Path) -> dict:
             continue
 
         if page.get("description"):
-            if es.maybe_add_description(descriptions, item_id, page["description"], url, stats):
+            if es.maybe_add_description(descriptions, item_id, page["description"], url, stats, item.get("naam")):
                 report["added_desc"].append({"id": item_id, "naam": item.get("naam"), "url": url})
 
         if page.get("notes"):
@@ -138,7 +138,7 @@ def apply_all(repo: Path) -> dict:
 
     es.save_json(desc_path, descriptions)
     es.save_json(notes_path, notes)
-    if facts:
+    if facts and write_facts:
         es.save_json(facts_path, facts)
     DD_IMAGES.parent.mkdir(parents=True, exist_ok=True)
     es.save_json(DD_IMAGES, found_images)

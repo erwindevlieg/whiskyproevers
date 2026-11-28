@@ -177,7 +177,7 @@ def field_empty(item: dict, field: str) -> bool:
     return False
 
 
-def apply_all(repo: Path) -> dict:
+def apply_all(repo: Path, write_facts: bool = True) -> dict:
     matches = json.loads((GALL_CACHE / "matches.json").read_text(encoding="utf-8"))
     items_by_id = {it["id"]: it for it in es.load_items(repo)}
     desc_path = repo / "descriptions.json"
@@ -250,7 +250,7 @@ def apply_all(repo: Path) -> dict:
             prev = descriptions.get(item["id"]) or {}
             same_src = (prev.get("sourceUrl") or "") == url
             if not es.is_useful_description(existing_desc):
-                if es.maybe_add_description(descriptions, item["id"], page["description"], url, stats):
+                if es.maybe_add_description(descriptions, item["id"], page["description"], url, stats, item.get("naam")):
                     report["added_desc"].append({"id": rec["id"], "naam": item["naam"], "url": url})
             elif same_src and len(page["description"]) > len(existing_desc) + 40:
                 prev = dict(prev)
@@ -285,7 +285,8 @@ def apply_all(repo: Path) -> dict:
 
     es.save_json(desc_path, descriptions)
     es.save_json(notes_path, notes)
-    es.save_json(facts_path, facts)
+    if write_facts:
+        es.save_json(facts_path, facts)
     (GALL_CACHE / "apply-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return {"stats": dict(stats), "report": report}
 
