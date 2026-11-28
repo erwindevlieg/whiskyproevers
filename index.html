@@ -159,6 +159,10 @@
         </div>
       </div>
       <div class="filter-row">
+        <span class="pills-label side" id="kenmerk-label">Kenmerken</span>
+        <div class="pills" id="kenmerk-pills" role="group" aria-labelledby="kenmerk-label"></div>
+      </div>
+      <div class="filter-row">
         <span class="pills-label side" id="rook-label">Rook</span>
         <div class="pills" id="rook-pills" role="group" aria-labelledby="rook-label"></div>
       </div>
@@ -293,24 +297,24 @@
 
 <script>
 /* data-build */
-const DATA_BUILD = "0a2fb13da5";
-const DATA_INDEX = "data/index-0a2fb13da5.json";
-const DATA_CHUNK_PREFIX = "data/d/0a2fb13da5-";
+const DATA_BUILD = "6e3324f7c6";
+const DATA_INDEX = "data/index-6e3324f7c6.json";
+const DATA_CHUNK_PREFIX = "data/d/6e3324f7c6-";
 const DATA_CHUNKS = 8;
 /* /data-build */
 const VAT_ORDER = ["Oloroso","PX","Sherry","Bourbon","Wijn","Port","Rum","Cognac/Armagnac","Virgin oak","Gemengd"];
 const ROOK_ORDER = ["geen","licht","medium","zwaar"];
 const REGIO_ORDER = ["Speyside","Highland","Islay","Lowland","Campbeltown","Orkney","Arran","Mull","Islands","Ierland","Taiwan","Japan","Kentucky","Texas","Canada","Nederland","Denemarken","België","Australië","India"];
 const FLAVOUR = [
-  { id: "fruitig", label: "Fruitig", re: /fruit|appel|\bpeer\b|perzik|pruim|kers|\bbes\b|bessen|braam|sinaasappel|citrus|citroen|sinaas|abrikoos|herfstfruit|\borange\b|berry|cherry|\bplum\b|\bapple\b|peach|lemon sherbet|citruszeste|citrusschil|gestoofd fruit/i },
-  { id: "zoet", label: "Zoet", re: /zoet|toffee|karamel|caramel|fudge|marshmallow|siroop|syrup|sherbet|honingraat|kerstcake|toffee-app|snoepzoet/i },
-  { id: "sherryfruit", label: "Sherry / gedroogd fruit", re: /sherry|rozijn|vijg|vijgen|\bdadel|\bdadels|sultana|krent|gedroogd fruit|raisin|kerstcake|rum-rozijn/i },
-  { id: "kruidig", label: "Kruidig", re: /kruid|kaneel|nootmuskaat|gember|peper|kruidnagel|gingerbread|nutmeg|cinnamon|clove|\bpepper\b|glühwein|kaneelpap/i },
-  { id: "vanille", label: "Vanille / honing", re: /vanille|vanilla|honing|\bhoney\b|honingraat|honingvanille/i },
-  { id: "tropisch", label: "Tropisch", re: /tropisch|ananas|mango|kokos|coconut|pineapple|banaan|banana|papaya|guave|passievrucht/i },
-  { id: "chocolade", label: "Chocolade / koffie", re: /chocolade|chocolate|mokka|mocha|koffie|coffee|cacao|cocoa|espresso/i },
-  { id: "turfrook", label: "Turf / rook", re: /geturfd|turf|rokerig|gerookt|\bpeat\b|\bsmoky\b|\bsmoke\b|fenol/i },
-  { id: "maritiem", label: "Maritiem", re: /zilt|zeezout|\bzout\b|\bzee\b|maritime|\bsea\b|iodine|jodium|zeewier|kelp|brine|zilte/i }
+  { id: "fruitig", label: "Fruitig" },
+  { id: "zoet", label: "Zoet" },
+  { id: "sherryfruit", label: "Sherry / gedroogd fruit" },
+  { id: "kruidig", label: "Kruidig" },
+  { id: "vanille", label: "Vanille / honing" },
+  { id: "tropisch", label: "Tropisch" },
+  { id: "chocolade", label: "Chocolade / koffie" },
+  { id: "turfrook", label: "Turf / rook" },
+  { id: "maritiem", label: "Maritiem" }
 ];
 const PAGE_SIZE = 80;
 const STORAGE_KEY = "whisky-tool-geproefd";
@@ -335,66 +339,19 @@ const SORT_LABELS = {
 const ROOK_SCALE = { geen: 0, licht: 1 / 3, medium: 2 / 3, zwaar: 1 };
 const rookOrder = { geen: 0, licht: 1, medium: 2, zwaar: 3, onbekend: 4 };
 
-function parseRegio(regio) {
-  if (!regio) return null;
-  const head = regio.split(/[,—]/)[0].trim().toLowerCase();
-  if (/^onbekend\b/.test(head)) return null;
-  const map = [
-    ["isle of mull","Mull"],["campbeltown","Campbeltown"],["speyside","Speyside"],
-    ["islay","Islay"],["orkney","Orkney"],["highland","Highland"],
-    ["ierland","Ierland"],["lowland","Lowland"],["taiwan","Taiwan"],["japan","Japan"],
-    ["isle of arran","Arran"],["arran","Arran"],["islands","Islands"],
-    ["kentucky","Kentucky"],["canada","Canada"],["nederland","Nederland"],
-    ["denemarken","Denemarken"],["belgië","België"],["belgie","België"],
-    ["australi","Australië"],["india","India"],["texas","Texas"],
-    ["bourbon","Kentucky"],["mull","Mull"]
-  ];
-  for (const [k,v] of map) if (head.includes(k)) return v;
-  return null;
-}
+const KENMERK_LABELS = ["Cask strength","Natuurlijke kleur","Single cask","First fill","Niet koudgefilterd"];
+const KENMERK_FILTERS = ["Cask strength","Natuurlijke kleur","Single cask","First fill"];
+const FLAVOUR_LABELS = FLAVOUR.map(f => f.label);
 
-function deriveVat(vattype) {
-  if (!vattype) return [];
-  let t = vattype.toLowerCase();
-  t = t.replace(/niet[\s-]*sherry\w*/g, " ");
-  if (/^onbekend( vattype)?\b/.test(t) && !/(oloroso|sherry|bourbon|\bpx\b|port)/.test(t)) return [];
-  const tags = [];
-  if (/oloroso/.test(t)) tags.push("Oloroso");
-  if (/pedro xim[eé]nez|ximenez|\bpx\b|px-/.test(t)) tags.push("PX");
-  if (/bourbon/.test(t)) tags.push("Bourbon");
-  if (/\bport\b|tawny|colheita|ruby port/.test(t)) tags.push("Port");
-  if (/\brum\b/.test(t)) tags.push("Rum");
-  if (/rode wijn|red wine|witte wijn|white wine|barolo|burgundy|bordeaux|sauternes|madeira|marsala|tokaji|pineau|rioja|syrah/.test(t)) tags.push("Wijn");
-  if (/cognac|armagnac/.test(t)) tags.push("Cognac/Armagnac");
-  if (/virgin oak|nieuw eiken/.test(t)) tags.push("Virgin oak");
-  if (/sherry/.test(t) && !tags.includes("Oloroso") && !tags.includes("PX")) tags.push("Sherry");
-  if (tags.length >= 2) tags.push("Gemengd");
-  return tags;
-}
-
-function flavourTags(r) {
-  const notes = unknownToEmpty(r.proefnotities);
-  const desc = unknownToEmpty(r.omschrijving);
-  const vat = (r.vattype || "").replace(/niet[\s-]*sherry\w*/gi, " ");
-  const regio = (r.regio || "").replace(/ongeturfd\w*/gi, " ");
-  const text = [notes, desc, vat, regio].join(" ");
-  const peatText = text.replace(/ongeturfd\w*/gi, " ");
-  const tags = [];
-  for (const f of FLAVOUR) {
-    if (f.id === "turfrook") {
-      if (["licht","medium","zwaar"].includes(r.rook) || f.re.test(peatText)) tags.push(f.label);
-      continue;
-    }
-    if (f.id === "sherryfruit") {
-      const vatTags = deriveVat(r.vattype);
-      if (vatTags.includes("Oloroso") || vatTags.includes("PX") || vatTags.includes("Sherry") || f.re.test(notes) || f.re.test(desc) || f.re.test(vat)) {
-        tags.push(f.label);
-      }
-      continue;
-    }
-    if (f.re.test(text)) tags.push(f.label);
-  }
-  return tags;
+// De tagset komt uit de index (veld tg, berekend in build_data.py); hier wordt alleen ingedeeld.
+function splitTags(tags) {
+  const list = Array.isArray(tags) ? tags : [];
+  return {
+    regio: list.find(t => REGIO_ORDER.includes(t)) || null,
+    vat: list.filter(t => VAT_ORDER.includes(t)),
+    kenmerken: list.filter(t => KENMERK_LABELS.includes(t)),
+    flavour: list.filter(t => FLAVOUR_LABELS.includes(t))
+  };
 }
 
 function unknownToEmpty(value) {
@@ -437,7 +394,7 @@ function expandIndexItem(it) {
     thumbH: it.e,
     ib: it.i || it.ib || ""
   };
-  if (it.fl && it.fl.length) row._flavourPre = it.fl;
+  row.tags = Array.isArray(it.tg) ? it.tg : [];
   if (it.ss && it.ss.length) {
     row.samples = it.ss.map(s => ({
       inhoud: s.h || s.inhoud || "",
@@ -449,11 +406,13 @@ function expandIndexItem(it) {
 
 function enrich(r) {
   const row = expandIndexItem(r) || r;
+  const parts = splitTags(row.tags);
   return {
     ...row,
-    vatTags: deriveVat(row.vattype),
-    flavour: (row._flavourPre && row._flavourPre.length) ? row._flavourPre.slice() : flavourTags(row),
-    regioKort: parseRegio(row.regio)
+    vatTags: parts.vat,
+    kenmerkTags: parts.kenmerken,
+    flavour: parts.flavour,
+    regioKort: parts.regio
   };
 }
 
@@ -1137,6 +1096,15 @@ function displayName(naam) {
     .replace(/\s+\d+(?:[.,]\d+)?%\s*$/, "")
     .trim();
 }
+function youtubeQuery(naam) {
+  return String(naam || "")
+    .replace(/\b\d+(?:[.,]\d+)?\s*cl\s+sample\b/gi, " ")
+    .replace(/\bsample\b/gi, " ")
+    .replace(/\b\d+(?:[.,]\d+)?\s*%/g, " ")
+    .replace(/\b\d+(?:[.,]\d+)?\s*(?:cl|ml|ltr|l)\b\.?/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 function rowId(r) { return r.naam + "|" + (r.inhoud || "fles"); }
 function sampleList(r) {
   if (Array.isArray(r.samples) && r.samples.length) return r.samples;
@@ -1205,6 +1173,7 @@ const state = {
   rook: new Set(),
   regio: new Set(),
   smaak: new Set(),
+  kenmerk: new Set(),
   minScore: 60,
   maxPrijs: 100,
   inclOnbekend: true,
@@ -1258,7 +1227,8 @@ function sourceLabel(url) {
     "drankdozijn.nl": "Drankdozijn",
     "whisky.nl": "Whisky.nl",
     "masterofmalt.com": "Master of Malt",
-    "gall.nl": "Gall & Gall"
+    "gall.nl": "Gall & Gall",
+    "drankgigant.nl": "Drankgigant.nl"
   };
   return known[host] || host;
 }
@@ -1320,7 +1290,6 @@ function mergeDetail(row, extra) {
   Object.assign(row, extra);
   if (samples) row.samples = samples;
   row._detail = true;
-  row.flavour = flavourTags(row);
   return row;
 }
 
@@ -1431,14 +1400,9 @@ const REGIO_CHIP = {
   Denemarken: "denemarken", België: "belgie", "Australië": "australie", India: "india"
 };
 
-function vatChipsHtml(r) {
-  const tags = r.vatTags || [];
-  const shown = tags.filter(t => t !== "Gemengd");
-  const list = shown.length ? shown : tags;
-  return list.map(t => {
-    const key = VAT_CHIP[t] || "gemengd";
-    return '<span class="chip chip-vat" data-chip="' + key + '">' + escapeHtml(t) + "</span>";
-  }).join("");
+function vatChipHtml(t) {
+  const key = VAT_CHIP[t] || "gemengd";
+  return '<span class="chip chip-vat" data-chip="' + key + '">' + escapeHtml(t) + "</span>";
 }
 
 function regioChipHtml(r) {
@@ -1447,8 +1411,20 @@ function regioChipHtml(r) {
   return '<span class="chip chip-regio" data-chip="' + key + '">' + escapeHtml(r.regioKort) + "</span>";
 }
 
-function tagsHtml(r) {
-  return regioChipHtml(r) + vatChipsHtml(r);
+// Eén tagset (regio, vat, kenmerken, smaak) voor lijst, kaarten, hover en detail.
+function tagItems(r) {
+  const out = [];
+  const region = regioChipHtml(r);
+  if (region) out.push(region);
+  (r.vatTags || []).forEach(t => out.push(vatChipHtml(t)));
+  (r.kenmerkTags || []).concat(r.flavour || []).forEach(t => out.push('<span class="tag">' + escapeHtml(t) + "</span>"));
+  return out;
+}
+
+function tagsHtml(r, max) {
+  const items = tagItems(r);
+  if (!max || items.length <= max) return items.join("");
+  return items.slice(0, max).join("") + '<span class="tag tag-more">+' + (items.length - max) + "</span>";
 }
 
 function ibChipHtml(r, compact) {
@@ -1620,8 +1596,7 @@ function hideHoverCard() {
 
 function showHoverCard(r, anchor) {
   if (!canHoverPreview() || !els.hoverCard || !r) return;
-  const tags = r.flavour.slice(0, 4).map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
-  const chips = regioChipHtml(r) + vatChipsHtml(r) + ibChipHtml(r, true);
+  const chips = tagsHtml(r, 6) + ibChipHtml(r, true);
   const vat = unknownToEmpty(r.vattype);
   els.hoverCard.innerHTML =
     '<div class="hover-top">' + photoHtml(r, "sm", "")
@@ -1629,8 +1604,7 @@ function showHoverCard(r, anchor) {
     + (r.score != null ? '<div>' + scoreBadge(r.score) + "</div>" : "")
     + "</div></div>"
     + (chips ? '<div class="chips">' + chips + "</div>" : "")
-    + (vat ? '<p class="sub">' + escapeHtml(vat) + "</p>" : "")
-    + (tags ? '<div class="tags">' + tags + "</div>" : "");
+    + (vat ? '<p class="sub">' + escapeHtml(vat) + "</p>" : "");
   els.hoverCard.hidden = false;
   bindPhotos(els.hoverCard);
   const rect = anchor.getBoundingClientRect();
@@ -1946,6 +1920,7 @@ function matches(r) {
   if (state.rook.size && !state.rook.has(r.rook)) return false;
   if (state.regio.size && !state.regio.has(r.regioKort)) return false;
   if (state.smaak.size && !r.flavour.some(t => state.smaak.has(t))) return false;
+  if (state.kenmerk.size && ![...state.kenmerk].every(t => r.kenmerkTags.includes(t))) return false;
   if (state.sampleAvail === "ja" && r.sampleBeschikbaar !== "ja") return false;
   if (state.sampleAvail === "nee" && r.sampleBeschikbaar !== "nee") return false;
   if (state.flesPrijsBekend === "ja" && r.flesPrijs == null) return false;
@@ -1959,7 +1934,7 @@ function matches(r) {
     const hay = [
       r.naam, r.distillery, r.vattype, r.regio, r.winkel, r.tweedeWinkel, r.proefnotities,
       r.wbStatus, r.wbReden, r.whiskyfunScore, r.distillerScore, r.opmerkingFles, r.ib,
-      r.searchExtra, r.flavour.join(" "), r.vatTags.join(" ")
+      r.searchExtra, (r.tags || []).join(" ")
     ].join(" ").toLowerCase();
     if (!hay.includes(state.q)) return false;
   }
@@ -2034,7 +2009,7 @@ function abvCell(r) {
 }
 
 function activeFilterCount() {
-  let n = state.vat.size + state.rook.size + state.regio.size + state.smaak.size;
+  let n = state.vat.size + state.rook.size + state.regio.size + state.smaak.size + state.kenmerk.size;
   if (state.minScore > state.defaults.minScore) n += 1;
   if (priceFilterActive()) n += 1;
   if (!state.inclOnbekend) n += 1;
@@ -2090,7 +2065,7 @@ function tableRowHtml(r) {
     + "<td><a class=\"name\" href=\"" + escapeAttr(detailHref(r)) + "\"" + title + ' data-hover-id="' + escapeAttr(r.id) + '">' + escapeHtml(name) + "</a>"
     + ibChipHtml(r, true)
     + compareToggleHtml(r) + "</td>"
-    + '<td class="col-tags">' + (tagsHtml(r) || (regio ? escapeHtml(regio) : "") || (vat ? '<span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>" : "")) + "</td>"
+    + '<td class="col-tags">' + (tagsHtml(r, 4) || (regio ? escapeHtml(regio) : "") || (vat ? '<span class="vat" title="' + escapeAttr(vat) + '">' + escapeHtml(vat) + "</span>" : "")) + "</td>"
     + '<td class="col-abv">' + abvCell(r) + "</td>"
     + '<td class="col-score">' + scoreCell(r) + "</td>"
     + "</tr>";
@@ -2150,7 +2125,7 @@ function cardHtml(r) {
   const tasted = !!state.tasted[id];
   const name = displayName(r.naam);
   const meta = [abvCell(r), r.inhoud ? escapeHtml(r.inhoud) : ""].filter(Boolean).join(" · ");
-  const chips = regioChipHtml(r) + vatChipsHtml(r) + ibChipHtml(r, true);
+  const chips = tagsHtml(r, 4) + ibChipHtml(r, true);
   return '<article class="whisky-card' + (tasted ? " tasted" : "") + '" data-slug="' + escapeAttr(r.id) + '">'
     + '<label class="geproefd"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
     + (tasted ? " checked" : "") + ' aria-label="Geproefd: ' + escapeAttr(name) + '"></label>'
@@ -2237,20 +2212,39 @@ function collectLinks(r) {
   add(r.whiskyfunLink, "Whiskyfun", r.whiskyfunScore || null);
   add(r.distillerLink, "Distiller", r.distillerScore ? String(r.distillerScore).split("—")[0].trim() : null);
   add(r.bronNotities, "Bron proefnotities", null);
+  const yt = youtubeQuery(r.naam);
+  if (yt) add("https://www.youtube.com/results?search_query=" + encodeURIComponent(yt + " whisky review"), "YouTube", null);
   return links;
+}
+
+const SECTION_RE = /^(Colour|Color|Kleur|Nose|Neus|Geur|Aroma|Palate|Palet|Taste|Smaak|Flavour|Flavor|Finish|Afdronk|Comment|Opmerking)\s*:\s*([\s\S]+)$/i;
+
+// Alinea's en secties (Neus, Smaak, Afdronk, ...) uit een geformatteerde tekst; de woorden blijven letterlijk.
+function paragraphsOf(text) {
+  return String(text || "").split(/\n+/).map(p => p.trim()).filter(Boolean);
+}
+
+function richTextHtml(text) {
+  return paragraphsOf(text).map(p => {
+    const m = p.match(SECTION_RE);
+    if (m) {
+      return '<div class="tekst-sectie"><div class="tekst-label">' + escapeHtml(m[1]) + "</div><p>" + escapeHtml(m[2].trim()) + "</p></div>";
+    }
+    return "<p>" + escapeHtml(p) + "</p>";
+  }).join("");
 }
 
 function descriptionBlock(r) {
   const desc = descriptionFor(r);
   if (!desc || !desc.text) return "";
-  const long = desc.text.length > 320 || desc.text.split("\n").length > 6;
+  const long = desc.text.length > 320 || paragraphsOf(desc.text).length > 4;
   const label = sourceLabel(desc.sourceUrl) || "bron";
   const bron = desc.sourceUrl
     ? '<a class="bron" href="' + escapeAttr(desc.sourceUrl) + '" target="_blank" rel="noopener noreferrer">bron: ' + escapeHtml(label) + "</a>"
     : (label ? '<span class="bron">bron: ' + escapeHtml(label) + "</span>" : "");
   return sectionBlock(
     "Omschrijving",
-    '<div class="omschrijving' + (long ? " is-collapsed" : "") + '" id="omschrijving-text">' + escapeHtml(desc.text) + "</div>"
+    '<div class="omschrijving' + (long ? " is-collapsed" : "") + '" id="omschrijving-text">' + richTextHtml(desc.text) + "</div>"
     + '<div class="omschrijving-meta">'
     + (long ? '<button type="button" class="lees-meer" id="leesMeer" aria-expanded="false">Lees meer</button>' : "")
     + bron
@@ -2302,12 +2296,51 @@ function statCard(label, value, meta) {
     + "</div>";
 }
 
+function kenmerkValue(r, key) {
+  const k = r.kenmerken && r.kenmerken[key];
+  return k ? k.w : null;
+}
+
+function kenmerkFact(r, key, text) {
+  const k = r.kenmerken && r.kenmerken[key];
+  if (!k) return "";
+  const bron = k.b && isUrl(k.b) ? sourceLabel(k.b) : (k.b || "");
+  return '<span' + (bron ? ' title="' + escapeAttr(bron) + '"' : "") + ">" + escapeHtml(text) + "</span>";
+}
+
+function kenmerkenHtml(r) {
+  const ja = key => kenmerkFact(r, key, "Ja");
+  const vulling = [kenmerkValue(r, "firstFill") ? "First fill" : "", kenmerkValue(r, "refill") ? "Refill" : ""].filter(Boolean).join(" · ");
+  const rijping = kenmerkValue(r, "finishType")
+    ? [kenmerkValue(r, "finishType") === "finish" ? "Finish" : "Volledige rijping", kenmerkValue(r, "finishDuur") || ""].filter(Boolean).join(" · ")
+    : "";
+  const vatNr = kenmerkValue(r, "vatNummer");
+  const single = kenmerkValue(r, "singleCask") ? "Ja" + (vatNr ? " · vat " + vatNr : "") : "";
+  const ppm = kenmerkValue(r, "ppm");
+  const oplage = kenmerkValue(r, "oplage");
+  const afgeleid = kenmerkValue(r, "leeftijdAfgeleid");
+  const items = [
+    ["Vatsterkte", ja("vatsterkte")],
+    ["Natuurlijke kleur", ja("natuurlijkeKleur")],
+    ["Niet koudgefilterd", ja("nietKoudgefilterd")],
+    ["Single cask", single ? kenmerkFact(r, "singleCask", single) : ""],
+    ["Gedistilleerd", kenmerkValue(r, "distillatiejaar") ? kenmerkFact(r, "distillatiejaar", String(kenmerkValue(r, "distillatiejaar"))) : ""],
+    ["Gebotteld", kenmerkValue(r, "bottelingsjaar") ? kenmerkFact(r, "bottelingsjaar", String(kenmerkValue(r, "bottelingsjaar"))) : ""],
+    ["Leeftijd (uit jaartallen)", afgeleid ? kenmerkFact(r, "leeftijdAfgeleid", afgeleid + " jaar") : ""],
+    ["Fenolgehalte", ppm ? kenmerkFact(r, "ppm", ppm + " ppm") : ""],
+    ["Oplage", oplage ? kenmerkFact(r, "oplage", intFmt.format(oplage) + " flessen") : ""],
+    ["Vulling", vulling ? kenmerkFact(r, kenmerkValue(r, "firstFill") ? "firstFill" : "refill", vulling) : ""],
+    ["Vatsoort", kenmerkValue(r, "vatSoort") ? kenmerkFact(r, "vatSoort", kenmerkValue(r, "vatSoort").join(", ")) : ""],
+    ["Rijping", rijping ? kenmerkFact(r, "finishType", rijping) : ""]
+  ];
+  return factsHtml(items);
+}
+
 function renderDetail(r) {
   const name = displayName(r.naam);
   const id = rowId(r);
   const tasted = !!state.tasted[id];
   document.title = name + " · Whisky proefoverzicht";
-  const tags = r.flavour.map(t => '<span class="tag">' + escapeHtml(t) + "</span>").join("");
   const notes = unknownToEmpty(r.proefnotities);
   const source = unknownToEmpty(r.bronNotities);
   const inhoud = sampleSizesLabel(r, r.sampleBeschikbaar === "nee" ? "geen sample" : (r.inhoud || ""));
@@ -2336,13 +2369,17 @@ function renderDetail(r) {
     stats.push(statCard("Sampleprijs", escapeHtml(euro.format(only.prijsSample)), only.inhoud && only.inhoud !== "geen sample" ? escapeHtml(only.inhoud) : ""));
   }
   if (r.flesPrijs != null) stats.push(statCard("Flesprijs", escapeHtml(euro.format(r.flesPrijs)), knownText(r.winkel)));
+  if (r.prijsPerClSample != null) stats.push(statCard("Sample per cl", escapeHtml(euro.format(r.prijsPerClSample)), ""));
+  if (r.prijsPerClFles != null) stats.push(statCard("Fles per cl", escapeHtml(euro.format(r.prijsPerClFles)), ""));
+  if (r.score != null && r.waardeVoorGeld) {
+    stats.push(statCard("Waar voor je geld", escapeHtml(r.waardeVoorGeld.charAt(0).toUpperCase() + r.waardeVoorGeld.slice(1)), escapeHtml(r.waardeBasis === "fles" ? "fles" : "sample")));
+  }
 
   const distLink = r.distillery && r.distillerySlug
     ? '<a class="name" href="' + escapeAttr(distilleryHref(r.distillerySlug)) + '">' + escapeHtml(r.distillery) + "</a>"
     : "";
   const overzichtSpecs = factsHtml([
     ["Distilleerderij", distLink],
-    ["Tags", tagsHtml(r) || knownText(r.regioKort) || knownText(r.vattype)],
     ["Regio", knownText(r.regio)],
     ["Vattype", knownText(r.vattype)],
     ["Leeftijd", r.leeftijd != null ? escapeHtml(String(r.leeftijd) + " jaar") : ""],
@@ -2352,21 +2389,30 @@ function renderDetail(r) {
   ]);
   const regionKey = r.regioKort || "";
   const miniMap = '<div class="region-map region-map-mini" data-region="' + escapeAttr(regionKey) + '"></div>';
-  const overzicht = descriptionBlock(r) + miniMap + overzichtSpecs;
+  const kenmerkenBlock = kenmerkenHtml(r);
+  const overzicht = descriptionBlock(r) + miniMap + overzichtSpecs + (kenmerkenBlock ? sectionBlock("Kenmerken", kenmerkenBlock) : "");
 
   const criticFacts = factsHtml([
     ["Whiskyfun", knownText(r.whiskyfunScore)],
     ["Distiller", knownText(r.distillerScore)]
   ]);
-  const notesBlock = notes
+  const noteList = Array.isArray(r.notities) && r.notities.length > 1
+    ? r.notities
+    : (notes ? [{ tekst: notes, bron: source }] : []);
+  const notesBlock = noteList.length
     ? sectionBlock(
         "Proefnotities",
-        '<div class="notes">' + escapeHtml(notes) + "</div>"
-        + (source && !isUrl(source) ? '<p class="notes-source">Bron: ' + escapeHtml(source) + "</p>" : "")
+        noteList.map(n => {
+          const bron = n.bron || "";
+          const label = bron ? (isUrl(bron) ? sourceLabel(bron) : bron) : "";
+          const link = bron && isUrl(bron)
+            ? '<a class="bron" href="' + escapeAttr(bron) + '" target="_blank" rel="noopener noreferrer">bron: ' + escapeHtml(label) + "</a>"
+            : (label ? '<span class="bron">bron: ' + escapeHtml(label) + "</span>" : "");
+          return '<div class="notes">' + richTextHtml(n.tekst) + "</div>" + (link ? '<div class="notes-source">' + link + "</div>" : "");
+        }).join("")
       )
     : "";
-  const smaakTags = tags ? sectionBlock("Smaak", '<div class="tags">' + tags + "</div>") : "";
-  const smaak = flavourHighlightsHtml(r) + notesBlock + smaakTags
+  const smaak = flavourHighlightsHtml(r) + notesBlock
     + (criticFacts ? sectionBlock("Scores", criticFacts) : "");
 
   const tweede = (unknownToEmpty(r.tweedeWinkel) || r.tweedePrijs != null)
@@ -2406,7 +2452,7 @@ function renderDetail(r) {
     ["Opmerking fles", knownText(r.opmerkingFles)]
   ]);
 
-  const chips = regioChipHtml(r) + vatChipsHtml(r) + ibChipHtml(r, false);
+  const chips = tagsHtml(r) + ibChipHtml(r, false);
   const scoreHero = r.score != null
     ? '<div class="hero-side"><div class="hero-score-label">Whiskybase</div>'
       + '<div class="hero-score">' + escapeHtml(scoreFmt.format(r.score)) + "</div>"
@@ -2420,7 +2466,6 @@ function renderDetail(r) {
     + "<h2>" + escapeHtml(name) + "</h2>"
     + (subtitle ? '<span class="sub">' + escapeHtml(subtitle) + "</span>" : "")
     + (chips ? '<div class="chips">' + chips + "</div>" : "")
-    + (tags ? '<div class="tags">' + tags + "</div>" : "")
     + '<div class="hero-actions">'
     + '<label class="taste-check"><input type="checkbox" data-id="' + escapeAttr(id) + '"'
     + (tasted ? " checked" : "") + "> Geproefd</label>"
@@ -2607,6 +2652,7 @@ function initPills() {
       + vatVals.map(v => '<button type="button" class="pill" data-group="vat" data-value="' + escapeAttr(v) + '" aria-pressed="false">' + escapeHtml(v) + "</button>").join("");
   }
   makePills(document.getElementById("rook-pills"), uniqueInOrder(ROWS.map(r => r.rook).filter(r => ROOK_ORDER.includes(r)), ROOK_ORDER), "rook");
+  makePills(document.getElementById("kenmerk-pills"), KENMERK_FILTERS.filter(k => ROWS.some(r => r.kenmerkTags.includes(k))), "kenmerk");
   makePills(document.getElementById("smaak-pills"), uniqueInOrder(ROWS.flatMap(r => r.flavour), FLAVOUR.map(f => f.label)), "smaak");
 }
 
@@ -2639,6 +2685,7 @@ function serializeFilters() {
   if (state.rook.size) p.set("rook", [...state.rook].join(","));
   if (state.regio.size) p.set("regio", [...state.regio].join(","));
   if (state.smaak.size) p.set("smaak", [...state.smaak].join(","));
+  if (state.kenmerk.size) p.set("kenmerk", [...state.kenmerk].join(","));
   if (state.minScore > state.defaults.minScore) p.set("score", String(state.minScore));
   if (priceFilterActive()) p.set("prijs", String(state.maxPrijs));
   if (!state.inclOnbekend) p.set("onbekend", "0");
@@ -2685,6 +2732,7 @@ function applyFilterQuery(query) {
   state.rook = new Set(parseFilterList(p.get("rook")));
   state.regio = new Set(parseFilterList(p.get("regio")));
   state.smaak = new Set(parseFilterList(p.get("smaak")));
+  state.kenmerk = new Set(parseFilterList(p.get("kenmerk")));
   const scoreRaw = p.get("score");
   const score = scoreRaw == null || scoreRaw === "" ? NaN : Number(scoreRaw);
   state.minScore = Number.isFinite(score) ? score : state.defaults.minScore;
@@ -2820,6 +2868,7 @@ function resetFilters() {
   state.rook = new Set();
   state.regio = new Set();
   state.smaak = new Set();
+  state.kenmerk = new Set();
   state.minScore = state.defaults.minScore;
   state.maxPrijs = state.defaults.maxPrijs;
   state.minFlesPrijs = state.defaults.flesMin;

@@ -23,6 +23,8 @@ from urllib.parse import urlparse
 import requests
 from bs4 import BeautifulSoup
 
+import sources as src
+
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = Path("/workspace/whisky_build")
 SHOP_CACHE = BUILD / "shopcache"
@@ -615,7 +617,7 @@ def save_json(path: Path, data) -> None:
 
 
 def maybe_add_description(descriptions: dict, item_id: str, text: str, url: str, stats: Counter) -> bool:
-    text = strip_boilerplate(text)
+    text = src.format_description(strip_boilerplate(text))
     if not is_useful_description(text):
         stats["rejected_quality"] += 1
         return False
@@ -632,17 +634,51 @@ def maybe_add_description(descriptions: dict, item_id: str, text: str, url: str,
     return True
 
 
+def _note_key(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", fold(text)).strip()
+
+
+def note_pieces(item: dict, entry: dict | None) -> list[str]:
+    """Alle bekende notitieteksten van een whisky: Excel/bron plus notes.json (hoofdtekst en extra's)."""
+    pieces = []
+    base = (item.get("proefnotities") or "").strip()
+    if base and base.lower() != "onbekend":
+        pieces.append(base)
+    entry = entry or {}
+    if entry.get("text"):
+        pieces.append(entry["text"])
+    for extra in entry.get("extra") or []:
+        if extra.get("text"):
+            pieces.append(extra["text"])
+    return pieces
+
+
 def maybe_add_notes(notes: dict, item: dict, text: str, url: str, stats: Counter) -> bool:
+    """Voeg een proefnotitie toe uit een extra bron (samenvoegen, niet overschrijven).
+
+    De eerste notitie van een whisky staat in notes.json als text/sourceUrl/source;
+    elke volgende, andere notitie komt in 'extra'. Een tekst die al (deels) bekend is,
+    wordt overgeslagen.
+    """
     text = clean_text(text)
     if not text or len(re.sub(r"\s+", " ", text)) < 40:
         return False
-    if item.get("proefnotities") and item["proefnotities"] != "onbekend":
-        stats["notes_already"] += 1
-        return False
-    if item["id"] in notes and notes[item["id"]].get("text"):
-        stats["notes_already"] += 1
-        return False
-    notes[item["id"]] = {"text": text, "sourceUrl": url, "source": source_label(url)}
+    entry = notes.get(item["id"]) or {}
+    key = _note_key(text)
+    for piece in note_pieces(item, entry):
+        other = _note_key(piece)
+        if key == other or key in other or (other and other in key and len(other) > 40):
+            stats["notes_already"] += 1
+            return False
+    new = {"text": text, "sourceUrl": url, "source": source_label(url)}
+    if not entry.get("text"):
+        entry = dict(entry)
+        entry.update(new)
+        notes[item["id"]] = entry
+    else:
+        entry = dict(entry)
+        entry["extra"] = list(entry.get("extra") or []) + [new]
+        notes[item["id"]] = entry
     stats["notes_added"] += 1
     stats["notes:" + source_label(url)] += 1
     return True

@@ -10,6 +10,7 @@ import shutil
 import sys
 from pathlib import Path
 
+import sources as src
 from thumbs import DEFAULT_CACHE, build_thumbs
 
 DATA_CHUNKS = 8
@@ -51,6 +52,13 @@ DETAIL_FIELDS = (
     "afbeelding",
     "aliases",
     "ib",
+    "notities",
+    "kenmerken",
+    "rookBron",
+    "prijsPerClSample",
+    "prijsPerClFles",
+    "waardeVoorGeld",
+    "waardeBasis",
 )
 MARKER_RE = re.compile(
     r"/\* data-build \*/.*?/\* /data-build \*/",
@@ -151,7 +159,10 @@ def derive_vat(vattype) -> list[str]:
 
 def flavour_tags(item: dict) -> list[str]:
     """Zelfde afleiding als flavourTags() in index.html, inclusief omschrijving."""
-    notes = unknown_to_empty(item.get("proefnotities"))
+    notes = " ".join(
+        [unknown_to_empty(item.get("proefnotities"))]
+        + [unknown_to_empty(n.get("tekst")) for n in item.get("notities") or []]
+    ).strip()
     desc = unknown_to_empty(item.get("omschrijving"))
     vat_raw = item.get("vattype") or ""
     vat = re.sub(r"niet[\s-]*sherry\w*", " ", str(vat_raw), flags=re.I)
@@ -179,6 +190,79 @@ def flavour_tags(item: dict) -> list[str]:
             continue
         if cre.search(text):
             tags.append(label)
+    return tags
+
+
+REGIO_MAP = (
+    ("isle of mull", "Mull"), ("campbeltown", "Campbeltown"), ("speyside", "Speyside"),
+    ("islay", "Islay"), ("orkney", "Orkney"), ("highland", "Highland"),
+    ("ierland", "Ierland"), ("lowland", "Lowland"), ("taiwan", "Taiwan"), ("japan", "Japan"),
+    ("isle of arran", "Arran"), ("arran", "Arran"), ("islands", "Islands"),
+    ("kentucky", "Kentucky"), ("canada", "Canada"), ("nederland", "Nederland"),
+    ("denemarken", "Denemarken"), ("belgië", "België"), ("belgie", "België"),
+    ("australi", "Australië"), ("india", "India"), ("texas", "Texas"),
+    ("bourbon", "Kentucky"), ("mull", "Mull"),
+)
+KENMERK_TAGS = (
+    ("vatsterkte", "Cask strength"),
+    ("natuurlijkeKleur", "Natuurlijke kleur"),
+    ("singleCask", "Single cask"),
+    ("firstFill", "First fill"),
+    ("nietKoudgefilterd", "Niet koudgefilterd"),
+)
+
+
+def regio_kort(regio) -> str | None:
+    if not regio:
+        return None
+    head = re.split(r"[,—]", str(regio))[0].strip().lower()
+    if re.match(r"^onbekend\b", head):
+        return None
+    for key, label in REGIO_MAP:
+        if key in head:
+            return label
+    return None
+
+
+def extra_vat_tags(item: dict) -> list[str]:
+    """Vat/stijl-tags die expliciet in omschrijving of proefnotities staan en niet al uit het vattype komen."""
+    texts = [unknown_to_empty(item.get("omschrijving")), unknown_to_empty(item.get("proefnotities"))]
+    texts += [unknown_to_empty(n.get("tekst")) for n in item.get("notities") or []]
+    found = src.cask_tags_from_text("\n".join(t for t in texts if t))
+    have = set(derive_vat(item.get("vattype")))
+    return [t for t in found if t not in have]
+
+
+def kenmerk_tags(item: dict) -> list[str]:
+    kenm = item.get("kenmerken") or {}
+    out = []
+    for key, label in KENMERK_TAGS:
+        if key in kenm:
+            out.append(label)
+        elif key == "natuurlijkeKleur" and item.get("kleurstof") == "nee":
+            out.append(label)
+        elif key == "nietKoudgefilterd" and item.get("ncf") == "ja":
+            out.append(label)
+    return out
+
+
+def all_tags(item: dict) -> list[str]:
+    """Eén bron van waarheid voor alle tags: regio, vat, stijl, kenmerken en smaak (in die volgorde)."""
+    tags: list[str] = []
+    region = regio_kort(item.get("regio"))
+    if region:
+        tags.append(region)
+    vat = [t for t in derive_vat(item.get("vattype")) if t != "Gemengd"]
+    for t in extra_vat_tags(item):
+        if t not in vat:
+            vat.append(t)
+    if len(vat) >= 2:
+        vat.append("Gemengd")
+    tags.extend(vat)
+    tags.extend(kenmerk_tags(item))
+    for t in flavour_tags(item):
+        if t not in tags:
+            tags.append(t)
     return tags
 
 
@@ -231,9 +315,9 @@ def compact_item(item: dict, thumb: dict | None) -> dict:
         row["ss"] = compact_samples
     if item.get("ib"):
         row["i"] = item["ib"]
-    tags = flavour_tags(item)
+    tags = all_tags(item)
     if tags:
-        row["fl"] = tags
+        row["tg"] = tags
     if thumb:
         row["t"] = 1
         row["g"] = "c" if thumb["kind"] == "clear" else "p"

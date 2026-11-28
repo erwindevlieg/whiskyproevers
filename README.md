@@ -41,3 +41,30 @@ python scripts/build_data.py pad/naar/whisky_overzicht.xlsx
 ```
 
 Het script is bedoeld om later als GitHub Action te draaien; die staat nu niet aan. DrankDozijn vraagt daarvoor een echte browser (Cloudflare).
+
+
+## Bronnen-cascade
+
+`scripts/sources.py` legt per veld vast waar informatie vandaan komt. Een veld met modus *eerste* wordt alleen gevuld als het leeg is, in de volgorde van de lijst; bestaande waarden worden nooit overschreven. Proefnotities en tags worden uit alle bronnen samengevoegd, ontdubbeld, met de bron per stuk.
+
+| veld | modus | volgorde |
+| --- | --- | --- |
+| omschrijving | eerste | Whiskysite > website van de maker > Drankdozijn > Gall & Gall > Drankgigant > Master of Malt |
+| afbeelding | eerste | Whiskysite > maker > Drankdozijn > Drankgigant > Gall & Gall |
+| feiten | eerste | Whiskysite > Drankdozijn > Gall & Gall > Drankgigant |
+| proefnotities, tags | samenvoegen | alle bronnen |
+| flesprijs | laagste | Drankgigant, Drankdozijn, Whiskysite |
+
+Master of Malt levert nooit prijzen of koop-links. Whiskybase wordt niet gescrapet. Teksten worden letterlijk overgenomen; `format_description` past alleen witruimte en alinea's aan en herkent secties als Neus/Nose, Smaak/Palate en Afdronk/Finish.
+
+```bash
+python scripts/enrich_cascade.py --fetch-drankgigant   # alle stappen in cascade-volgorde
+python scripts/build_data.py pad/naar/whisky_overzicht.xlsx
+python scripts/check_tags.py                           # lijst en detail hebben dezelfde tags
+```
+
+`enrich_drankgigant.py` gebruikt dezelfde strikte match als de flesprijzen (naam, bottelaar, leeftijd, editie, ABV binnen 0,3, flesmaat; geen samples of cadeausets) en haalt omschrijving, proefnotities en foto op. `facts.json` bevat aangevulde feiten, `kenmerken.json` de kenmerken uit `scripts/attributes.py` (vatsterkte, natuurlijke kleur, niet koudgefilterd, single cask en vatnummer, distillatie- en bottelingsjaar, fenolgehalte, oplage, first fill/refill, vatsoort, finish en duur). Een kenmerk staat er alleen als de tekst het letterlijk zegt, met de bron erbij.
+
+## Tags
+
+Alle tags (regio, vat, stijl, kenmerken en smaak) worden in `export_site.py` berekend en staan als `tg` in de index. Lijst, kaarten, filters en detailpagina gebruiken exact die lijst; de lijst kan inkorten met "+N". `scripts/check_tags.py` faalt als de index afwijkt van wat uit de detailgegevens volgt.

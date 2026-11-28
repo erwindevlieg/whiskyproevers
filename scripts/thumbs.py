@@ -7,6 +7,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import ssl
 import sys
 import time
@@ -51,7 +52,18 @@ def cache_path(cache_dir: Path, url: str) -> Path:
     return cache_dir / (url_cache_name(url) + _ext_from_url(url))
 
 
-def download_one(url: str, dest: Path, timeout: int = 25) -> tuple[bool, str]:
+def download_one(url: str, dest: Path, timeout: int = 25, tries: int = 4) -> tuple[bool, str]:
+    """Download met herhaling: sommige winkels (Drankgigant) breken nu en dan een TLS-verbinding af."""
+    msg = ""
+    for attempt in range(tries):
+        ok, msg = _download_once(url, dest, timeout)
+        if ok or not re.search(r"(?i)ssl|eof|timed out|reset|temporar", msg):
+            return ok, msg
+        time.sleep(1.5 * (attempt + 1))
+    return False, msg
+
+
+def _download_once(url: str, dest: Path, timeout: int = 25) -> tuple[bool, str]:
     if dest.is_file() and dest.stat().st_size > 32:
         return True, "cached"
     dest.parent.mkdir(parents=True, exist_ok=True)

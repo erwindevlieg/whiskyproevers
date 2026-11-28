@@ -534,8 +534,17 @@ def merge_sample_sizes(payload):
     }
 
 
+def _note_key(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", unicodedata.normalize("NFKD", text or "").encode("ascii", "ignore").decode().lower()).strip()
+
+
 def merge_notes(items, notes_path: Path) -> int:
-    """Voeg letterlijke proefnotities toe, alleen als het veld nog leeg is."""
+    """Voeg proefnotities uit alle bronnen samen (ontdubbeld, bron per stuk bewaard).
+
+    De bestaande notitie blijft de eerste en dus 'proefnotities'. Notities uit
+    notes.json (hoofdtekst en extra's) komen erachter. Bij meer dan één notitie
+    krijgt de rij een lijst 'notities' [{tekst, bron}].
+    """
     if not notes_path or not notes_path.is_file():
         return 0
     data = json.loads(notes_path.read_text(encoding="utf-8"))
@@ -543,9 +552,6 @@ def merge_notes(items, notes_path: Path) -> int:
         return 0
     added = 0
     for item in items:
-        existing = (item.get("proefnotities") or "").strip()
-        if existing and existing.lower() != "onbekend":
-            continue
         entry = data.get(item.get("id"))
         if not entry:
             for alias in item.get("aliases") or []:
@@ -554,14 +560,139 @@ def merge_notes(items, notes_path: Path) -> int:
                     break
         if not entry:
             continue
-        text = (entry.get("text") or "").strip()
-        if not text:
+        pieces = []
+        existing = (item.get("proefnotities") or "").strip()
+        if existing and existing.lower() != "onbekend":
+            pieces.append({"tekst": existing, "bron": item.get("bronNotities") or ""})
+        extra_pieces = []
+        for rec in [entry] + list(entry.get("extra") or []):
+            text = (rec.get("text") or "").strip()
+            if text:
+                extra_pieces.append({"tekst": text, "bron": rec.get("sourceUrl") or rec.get("source") or ""})
+        n_before = len(pieces)
+        for piece in extra_pieces:
+            key = _note_key(piece["tekst"])
+            if not key or any(key in _note_key(p["tekst"]) or _note_key(p["tekst"]) in key for p in pieces):
+                continue
+            pieces.append(piece)
+        if len(pieces) == n_before:
             continue
-        item["proefnotities"] = text
-        if entry.get("sourceUrl"):
-            item["bronNotities"] = entry["sourceUrl"]
+        item["proefnotities"] = pieces[0]["tekst"]
+        if pieces[0]["bron"]:
+            item["bronNotities"] = pieces[0]["bron"]
+        if len(pieces) > 1:
+            item["notities"] = pieces
         added += 1
     return added
+
+
+# Winkelpagina's en tekst leveren kenmerken; hier alleen samenvoegen met lege velden.
+KENMERK_DETAIL_FIELDS = (
+    "vatsterkte", "natuurlijkeKleur", "nietKoudgefilterd", "singleCask", "vatNummer",
+    "distillatiejaar", "bottelingsjaar", "leeftijdAfgeleid", "ppm", "ppmWaarde", "oplage",
+    "firstFill", "refill", "vatSoort", "finishType", "finishDuur",
+)
+
+
+def rook_from_ppm(ppm: float) -> str:
+    """Rookschaal uit een genoemd fenolgehalte: tot 2 geen, tot 20 licht, tot 40 medium, daarboven zwaar."""
+    if ppm <= 2:
+        return "geen"
+    if ppm < 20:
+        return "licht"
+    if ppm < 40:
+        return "medium"
+    return "zwaar"
+
+
+def merge_kenmerken(items, path: Path) -> Counter:
+    """Voeg kenmerken uit kenmerken.json toe; bestaande velden (ncf, kleurstof, rook) blijven staan."""
+    counts: Counter = Counter()
+    if not path or not path.is_file():
+        return counts
+    data = json.loads(path.read_text(encoding="utf-8"))
+    for item in items:
+        entry = data.get(item.get("id"))
+        if not entry:
+            for alias in item.get("aliases") or []:
+                entry = data.get(alias)
+                if entry:
+                    break
+        if not entry:
+            continue
+        kenm = {k: entry[k] for k in KENMERK_DETAIL_FIELDS if k in entry}
+        if not kenm:
+            continue
+        item["kenmerken"] = kenm
+        for key in kenm:
+            counts[key] += 1
+        if "nietKoudgefilterd" in kenm and item.get("ncf") in (None, "", "onbekend"):
+            item["ncf"] = "ja"
+            counts["ncf ingevuld"] += 1
+        if "natuurlijkeKleur" in kenm and item.get("kleurstof") in (None, "", "onbekend"):
+            item["kleurstof"] = "nee"
+            counts["kleurstof ingevuld"] += 1
+        if "ppmWaarde" in kenm and item.get("rook") in (None, "", "onbekend"):
+            item["rook"] = rook_from_ppm(float(kenm["ppmWaarde"]["w"]))
+            item["rookBron"] = "ppm"
+            counts["rook ingevuld"] += 1
+    return counts
+
+
+def _cl(label) -> float | None:
+    m = re.search(r"(\d+(?:[.,]\d+)?)\s*cl", str(label or ""), re.I)
+    return float(m.group(1).replace(",", ".")) if m else None
+
+
+def derive_price_value(items) -> Counter:
+    """Prijs per cl (sample en fles) en een 'waar voor je geld'-indicatie t.o.v. de Whiskybase-score.
+
+    De indicatie vergelijkt prijs per cl met wat bij die score gebruikelijk is (lineaire fit van
+    ln(prijs/cl) op score, apart voor flessen en samples) en bestaat alleen als er een score is:
+    'scherp' (meer dan 22% onder de lijn), 'prijzig' (meer dan 28% erboven), anders 'marktconform'.
+    """
+    import math
+
+    counts: Counter = Counter()
+    rows = []
+    for item in items:
+        sample_pcl = None
+        samples = item.get("samples") or []
+        options = [(s.get("prijsSample"), s.get("inhoud")) for s in samples] or [(item.get("prijsSample"), item.get("inhoud"))]
+        for price, size in options:
+            cl = _cl(size)
+            if price and cl:
+                value = round(price / cl, 2)
+                sample_pcl = value if sample_pcl is None else min(sample_pcl, value)
+        fles_cl = _cl(item.get("flesGrootte"))
+        fles_pcl = round(item["flesPrijs"] / fles_cl, 2) if item.get("flesPrijs") and fles_cl else None
+        if sample_pcl is not None:
+            item["prijsPerClSample"] = sample_pcl
+            counts["prijs per cl sample"] += 1
+        if fles_pcl is not None:
+            item["prijsPerClFles"] = fles_pcl
+            counts["prijs per cl fles"] += 1
+        if item.get("score") is not None and (fles_pcl or sample_pcl):
+            basis = "fles" if fles_pcl else "sample"
+            rows.append((item, basis, fles_pcl or sample_pcl))
+    for basis in ("fles", "sample"):
+        group = [(it, p) for it, b, p in rows if b == basis]
+        if len(group) < 30:
+            continue
+        xs = [float(it["score"]) for it, _ in group]
+        ys = [math.log(p) for _, p in group]
+        mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+        var = sum((x - mx) ** 2 for x in xs)
+        if not var:
+            continue
+        slope = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / var
+        for (it, p), x, y in zip(group, xs, ys):
+            resid = y - (my + slope * (x - mx))
+            label = "scherp" if resid < -0.25 else "prijzig" if resid > 0.25 else "marktconform"
+            it["waardeVoorGeld"] = label
+            it["waardeBasis"] = basis
+            counts["waarde " + label] += 1
+    return counts
 
 
 def _field_empty(item: dict, field: str) -> bool:
@@ -1000,6 +1131,9 @@ def main(argv=None):
         else:
             notes_path = notes_path.expanduser().resolve()
         notes_added = merge_notes(payload["items"], notes_path)
+        kenm_counts = merge_kenmerken(payload["items"], output.parent / "kenmerken.json")
+        if kenm_counts:
+            print("Kenmerken: %s" % dict(kenm_counts), file=sys.stderr)
         if notes_added:
             print("Proefnotities aangevuld: %s" % notes_added, file=sys.stderr)
         facts_path = output.parent / "facts.json"
@@ -1022,6 +1156,10 @@ def main(argv=None):
             ),
             file=sys.stderr,
         )
+
+    value_counts = derive_price_value(payload["items"])
+    if value_counts:
+        print("Prijs per cl: %s" % dict(value_counts), file=sys.stderr)
 
     ib_counts = apply_ib(payload["items"])
     if ib_counts:
