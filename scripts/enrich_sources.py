@@ -129,6 +129,16 @@ WNL_CUT_RE = re.compile(
     r"is een heerlijke whisky van het merk"
     r").*"
 )
+REVIEW_LINK_RE = re.compile(
+    r"(?i)("
+    r"voor meer informatie over de whisky|"
+    r"lees hier de volledige|"
+    r"lees de .{0,60} review op dram1|"
+    r"bekijk hier de tasting notes|"
+    r"meer weten over .{0,80}\?|"
+    r"https?://(?:www\.)?(?:dram1\.com|whiskynotes\.be)/"
+    r")"
+)
 CTA_RE = re.compile(
     r"(?i)("
     r"bestel nu|voordelig online kopen|bekijk prijs en beschikbaarheid|"
@@ -171,6 +181,12 @@ SOURCE_LABELS = {
     "melgers.nl": "Melgers",
     "dramtime.nl": "Dramtime.nl",
     "gall.nl": "Gall & Gall",
+    "shop.whiskybase.com": "Whiskybase Shop",
+    "drankenhandelleiden.nl": "Drankenhandel Leiden",
+    "gordonandmacphail.com": "Gordon & MacPhail",
+    "douglaslaing.com": "Douglas Laing",
+    "northstarspirits.com": "North Star Spirits",
+    "cadenhead.scot": "Cadenhead",
 }
 
 
@@ -463,6 +479,15 @@ def is_useful_description(text: str) -> bool:
         return False
     if CTA_RE.search(compact) and len(CTA_RE.sub("", compact).strip()) < 90:
         return False
+    # Alleen een doorverwijzing naar Dram1/Whiskynotes, zonder eigen proeftekst.
+    if REVIEW_LINK_RE.search(compact):
+        has_notes = re.search(r"(?i)\b(neus|nose|smaak|palate|afdronk|finish|aroma)\b", compact)
+        body = REVIEW_LINK_RE.sub(" ", compact)
+        body = re.sub(r"https?://\S+", " ", body)
+        body = re.sub(r"(?i)\b(?:0[,.]?70\s*(?:ltr|l)|\d+(?:[.,]\d+)?\s*(?:ltr|l|cl|ml)|\d+(?:[.,]\d+)?\s*%)\b", " ", body)
+        body = re.sub(r"\s+", " ", body).strip(" :,-")
+        if not has_notes and len(body) < 400:
+            return False
     # te generiek winkelzinnetje
     if re.search(r"(?i)bij slijterij.*\d+\s*%.*\d+\s*cl", compact) and len(compact) < 220:
         return False

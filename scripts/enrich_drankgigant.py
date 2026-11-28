@@ -198,6 +198,19 @@ def clean_heading(text: str) -> str:
     return re.sub(r"^\s*Beschrijving\s*\n+", "", text or "")
 
 
+_APPROVED: dict = {}
+
+
+def approved(repo: Path, item_id: str, url: str) -> bool:
+    """Bijna-match die Erwin in data/match-review.json op goedgekeurd: true heeft gezet."""
+    key = str(repo)
+    if key not in _APPROVED:
+        path = repo / "data" / "match-review.json"
+        rows = json.loads(path.read_text(encoding="utf-8")).get("kandidaten", []) if path.is_file() else []
+        _APPROVED[key] = {(r["id"], r["kandidaatUrl"]) for r in rows if r.get("goedgekeurd") is True}
+    return (item_id, url) in _APPROVED[key]
+
+
 def apply_cache(repo: Path, descriptions: dict, notes: dict, facts: dict, items_by_id: dict | None = None) -> dict:
     """Verwerk gecachete pagina's volgens de cascade. Muteert descriptions, notes en facts."""
     items = es.load_items(repo)
@@ -212,6 +225,9 @@ def apply_cache(repo: Path, descriptions: dict, notes: dict, facts: dict, items_
         info = json.loads(path.read_text(encoding="utf-8"))
         for item in group:
             ok, why = accept_info(item, info)
+            if not ok and approved(repo, item["id"], url):
+                ok, why = True, ""
+                stats["goedgekeurd_review"] += 1
             if not ok:
                 stats["afgewezen"] += 1
                 report["afgewezen"].append({"id": item["id"], "naam": item["naam"], "pagina": info.get("naam"), "url": url, "reden": why})

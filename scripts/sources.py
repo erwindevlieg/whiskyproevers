@@ -32,10 +32,18 @@ import re
 # Bronsleutel -> weergavenaam en hostnamen.
 SOURCES = {
     "whiskysite": {"label": "Whiskysite", "hosts": ["whiskysite.nl"]},
+    "whiskysitefles": {"label": "Whiskysite (fles)", "hosts": []},
     "maker": {"label": "Website van de maker", "hosts": []},
     "drankdozijn": {"label": "Drankdozijn", "hosts": ["drankdozijn.nl"]},
     "gall": {"label": "Gall & Gall", "hosts": ["gall.nl"]},
     "drankgigant": {"label": "Drankgigant", "hosts": ["drankgigant.nl"]},
+    "gordonmacphail": {"label": "Gordon & MacPhail", "hosts": ["gordonandmacphail.com"]},
+    "douglaslaing": {"label": "Douglas Laing", "hosts": ["douglaslaing.com"]},
+    "northstar": {"label": "North Star Spirits", "hosts": ["northstarspirits.com"]},
+    "cadenhead": {"label": "Cadenhead", "hosts": ["cadenhead.scot"]},
+    "dramshop": {"label": "Dramshop.nl", "hosts": ["dramshop.nl"]},
+    "whiskybaseshop": {"label": "Whiskybase Shop", "hosts": ["shop.whiskybase.com"]},
+    "drankenhandelleiden": {"label": "Drankenhandel Leiden", "hosts": ["drankenhandelleiden.nl"]},
     "masterofmalt": {"label": "Master of Malt", "hosts": ["masterofmalt.com"]},
     "whiskybase": {"label": "Whiskybase", "hosts": ["whiskybase.com"]},
 }
@@ -44,23 +52,23 @@ SOURCES = {
 FIELDS = {
     "omschrijving": {
         "modus": "eerste",
-        "volgorde": ["whiskysite", "maker", "drankdozijn", "gall", "drankgigant", "masterofmalt"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
     },
     "afbeelding": {
         "modus": "eerste",
-        "volgorde": ["whiskysite", "maker", "drankdozijn", "drankgigant", "gall"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "drankgigant", "gall", "dramshop", "whiskybaseshop", "drankenhandelleiden"],
     },
     "feiten": {  # regio, vattype, leeftijd, abv, inhoud: alleen lege velden
         "modus": "eerste",
-        "volgorde": ["whiskysite", "drankdozijn", "gall", "drankgigant"],
+        "volgorde": ["whiskysite", "whiskysitefles", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden"],
     },
     "proefnotities": {
         "modus": "samenvoegen",
-        "volgorde": ["whiskysite", "maker", "drankdozijn", "gall", "drankgigant", "masterofmalt"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
     },
     "tags": {  # smaaktags en vat/stijl-tags uit alle teksten
         "modus": "samenvoegen",
-        "volgorde": ["whiskysite", "maker", "drankdozijn", "gall", "drankgigant", "masterofmalt"],
+        "volgorde": ["whiskysite", "whiskysitefles", "maker", "gordonmacphail", "douglaslaing", "northstar", "cadenhead", "drankdozijn", "gall", "drankgigant", "dramshop", "whiskybaseshop", "drankenhandelleiden", "masterofmalt"],
     },
     "flesprijs": {
         "modus": "laagste",
@@ -68,10 +76,18 @@ FIELDS = {
     },
 }
 
+# Bottelaarsites (Gordon & MacPhail, Douglas Laing, North Star, Cadenhead) staan direct na de
+# maker: voor een onafhankelijke botteling is de bottelaar de maker van die fles. De extra
+# NL-winkels (Dramshop, Whiskybase Shop, Drankenhandel Leiden) komen na Drankgigant.
+# Beide groepen leveren alleen informatie, nooit prijzen; zie enrich_extra.py.
+
 # Wat een bron nooit mag leveren, wat er ook in de volgorde staat.
 VERBODEN = {
     "masterofmalt": {"flesprijs", "koop-link"},
     "whiskybase": {"scrapen"},
+    "dramshop": {"flesprijs"},
+    "whiskybaseshop": {"flesprijs"},
+    "drankenhandelleiden": {"flesprijs"},
 }
 
 # De stages van de runner draaien in de volgorde van de omschrijving.
@@ -297,6 +313,7 @@ _MEASURE_TOKEN_RE = re.compile(
 )
 _SHOP_NOTICE_RE = re.compile(
     r"(?i)\bwordt\b.*\bverzonden\b"
+    r"|\bavailable\s+for\s+shipment\b|\bverzending\s+(?:vanaf|week)\b|\bpre-?order\b"
     r"|\bmax\.?\s*\d+\s*fles(?:sen)?\s+per\s+persoon"
     r"|\bper\s+persoon\b"
     r"|\bop\s*=\s*op\b"

@@ -2,10 +2,19 @@
 """Draai de bronnen-cascade: vul lege velden aan in de volgorde van `sources.py`.
 
 Stappen (in de volgorde van de omschrijving-cascade)
-  1. Whiskysite / maker: bestaande omschrijvingen en foto's blijven staan.
+  1. Whiskysite-sample: bestaande omschrijvingen blijven staan.
+  1b. Whiskysite-fles (`enrich_wsfles.py`): sitemap-match op de volle fles; vult lege velden
+     en vervangt een stub (of een lagere bron) door de flespagina-tekst.
   2. Drankdozijn, Gall & Gall: verwerk de gecachete pagina's (alleen lege velden,
      proefnotities worden samengevoegd; prijzen en feiten van die bronnen niet).
   3. Drankgigant: `enrich_drankgigant.py` (pagina's eerst ophalen met --fetch-drankgigant).
+  3b. Extra bronnen (`enrich_extra.py`): bottelaarsites direct na de maker, extra NL-winkels
+     (Dramshop, Whiskybase Shop, Drankenhandel Leiden) na Drankgigant. Bijna-matches gaan naar
+     data/match-review.json; alleen regels met "goedgekeurd": true worden gebruikt.
+  3c. Extra matchronde (`enrich_rematch.py`): bij gaten mét een strikte Whiskysite-flesmatch
+     worden flesfeiten (naam, leeftijd, ABV, jaartal, bottelaar, vatnummer) als extra
+     sleutels gebruikt tegen dezelfde winkels. Alleen strikte matches; review wordt niet
+     goedgekeurd.
   4. Master of Malt en overige opgeslagen pagina's: alleen omschrijving en proefnotities.
   5. Opmaak van alle omschrijvingen en notities (witruimte en alinea's, geen woorden).
   6. Kenmerken uit alle teksten (`attributes.py`) naar kenmerken.json.
@@ -23,6 +32,9 @@ from pathlib import Path
 
 import attributes
 import enrich_dd
+import enrich_extra
+import enrich_wsfles
+import enrich_rematch
 import enrich_drankgigant as edg
 import enrich_gall
 import enrich_sources as es
@@ -54,6 +66,71 @@ def run_drankgigant(repo: Path, stats: Counter) -> dict:
     edg.REPORT.parent.mkdir(parents=True, exist_ok=True)
     es.save_json(edg.REPORT, report)
     return report
+
+
+def run_wsfles(repo: Path, stats: Counter) -> dict:
+    """Whiskysite-flespagina, direct na de sample: alleen lege velden, stubs mogen wijken."""
+    descriptions = es.load_descriptions(repo / "descriptions.json")
+    notes = es.load_descriptions(repo / "notes.json")
+    facts = es.load_descriptions(repo / "facts.json")
+    report = enrich_wsfles.apply(repo, descriptions, notes, facts)
+    es.save_json(repo / "descriptions.json", descriptions)
+    es.save_json(repo / "notes.json", notes)
+    es.save_json(repo / "facts.json", facts)
+    for k, v in report["stats"].items():
+        stats["wsfles:" + k] += v
+    enrich_wsfles.REPORT.parent.mkdir(parents=True, exist_ok=True)
+    es.save_json(enrich_wsfles.REPORT, report)
+    return report
+
+
+def run_extra(repo: Path, key: str, stats: Counter) -> dict:
+    """Extra winkel of bottelaarsite (enrich_extra.py): alleen lege velden, notities samenvoegen."""
+    descriptions = es.load_descriptions(repo / "descriptions.json")
+    notes = es.load_descriptions(repo / "notes.json")
+    facts = es.load_descriptions(repo / "facts.json")
+    report = enrich_extra.apply(repo, descriptions, notes, facts, [key])
+    es.save_json(repo / "descriptions.json", descriptions)
+    es.save_json(repo / "notes.json", notes)
+    es.save_json(repo / "facts.json", facts)
+    for k, v in report["stats"].items():
+        stats["extra:" + k] += v
+    EXTRA_REVIEW.extend(report["review"])
+    return report
+
+
+EXTRA_REVIEW: list = []
+
+
+def edg_review(repo: Path) -> list[dict]:
+    """Drankgigant-pagina's die alleen op ABV (klein verschil) of flesmaat afvielen."""
+    if not edg.REPORT.is_file():
+        return []
+    prev = enrich_extra.load_review(repo)
+    items = {it["id"]: it for it in es.load_items(repo)}
+    rows = []
+    for r in json.loads(edg.REPORT.read_text(encoding="utf-8")).get("afgewezen", []):
+        item = items.get(r["id"])
+        path = edg.cache_file(r["url"])
+        if not item or not path.is_file():
+            continue
+        info = json.loads(path.read_text(encoding="utf-8"))
+        diffs = []
+        if r["reden"].startswith("flesmaat"):
+            diffs.append("maat %s vs %s" % (item.get("flesGrootte") or "70 cl", info.get("grootte")))
+        elif r["reden"] == "ABV verschilt" and info.get("abv") is not None and item.get("abv") is not None:
+            diffs.append("ABV %s vs %s" % (enrich_extra.fmt(item["abv"]), enrich_extra.fmt(info["abv"])))
+        else:
+            diffs.append(r["reden"])
+        if not enrich_extra.near_match(diffs):
+            continue
+        rows.append({
+            "id": r["id"], "whisky": item["naam"], "bron": "Drankgigant", "kandidaatNaam": info.get("naam"),
+            "kandidaatUrl": r["url"], "verschil": diffs,
+            "waarschijnlijkheid": enrich_extra.likelihood(0.9, diffs),
+            "goedgekeurd": (prev.get((r["id"], r["url"])) or {}).get("goedgekeurd"),
+        })
+    return rows
 
 
 def format_all(repo: Path, stats: Counter) -> None:
@@ -144,6 +221,8 @@ def build_kenmerken(repo: Path, stats: Counter) -> dict:
     notes = es.load_descriptions(repo / "notes.json")
     dd = dd_page_texts(items_by_id)
     dg = dg_page_texts(repo)
+    extra = enrich_extra.page_texts(repo)
+    wsfles = enrich_wsfles.page_texts(repo)
     result = {}
     for item in items:
         iid = item["id"]
@@ -165,6 +244,8 @@ def build_kenmerken(repo: Path, stats: Counter) -> dict:
             texts.append((item.get("bronNotities") or "proefnotities", str(item["proefnotities"])))
         texts.extend(dd.get(iid, []))
         texts.extend(dg.get(iid, []))
+        texts.extend(extra.get(iid, []))
+        texts.extend(wsfles.get(iid, []))
         found = attributes.extract(item, texts)
         if found:
             result[iid] = found
@@ -177,6 +258,8 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--repo", type=Path, default=ROOT)
     ap.add_argument("--fetch-drankgigant", action="store_true", help="Haal eerst Drankgigant-pagina's op.")
+    ap.add_argument("--fetch-extra", action="store_true", help="Haal eerst pagina's van de extra winkels en bottelaarsites op.")
+    ap.add_argument("--fetch-wsfles", action="store_true", help="Haal eerst Whiskysite-flespagina's op (sitemap, crawl-delay 2 s).")
     ap.add_argument("--delay", type=float, default=0.5)
     ap.add_argument("--skip-stages", default="", help="Komma-gescheiden bronsleutels om over te slaan.")
     args = ap.parse_args(argv)
@@ -187,6 +270,10 @@ def main(argv=None) -> int:
 
     if args.fetch_drankgigant:
         print("Drankgigant ophalen:", dict(edg.fetch_pages(repo, args.delay)), file=sys.stderr)
+    if args.fetch_wsfles:
+        print("Whiskysite-flespagina's ophalen:", dict(enrich_wsfles.fetch_pages(repo)), file=sys.stderr)
+    if args.fetch_extra:
+        print("Extra bronnen ophalen:", dict(enrich_extra.fetch(repo, enrich_extra.ALL_SOURCES)), file=sys.stderr)
     for key in src.STAGE_VOLGORDE:
         if key in skip:
             continue
@@ -200,9 +287,23 @@ def main(argv=None) -> int:
                 stats["gall:" + k] += v
         elif key == "drankgigant":
             run_drankgigant(repo, stats)
+        elif key == "whiskysitefles":
+            run_wsfles(repo, stats)
+        elif key in enrich_extra.ALL_SOURCES:
+            run_extra(repo, key, stats)
         elif key == "masterofmalt":
             run_stage_fetched(repo, stats)
-        # whiskysite en maker: bestaande waarden blijven staan.
+        # whiskysite (sample): bestaande waarden blijven staan; flespagina's komen in whiskysitefles.
+    if "rematch" not in skip:
+        print("Extra matchronde (Whiskysite-flesfeiten als sleutels)…", file=sys.stderr)
+        enrich_rematch.main(["--repo", str(repo), "--apply"])
+    wsfles_rev = []
+    if enrich_wsfles.REPORT.is_file():
+        wsfles_rev = json.loads(enrich_wsfles.REPORT.read_text(encoding="utf-8")).get("review") or []
+    if EXTRA_REVIEW or wsfles_rev or not skip.issuperset(enrich_extra.ALL_SOURCES):
+        rows = sorted(EXTRA_REVIEW + edg_review(repo) + wsfles_rev, key=lambda r: -r["waarschijnlijkheid"])
+        enrich_extra.write_review(repo, rows)
+        print("Bijna-matches voor review: %s (data/match-review.json)" % len(rows), file=sys.stderr)
     format_all(repo, stats)
     facts_from_stubs(repo, es.load_descriptions(repo / "descriptions.json"), es.load_items(repo), stats)
     kenmerken = build_kenmerken(repo, stats)
