@@ -11,6 +11,10 @@ Stappen (in de volgorde van de omschrijving-cascade)
   3b. Extra bronnen (`enrich_extra.py`): bottelaarsites direct na de maker, extra NL-winkels
      (Dramshop, Whiskybase Shop, Drankenhandel Leiden) na Drankgigant. Bijna-matches gaan naar
      data/match-review.json; alleen regels met "goedgekeurd": true worden gebruikt.
+  3c. Extra matchronde (`enrich_rematch.py`): bij gaten mét een strikte Whiskysite-flesmatch
+     worden flesfeiten (naam, leeftijd, ABV, jaartal, bottelaar, vatnummer) als extra
+     sleutels gebruikt tegen dezelfde winkels. Alleen strikte matches; review wordt niet
+     goedgekeurd.
   4. Master of Malt en overige opgeslagen pagina's: alleen omschrijving en proefnotities.
   5. Opmaak van alle omschrijvingen en notities (witruimte en alinea's, geen woorden).
   6. Kenmerken uit alle teksten (`attributes.py`) naar kenmerken.json.
@@ -30,6 +34,7 @@ import attributes
 import enrich_dd
 import enrich_extra
 import enrich_wsfles
+import enrich_rematch
 import enrich_drankgigant as edg
 import enrich_gall
 import enrich_sources as es
@@ -289,6 +294,9 @@ def main(argv=None) -> int:
         elif key == "masterofmalt":
             run_stage_fetched(repo, stats)
         # whiskysite (sample): bestaande waarden blijven staan; flespagina's komen in whiskysitefles.
+    if "rematch" not in skip:
+        print("Extra matchronde (Whiskysite-flesfeiten als sleutels)…", file=sys.stderr)
+        enrich_rematch.main(["--repo", str(repo), "--apply"])
     wsfles_rev = []
     if enrich_wsfles.REPORT.is_file():
         wsfles_rev = json.loads(enrich_wsfles.REPORT.read_text(encoding="utf-8")).get("review") or []

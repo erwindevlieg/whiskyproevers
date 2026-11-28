@@ -73,6 +73,15 @@ python scripts/check_tags.py                           # lijst en detail hebben 
 python scripts/enrich_cascade.py --fetch-wsfles
 ```
 
+## Extra matchronde met flesfeiten
+
+`scripts/enrich_rematch.py` neemt whisky's die nog een gat hebben en al een strikte match met een Whiskysite-flespagina. De gegevens van die flespagina (volle naam, leeftijd, ABV, vintage of botteljaar, bottelaar, vatnummer) worden als extra matchesleutels gebruikt tegen Drankdozijn, Drankgigant, Gall & Gall, Whiskybase Shop, Drankenhandel Leiden, Dramshop en de bottelaarsites. Alleen strikte matches tellen; bestaande waarden worden niet overschreven; Whiskysite-feiten winnen. Master of Malt blijft alleen informatiebron. Cloudflare- of anti-botpagina's worden niet omzeild; robots.txt en crawl-delay worden aangehouden. `data/match-review.json` wordt herscoord in het rapport, maar er wordt niets goedgekeurd.
+
+```bash
+python scripts/enrich_rematch.py --dry-run
+python scripts/enrich_cascade.py
+```
+
 ## Extra bronnen en bijna-matches
 
 `scripts/enrich_extra.py` voegt informatiebronnen toe aan de cascade (geen prijzen):
