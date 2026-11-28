@@ -115,7 +115,7 @@
             <label id="flesPrijsRange-label">Flesprijs</label>
             <span class="slider-val" id="flesPrijsVal">—</span>
           </div>
-          <div class="range-dual" role="group" aria-labelledby="flesPrijsRange-label">
+          <div class="range-dual" style="--min: 0%; --max: 100%;" role="group" aria-labelledby="flesPrijsRange-label">
             <div class="range-dual-rail" aria-hidden="true"><div class="range-dual-fill" id="flesPrijsFill"></div></div>
             <input id="minFlesPrijs" type="range" min="0" max="1000" step="1" value="0" disabled aria-label="Minimale flesprijs">
             <input id="maxFlesPrijs" type="range" min="0" max="1000" step="1" value="1000" disabled aria-label="Maximale flesprijs">
@@ -1911,9 +1911,11 @@ function syncFlesSliderUi() {
   const span = Math.max(1, max - min);
   const a = ((state.minFlesPrijs - min) / span) * 100;
   const b = ((state.maxFlesPrijs - min) / span) * 100;
-  if (els.flesPrijsFill) {
-    els.flesPrijsFill.style.left = a + "%";
-    els.flesPrijsFill.style.right = (100 - b) + "%";
+  const wrap = (els.minFlesPrijs && els.minFlesPrijs.closest(".range-dual"))
+    || document.querySelector(".range-dual");
+  if (wrap) {
+    wrap.style.setProperty("--min", a + "%");
+    wrap.style.setProperty("--max", b + "%");
   }
   if (els.flesPrijsVal) els.flesPrijsVal.textContent = formatFlesRange();
   if (els.minFlesPrijs) els.minFlesPrijs.value = state.minFlesPrijs;
